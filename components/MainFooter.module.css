@@ -38,15 +38,6 @@
     text-align: left;
 }
 
-@media (min-width: 768px) {
-    .container {
-        flex-direction: row; /* En desktop se alinean horizontalmente */
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-
-
 /* Utilidades */
 
 .breakDegradado {
@@ -84,6 +75,40 @@
     gap: 0.5rem;
 }
 
+/* Horizontal Social icons */
+
+.linkListMedia {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.linkListMedia {
+    font-size: 24px;
+}
+
+/* Vertical Social icons */
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row; /* En desktop se alinean horizontalmente */
+        justify-content: space-between;
+        align-items: center;
+    }
+    .linkListMedia {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 30px;
+    }
+}
+
 .navLink {
     color: var(--color-fondo-claro);
     text-decoration: none;
@@ -107,7 +132,7 @@
 /* Logo */
 
 .logo {
-    min-width: 100px; /* Asegura que el logo no se reduzca más allá de 200px */
+    min-width: 90px; /* Asegura que el logo no se reduzca más allá de 200px */
     height: auto; /* Mantiene la proporción del logo */
     transition: transform 0.2s ease-in-out; /* Agrega una transición suave para efectos */
 }
@@ -116,3 +141,4 @@
     cursor: pointer; /* Cambia el cursor a mano para indicar interactividad */
     transform: scale(1.05); /* Efecto de escala al pasar el mouse */
 }
+

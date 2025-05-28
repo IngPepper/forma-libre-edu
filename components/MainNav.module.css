@@ -1,6 +1,6 @@
 /* Logo principal */
 .logo {
-    min-width: 200px; /* Asegura que el logo no se reduzca más allá de 200px */
+    min-width: 150px; /* Asegura que el logo no se reduzca más allá de 200px */
     height: auto; /* Mantiene la proporción del logo */
     transition: transform 0.2s ease-in-out; /* Agrega una transición suave para efectos */
 }
