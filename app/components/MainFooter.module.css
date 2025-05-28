@@ -1,0 +1,118 @@
+/* Wrapper del footer  */
+
+.footerWrapper {
+    display: flex; /* Usa Flexbox para organizar elementos hijos */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    /*animation: slideUp 0.55s ease-out forwards;*/
+    width: 100%;
+    background-color: var(--color-texto);
+}
+
+/* Animación de abajo hacia arriba  */
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Contenedor  */
+
+.container {
+    max-width: 1024px;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Apila elementos verticalmente */
+    align-items: flex-start; /* Alinea contenido a la izquierda */
+    justify-content: center;
+    gap: 1rem;
+
+    padding: 1.5rem;
+    color: var(--color-fondo-claro);
+    background-color: var(--color-texto);
+    text-align: left;
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row; /* En desktop se alinean horizontalmente */
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+
+/* Utilidades */
+
+.breakDegradado {
+    width: 100%;
+    height: 1px;
+    margin: 1.5rem 0;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: fadeInLine 0.8s ease-in-out;
+}
+
+@keyframes fadeInLine {
+    from {
+        opacity: 0;
+        transform: scaleX(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+/* Titulo y enlaces */
+
+.titulo {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.linkList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navLink {
+    color: var(--color-fondo-claro);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.navLink:hover {
+    color: var(--color-acento);
+}
+
+/* Agradecimiento y copyright */
+
+.agradecimiento{
+    display: flex; /* Usa Flexbox para organizar elementos hijos */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    /*animation: slideUp 0.55s ease-out forwards;*/
+    width: 100%;
+    background-color: var(--color-texto);
+    color: var(--color-fondo-claro);
+}
+
+/* Logo */
+
+.logo {
+    min-width: 100px; /* Asegura que el logo no se reduzca más allá de 200px */
+    height: auto; /* Mantiene la proporción del logo */
+    transition: transform 0.2s ease-in-out; /* Agrega una transición suave para efectos */
+}
+
+.logo:hover {
+    cursor: pointer; /* Cambia el cursor a mano para indicar interactividad */
+    transform: scale(1.05); /* Efecto de escala al pasar el mouse */
+}

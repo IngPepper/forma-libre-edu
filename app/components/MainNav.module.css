@@ -1,0 +1,182 @@
+/* Logo principal */
+.logo {
+    min-width: 200px; /* Asegura que el logo no se reduzca más allá de 200px */
+    height: auto; /* Mantiene la proporción del logo */
+    transition: transform 0.2s ease-in-out; /* Agrega una transición suave para efectos */
+}
+
+.logo:hover {
+    cursor: pointer; /* Cambia el cursor a mano para indicar interactividad */
+    transform: scale(1.05); /* Efecto de escala al pasar el mouse */
+}
+
+/* Contenedor general de la navegación */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navWrapper {
+    position: sticky;
+    top: 0;        /* Se “engancha” al top de la ventana */
+    z-index: 100;  /* Asegura que quede por encima de otros elementos */
+    margin-top: 0; /* Elimina cualquier margen superior */
+    display: flex; /* Usa Flexbox para organizar elementos hijos */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    padding: 0 var(--espaciado) var(--espaciado); /* Espaciado alrededor del nav */
+    background-color: var(--color-fondo-claro); /* Color de fondo opcional */
+    animation: slideDown 0.55s ease-out forwards;
+}
+
+/* Contenedor interno del nav, limitado a un ancho máximo */
+.container {
+    width: 100%;
+    max-width: 1024px; /* Ancho máximo */
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Logo | enlaces | botones */
+    align-items: center; /* Centrado vertical */
+    gap: 1rem;
+
+    background-color: var(--color-texto);
+    border-radius: 0 0 var(--espaciado) var(--espaciado); /* Bordes redondeados solo abajo */
+    box-shadow: var(--sombra); /* Sombra para profundidad */
+    padding: calc(var(--espaciado) * 1.5);
+    height: auto;
+}
+
+/* Espaciador flexible, usado para empujar elementos con Flexbox */
+.spacer {
+    flex: 1;
+}
+
+/* Botón de cuenta (ícono y texto) */
+.accountButton {
+    display: grid;
+    grid-auto-flow: column; /* Elementos en fila */
+    align-items: center; /* Centrado vertical */
+    gap: 8px;
+
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 12px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.accountButton:hover {
+    transform: scale(1.05); /* Efecto al pasar el mouse */
+    color: var(--color-texto-hover-claro); /* Cambio de color al hacer hover */
+}
+
+.accountText {
+    display: inline-block; /* Permite el comportamiento en línea pero con box-model completo */
+}
+
+
+/* Ícono del menú (hamburguesa) */
+.menuIcon {
+    font-size: 24px;
+    color: var(--color-texto-blanco);
+    transition: font-size 0.2s ease;
+}
+
+/* Contenedor de acciones de navegación (cuenta, menú, etc.) */
+.navActions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Enlace de navegación */
+.navLink {
+    text-decoration: none;
+    color: var(--color-texto-blanco);
+    padding: 3px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.navLink:hover {
+    color: var(--color-fondo); /* Cambio de color en hover */
+    transform: scale(1.05); /* Animación sutil */
+}
+/* Contenedor de enlaces de navegación */
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: opacity 0.3s ease, transform 0.3s ease, max-width 0.3s ease;
+    overflow: hidden;
+    white-space: nowrap; /* Evita que el contenido se divida en varias líneas */
+}
+
+/* Botón que activa el menú (visible solo en móviles) */
+.menuButton {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+/* Para pantallas de 645px o menos */
+@media (max-width: 645px) {
+    .navLinks {
+        opacity: 0; /* Oculta los enlaces */
+        transform: scale(0.95); /* Ligera reducción */
+        max-width: 0;
+        pointer-events: none; /* Inhabilita interacción */
+    }
+
+    .menuIcon {
+        font-size: 30px; /* Aumenta el tamaño del ícono */
+    }
+
+    .menuButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .accountText {
+        display: none; /* Oculta el texto, deja solo el ícono */
+    }
+
+    .logo {
+        min-width: 150px; /* Reduce el tamaño del logo */
+    }
+}
+
+/* Para pantallas aún más pequeñas (≤395px) */
+@media (max-width: 395px) {
+    .navLinks {
+        opacity: 0;
+        transform: scale(0.95);
+        max-width: 0;
+        pointer-events: none;
+    }
+
+    .menuIcon {
+        font-size: 30px;
+    }
+
+    .menuButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .accountText {
+        display: none;
+    }
+
+    .logo {
+        min-width: 120px; /* Logo aún más pequeño */
+    }
+}
