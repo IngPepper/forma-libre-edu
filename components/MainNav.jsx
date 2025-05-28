@@ -4,6 +4,8 @@ import styles from './MainNav.module.css';
 // Importación de íconos desde react-icons (Material Design)
 import { MdOutlineAccountCircle, MdMenu } from 'react-icons/md';
 
+import Link from 'next/link';
+
 function MainNav() {
     return (
         // Contenedor principal del nav, usa una clase con estilos en Flexbox y padding
@@ -25,8 +27,8 @@ function MainNav() {
 
                     {/* Enlaces principales (visible en escritorio) */}
                     <div className={styles.navLinks}>
-                        <a href="#catalogo" className={styles.navLink}>Catálogo</a>
-                        <a href="#planes" className={styles.navLink}>Planes</a>
+                        <Link href={'/catalogo'} className={styles.navLink}>Catálogo</Link>
+                        <Link href={'/planes'} className={styles.navLink}>Planes</Link>
                     </div>
 
                     {/* Botón del menú (visible solo en móviles) */}
@@ -35,11 +37,12 @@ function MainNav() {
                     </button>
 
                     {/* Botón de cuenta con ícono y texto (el texto se oculta en móviles) */}
-                    <button className={styles.accountButton}>
-                        <MdOutlineAccountCircle className={styles.menuIcon} />
-                        <span className={styles.accountText}>Login/Register</span>
-                    </button>
-
+                    <Link href={'/register'}>
+                        <button className={styles.accountButton}>
+                            <MdOutlineAccountCircle className={styles.menuIcon} />
+                            <span className={styles.accountText}>Login/Register</span>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </nav>
