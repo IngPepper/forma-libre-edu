@@ -1,13 +1,15 @@
+/* Barra de búsqueda sticky justo debajo del navbar */
 .searchBarWrapper {
     position: sticky;
-    top: 125px;   /* Cambia este valor por la altura real de tu nav */
+    top: 125px;   /* Altura de tu navbar sticky; ajusta según lo que mida tu navbar */
     z-index: 99; /* Debajo del nav, que tiene z-index: 100 */
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto;  /* centra el contenedor */
-    padding: 0 var(--espaciado); /* mismo padding lateral que el .container */
+    max-width: 900px; /* Debe coincidir con el ancho del nav */
+    margin: 0 auto;   /* Centra el contenedor */
+    padding: 0 var(--espaciado); /* Padding lateral igual que el nav */
 }
 
+/* Estilo principal de la barra de búsqueda */
 .searchBar {
     display: flex;
     align-items: center;
@@ -21,25 +23,29 @@
     transition: box-shadow 0.2s;
 }
 
+/* Efecto visual al enfocar o pasar el mouse */
 .searchBar:focus-within, .searchBar:hover {
     box-shadow: 0 6px 15px rgba(0,0,0,0.17);
     background: var(--color-fondo);
 }
 
+/* Icono de búsqueda (lupa a la izquierda del input) */
 .icon {
     color: var(--color-texto-suave);
     display: flex;
     align-items: center;
     margin-right: 0.7rem;
-    transition: color 0.2s;
+    transition: color 0.2s, opacity 0.23s;
     opacity: 0.8;
 }
 
+/* Efecto de color al enfocar la barra */
 .searchBar:focus-within .icon, .searchBar:hover .icon {
     color: var(--color-texto);
     opacity: 1;
 }
 
+/* Estilos del input */
 .input {
     width: 100%;
     flex: 1;
@@ -49,50 +55,47 @@
     font-size: 1.08rem;
     color: var(--color-texto-blanco);
     font-family: 'Red Hat Mono', monospace;
-    padding: 0.7rem 0.3rem;
+    padding: var(--espaciado);
     margin-right: 0.5rem;
-    transition: color 0.2s;
+    transition: color 0.2s, padding 0.23s;
 }
 
+/* Placeholder custom */
 .input::placeholder {
     color: var(--color-texto-suave);
     opacity: 1;
 }
 
-/* Quitar la X nativa en navegadores basados en Webkit (Chrome, Safari, Edge) */
+/* Quitar la X nativa de los campos de búsqueda en todos los navegadores */
 .input::-webkit-search-cancel-button {
     display: none;
 }
-
-/* Quitar la X en Internet Explorer */
 .input::-ms-clear {
     display: none;
 }
-
-/* Quitar la X en Firefox (por si acaso) */
 .input::-moz-search-clear {
     display: none;
 }
 
+/* Botón de limpiar (X) */
 .clearButton {
     background: none;
     border: none;
     font-size: 1.3rem;
     cursor: pointer;
     margin-right: 0.3rem;
-    color: var(--color-texto-blanco); /* Cambia aquí el color de la X */
+    color: var(--color-texto-blanco);
     opacity: 0.7;
     transition: opacity 0.15s, color 0.15s;
     padding: 0 0.3rem;
 }
-
 .clearButton:hover, .clearButton:focus {
     opacity: 1;
-    color: var(--color-texto-suave); /* Color cuando se pasa el mouse por encima */
+    color: var(--color-texto-suave);
     outline: none;
 }
 
-
+/* Estilo general del botón de buscar */
 .button {
     background: var(--color-acento);
     color: var(--color-texto-blanco);
@@ -102,26 +105,52 @@
     font-size: 1rem;
     font-family: inherit;
     cursor: pointer;
-    transition: background 0.2s, transform 0.13s;
+    transition: background 0.2s, transform 0.13s, padding 0.23s, width 0.23s;
     box-shadow: none;
     margin-left: 0.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.button:hover, .button:focus {
-    background: #8a8167;
-    transform: scale(1.08);
-    outline: none;
+/* Animar el texto y la lupa dentro del botón de buscar */
+.buttonText, .buttonIcon {
+    display: inline-block;
+    vertical-align: middle;
+    transition: opacity 0.23s, width 0.23s;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
+/* Por defecto: mostrar texto, ocultar lupa */
 .buttonText {
-    display: inline;
+    opacity: 1;
+    width: auto;
 }
 
 .buttonIcon {
-    display: none;
-    vertical-align: middle;
+    opacity: 0;
+    width: 0;
+    margin-left: 0.1em; /* separa el icono un poco del borde si lo necesitas */
 }
 
+/* Media query para móviles: mostrar la lupa y ocultar texto */
+@media (max-width: 395px) {
+    .button {
+        padding: 0.5rem;         /* Botón más compacto */
+        min-width: 2.2rem;       /* Que no se achique de más */
+    }
+    .buttonText {
+        opacity: 0;
+        width: 0;
+    }
+    .buttonIcon {
+        opacity: 1;
+        width: 1.6em; /* Igual al alto del SVG para animación suave */
+    }
+}
+
+/* Media query para ocultar el icono de la izquierda en móviles */
 @media (max-width: 600px) {
     .searchBar {
         max-width: 100%;
@@ -135,31 +164,25 @@
         padding: 0.38rem 0.8rem;
         font-size: 0.95rem;
     }
-    .icon{
+    .icon {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.23s;
         display: none;
     }
 }
 
-@media (max-width: 395px) {
-    .searchBar {
-        max-width: 100%;
-        gap: 1rem;
-    }
-    .input {
-        width: 100%;
-        padding: var(--espaciado) 0;
-    }
+/* Opcional: ajuste aún más pequeño en pantallas diminutas */
+@media (max-width: 375px) {
     .button {
-        padding: 0.38rem 0.8rem;
-        font-size: 0.95rem;
+        padding: 0.38rem;
+        min-width: 2rem;
     }
-    .buttonText {
-        display: none;
-    }
-    .buttonIcon {
-        display: inline;
-    }
-    .icon{
-        display: none;
+    .searchBarWrapper {
+        position: sticky;
+        top: 189px;   /* Altura de tu navbar sticky; ajusta según lo que mida tu navbar */
+        z-index: 99; /* Debajo del nav, que tiene z-index: 100 */
     }
 }
+
+/* Fin del archivo */

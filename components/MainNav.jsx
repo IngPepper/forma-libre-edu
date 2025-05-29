@@ -40,7 +40,7 @@ function MainNav() {
                     <Link href={'/register'}>
                         <button className={styles.accountButton}>
                             <MdOutlineAccountCircle className={styles.menuIcon} />
-                            <span className={styles.accountText}>Login/Register</span>
+                            <span className={styles.accountText}>Cuenta</span>
                         </button>
                     </Link>
                 </div>

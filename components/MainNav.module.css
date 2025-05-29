@@ -180,3 +180,30 @@
         min-width: 120px; /* Logo aún más pequeño */
     }
 }
+
+@media (max-width: 375px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        place-items: center;      /* Atajo: centra tanto horizontal como vertical */
+        gap: 1rem;
+    }
+
+    .menuIcon {
+        font-size: 30px;
+    }
+
+    .menuButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .accountText {
+        display: none;
+    }
+
+    .logo {
+        min-width: 120px; /* Logo aún más pequeño */
+    }
+}

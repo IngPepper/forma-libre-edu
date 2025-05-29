@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar({ placeholder = "¿Que estamos buscando?", onSearch }) {
+export default function SearchBar({ placeholder = "Buscar...", onSearch }) {
     const [query, setQuery] = useState("");
 
     const handleChange = (e) => setQuery(e.target.value);
