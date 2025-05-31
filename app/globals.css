@@ -75,3 +75,27 @@ button:hover {
   cursor: pointer; /* Cambia el cursor a mano para indicar interactividad */
   transform: scale(1.05); /* Efecto de escala al pasar el mouse */
 }
+
+.wrapper {
+  width: 100%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--espaciado);
+  padding-right: var(--espaciado);
+  box-sizing: border-box;
+  /* Opcional: agrega separación arriba y abajo */
+  padding-top: 0;
+  padding-bottom: var(--espaciado-doble);
+  /* Para responsividad extra */
+  min-width: 0;
+}
+
+.topContent {
+    position: relative; /* ¡Esto es lo más importante! */
+    min-height: 340px;
+    overflow: hidden;
+    margin-top: 0;
+    padding-top: 0;
+    background: transparent;
+}

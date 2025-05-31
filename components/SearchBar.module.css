@@ -6,7 +6,7 @@
     width: 100%;
     max-width: 900px; /* Debe coincidir con el ancho del nav */
     margin: 0 auto;   /* Centra el contenedor */
-    padding: 0 var(--espaciado); /* Padding lateral igual que el nav */
+    padding: var(--espaciado); /* Padding lateral igual que el nav */
 }
 
 /* Estilo principal de la barra de búsqueda */
@@ -19,14 +19,14 @@
     padding: 0.25rem 1rem;
     max-width: 1024px;
     width: 100%;
-    margin: 0 auto;
+    margin: 20px auto;
     transition: box-shadow 0.2s;
 }
 
 /* Efecto visual al enfocar o pasar el mouse */
 .searchBar:focus-within, .searchBar:hover {
     box-shadow: 0 6px 15px rgba(0,0,0,0.17);
-    background: var(--color-fondo);
+    background: var(--color-fondo-claro);
 }
 
 /* Icono de búsqueda (lupa a la izquierda del input) */
@@ -53,7 +53,7 @@
     border: none;
     outline: none;
     font-size: 1.08rem;
-    color: var(--color-texto-blanco);
+    color: var(--color-texto);
     font-family: 'Red Hat Mono', monospace;
     padding: var(--espaciado);
     margin-right: 0.5rem;
@@ -84,14 +84,14 @@
     font-size: 1.3rem;
     cursor: pointer;
     margin-right: 0.3rem;
-    color: var(--color-texto-blanco);
+    color: var(--color-texto);
     opacity: 0.7;
     transition: opacity 0.15s, color 0.15s;
     padding: 0 0.3rem;
 }
 .clearButton:hover, .clearButton:focus {
     opacity: 1;
-    color: var(--color-texto-suave);
+    color: var(--color-texto-blanco);
     outline: none;
 }
 

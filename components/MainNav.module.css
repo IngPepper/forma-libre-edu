@@ -30,7 +30,7 @@
     display: flex; /* Usa Flexbox para organizar elementos hijos */
     justify-content: center; /* Centra horizontalmente el contenido */
     padding: 0 var(--espaciado) var(--espaciado); /* Espaciado alrededor del nav */
-    background-color: var(--color-fondo-claro); /* Color de fondo opcional */
+    background-color: transparent; /* Color de fondo opcional */
     animation: slideDown 0.55s ease-out forwards;
 }
 
