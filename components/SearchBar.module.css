@@ -15,6 +15,7 @@
     align-items: center;
     background: var(--color-tarjeta);
     border-radius: var(--borde-radius-doble);
+    border: 1px solid var(--color-border);
     box-shadow: var(--sombra);
     padding: var(--espaciado);
     max-width: 1024px;

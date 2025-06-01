@@ -1,14 +1,15 @@
 .catalogo {
     max-width: 1024px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 0 1rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 
 .categorias {
-    margin: 0;
+    margin: var(--espaciado) 0;
+    max-width: 1024px;
     position: sticky;
     top: 132px; /* Se pega al top del viewport */
     z-index: 10; /* Para que quede encima del contenido */
@@ -20,14 +21,16 @@
     justify-content: center;
     border: 1px solid var(--color-border);
     box-shadow: var(--sombra);
-    border-radius: 12px;
+    border-radius: 999px;
 }
 .categoriaBtn {
     background: var(--color-tarjeta, #d7d3bf);
-    border: none;
+    border: 1px solid var(--color-border);
     padding: 0.6rem 1.5rem;
     border-radius: 999px;
+    color: var(--color-texto, #d7d3bf);
     font-size: 1rem;
+    font-weight: bolder;
     cursor: pointer;
     transition: background 0.2s, color 0.2s;
 }
@@ -41,4 +44,14 @@
 .allSticky{
     position: sticky;
     top: 0; /* Se pega al top del viewport */
+}
+
+@media (max-width: 470px) {
+
+    .categorias {
+        border-radius: 12px;
+    }
+    .categoriaBtn {
+        padding: var(--espaciado) 0.5rem;
+    }
 }
