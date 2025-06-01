@@ -14,9 +14,9 @@ function MainFooter() {
             <footer className={styles.footerWrapper}>
                 <div className={styles.container}>
                     <div className={styles.breakDegradado}></div>
-                    <div>
+                    <Link href="/">
                         <img src="/assets/iso02S_marron_t.svg" alt="Logotipo" className={styles.logo} />
-                    </div>
+                    </Link>
                     <h1 className={styles.titulo}>Links Útiles</h1>
                     <ul className={styles.linkList}>
                         <li><a href="#cookies" className={styles.navLink}>Cookies</a></li>

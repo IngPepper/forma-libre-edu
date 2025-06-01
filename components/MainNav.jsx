@@ -20,9 +20,9 @@ function MainNav() {
             <div className={styles.container}>
 
                 {/* Logotipo del sitio */}
-                <div>
+                <Link href="/">
                     <img src="/assets/l02H_B_marron_t.svg" alt="Logotipo" className={styles.logo} />
-                </div>
+                </Link>
 
                 {/* Espaciador flexible para separar los elementos */}
                 <div className={styles.spacer}></div>
