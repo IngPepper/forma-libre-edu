@@ -1,16 +1,21 @@
-// Importación de estilos CSS específicos del componente
+"use client";
 import styles from './MainNav.module.css';
-
-// Importación de íconos desde react-icons (Material Design)
+// Importa íconos de react-icons
 import { MdOutlineAccountCircle, MdMenu } from 'react-icons/md';
-
 import Link from 'next/link';
+// Importa el hook para obtener la ruta actual en Next.js App Router
+import { usePathname } from 'next/navigation';
 
 function MainNav() {
-    return (
-        // Contenedor principal del nav, usa una clase con estilos en Flexbox y padding
-        <nav className={styles.navWrapper}>
+    // Obtiene la ruta actual del navegador (ej: "/catalogo", "/planes", etc.)
+    const pathname = usePathname();
 
+    // Determina si la ruta actual es "/catalogo"
+    const esCatalogo = pathname === '/catalogo';
+
+    return (
+        // Contenedor principal del nav con estilos en Flexbox y padding
+        <nav className={styles.navWrapper}>
             {/* Contenedor interno con grid y máximo de 1024px de ancho */}
             <div className={styles.container}>
 
@@ -19,15 +24,26 @@ function MainNav() {
                     <img src="/assets/l02H_B_marron_t.svg" alt="Logotipo" className={styles.logo} />
                 </div>
 
-                {/* Espaciador flexible que empuja el contenido hacia los lados */}
+                {/* Espaciador flexible para separar los elementos */}
                 <div className={styles.spacer}></div>
 
-                {/* Acciones del nav: enlaces, menú móvil y botón de cuenta */}
+                {/* Acciones del nav: enlaces principales, menú móvil y botón de cuenta */}
                 <div className={styles.navActions}>
 
                     {/* Enlaces principales (visible en escritorio) */}
                     <div className={styles.navLinks}>
-                        <Link href={'/catalogo'} className={styles.navLink}>Catálogo</Link>
+                        {/*
+                          El enlace cambia a "Inicio" y lleva a "/" si la ruta es "/catalogo".
+                          En cualquier otra ruta, muestra "Catálogo" y lleva a "/catalogo".
+                        */}
+                        <Link
+                            href={esCatalogo ? '/' : '/catalogo'}
+                            className={styles.navLink}
+                        >
+                            {esCatalogo ? 'Inicio' : 'Catálogo'}
+                        </Link>
+
+                        {/* Enlace a la página de planes */}
                         <Link href={'/planes'} className={styles.navLink}>Planes</Link>
                     </div>
 

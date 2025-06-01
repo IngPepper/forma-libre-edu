@@ -53,11 +53,13 @@
 }
 
 .title {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 700;
     color: var(--color-texto-blanco);
-    margin-bottom: var(--espaciado);
-    letter-spacing: 0.01em;
+    margin: var(--espaciado);
+    padding: var(--espaciado);
+    text-align: center;
+    letter-spacing: normal;
 }
 
 .body {
@@ -86,11 +88,31 @@
         max-width: 100%;
         height: auto;
     }
-    .title {
-        font-size: auto;
-    }
     .wrapperTop{
         margin-top: 0;
     }
 
+}
+@media (max-width: 375px) {
+    .big {
+        flex-direction: column;
+        gap: var(--espaciado);
+        padding: var(--espaciado-doble) var(--espaciado);
+    }
+    .image,
+    .content {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+    .image img {
+        max-width: 100%;
+        height: auto;
+    }
+    .wrapperTop{
+        margin-top: 0;
+    }
+    .title{
+        font-size: 2rem;
+
+    }
 }

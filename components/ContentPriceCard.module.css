@@ -1,0 +1,195 @@
+.card {
+    width: 100%;
+    border-radius: var(--borde-radius-doble);
+    box-shadow: var(--sombra);
+    background: var(--color-tarjeta);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding: var(--espaciado-doble);
+    gap: var(--espaciado-doble);
+    margin-bottom: var(--espaciado-doble);
+    transition: box-shadow 0.3s, transform 0.2s;
+    min-height: 290px;
+    font-size: 1.3em;
+}
+
+.card:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    transform: translateY(-2px) scale(1.01);
+}
+
+.imageBox {
+    position: relative;      /* Necesario para que Image con fill funcione */
+    border-radius: var(--borde-radius);
+    overflow: hidden;
+    width: 230px;
+    min-width: 230px;
+    max-width: 260px;
+    height: auto;           /* O el alto que prefieras */
+    background: var(--color-fondo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 16px rgba(70, 70, 90, 0.10);
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: var(--espaciado-doble);
+    gap: 0.8rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+    color: var(--color-texto);
+    letter-spacing: -0.5px;
+}
+
+.details {
+    font-size: 1.1rem;
+    color: var(--color-texto-suave);
+    margin-bottom: 0.4rem;
+    text-align: left;
+    line-height: 1.7;
+}
+
+/* Quitar viñetas, margen y padding de listas */
+.details ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.details li {
+    margin: 0 0 0.3em 0;
+    padding: 0;
+}
+
+.toggle {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.toggle button {
+    border: none;
+    background: var(--color-fondo-claro);
+    color: var(--color-texto);
+    padding: 0.45rem 1.2rem;
+    border-radius: var(--borde-radius);
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    transition: background 0.16s, color 0.16s, transform 0.16s;
+    will-change: background, color, transform;
+}
+
+.toggle .active,
+.toggle button.active {
+    background: var(--color-acento);
+    color: var(--color-texto-blanco);
+}
+
+.price {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--color-texto);
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    letter-spacing: -1px;
+}
+
+.period {
+    font-size: 1.2rem;
+    color: var(--color-texto-suave);
+}
+
+.buttons {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.buyButton {
+    width: 100%;
+    background: var(--color-acento);
+    color: var(--color-texto-blanco);
+    border: none;
+    border-radius: var(--borde-radius);
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+
+.buyButton:hover {
+    background: #8a8167;
+}
+
+/* Responsive para ≤ 740px */
+@media (max-width: 740px) {
+    .card {
+        flex-direction: column;
+        align-items: center;
+        padding: var(--espaciado-doble);
+        gap: var(--espaciado);
+        min-height: unset;
+        text-align: center;
+    }
+    .imageBox {
+        max-width: 100%;
+        min-width: 340px;
+        min-height: 340px;
+        margin-bottom: var(--espaciado);
+        margin-right: 0;
+        margin-left: 0;
+        justify-content: center;
+    }
+    .content {
+        padding-left: 0;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+    .title,
+    .details,
+    .price,
+    .toggle,
+    .buyButton {
+        font-size: 1.4rem;
+        text-align: center;
+        width: 100%;
+    }
+    .price {
+        justify-content: center;
+        width: 100%;
+    }
+    .toggle {
+        justify-content: center;
+        width: 100%;
+    }
+    .buttons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .price,
+    .title {
+        font-size: 3rem;
+    }
+    .toggle button,
+    .buyButton {
+        font-size: 1em;      /* Aumenta el tamaño de la fuente */
+        padding: 1rem 1.5rem;  /* Más altos y anchos */
+    }
+}

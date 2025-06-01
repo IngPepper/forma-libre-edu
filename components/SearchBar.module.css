@@ -16,7 +16,7 @@
     background: var(--color-tarjeta);
     border-radius: var(--borde-radius-doble);
     box-shadow: var(--sombra);
-    padding: 0.25rem 1rem;
+    padding: var(--espaciado);
     max-width: 1024px;
     width: 100%;
     margin: 20px auto;
@@ -101,7 +101,7 @@
     color: var(--color-texto-blanco);
     border: none;
     border-radius: var(--borde-radius);
-    padding: 0.5rem 1.1rem;
+    padding: var(--espaciado);
     font-size: 1rem;
     font-family: inherit;
     cursor: pointer;
@@ -185,4 +185,3 @@
     }
 }
 
-/* Fin del archivo */

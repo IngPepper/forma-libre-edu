@@ -1,0 +1,44 @@
+.catalogo {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.categorias {
+    margin: 0;
+    position: sticky;
+    top: 132px; /* Se pega al top del viewport */
+    z-index: 10; /* Para que quede encima del contenido */
+    background: var(--color-fondo-claro, #ECEBDE); /* Fondo para que no se mezcle con el contenido al hacer scroll */
+    padding: var(--espaciado);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--sombra);
+    border-radius: 12px;
+}
+.categoriaBtn {
+    background: var(--color-tarjeta, #d7d3bf);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.categoriaBtn:hover,
+.activo {
+    background: var(--color-acento, #c1baa1);
+    color: var(--color-texto-blanco, #fff);
+}
+
+.allSticky{
+    position: sticky;
+    top: 0; /* Se pega al top del viewport */
+}
