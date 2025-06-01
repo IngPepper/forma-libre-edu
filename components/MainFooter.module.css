@@ -5,6 +5,7 @@
     justify-content: center; /* Centra horizontalmente el contenido */
     /*animation: slideUp 0.55s ease-out forwards;*/
     width: 100%;
+    z-index: 99;   /* Asegúrate que sea mayor que el de otros elementos */
     background-color: var(--color-texto);
 }
 

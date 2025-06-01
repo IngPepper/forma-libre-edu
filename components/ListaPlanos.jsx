@@ -2,15 +2,20 @@
 import styles from './ListaPlanos.module.css';
 import Link from "next/link";
 
-export default function ListaPlanos({ planos = [] }) {
+export default function ListaPlanos({ planos = [], perfil }) {
     if (!planos.length) {
         return <div className={styles.empty}>No hay planos disponibles.</div>;
     }
 
+    const isSingle = planos.length === 1;
+
     return (
         <div className={styles.lista}>
             {planos.map(plano => (
-                <div className={styles.card} key={plano.id}>
+                <div
+                    key={plano.id}
+                    className={`${styles.card} ${isSingle ? styles.singleCard : ""}`}
+                >
                     <img src={plano.imagen} alt={plano.titulo} className={styles.imagen} />
                     <div className={styles.contenido}>
                         <h3 className={styles.titulo}>{plano.titulo}</h3>
@@ -23,8 +28,11 @@ export default function ListaPlanos({ planos = [] }) {
                             Ver detalles
                         </Link>
                         <div className={styles.botones}>
-                            <button className={styles.comprar}>Comprar</button>
-                            <button className={styles.descargar}>Descargar</button>
+                            {perfil?.tieneMembresia ? (
+                                <button className={styles.descargar}>Descargar</button>
+                            ) : (
+                                <button className={styles.comprar}>Comprar</button>
+                            )}
                         </div>
                     </div>
                 </div>

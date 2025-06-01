@@ -17,13 +17,14 @@ export default function ContentPriceCard({
                                              title,
                                              details,
                                              onBuy,
-                                             className = ""
+                                             className = "",
+                                             single = false
                                          }) {
     const [selected, setSelected] = useState("individual");
     const current = priceOptions.find((opt) => opt.value === selected);
 
     return (
-        <div className={`${styles.card} ${className}`}>
+        <div className={`${styles.card} ${single ? styles.singleCard : ""} ${className}`}>
             <div className={styles.imageBox}>
                 <Image
                     src={current.image}

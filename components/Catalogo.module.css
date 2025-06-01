@@ -1,53 +1,163 @@
 .catalogo {
     max-width: 1024px;
     margin: 0 auto;
-    padding: 0 1rem 1rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    background: transparent;
+    border-radius: 12px;
 }
 
+/* Barra de categorías sticky y estilizada */
 .categorias {
     margin: var(--espaciado) 0;
     max-width: 1024px;
     position: sticky;
-    top: 132px; /* Se pega al top del viewport */
-    z-index: 10; /* Para que quede encima del contenido */
-    background: var(--color-fondo-claro, #ECEBDE); /* Fondo para que no se mezcle con el contenido al hacer scroll */
-    padding: var(--espaciado);
+    top: 132px; /* Ajusta según tu header/navbar */
+    z-index: 10;
+    background: var(--color-fondo-claro, #ECEBDE);
+    padding: var(--espaciado) var(--espaciado-doble);
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+    flex-direction: column; /* Importante para centrar dropdown/leyenda */
+    align-items: center;    /* Centra hijos horizontalmente */
+    gap: 0.7rem;
     border: 1px solid var(--color-border);
     box-shadow: var(--sombra);
-    border-radius: 999px;
+    border-radius: 12px;
 }
+
+/* Botones de categoría */
 .categoriaBtn {
     background: var(--color-tarjeta, #d7d3bf);
     border: 1px solid var(--color-border);
     padding: 0.6rem 1.5rem;
-    border-radius: 999px;
-    color: var(--color-texto, #d7d3bf);
+    border-radius: 12px;
+    color: var(--color-texto, #2b2b2b);
     font-size: 1rem;
     font-weight: bolder;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 0.3rem;
+    margin-bottom: 0.5rem;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
-
 .categoriaBtn:hover,
 .activo {
     background: var(--color-acento, #c1baa1);
     color: var(--color-texto-blanco, #fff);
+    box-shadow: 0 2px 8px rgba(193,186,161,0.09);
 }
-
-.allSticky{
+.categoriasRow {
+    margin: var(--espaciado) 0;
+    max-width: 1024px;
     position: sticky;
-    top: 0; /* Se pega al top del viewport */
+    top: 132px; /* Ajusta según tu header/navbar */
+    z-index: 10;
+    background: var(--color-fondo-claro, #ECEBDE);
+    padding: var(--espaciado) var(--espaciado-doble);
+    display: flex;
+    flex-direction: row;     /* ← ahora horizontal */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--sombra);
+    border-radius: 12px;
 }
 
-@media (max-width: 470px) {
+.iconBtn {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
 
+/* Dropdown y leyenda centrados */
+.dropdownContainer {
+    display: flex;
+    flex-direction: row;    /* ← ahora en fila */
+    align-items: center;    /* ← centra verticalmente */
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;              /* espacio entre leyenda y select */
+}
+
+.leyenda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    margin-bottom: 0;
+    color: var(--color-texto-suave, #5a5a5a);
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    text-align: center;
+}
+.iconLeyenda {
+    font-size: 1.3rem;
+}
+
+.selectWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    justify-content: center;
+}
+
+.dropdown {
+    font-family: inherit;
+    width: 100%;
+    max-width: 320px;
+    font-size: 1rem;
+    padding: 0.6rem 2.5rem 0.6rem 1rem; /* Espacio para el icono de flecha */
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: var(--color-tarjeta, #d7d3bf);
+    color: var(--color-texto, #2b2b2b);
+    box-sizing: border-box;
+    appearance: none;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.dropdown:focus {
+    border-color: var(--color-acento, #c1baa1);
+    box-shadow: 0 0 0 2px rgba(193,186,161,0.15);
+}
+.iconDropdown {
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 1.8rem;
+    color: #aaa;
+}
+
+/* Mobile: mejora el padding y el layout */
+@media (max-width: 640px) {
+    .catalogo {
+        padding: var(--espaciado);
+    }
+    .dropdown,
+    .selectWrapper {
+        max-width: 100%;
+    }
+    .categorias {
+        padding: 0.5rem 0;
+        gap: 0.3rem;
+    }
+    .dropdownContainer {
+        padding: var(--espaciado-doble);
+        flex-direction: column; /* ← ahora en fila */ /* ← centra verticalmente */         /* espacio entre leyenda y select */
+    }
+    .categoriasRow {
+        justify-content: center;
+    }
+}
+@media (max-width: 470px) {
     .categorias {
         border-radius: 12px;
     }

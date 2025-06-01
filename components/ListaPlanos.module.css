@@ -14,6 +14,13 @@
     overflow: hidden;
 }
 
+.singleCard {
+    max-width: 420px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 .imagen {
     width: 100%;
     height: 200px;

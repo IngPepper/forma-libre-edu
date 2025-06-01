@@ -1,8 +1,6 @@
 "use client";
 import styles from "./page.module.css";
 import styles2 from "../components/ContentSection.module.css"
-import MainNav from '@/components/MainNav';
-import MainFooter from '@/components/MainFooter';
 import ContentSection from "@/components/ContentSection";
 import SearchBar  from "@/components/SearchBar";
 import Image from "next/image";
