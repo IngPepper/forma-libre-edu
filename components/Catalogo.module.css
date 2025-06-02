@@ -13,8 +13,6 @@
 .categorias {
     margin: var(--espaciado) 0;
     max-width: 1024px;
-    position: sticky;
-    top: 132px; /* Ajusta según tu header/navbar */
     z-index: 10;
     background: var(--color-fondo-claro, #ECEBDE);
     padding: var(--espaciado) var(--espaciado-doble);

@@ -1,12 +1,12 @@
 /* Barra de búsqueda sticky justo debajo del navbar */
 .searchBarWrapper {
     position: sticky;
-    top: 125px;   /* Altura de tu navbar sticky; ajusta según lo que mida tu navbar */
+    top: 135px;   /* Altura de tu navbar sticky; ajusta según lo que mida tu navbar */
     z-index: 99; /* Debajo del nav, que tiene z-index: 100 */
     width: 100%;
-    max-width: 900px; /* Debe coincidir con el ancho del nav */
+    max-width: 1024px; /* Debe coincidir con el ancho del nav */
     margin: 0 auto;   /* Centra el contenedor */
-    padding: var(--espaciado); /* Padding lateral igual que el nav */
+    padding: 0; /* Padding lateral igual que el nav */
 }
 
 /* Estilo principal de la barra de búsqueda */
@@ -15,12 +15,11 @@
     align-items: center;
     background: var(--color-tarjeta);
     border-radius: var(--borde-radius-doble);
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-border);
     box-shadow: var(--sombra);
-    padding: var(--espaciado);
+    padding: 0 var(--espaciado-doble);
     max-width: 1024px;
     width: 100%;
-    margin: 20px auto;
     transition: box-shadow 0.2s;
 }
 
@@ -100,17 +99,16 @@
 .button {
     background: var(--color-acento);
     color: var(--color-texto-blanco);
-    padding: var(--espaciado);
-    font-size: 1rem;
     font-family: inherit;
     cursor: pointer;
     transition: background 0.2s, transform 0.13s, padding 0.23s, width 0.23s;
     box-shadow: none;
-    margin-left: 0.1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 2px solid var(--color-border);
+    padding: 0.5rem;
+    margin: 0.5rem 0;
 }
 
 /* Animar el texto y la lupa dentro del botón de buscar */

@@ -18,6 +18,7 @@ export default function Home() {
     return (
         <div>
             <div className="wrapper">
+                <SearchBar />
                 {/*Principal con barra de búsqueda*/}
                 <ContentSection className={`topContent ${styles2.wrapperTop}`} title="Comparte, encuentra y descarga">
                     {/* Imagen de fondo */}
@@ -34,8 +35,6 @@ export default function Home() {
                     </div>
                     {/* Contenido encima */}
                     <div className={styles.contentOverlay}>
-                        <SearchBar />
-                        <p className={styles.textColor}>Haz tuyo el espacio, comparte la forma</p>
                         <Image
                             src={imageTest}
                             alt="Imagen ilustrativa"
@@ -99,6 +98,32 @@ export default function Home() {
                         <b>Misión:</b> Impulsar la creatividad y la formación compartiendo planos, herramientas y contenido educativo sin barreras.<br />
                         <b>Valores:</b> Colaboración, accesibilidad, innovación, integridad.
                     </p>
+                </ContentSection>
+                <ContentSection
+                    title="¿Por qué elegir Forma Libre?"
+                    image="/assets/im31h_paisaje_abstracto.jpg"
+                >
+                    <p className={styles.textColor}>
+                        En Forma Libre combinamos la pasión por el diseño con la tecnología y la colaboración.
+                        Nos distinguimos por ofrecer un catálogo cuidadosamente curado, recursos accesibles y una comunidad abierta donde el aprendizaje es continuo.
+                        <br /><br />
+                        Creemos que el acceso a planos de calidad no debe ser exclusivo ni complicado. Por eso, ofrecemos un espacio donde puedes descubrir, compartir y crecer, sin barreras ni burocracia.
+                        <br /><br />
+                        Nuestro compromiso es contigo: acompañarte en cada etapa de tu proceso creativo y ayudarte a lograr resultados profesionales, sin importar si eres principiante o experto.
+                    </p>
+                </ContentSection>
+                <ContentSection
+                    title="Beneficios de usar Forma Libre"
+                    image="/assets/im32h_rombos_lineas.jpg"
+                    reverse
+                >
+                    <ul className={styles.textColor}>
+                        <li><b>Catálogo variado y actualizado</b>: Encuentra desde planos clásicos hasta propuestas innovadoras, siempre revisadas por profesionales.</li>
+                        <li><b>Accesibilidad</b>: Descarga, aprende y comparte sin costos ocultos ni procesos complicados.</li>
+                        <li><b>Comunidad activa</b>: Participa, pregunta, recibe retroalimentación y conecta con personas con tus mismos intereses.</li>
+                        <li><b>Inspiración y aprendizaje</b>: Acceso a contenido educativo, ejemplos prácticos y tendencias del mundo arquitectónico.</li>
+                        <li><b>Comparte tu trabajo</b>: Publica tus propios diseños y obtén reconocimiento, consejos y nuevas oportunidades.</li>
+                    </ul>
                 </ContentSection>
             </div>
         </div>
