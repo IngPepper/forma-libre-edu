@@ -28,9 +28,9 @@
 /* Botones de categoría */
 .categoriaBtn {
     background: var(--color-tarjeta, #d7d3bf);
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-border);
     padding: 0.6rem 1.5rem;
-    border-radius: 12px;
+    border-radius: 999px;
     color: var(--color-texto, #2b2b2b);
     font-size: 1rem;
     font-weight: bolder;
@@ -38,8 +38,6 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    margin-right: 0.3rem;
-    margin-bottom: 0.5rem;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 .categoriaBtn:hover,
@@ -62,7 +60,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-border);
     box-shadow: var(--sombra);
     border-radius: 12px;
 }

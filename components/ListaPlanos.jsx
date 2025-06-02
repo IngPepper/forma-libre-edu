@@ -20,7 +20,7 @@ export default function ListaPlanos({ planos = [], perfil }) {
                     <div className={styles.contenido}>
                         <h3 className={styles.titulo}>{plano.titulo}</h3>
                         <p className={styles.descripcion}>{plano.descripcion}</p>
-                        <h2 className={styles.titulo}>{plano.categoria}</h2>
+                        <h2 className={styles.categoria}>{plano.categoria}</h2>
                         <Link
                             className={styles.detalles}
                             href={`/levantamientos/${plano.id}`}

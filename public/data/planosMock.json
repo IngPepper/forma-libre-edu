@@ -1,32 +1,152 @@
 [
-  { "id": 1, "imagen": "https://placehold.co/400x200?text=Plano+1", "titulo": "Plano 1", "descripcion": "Descripción para el plano 1.", "categoria": "Futurista" },
-  { "id": 2, "imagen": "https://placehold.co/400x200?text=Plano+2", "titulo": "Plano 2", "descripcion": "Descripción para el plano 2.", "categoria": "Japandi" },
-  { "id": 3, "imagen": "https://placehold.co/400x200?text=Plano+3", "titulo": "Plano 3", "descripcion": "Descripción para el plano 3.", "categoria": "Renacentista" },
-  { "id": 4, "imagen": "https://placehold.co/400x200?text=Plano+4", "titulo": "Plano 4", "descripcion": "Descripción para el plano 4.", "categoria": "Sustentable" },
-  { "id": 5, "imagen": "https://placehold.co/400x200?text=Plano+5", "titulo": "Plano 5", "descripcion": "Descripción para el plano 5.", "categoria": "Costera" },
-  { "id": 6, "imagen": "https://placehold.co/400x200?text=Plano+6", "titulo": "Plano 6", "descripcion": "Descripción para el plano 6.", "categoria": "Colonial" },
-  { "id": 7, "imagen": "https://placehold.co/400x200?text=Plano+7", "titulo": "Plano 7", "descripcion": "Descripción para el plano 7.", "categoria": "Gótica" },
-  { "id": 8, "imagen": "https://placehold.co/400x200?text=Plano+8", "titulo": "Plano 8", "descripcion": "Descripción para el plano 8.", "categoria": "Histórica" },
-  { "id": 9, "imagen": "https://placehold.co/400x200?text=Plano+9", "titulo": "Plano 9", "descripcion": "Descripción para el plano 9.", "categoria": "Industrial Loft" },
-  { "id": 10, "imagen": "https://placehold.co/400x200?text=Plano+10", "titulo": "Plano 10", "descripcion": "Descripción para el plano 10.", "categoria": "Comercial" },
-  { "id": 11, "imagen": "https://placehold.co/400x200?text=Plano+11", "titulo": "Plano 11", "descripcion": "Descripción para el plano 11.", "categoria": "Minimalista" },
-  { "id": 12, "imagen": "https://placehold.co/400x200?text=Plano+12", "titulo": "Plano 12", "descripcion": "Descripción para el plano 12.", "categoria": "Victoriana" },
-  { "id": 13, "imagen": "https://placehold.co/400x200?text=Plano+13", "titulo": "Plano 13", "descripcion": "Descripción para el plano 13.", "categoria": "Rústica" },
-  { "id": 14, "imagen": "https://placehold.co/400x200?text=Plano+14", "titulo": "Plano 14", "descripcion": "Descripción para el plano 14.", "categoria": "Smart Home" },
-  { "id": 15, "imagen": "https://placehold.co/400x200?text=Plano+15", "titulo": "Plano 15", "descripcion": "Descripción para el plano 15.", "categoria": "Renacentista" },
-  { "id": 16, "imagen": "https://placehold.co/400x200?text=Plano+16", "titulo": "Plano 16", "descripcion": "Descripción para el plano 16.", "categoria": "Ecológica" },
-  { "id": 17, "imagen": "https://placehold.co/400x200?text=Plano+17", "titulo": "Plano 17", "descripcion": "Descripción para el plano 17.", "categoria": "Belvet" },
-  { "id": 18, "imagen": "https://placehold.co/400x200?text=Plano+18", "titulo": "Plano 18", "descripcion": "Descripción para el plano 18.", "categoria": "Art Decó" },
-  { "id": 19, "imagen": "https://placehold.co/400x200?text=Plano+19", "titulo": "Plano 19", "descripcion": "Descripción para el plano 19.", "categoria": "Prefab" },
-  { "id": 20, "imagen": "https://placehold.co/400x200?text=Plano+20", "titulo": "Plano 20", "descripcion": "Descripción para el plano 20.", "categoria": "Rústica" },
-  { "id": 21, "imagen": "https://placehold.co/400x200?text=Plano+21", "titulo": "Plano 21", "descripcion": "Descripción para el plano 21.", "categoria": "Japandi" },
-  { "id": 22, "imagen": "https://placehold.co/400x200?text=Plano+22", "titulo": "Plano 22", "descripcion": "Descripción para el plano 22.", "categoria": "Trolelote" },
-  { "id": 23, "imagen": "https://placehold.co/400x200?text=Plano+23", "titulo": "Plano 23", "descripcion": "Descripción para el plano 23.", "categoria": "Victoriana" },
-  { "id": 24, "imagen": "https://placehold.co/400x200?text=Plano+24", "titulo": "Plano 24", "descripcion": "Descripción para el plano 24.", "categoria": "Costera" },
-  { "id": 25, "imagen": "https://placehold.co/400x200?text=Plano+25", "titulo": "Plano 25", "descripcion": "Descripción para el plano 25.", "categoria": "Escandinava" },
-  { "id": 26, "imagen": "https://placehold.co/400x200?text=Plano+26", "titulo": "Plano 26", "descripcion": "Descripción para el plano 26.", "categoria": "Contemporánea" },
-  { "id": 27, "imagen": "https://placehold.co/400x200?text=Plano+27", "titulo": "Plano 27", "descripcion": "Descripción para el plano 27.", "categoria": "Smart Home" },
-  { "id": 28, "imagen": "https://placehold.co/400x200?text=Plano+28", "titulo": "Plano 28", "descripcion": "Descripción para el plano 28.", "categoria": "Mediterránea" },
-  { "id": 29, "imagen": "https://placehold.co/400x200?text=Plano+29", "titulo": "Plano 29", "descripcion": "Descripción para el plano 29.", "categoria": "Minimalista" },
-  { "id": 30, "imagen": "https://placehold.co/400x200?text=Plano+30", "titulo": "Plano 30", "descripcion": "Descripción para el plano 30.", "categoria": "Industrial" }
+  {
+    "id": 1,
+    "imagen": "https://placehold.co/400x200?text=P+1",
+    "titulo": "Plano 1",
+    "descripcion": "Descripción para el plano 1.",
+    "categoria": "Residencial",
+    "tamanoArchivo": "3.1 MB",
+    "tipoArchivo": "DWG, PDF",
+    "precio": "$180",
+    "infoExtra": "Incluye planos arquitectónicos y de instalaciones.",
+    "enlaces": [
+      { "label": "Ejemplo PDF", "url": "/archivos/plano1.pdf" },
+      { "label": "Ficha técnica", "url": "/fichas/plano1" }
+    ]
+  },
+  {
+    "id": 2,
+    "imagen": "https://placehold.co/400x200?text=P+2",
+    "titulo": "Plano 2",
+    "descripcion": "Descripción para el plano 2.",
+    "categoria": "Comercial",
+    "tamanoArchivo": "4.5 MB",
+    "tipoArchivo": "DWG",
+    "precio": "$220",
+    "infoExtra": "Incluye detalles estructurales.",
+    "enlaces": [
+      { "label": "Ejemplo PDF", "url": "/archivos/plano2.pdf" },
+      { "label": "Ficha técnica", "url": "/fichas/plano2" }
+    ]
+  },
+  {
+    "id": 3,
+    "imagen": "https://placehold.co/400x200?text=P+3",
+    "titulo": "Plano 3",
+    "descripcion": "Descripción para el plano 3.",
+    "categoria": "Industrial",
+    "tamanoArchivo": "5.2 MB",
+    "tipoArchivo": "DWG, PDF",
+    "precio": "$250",
+    "infoExtra": "Incluye planos eléctricos y de cimentación.",
+    "enlaces": [
+      { "label": "Ejemplo PDF", "url": "/archivos/plano3.pdf" },
+      { "label": "Ficha técnica", "url": "/fichas/plano3" }
+    ]
+  },
+  {
+    "id": 4,
+    "imagen": "https://placehold.co/400x200?text=P+4",
+    "titulo": "Plano 4",
+    "descripcion": "Descripción para el plano 4.",
+    "categoria": "Residencial",
+    "tamanoArchivo": "3.8 MB",
+    "tipoArchivo": "PDF",
+    "precio": "$175",
+    "infoExtra": "Incluye detalles de acabados.",
+    "enlaces": [
+      { "label": "Ejemplo PDF", "url": "/archivos/plano4.pdf" },
+      { "label": "Ficha técnica", "url": "/fichas/plano4" }
+    ]
+  },
+  {
+    "id": 5,
+    "imagen": "https://placehold.co/400x200?text=P+5",
+    "titulo": "Plano 5",
+    "descripcion": "Descripción para el plano 5.",
+    "categoria": "Comercial",
+    "tamanoArchivo": "4.1 MB",
+    "tipoArchivo": "DWG, PDF",
+    "precio": "$210",
+    "infoExtra": "Incluye memorias descriptivas.",
+    "enlaces": [
+      { "label": "Ejemplo PDF", "url": "/archivos/plano5.pdf" },
+      { "label": "Ficha técnica", "url": "/fichas/plano5" }
+    ]
+  },
+  {
+    "id": 6,
+    "imagen": "https://placehold.co/400x200?text=P+6",
+    "titulo": "Plano 6",
+    "descripcion": "Descripción para el plano 6.",
+    "categoria": "Industrial",
+    "tamanoArchivo": "6.0 MB",
+    "tipoArchivo": "DWG",
+    "precio": "$260",
+    "infoExtra": "Incluye planos topográficos.",
+    "enlaces": [
+      { "label": "Ejemplo PDF", "url": "/archivos/plano6.pdf" },
+      { "label": "Ficha técnica", "url": "/fichas/plano6" }
+    ]
+  },
+  {
+    "id": 7,
+    "imagen": "https://placehold.co/400x200?text=P+7",
+    "titulo": "Plano 7",
+    "descripcion": "Descripción para el plano 7.",
+    "categoria": "Residencial",
+    "tamanoArchivo": "2.9 MB",
+    "tipoArchivo": "PDF",
+    "precio": "$170",
+    "infoExtra": "Incluye planos de instalaciones hidráulicas.",
+    "enlaces": [
+      { "label": "Ejemplo PDF", "url": "/archivos/plano7.pdf" },
+      { "label": "Ficha técnica", "url": "/fichas/plano7" }
+    ]
+  },
+  {
+    "id": 8,
+    "imagen": "https://placehold.co/400x200?text=P+8",
+    "titulo": "Plano 8",
+    "descripcion": "Descripción para el plano 8.",
+    "categoria": "Comercial",
+    "tamanoArchivo": "4.6 MB",
+    "tipoArchivo": "DWG, PDF",
+    "precio": "$225",
+    "infoExtra": "Incluye detalles de accesibilidad.",
+    "enlaces": [
+      { "label": "Ejemplo PDF", "url": "/archivos/plano8.pdf" },
+      { "label": "Ficha técnica", "url": "/fichas/plano8" }
+    ]
+  },
+  {
+    "id": 9,
+    "imagen": "https://placehold.co/400x200?text=P+9",
+    "titulo": "Plano 9",
+    "descripcion": "Descripción para el plano 9.",
+    "categoria": "Industrial",
+    "tamanoArchivo": "5.6 MB",
+    "tipoArchivo": "DWG, PDF",
+    "precio": "$270",
+    "infoExtra": "Incluye análisis de cargas.",
+    "enlaces": [
+      { "label": "Ejemplo PDF", "url": "/archivos/plano9.pdf" },
+      { "label": "Ficha técnica", "url": "/fichas/plano9" }
+    ]
+  },
+  {
+    "id": 10,
+    "imagen": "https://placehold.co/400x200?text=P+10",
+    "titulo": "Plano 10",
+    "descripcion": "Descripción para el plano 10.",
+    "categoria": "Residencial",
+    "tamanoArchivo": "3.4 MB",
+    "tipoArchivo": "DWG, PDF",
+    "precio": "$185",
+    "infoExtra": "Incluye planos de detalle constructivo.",
+    "enlaces": [
+      { "label": "Ejemplo PDF", "url": "/archivos/plano10.pdf" },
+      { "label": "Ficha técnica", "url": "/fichas/plano10" }
+    ]
+  }
 ]

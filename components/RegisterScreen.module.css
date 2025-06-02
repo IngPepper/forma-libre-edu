@@ -152,14 +152,15 @@
 }
 
 .link {
-    color: var(--color-texto);
-    text-decoration: underline;
+    color: #796d2c;;
+    text-decoration: underline dotted;
     margin-left: 2px;
     font-weight: 500;
     transition: color 0.18s;
 }
 .link:hover {
-    color: var(--color-texto-suave);
+    color: #ad8f3d;
+    text-decoration: underline solid;
 }
 
 .terms {
@@ -169,10 +170,12 @@
     text-align: center;
 }
 .termsLink {
-    color: var(--color-texto);
-    text-decoration: underline;
+    color: #796d2c;
+    text-decoration: underline dotted;
 }
 .termsLink:hover {
-    color: var(--color-texto-suave);
+    color: #ad8f3d;
+    text-decoration: underline solid;
 }
+
 

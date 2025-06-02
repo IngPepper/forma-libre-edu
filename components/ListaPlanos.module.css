@@ -14,6 +14,21 @@
     overflow: hidden;
 }
 
+.categoria {
+    max-width: 150px;
+    display: inline-block;
+    background: #e8e2c9;
+    color: #7d6c38;
+    border: 2px solid var(--color-acento);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0.32em;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
 .singleCard {
     max-width: 420px !important;
     margin-left: auto;
@@ -80,14 +95,13 @@
 .detalles {
     margin-top: 1rem;
     display: inline-block;
-    color: var(--color-texto);
-    border-bottom: 1px solid var(--color-border);
+    color: #796d2c;
+    text-decoration: underline dotted;
     font-style: italic;
-    text-decoration: none;
     cursor: pointer;
     transition: color 0.2s;
 }
 .detalles:hover {
-    color: var(--color-texto-blanco);
-    text-decoration: underline;
+    color: #ad8f3d;
+    text-decoration: underline solid;
 }

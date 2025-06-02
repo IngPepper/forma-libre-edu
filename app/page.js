@@ -18,7 +18,6 @@ export default function Home() {
     return (
         <div>
             <div className="wrapper">
-                <SearchBar />
                 {/*Principal con barra de búsqueda*/}
                 <ContentSection className={`topContent ${styles2.wrapperTop}`} title="Comparte, encuentra y descarga">
                     {/* Imagen de fondo */}
@@ -57,6 +56,7 @@ export default function Home() {
                             ¡Juntos hacemos que el diseño llegue más lejos!</p>
                     </div>
                 </ContentSection>
+                <SearchBar />
                 <TripticoGeneral />
                 {/* Bienvenida */}
                 <ContentSection
