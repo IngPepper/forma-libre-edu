@@ -14,5 +14,6 @@
 .textColor{
     padding: var(--espaciado-doble);
     color: var(--color-texto-blanco);
+    text-align: justify;
 }
 

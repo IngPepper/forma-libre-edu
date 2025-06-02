@@ -100,8 +100,6 @@
 .button {
     background: var(--color-acento);
     color: var(--color-texto-blanco);
-    border: none;
-    border-radius: var(--borde-radius);
     padding: var(--espaciado);
     font-size: 1rem;
     font-family: inherit;
@@ -112,6 +110,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid var(--color-border);
 }
 
 /* Animar el texto y la lupa dentro del botón de buscar */

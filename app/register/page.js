@@ -1,10 +1,10 @@
-import Link from 'next/link'
+"use client";
+import RegisterScreen from "@/components/RegisterScreen";
 
 export default function Register() {
     return (
-        <main>
-            <h1>Register</h1>
-            <Link href={'/'}>Inicio</Link>
+        <main className="wrapper">
+            <RegisterScreen />
         </main>
     );
 }

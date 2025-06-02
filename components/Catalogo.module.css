@@ -22,7 +22,7 @@
     flex-direction: column; /* Importante para centrar dropdown/leyenda */
     align-items: center;    /* Centra hijos horizontalmente */
     gap: 0.7rem;
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-border);
     box-shadow: var(--sombra);
     border-radius: 12px;
 }
@@ -114,7 +114,7 @@
     font-size: 1rem;
     padding: 0.6rem 2.5rem 0.6rem 1rem; /* Espacio para el icono de flecha */
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 2px solid var(--color-border);
     background: var(--color-tarjeta, #d7d3bf);
     color: var(--color-texto, #2b2b2b);
     box-sizing: border-box;
@@ -141,27 +141,38 @@
     .catalogo {
         padding: var(--espaciado);
     }
+
     .dropdown,
     .selectWrapper {
         max-width: 100%;
     }
+
     .categorias {
         padding: 0.5rem 0;
         gap: 0.3rem;
     }
+
     .dropdownContainer {
         padding: var(--espaciado-doble);
-        flex-direction: column; /* ← ahora en fila */ /* ← centra verticalmente */         /* espacio entre leyenda y select */
+        flex-direction: column; /* ← ahora en fila */ /* ← centra verticalmente */ /* espacio entre leyenda y select */
     }
+
     .categoriasRow {
         justify-content: center;
     }
-}
-@media (max-width: 470px) {
-    .categorias {
-        border-radius: 12px;
+
+    .smallerText {
+        font-size: 3rem;
+
     }
-    .categoriaBtn {
-        padding: var(--espaciado) 0.5rem;
+
+    @media (max-width: 470px) {
+        .categorias {
+            border-radius: 12px;
+        }
+
+        .categoriaBtn {
+            padding: var(--espaciado) 0.5rem;
+        }
     }
 }

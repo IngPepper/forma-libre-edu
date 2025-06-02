@@ -7,8 +7,9 @@
   --color-texto-suave: #5a5a5a;
   --color-texto-hover-claro: #ddd;
   --color-texto-blanco: #fff;
-  --color-border: #5a5a5a;
-
+  --color-border: #404040;
+  --color-verde: #b0ff81;
+  --color-error: #a85353;
   --fuente-grande: 5.5rem;
   --espaciado: 1rem;
   --espaciado-doble: 2rem;
@@ -99,7 +100,7 @@ h1{
   margin-right: auto;
   box-sizing: border-box;
   /* Opcional: agrega separación arriba y abajo */
-  padding: 0 var(--espaciado) var(--espaciado-doble);
+  padding: 0 var(--espaciado-doble);
   /* Para responsividad extra */
   min-width: 0;
 }
@@ -108,9 +109,8 @@ h1{
     position: relative; /* ¡Esto es lo más importante! */
     min-height: 340px;
     overflow: hidden;
-    margin-top: 0;
+    margin-top: 182px;
     padding-top: 0;
-    background: transparent;
 }
 
 .centerContent {

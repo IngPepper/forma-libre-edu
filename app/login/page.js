@@ -1,10 +1,10 @@
-import Link from 'next/link'
+"use client";
+import LoginScreen from "@/components/LoginScreen";
 
 export default function Login() {
     return (
-        <main>
-            <h1>Login</h1>
-            <Link href={'/'}>Inicio</Link>
+        <main className="wrapper">
+            <LoginScreen />
         </main>
     );
 }
