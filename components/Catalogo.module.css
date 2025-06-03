@@ -147,6 +147,9 @@
         display: none !important;  /* Oculta los botones de categorías */
     }
     .categorias {
+        position: sticky;
+        top: 132px; /* Ajusta según tu header/navbar */
+        z-index: 10;
         display: flex !important;  /* Asegura que el contenedor tipo dropdown aparezca */
     }
     .dropdownContainer {
@@ -162,6 +165,7 @@
 
     @media (max-width: 470px) {
         .categorias {
+            top: 200px;
             border-radius: 12px;
         }
 

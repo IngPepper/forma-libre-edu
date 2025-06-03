@@ -11,6 +11,7 @@ import romboRojo from '@/public/assets/im16h_rombo_rojo.jpg';
 import imageTest from '@/public/assets/im19h_rotulador_lineas.jpg';
 import Link from "next/link";
 import ScrollToTopOnNavigation from "@/components/ScrollToTopOnNavigation";
+import CollapsibleSection from "@/components/CollapsibleSection";
 
 // Si tu imagen está en public/, usa "/fondo.jpg"
 // Si es de internet, usa la url completa y configúralo en next.config.js
@@ -20,44 +21,51 @@ export default function Home() {
         <div>
             <div className="wrapper">
                 <ScrollToTopOnNavigation />
-                {/*Principal con barra de búsqueda*/}
-                <ContentSection className={`topContent ${styles2.wrapperTop}`} title="Comparte, encuentra y descarga">
-                    {/* Imagen de fondo */}
-                    <div className={styles.backgroundImage}>
-                        <Image
-                            src={romboRojo}
-                            alt="Fondo artístico"
-                            fill
-                            style={{ objectFit: "cover" }}
-                            placeholder={"blur"}
-                            priority
 
-                        />
-                    </div>
-                    {/* Contenido encima */}
-                    <div className={styles.contentOverlay}>
-                        <Image
-                            src={imageTest}
-                            alt="Imagen ilustrativa"
-                            width={1024}
-                            height={300}
-                            style={{ margin: "2rem auto", display: "block", borderRadius: "12px", objectFit: "cover" }}
-                            placeholder={"blur"}
-                        />
-                        <h2 className={styles.textColor}>La arquitectura y el diseño son para todos.</h2>
-                        <div className={styles.textColor}>
-                            <h3>Forma Libre es más que una plataforma de planos:</h3> <br/>
-                            Es un estudio digital y una comunidad creativa que busca democratizar el acceso al conocimiento arquitectónico. El proyecto nace del deseo de compartir, inspirar y acompañar a quienes quieren crear, transformar o simplemente imaginar espacios — ya sean estudiantes, profesionistas o curiosos del diseño.
+                <CollapsibleSection
+                    maxHeight = {600}
+                >
+                    {/*Principal con barra de búsqueda*/}
+                    <ContentSection className={`topContent ${styles2.wrapperTop}`} title="Comparte, encuentra y descarga">
+                        {/* Imagen de fondo */}
+                        <div className={styles.backgroundImage}>
+                            <Image
+                                src={romboRojo}
+                                alt="Fondo artístico"
+                                fill
+                                style={{ objectFit: "cover" }}
+                                placeholder={"blur"}
+                                priority
 
-                            No solo vendes planos: creas una puerta de entrada a la arquitectura como experiencia abierta, colaborativa y contemporánea.</div>
-                        <div className="centerContent">
-                            <button >¡Comparte!</button>
+                            />
                         </div>
-                        <p className={styles.textColor}>Si has desarrollado un plano, un proyecto arquitectónico o una idea innovadora, súbelo a nuestra plataforma y permite que más personas aprendan, se inspiren y lleven sus propios proyectos al siguiente nivel.<br/>
-                            Aquí, cada aporte cuenta y puede abrir nuevas posibilidades para la comunidad.<br/>
-                            ¡Juntos hacemos que el diseño llegue más lejos!</p>
-                    </div>
-                </ContentSection>
+                        {/* Contenido encima */}
+                        <div className={styles.contentOverlay}>
+                            <button >¡Comparte!</button>
+                            <Image
+                                src={imageTest}
+                                alt="Imagen ilustrativa"
+                                width={1024}
+                                height={300}
+                                style={{ margin: "2rem auto", display: "block", borderRadius: "12px", objectFit: "cover" }}
+                                placeholder={"blur"}
+                            />
+                            <h2 className={styles.textColor}>La arquitectura y el diseño son para todos.</h2>
+                            <div className={styles.textColor}>
+                                <h3>Forma Libre es más que una plataforma de planos:</h3> <br/>
+                                Es un estudio digital y una comunidad creativa que busca democratizar el acceso al conocimiento arquitectónico. El proyecto nace del deseo de compartir, inspirar y acompañar a quienes quieren crear, transformar o simplemente imaginar espacios — ya sean estudiantes, profesionistas o curiosos del diseño.
+
+                                No solo vendes planos: creas una puerta de entrada a la arquitectura como experiencia abierta, colaborativa y contemporánea.</div>
+                            <div className="centerContent">
+                            </div>
+                            <p className={styles.textColor}>Si has desarrollado un plano, un proyecto arquitectónico o una idea innovadora, súbelo a nuestra plataforma y permite que más personas aprendan, se inspiren y lleven sus propios proyectos al siguiente nivel.<br/>
+                                Aquí, cada aporte cuenta y puede abrir nuevas posibilidades para la comunidad.<br/>
+                                ¡Juntos hacemos que el diseño llegue más lejos!</p>
+                        </div>
+                    </ContentSection>
+
+                </CollapsibleSection>
+
                 <SearchBar />
                 <TripticoGeneral />
                 {/* Bienvenida */}

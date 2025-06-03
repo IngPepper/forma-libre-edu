@@ -14,7 +14,12 @@ export default function RootLayout({ children }) {
         <html lang="en">
         <body>
         <MainNav /> {/* ← Menú global */}
-        <ContentPromo />
+        <ContentPromo
+            title="Forma Libre"
+            description="La vida de un critico es sencilla en muchos aspectos a veces por dar una mala reseña de las que son facles y divertidas de escribir, una rata no puede concinar"
+            ctaText="Pedí tu ratatui"
+            ctaLink="/catalogo"
+        />
         {children}         {/* ← Aquí va el contenido de cada página */}
         <SmallSeparator />
         <MainFooter />     {/* ← Footer global */}

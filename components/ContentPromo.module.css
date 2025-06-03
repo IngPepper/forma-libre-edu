@@ -1,5 +1,5 @@
 .promo {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     background: var(--color-tarjeta);
@@ -69,9 +69,21 @@
     box-shadow: var(--sombra);
 }
 @media (max-width: 900px) {
-
+    .imageBox {
+        display: none;
+    }
     .promo {
         flex-direction: column;
         justify-content: center;
     }
+}
+@media (max-width: 475px) {
+    .imageBox {
+        display: none;
+    }
+    .promo {
+        padding: var(--espaciado-doble);
+        margin-bottom: var(--espaciado-doble);
+    }
+
 }
