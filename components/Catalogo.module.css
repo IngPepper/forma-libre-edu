@@ -143,18 +143,16 @@
         max-width: 100%;
     }
 
-    .categorias {
-        padding: 0.5rem 0;
-        gap: 0.3rem;
-    }
-
-    .dropdownContainer {
-        padding: var(--espaciado-doble);
-        flex-direction: column; /* ← ahora en fila */ /* ← centra verticalmente */ /* espacio entre leyenda y select */
-    }
-
     .categoriasRow {
-        justify-content: center;
+        display: none !important;  /* Oculta los botones de categorías */
+    }
+    .categorias {
+        display: flex !important;  /* Asegura que el contenedor tipo dropdown aparezca */
+    }
+    .dropdownContainer {
+        display: flex !important;  /* Fuerza que el dropdown se muestre */
+        flex-direction: column;    /* Puede que quieras columna en móvil */
+        gap: 0.5rem;
     }
 
     .smallerText {

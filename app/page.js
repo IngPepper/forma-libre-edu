@@ -10,6 +10,7 @@ import ContentPriceCard from "@/components/ContentPriceCard";
 import romboRojo from '@/public/assets/im16h_rombo_rojo.jpg';
 import imageTest from '@/public/assets/im19h_rotulador_lineas.jpg';
 import Link from "next/link";
+import ScrollToTopOnNavigation from "@/components/ScrollToTopOnNavigation";
 
 // Si tu imagen está en public/, usa "/fondo.jpg"
 // Si es de internet, usa la url completa y configúralo en next.config.js
@@ -18,6 +19,7 @@ export default function Home() {
     return (
         <div>
             <div className="wrapper">
+                <ScrollToTopOnNavigation />
                 {/*Principal con barra de búsqueda*/}
                 <ContentSection className={`topContent ${styles2.wrapperTop}`} title="Comparte, encuentra y descarga">
                     {/* Imagen de fondo */}

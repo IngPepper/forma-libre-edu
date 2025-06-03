@@ -1,4 +1,3 @@
-"use client";
 import styles from './ListaPlanos.module.css';
 import Link from "next/link";
 
@@ -8,6 +7,14 @@ export default function ListaPlanos({ planos = [], perfil }) {
     }
 
     const isSingle = planos.length === 1;
+
+    // Handler para guardar la categoría antes de navegar
+    const handleGuardarCategoria = (categoria) => {
+        if (categoria) {
+            localStorage.setItem('ultimaCategoria', categoria);
+        }
+    };
+
 
     return (
         <div className={styles.lista}>
@@ -24,6 +31,7 @@ export default function ListaPlanos({ planos = [], perfil }) {
                         <Link
                             className={styles.detalles}
                             href={`/levantamientos/${plano.id}`}
+                            onClick={() => handleGuardarCategoria(plano.categoria)}
                         >
                             Ver detalles
                         </Link>

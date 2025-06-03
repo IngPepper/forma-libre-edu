@@ -1,0 +1,46 @@
+.burgerMenuWrapper {
+    display: none;
+}
+@media (max-width: 395px) {
+    .burgerMenuWrapper {
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Menú dropdown flotante, totalmente transparente y sin borde */
+.menu {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    min-width: 130px;
+    right: 0;
+    top: 2.7em;
+    z-index: 20;
+    padding: 0.5em 0;
+    position: absolute;
+}
+
+/* Cada opción: igual que tus menú items de login, pero aquí dentro */
+.menuItem {
+    background: var(--color-tarjeta);
+    border-radius: var(--borde-radius);
+    margin: 0.25em 0;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    padding: var(--espaciado);
+    font-size: 1em;
+    border: none;
+    width: 100%;
+    color: var(--color-texto);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+}
+
+.menuItem:hover {
+    background: var(--color-acento);
+    color: var(--color-texto);
+}

@@ -161,6 +161,7 @@
         max-width: 0;
         pointer-events: none;
     }
+    .container{}
 
     .menuIcon {
         font-size: 30px;

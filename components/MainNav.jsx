@@ -1,64 +1,66 @@
 "use client";
 import styles from './MainNav.module.css';
-// Importa íconos de react-icons
-import { MdOutlineAccountCircle, MdMenu } from 'react-icons/md';
+import { MdMenu } from 'react-icons/md';
 import Link from 'next/link';
-// Importa el hook para obtener la ruta actual en Next.js App Router
 import { usePathname } from 'next/navigation';
+import AccountMenu from './AccountMenu'; // Ajusta la ruta si es necesario
+
+// Simulación de login y perfil, cámbialo por tu lógica real de auth
+import React, { useState } from "react";
 
 function MainNav() {
-    // Obtiene la ruta actual del navegador (ej: "/catalogo", "/planes", etc.)
     const pathname = usePathname();
-
-    // Determina si la ruta actual es "/catalogo"
     const esCatalogo = pathname === '/catalogo';
 
-    return (
-        // Contenedor principal del nav con estilos en Flexbox y padding
-        <nav className={styles.navWrapper}>
-            {/* Contenedor interno con grid y máximo de 1024px de ancho */}
-            <div className={styles.container}>
+    // Simulación de estado de login y perfil (opcional, puedes quitarlo si ya tienes auth)
+    const [login, setLogin] = useState(true);
 
+    const [perfil, setPerfil] = useState({
+        nombre: "Tania Z",
+        tieneMembresia: true
+    });
+
+    const cerrarSesionFn = () => {
+        setLogin(false);
+        setPerfil({});
+    };
+
+    return (
+        <nav className={styles.navWrapper}>
+            <div className={styles.container}>
                 {/* Logotipo del sitio */}
-                <Link href="/">
+                <Link href="/" className={styles.logoLink}>
                     <img src="/assets/l02H_B_marron_t.svg" alt="Logotipo" className={styles.logo} />
                 </Link>
 
-                {/* Espaciador flexible para separar los elementos */}
+                {/* Espaciador flexible */}
                 <div className={styles.spacer}></div>
 
-                {/* Acciones del nav: enlaces principales, menú móvil y botón de cuenta */}
+                {/* Acciones del nav */}
                 <div className={styles.navActions}>
 
-                    {/* Enlaces principales (visible en escritorio) */}
+                    {/* Enlaces principales */}
                     <div className={styles.navLinks}>
-                        {/*
-                          El enlace cambia a "Inicio" y lleva a "/" si la ruta es "/catalogo".
-                          En cualquier otra ruta, muestra "Catálogo" y lleva a "/catalogo".
-                        */}
                         <Link
                             href={esCatalogo ? '/' : '/catalogo'}
                             className={styles.navLink}
                         >
                             {esCatalogo ? 'Inicio' : 'Catálogo'}
                         </Link>
-
-                        {/* Enlace a la página de planes */}
                         <Link href={'/planes'} className={styles.navLink}>Planes</Link>
                     </div>
 
-                    {/* Botón del menú (visible solo en móviles) */}
+                    {/* Menú móvil */}
                     <button className={styles.menuButton} aria-label="Menú">
                         <MdMenu className={styles.menuIcon}/>
                     </button>
 
-                    {/* Botón de cuenta con ícono y texto (el texto se oculta en móviles) */}
-                    <Link href={'/register'}>
-                        <button className={styles.accountButton}>
-                            <MdOutlineAccountCircle className={styles.menuIcon} />
-                            <span className={styles.accountText}>Cuenta</span>
-                        </button>
-                    </Link>
+                    {/* Botón de cuenta usando AccountMenu */}
+                    <AccountMenu
+                        login={login}
+                        perfil={perfil}
+                        onLogout={cerrarSesionFn}
+                    />
                 </div>
             </div>
         </nav>

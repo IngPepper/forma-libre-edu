@@ -4,10 +4,12 @@ import ContentPriceCard from "@/components/ContentPriceCard";
 import ContentSection from "@/components/ContentSection";
 import romboRojo from "@/public/assets/im16h_rombo_rojo.jpg";
 import styles from "@/app/page.module.css";
+import ScrollToTopOnNavigation from "@/components/ScrollToTopOnNavigation";
 
 export default function Planes() {
     return (
       <main className="wrapper">
+          <ScrollToTopOnNavigation />
           <ContentSection
               title="Precios y Beneficios"
               image="/assets/im01h_acentos_rojos.jpg"

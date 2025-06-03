@@ -2,7 +2,7 @@ import './globals.css';
 import MainNav from '../components/MainNav';      // Ajusta la ruta según tu estructura
 import MainFooter from '../components/MainFooter';
 import SmallSeparator from "@/components/SmallSeparator";
-import ContentPromo from "@/components/ContentPromo"; // Ajusta la ruta según tu estructura
+import ContentPromo from "@/components/ContentPromo";
 
 export const metadata = {
     title: "Forma Libre",
@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
         <body>
-        <MainNav />{/* ← Menú global */}
+        <MainNav /> {/* ← Menú global */}
         <ContentPromo />
         {children}         {/* ← Aquí va el contenido de cada página */}
         <SmallSeparator />

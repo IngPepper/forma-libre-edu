@@ -12,6 +12,19 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+
+    animation: slideDown 0.25s ease-in-out forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .categoria {
@@ -57,9 +70,13 @@
 }
 
 .descripcion {
-    color: var(--color-texto-suave, #5a5a5a);
-    font-size: 0.98rem;
-    flex: 1;
+    font-size: 1.1rem;
+    color: var(--color-texto, #5a5a5a);
+    border: 2px solid var(--color-acento);
+    margin-bottom: .75rem;
+    padding: var(--espaciado);
+    border-radius: 12px;
+    background: var(--color-fondo-claro);
 }
 
 .botones {
@@ -81,7 +98,7 @@
 
 .comprar:hover,
 .descargar:hover {
-    background: var(--color-fondo-claro, #ecebde);
+    background: var(--color-verde);
     color: var(--color-texto, #2b2b2b);
 }
 

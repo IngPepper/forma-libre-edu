@@ -1,11 +1,10 @@
-// DetallePlano.jsx
 "use client";
 import styles from './DetallePlano.module.css';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaDownload, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 import ScrollToTopOnNavigation from "@/components/ScrollToTopOnNavigation";
-
 
 export default function DetallePlano({
                                          imagen,
@@ -17,8 +16,29 @@ export default function DetallePlano({
                                          precio,             // Ejemplo: "$199"
                                          enlaces = [],       // [{ label: 'Ver PDF', url: '...' }, ...]
                                          infoExtra,          // Texto extra o HTML
+                                         perfil = {},        // Recibe perfil (puede traer tieneMembresia)
                                          onBuy               // función que se dispara al comprar
                                      }) {
+    // Por defecto no hay membresía
+    const tieneMembresia = perfil.tieneMembresia;
+
+    // Estado para la última categoría
+    const [ultimaCategoria, setUltimaCategoria] = useState("");
+
+    // Al montar, lee localStorage
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const cat = localStorage.getItem('ultimaCategoria');
+            setUltimaCategoria(cat ?? "");
+        }
+    }, []);
+
+    // Handler para descarga (simulado, cámbialo por lógica real si lo necesitas)
+    const handleDownload = () => {
+        alert(`Descargando ${titulo}...`);
+        // Aquí puedes poner tu lógica de descarga real, si aplica
+    };
+
     return (
         <>
             <ScrollToTopOnNavigation />
@@ -28,13 +48,16 @@ export default function DetallePlano({
                     <img src={imagen} alt={titulo} className={styles.imagen} />
                 </div>
                 <div className={styles.contenido}>
-
                     {/* Categoría tipo chip */}
                     <div className={styles.chipRow}>
                         {categoria && (
                             <span className={styles.categoria}>{categoria}</span>
                         )}
-                        <Link href="/catalogo" className={styles.backBtn} title="Volver al catálogo">
+                        <Link
+                            href={ultimaCategoria && ultimaCategoria.length > 0 ? `/catalogo?cat=${encodeURIComponent(ultimaCategoria)}` : "/catalogo"}
+                            className={styles.backBtn}
+                            title="Volver a la categoría"
+                        >
                             <FaArrowLeft size={16} />
                         </Link>
                     </div>
@@ -48,13 +71,28 @@ export default function DetallePlano({
                         <div className="noPadding">
                             <strong>Tipo:</strong> {tipoArchivo}
                         </div>
-                        <div className="noPadding">
-                            <strong>Precio:</strong> <span className={styles.precio}>{precio}</span>
-                        </div>
+                        {!tieneMembresia && (
+                            <div className="noPadding">
+                                <strong>Precio:</strong> <span className={styles.precio}>{precio}</span>
+                            </div>
+                        )}
                     </div>
-                    <button className={styles.comprar} onClick={onBuy}>
-                        Comprar ahora
-                    </button>
+
+                    {/* BOTÓN QUE CAMBIA SEGÚN MEMBRESÍA */}
+                    <div>
+                        {tieneMembresia ? (
+                            <button className={styles.comprar} onClick={handleDownload}>
+                                <FaDownload style={{ marginRight: 10 }}/>
+                                Descargar
+                            </button>
+                        ) : (
+                            <button className={styles.comprar} onClick={onBuy}>
+                                <FaShoppingCart style={{ marginRight: 10 }} />
+                                Comprar ahora
+                            </button>
+                        )}
+                    </div>
+
                     <div className={styles.extra}>
                         {infoExtra}
                     </div>

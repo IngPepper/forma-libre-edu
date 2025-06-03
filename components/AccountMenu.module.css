@@ -1,0 +1,162 @@
+.accountButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    background: var(--color-tarjeta);
+    border: none;
+    padding: var(--espaciado);
+    border-radius: var(--borde-radius);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+    transition: background 0.2s;
+}
+.accountButton:hover {
+    background: var(--color-acento);
+}
+.menuIcon {
+    font-size: 1.6em;
+}
+.accountText {
+    display: inline-block;
+}
+
+.menuIconSmall {
+    font-size: 1.5rem;
+    /* Puedes agregar más estilos si quieres */
+    vertical-align: middle;
+}
+
+.accountButtonSkeleton {
+    width: 73px;
+    height: 55px;
+    border-radius: var(--borde-radius, 8px);
+    background: var(--color-fondo-claro);
+    animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: 0 0; }
+}
+
+@media (max-width: 600px) {
+    .accountText {
+        display: none;
+    }
+}
+.avatarWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.avatarButton {
+    background: var(--color-tarjeta);
+    border: var(--borde-claro);
+    border-radius: 12px;
+    padding: 0.25em 0.75em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.avatarButton:hover {
+    background: var(--color-fondo);
+}
+.avatar {
+    background: var(--color-acento);
+    color: var(--color-texto);
+    width: 2.3em;
+    height: 2.3em;
+    border-radius: 50%;
+    border: var(--borde-oscuro);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1em;
+    position: relative;
+
+}
+.premiumIcon {
+    position: absolute;
+    right: -0.3em;
+    bottom: -0.3em;
+    color: goldenrod;
+    font-size: 1.2em;
+    background: var(--color-texto-blanco);
+    border-radius: 50%;
+}
+.menuDropdownIcon {
+    font-size: 1.3em;
+    margin-left: 0.1em;
+}
+.menu {
+    position: absolute;
+    right: 0;
+    top: 3em;
+    background: var(--color-tarjeta);
+    border: 2px solid var(--color-border, #d7d3bf);
+    border-radius: var(--borde-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+    min-width: 160px;
+    z-index: 20;
+    padding: 0.25em 0;
+}
+.menuItem, .menuItemPremium {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    padding: var(--espaciado);
+    font-size: 1em;
+    background: none;
+    border: none;
+    width: 100%;
+    color: var(--color-texto);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.18s;
+    transform: scale(1);
+    border-radius: 0;
+
+}
+.menuItem:hover, .menuItemPremium:hover {
+    background: var(--color-texto);
+    color: var(--color-acento);
+    transform: scale(1);
+    border-radius: 0;
+}
+.menuItemPremium {
+    color: var(--color-texto);
+    cursor: default;
+}
+
+.invisible {
+    display: none;
+}
+
+@media (max-width: 645px) {
+
+    .invisible {
+        display: inline-block;
+    }
+    .avatarButton{
+        width: 75px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+    }
+    .avatarButton:hover {
+        background: transparent;
+        border: none;
+    }
+    .menu{
+        right: 1rem;
+        top: 2.5rem;
+    }
+
+}

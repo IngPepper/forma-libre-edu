@@ -1,13 +1,17 @@
-"use client";
+'use client';
 import { use, useEffect, useState } from "react";
 import DetallePlano from '@/components/DetallePlano';
+import ScrollToTopOnNavigation from "@/components/ScrollToTopOnNavigation";
+
 
 export default function LevantamientoDetalle({ params }) {
-    // Desempaquetar params con use()
     const { id } = use(params);
 
     const [plano, setPlano] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    // Simulación de perfil
+    const perfil = { tieneMembresia: true };
 
     useEffect(() => {
         fetch('/data/planosMock.json')
@@ -28,6 +32,7 @@ export default function LevantamientoDetalle({ params }) {
 
     return (
         <section className="wrapper">
+            <ScrollToTopOnNavigation />
             <DetallePlano
                 imagen={plano.imagen}
                 titulo={plano.titulo}
@@ -38,9 +43,9 @@ export default function LevantamientoDetalle({ params }) {
                 precio={plano.precio}
                 infoExtra={plano.infoExtra}
                 enlaces={plano.enlaces}
+                perfil={perfil}
                 onBuy={() => alert(`¡Compra iniciada para ${plano.titulo}!`)}
             />
         </section>
-
     );
 }
