@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState, useMemo } from "react";
-import Catalogo from "../../components/Catalogo";
+import Catalogo from "../../components/(layout)/Catalogo";
 import { useRouter, useSearchParams } from "next/navigation";
-import ScrollToTopOnNavigation from "@/components/ScrollToTopOnNavigation";
+import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 
 export default function CatalogoPage() {
     const router = useRouter();

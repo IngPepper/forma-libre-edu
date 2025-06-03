@@ -1,11 +1,11 @@
 "use client";
 
-import ContentPriceCard from "@/components/ContentPriceCard";
-import ContentSection from "@/components/ContentSection";
+import ContentPriceCard from "@/components/(layout)/ContentPriceCard";
+import ContentSection from "@/components/(layout)/ContentSection";
 import romboRojo from "@/public/assets/im16h_rombo_rojo.jpg";
 import styles from "@/app/page.module.css";
-import ScrollToTopOnNavigation from "@/components/ScrollToTopOnNavigation";
-import CollapsibleSection from "@/components/CollapsibleSection";
+import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
+import CollapsibleSection from "@/components/(utilities)/CollapsibleSection";
 
 export default function Planes() {
     return (

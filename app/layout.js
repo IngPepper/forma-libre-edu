@@ -1,8 +1,8 @@
 import './globals.css';
-import MainNav from '../components/MainNav';      // Ajusta la ruta según tu estructura
-import MainFooter from '../components/MainFooter';
-import SmallSeparator from "@/components/SmallSeparator";
-import ContentPromo from "@/components/ContentPromo";
+import MainNav from '../components/(layout)/MainNav';      // Ajusta la ruta según tu estructura
+import MainFooter from '../components/(layout)/MainFooter';
+import SmallSeparator from "@/components/(utilities)/SmallSeparator";
+import ContentPromo from "@/components/(layout)/ContentPromo";
 
 export const metadata = {
     title: "Forma Libre",

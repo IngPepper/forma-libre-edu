@@ -1,7 +1,7 @@
 'use client';
 import { use, useEffect, useState } from "react";
-import DetallePlano from '@/components/DetallePlano';
-import ScrollToTopOnNavigation from "@/components/ScrollToTopOnNavigation";
+import DetallePlano from '@/components/(layout)/DetallePlano';
+import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 
 
 export default function LevantamientoDetalle({ params }) {

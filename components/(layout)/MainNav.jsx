@@ -7,7 +7,7 @@ import AccountMenu from './AccountMenu'; // Ajusta la ruta si es necesario
 
 // Simulación de login y perfil, cámbialo por tu lógica real de auth
 import React, { useState } from "react";
-import BurgerMenuDropdown from "@/components/BurgerMenuDropdown";
+import BurgerMenuDropdown from "@/components/(utilities)/BurgerMenuDropdown";
 
 function MainNav() {
     const pathname = usePathname();
@@ -30,7 +30,7 @@ function MainNav() {
         <nav className={styles.navWrapper}>
             <div className={styles.container}>
                 {/* Logotipo del sitio */}
-                <Link href="/" className={styles.logoLink}>
+                <Link href="/public" className={styles.logoLink}>
                     <img src="/assets/l02H_B_marron_t.svg" alt="Logotipo" className={styles.logo} />
                 </Link>
 
@@ -43,7 +43,7 @@ function MainNav() {
                     {/* Enlaces principales */}
                     <div className={styles.navLinks}>
                         <Link
-                            href={esCatalogo ? '/' : '/catalogo'}
+                            href={esCatalogo ? '/public' : '/catalogo'}
                             className={styles.navLink}
                         >
                             {esCatalogo ? 'Inicio' : 'Catálogo'}

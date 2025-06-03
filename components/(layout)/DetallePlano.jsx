@@ -4,7 +4,7 @@ import { FaArrowLeft, FaDownload, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-import ScrollToTopOnNavigation from "@/components/ScrollToTopOnNavigation";
+import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 
 export default function DetallePlano({
                                          imagen,

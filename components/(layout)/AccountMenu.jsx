@@ -79,7 +79,7 @@ export default function AccountMenu({
                             <span>Eres Premium</span>
                         </div>
                     )}
-                    <Link href="/" className={styles.menuItem} onClick={() => setOpen(false)}>
+                    <Link href="/public" className={styles.menuItem} onClick={() => setOpen(false)}>
                         <MdOutlineAccountCircle className={styles.menuIconSmall} />
                         <span>Cuenta</span>
                     </Link>

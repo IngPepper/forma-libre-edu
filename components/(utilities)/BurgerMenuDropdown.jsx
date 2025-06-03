@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { MdMenu, MdClose } from "react-icons/md";
 import { usePathname } from "next/navigation";
-import styles from "./AccountMenu.module.css"; // Usa los mismos estilos del dropdown
+import styles from "../(layout)/AccountMenu.module.css"; // Usa los mismos estilos del dropdown
 
 export default function BurgerMenuDropdown() {
     const [open, setOpen] = useState(false);

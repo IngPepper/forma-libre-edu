@@ -1,17 +1,17 @@
 "use client";
 import styles from "./page.module.css";
-import styles2 from "../components/ContentSection.module.css"
-import ContentSection from "@/components/ContentSection";
-import TripticoGeneral from "@/components/TripticoGeneral";
+import styles2 from "../components/(layout)/ContentSection.module.css"
+import ContentSection from "@/components/(layout)/ContentSection";
+import TripticoGeneral from "@/components/(layout)/TripticoGeneral";
 
-import SearchBar  from "@/components/SearchBar";
+import SearchBar  from "@/components/(utilities)/SearchBar";
 import Image from "next/image";
-import ContentPriceCard from "@/components/ContentPriceCard";
+import ContentPriceCard from "@/components/(layout)/ContentPriceCard";
 import romboRojo from '@/public/assets/im16h_rombo_rojo.jpg';
 import imageTest from '@/public/assets/im19h_rotulador_lineas.jpg';
 import Link from "next/link";
-import ScrollToTopOnNavigation from "@/components/ScrollToTopOnNavigation";
-import CollapsibleSection from "@/components/CollapsibleSection";
+import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
+import CollapsibleSection from "@/components/(utilities)/CollapsibleSection";
 
 // Si tu imagen está en public/, usa "/fondo.jpg"
 // Si es de internet, usa la url completa y configúralo en next.config.js
