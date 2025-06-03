@@ -93,6 +93,10 @@
     .wrapperTop{
         margin-top: 0;
     }
+    .title{
+        font-size: 2rem;
+
+    }
 
 }
 @media (max-width: 375px) {

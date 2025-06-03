@@ -7,6 +7,7 @@ import AccountMenu from './AccountMenu'; // Ajusta la ruta si es necesario
 
 // Simulación de login y perfil, cámbialo por tu lógica real de auth
 import React, { useState } from "react";
+import BurgerMenuDropdown from "@/components/BurgerMenuDropdown";
 
 function MainNav() {
     const pathname = usePathname();
@@ -51,9 +52,7 @@ function MainNav() {
                     </div>
 
                     {/* Menú móvil */}
-                    <button className={styles.menuButton} aria-label="Menú">
-                        <MdMenu className={styles.menuIcon}/>
-                    </button>
+                    <BurgerMenuDropdown />
 
                     {/* Botón de cuenta usando AccountMenu */}
                     <AccountMenu

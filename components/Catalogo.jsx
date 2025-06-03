@@ -1,8 +1,22 @@
-"use client";
+import { useState, useEffect } from "react";
 import styles from './Catalogo.module.css';
 import ListaPlanos from './ListaPlanos';
 import { BsBox2Heart } from "react-icons/bs";
 import { MdOutlineArrowDropDown } from "react-icons/md";
+
+// Hook para detectar móvil
+function useMobile(breakpoint = 640) {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth <= breakpoint);
+        check();
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, [breakpoint]);
+
+    return isMobile;
+}
 
 export default function Catalogo({
                                      planos,
@@ -11,8 +25,8 @@ export default function Catalogo({
                                      categorias = ["Todos"],
                                      perfil,
                                  }) {
-    // Asegura que categorias sea siempre un array, nunca undefined ni null
-    const usarDropdown = Array.isArray(categorias) && categorias.length > 5;
+    const isMobile = useMobile(640);
+    const usarDropdown = isMobile || (categorias.length > 5);
 
     return (
         <section className={styles.catalogo}>
@@ -31,9 +45,7 @@ export default function Catalogo({
                                 onChange={e => onCategoriaChange(e.target.value)}
                             >
                                 {categorias.map(cat => (
-                                    <option key={cat} value={cat}>
-                                        {cat}
-                                    </option>
+                                    <option key={cat} value={cat}>{cat}</option>
                                 ))}
                             </select>
                             <MdOutlineArrowDropDown className={styles.iconDropdown} />
@@ -43,16 +55,15 @@ export default function Catalogo({
                     categorias.map(cat => (
                         <button
                             key={cat}
-                            className={`${styles.categoriaBtn} ${categoriaActual === cat ? styles.activo : ''}`}
+                            className={`${styles.categoriaBtn} ${categoriaActual === cat ? styles.activo : ""}`}
                             onClick={() => onCategoriaChange(cat)}
-                            type="button"
                         >
-                            <BsBox2Heart className={styles.iconBtn} />
                             {cat}
                         </button>
                     ))
                 )}
             </nav>
+            {/* ...tu contenido, por ejemplo: */}
             <ListaPlanos planos={planos} perfil={perfil} />
         </section>
     );

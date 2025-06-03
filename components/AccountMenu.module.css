@@ -27,17 +27,6 @@
     vertical-align: middle;
 }
 
-.accountButtonSkeleton {
-    width: 73px;
-    height: 55px;
-    border-radius: var(--borde-radius, 8px);
-    background: var(--color-fondo-claro);
-    animation: shimmer 1.2s infinite;
-}
-@keyframes shimmer {
-    0% { background-position: 100% 0; }
-    100% { background-position: 0 0; }
-}
 
 @media (max-width: 600px) {
     .accountText {

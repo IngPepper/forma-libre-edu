@@ -31,7 +31,10 @@ export default function ListaPlanos({ planos = [], perfil }) {
                         <Link
                             className={styles.detalles}
                             href={`/levantamientos/${plano.id}`}
-                            onClick={() => handleGuardarCategoria(plano.categoria)}
+                            onClick={() => {
+                                handleGuardarCategoria(plano.categoria);
+                                window.scrollTo(0, 0);
+                            }}
                         >
                             Ver detalles
                         </Link>

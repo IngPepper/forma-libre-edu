@@ -133,6 +133,9 @@
         max-width: 0;
         pointer-events: none; /* Inhabilita interacción */
     }
+    .navActions {
+        gap: 0;
+    }
 
     .menuIcon {
         font-size: 30px; /* Aumenta el tamaño del ícono */
@@ -161,7 +164,9 @@
         max-width: 0;
         pointer-events: none;
     }
-    .container{}
+    .navActions {
+        gap: 0;
+    }
 
     .menuIcon {
         font-size: 30px;
@@ -188,6 +193,9 @@
         grid-template-columns: 1fr;
         place-items: center;      /* Atajo: centra tanto horizontal como vertical */
         gap: 1rem;
+    }
+    .navActions {
+        gap: 0;
     }
 
     .menuIcon {

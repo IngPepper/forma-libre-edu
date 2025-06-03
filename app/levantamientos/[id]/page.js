@@ -31,21 +31,24 @@ export default function LevantamientoDetalle({ params }) {
     if (!plano) return <div>Plano no encontrado.</div>;
 
     return (
-        <section className="wrapper">
+        <>
             <ScrollToTopOnNavigation />
-            <DetallePlano
-                imagen={plano.imagen}
-                titulo={plano.titulo}
-                descripcion={plano.descripcion}
-                categoria={plano.categoria}
-                tamanoArchivo={plano.tamanoArchivo}
-                tipoArchivo={plano.tipoArchivo}
-                precio={plano.precio}
-                infoExtra={plano.infoExtra}
-                enlaces={plano.enlaces}
-                perfil={perfil}
-                onBuy={() => alert(`¡Compra iniciada para ${plano.titulo}!`)}
-            />
-        </section>
+            <section className="wrapper">
+                <DetallePlano
+                    imagen={plano.imagen}
+                    titulo={plano.titulo}
+                    descripcion={plano.descripcion}
+                    categoria={plano.categoria}
+                    tamanoArchivo={plano.tamanoArchivo}
+                    tipoArchivo={plano.tipoArchivo}
+                    precio={plano.precio}
+                    infoExtra={plano.infoExtra}
+                    enlaces={plano.enlaces}
+                    perfil={perfil}
+                    onBuy={() => alert(`¡Compra iniciada para ${plano.titulo}!`)}
+                />
+            </section>
+        </>
+
     );
 }
