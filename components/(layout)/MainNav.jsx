@@ -1,6 +1,5 @@
 "use client";
 import styles from './MainNav.module.css';
-import { MdMenu } from 'react-icons/md';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import AccountMenu from './AccountMenu'; // Ajusta la ruta si es necesario
@@ -17,7 +16,8 @@ function MainNav() {
     const [login, setLogin] = useState(true);
 
     const [perfil, setPerfil] = useState({
-        nombre: "Tania Z",
+        nombre: "Luis L",
+        email: "admin@formalibre.com",
         tieneMembresia: true
     });
 
@@ -30,7 +30,7 @@ function MainNav() {
         <nav className={styles.navWrapper}>
             <div className={styles.container}>
                 {/* Logotipo del sitio */}
-                <Link href="/public" className={styles.logoLink}>
+                <Link href="/">
                     <img src="/assets/l02H_B_marron_t.svg" alt="Logotipo" className={styles.logo} />
                 </Link>
 
@@ -43,7 +43,7 @@ function MainNav() {
                     {/* Enlaces principales */}
                     <div className={styles.navLinks}>
                         <Link
-                            href={esCatalogo ? '/public' : '/catalogo'}
+                            href={esCatalogo ? '/' : '/catalogo'}
                             className={styles.navLink}
                         >
                             {esCatalogo ? 'Inicio' : 'Catálogo'}

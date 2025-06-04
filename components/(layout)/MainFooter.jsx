@@ -19,12 +19,12 @@ function MainFooter() {
                     </Link>
                     <h1 className={styles.titulo}>Links Útiles</h1>
                     <ul className={styles.linkList}>
-                        <li><a href="#cookies" className={styles.navLink}>Cookies</a></li>
-                        <li><a href="#about" className={styles.navLink}>Acerca</a></li>
-                        <li><a href="#policy" className={styles.navLink}>Políticas</a></li>
-                        <li><a href="#contact" className={styles.navLink}>Contacto</a></li>
-                        <li><a href="#privacy" className={styles.navLink}>Privacidad</a></li>
-                        <li><a href="#sitemap" className={styles.navLink}>Mapa del sitio</a></li>
+                        <li><Link href="/cookies" className={styles.navLink}>Cookies</Link></li>
+                        <li><Link href="/acerca" className={styles.navLink}>Acerca</Link></li>
+                        <li><Link href="/politicas" className={styles.navLink}>Políticas</Link></li>
+                        <li><Link href="/contacto" className={styles.navLink}>Contacto</Link></li>
+                        <li><Link href="/privacidad" className={styles.navLink}>Privacidad</Link></li>
+                        <li><Link href="/mapa" className={styles.navLink}>Mapa del sitio</Link></li>
                     </ul>
                     <ul className={styles.linkListMedia}>
                         <Link href={'https://www.facebook.com/people/Forma-Libre/61576765829363/'} target="_blank" className={styles.navLink}><FaFacebook /></Link>

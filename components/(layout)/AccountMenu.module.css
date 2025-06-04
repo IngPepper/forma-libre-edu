@@ -70,12 +70,14 @@
 }
 .premiumIcon {
     position: absolute;
-    right: -0.3em;
-    bottom: -0.3em;
-    color: goldenrod;
+    right: -0.4em;
+    bottom: 1em;
+    color: var(--color-verde);
     font-size: 1.2em;
-    background: var(--color-texto-blanco);
+    background: var(--color-texto);
+    border: 3px solid var(--color-texto);
     border-radius: 50%;
+
 }
 .menuDropdownIcon {
     font-size: 1.3em;
@@ -124,6 +126,31 @@
 .invisible {
     display: none;
 }
+
+/* Ajusta si tu .avatarButton o .avatar tienen otros estilos */
+.adminLegend {
+    position: absolute;
+    left: 50%;
+    top: 70%;/* Justo debajo del avatarButton */
+    transform: translateX(-50%) translateY(6px); /* Centrado y separado 6px */
+    z-index: 20;
+    min-width: 73px;
+    background: linear-gradient(90deg, #b0ff81 60%, #2aac63 100%);
+    color: var(--color-texto);
+    font-size: 12px;
+    font-family: inherit;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 2px 12px rgba(176, 255, 129, 0.13);
+    border: 2px solid #b0ff81;
+    text-align: center;
+    user-select: none;
+    pointer-events: none; /* Opcional: evita que bloquee clicks */
+}
+
+
+
 
 @media (max-width: 645px) {
 

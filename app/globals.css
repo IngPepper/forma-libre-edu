@@ -53,6 +53,7 @@ img {
   display: block;
 }
 
+
 button {
   font-family: inherit;
   font-size: inherit;
@@ -127,3 +128,25 @@ h1{
   justify-content: center;
 }
 
+.clearText {
+  color: var(--color-texto-blanco);
+}
+
+.link {
+  color: var(--color-texto);
+  text-decoration: underline dotted;
+  margin-left: 2px;
+  font-weight: 500;
+  transition: color 0.18s;
+}
+.link:hover {
+  color: #ad8f3d;
+  text-decoration: underline solid;
+}
+
+@media(max-width: 450px){
+  .smallerText {
+    font-size: 3rem;
+
+  }
+}
