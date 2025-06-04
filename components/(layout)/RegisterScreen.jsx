@@ -105,7 +105,7 @@ export default function RegisterScreen() {
                     <Link href="/login" className={styles.link}>Sign in</Link>
                 </p>
                 <p className={styles.terms}>
-                    By registering, you confirm you agree to our <Link href="/privacy" className={styles.termsLink}>Privacy Policy</Link> and <Link href="/terms" className={styles.termsLink}>Terms of Use</Link>.
+                    By registering, you confirm you agree to our <Link href="/privacidad" className={styles.termsLink}>Privacy Policy</Link> and <Link href="/politicas" className={styles.termsLink}>Terms of Use</Link>.
                 </p>
             </section>
         </div>

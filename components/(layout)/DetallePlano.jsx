@@ -3,7 +3,7 @@ import styles from './DetallePlano.module.css';
 import { FaArrowLeft, FaDownload, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-
+import { useUser } from "@/context/UserContext"; // ← Usa el contexto
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 
 export default function DetallePlano({
@@ -16,16 +16,17 @@ export default function DetallePlano({
                                          precio,             // Ejemplo: "$199"
                                          enlaces = [],       // [{ label: 'Ver PDF', url: '...' }, ...]
                                          infoExtra,          // Texto extra o HTML
-                                         perfil = {},        // Recibe perfil (puede traer tieneMembresia)
                                          onBuy               // función que se dispara al comprar
                                      }) {
-    // Por defecto no hay membresía
-    const tieneMembresia = perfil.tieneMembresia;
+    // 1. Saca el usuario global
+    const { user } = useUser();
+
+    // 2. Por defecto no hay membresía
+    const tieneMembresia = user?.membresia === "premium" || user?.tieneMembresia === true;
 
     // Estado para la última categoría
     const [ultimaCategoria, setUltimaCategoria] = useState("");
 
-    // Al montar, lee localStorage
     useEffect(() => {
         if (typeof window !== "undefined") {
             const cat = localStorage.getItem('ultimaCategoria');
@@ -33,10 +34,9 @@ export default function DetallePlano({
         }
     }, []);
 
-    // Handler para descarga (simulado, cámbialo por lógica real si lo necesitas)
     const handleDownload = () => {
         alert(`Descargando ${titulo}...`);
-        // Aquí puedes poner tu lógica de descarga real, si aplica
+        // Aquí tu lógica de descarga real, si aplica
     };
 
     return (

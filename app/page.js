@@ -41,7 +41,9 @@ export default function Home() {
                         </div>
                         {/* Contenido encima */}
                         <div className={styles.contentOverlay}>
-                            <button >¡Comparte!</button>
+                            <Link href={"/formulario"} ><button>
+                                ¡Comparte!
+                            </button></Link>
                             <Image
                                 src={imageTest}
                                 alt="Imagen ilustrativa"

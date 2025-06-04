@@ -1,0 +1,56 @@
+.cuentaUsuario {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--color-tarjeta, #eee);
+    border-radius: var(--borde-radius, 8px);
+    box-shadow: var(--sombra, 0 4px 24px rgba(0,0,0,0.10));
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: var(--espaciado);
+    margin-bottom: 1.5rem;
+}
+.facturas {
+    margin-bottom: 1.5rem;
+}
+.facturas ul {
+    list-style: none;
+    padding: 0;
+}
+.facturas li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: .5rem;
+}
+.cancelar {
+    margin-bottom: 1.5rem;
+}
+.cancelar a {
+    color: var(--color-error, #a85353);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.perfilForm {
+    background: var(--color-fondo-claro, #f6f6f6);
+    padding: 1rem;
+    border-radius: var(--borde-radius, 8px);
+}
+.perfilForm form label {
+    display: block;
+    margin-bottom: .8rem;
+}
+.perfilForm input {
+    width: 100%;
+    margin-top: .3rem;
+    margin-bottom: .5rem;
+    padding: .5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.perfilForm button {
+    margin-right: .8rem;
+}

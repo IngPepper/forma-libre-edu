@@ -1,43 +1,42 @@
 "use client";
 import { useState, useRef } from "react";
-import styles from "./AdminConsole.module.css"; // Crea tus estilos modernos aquí
+import styles from "./AdminConsole.module.css";
 import { FaPlus, FaTrash, FaEdit, FaUpload } from "react-icons/fa";
+import { useUser } from "@/context/UserContext";
 
-// Lista de correos administradores
-const adminEmails = ["admin@formalibre.com", "cesar@formalibre.com"];
+// Ya no necesitas adminEmails
+function blankPlano() {
+    return {
+        id: "",
+        imagen: "",
+        titulo: "",
+        descripcion: "",
+        categoria: "",
+        tamanoArchivo: "",
+        tipoArchivo: "",
+        precio: "",
+        infoExtra: "",
+        enlaces: [],
+    };
+}
 
-export default function AdminConsole({ user, planos, setPlanos }) {
-    // Simulación: debe llegar el usuario autenticado y la lista de planos
-    // Ejemplo de user: { email: "admin@formalibre.com" }
-
-    const [editing, setEditing] = useState(null); // id o null
+export default function AdminConsole({ planos, setPlanos }) {
+    const { user } = useUser();
+    const [editing, setEditing] = useState(null);
     const [form, setForm] = useState(blankPlano());
     const [importError, setImportError] = useState("");
     const fileInputRef = useRef();
 
-    if (!user || !adminEmails.includes(user.email)) {
-        return null; // No mostrar nada si no es admin
+    // Cambia esto por la validación moderna:
+    // if (!user || !user.isAdmin) return null;
+    if (!user || (user.rol !== "admin" && !user.isAdmin)) {
+        return null;
     }
 
     // Handlers CRUD
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
-
-    function blankPlano() {
-        return {
-            id: "",
-            imagen: "",
-            titulo: "",
-            descripcion: "",
-            categoria: "",
-            tamanoArchivo: "",
-            tipoArchivo: "",
-            precio: "",
-            infoExtra: "",
-            enlaces: [],
-        };
-    }
 
     // Crea o edita
     const handleSubmit = (e) => {
@@ -54,7 +53,6 @@ export default function AdminConsole({ user, planos, setPlanos }) {
         setForm(blankPlano());
         setEditing(null);
         // TODO: Actualiza en base de datos aquí
-        // await api.updatePlanos(newPlanos)
     };
 
     // Borrar
@@ -63,7 +61,6 @@ export default function AdminConsole({ user, planos, setPlanos }) {
         const newPlanos = planos.filter((p) => p.id !== id);
         setPlanos(newPlanos);
         // TODO: Actualiza en base de datos aquí
-        // await api.updatePlanos(newPlanos)
     };
 
     // Editar
@@ -97,9 +94,13 @@ export default function AdminConsole({ user, planos, setPlanos }) {
             try {
                 const data = JSON.parse(evt.target.result);
                 if (Array.isArray(data)) {
-                    // TODO: Validar campos mínimos
-                    setPlanos([...planos, ...data.map((d) => ({ ...d, id: d.id || Date.now() + Math.random() }))]);
-                    // await api.updatePlanos([...planos, ...data])
+                    setPlanos([
+                        ...planos,
+                        ...data.map((d) => ({
+                            ...d,
+                            id: d.id || Date.now() + Math.random(),
+                        })),
+                    ]);
                 } else {
                     setImportError("El archivo debe contener un array de planos.");
                 }
@@ -181,12 +182,6 @@ export default function AdminConsole({ user, planos, setPlanos }) {
                     ))}
                 </div>
             </div>
-            {/* Aquí conectarías con tu backend, por ejemplo:
-          // Firestore:
-          // import { addDoc, updateDoc, deleteDoc, collection } from "firebase/firestore"
-          // Supabase: await supabase.from("planos").upsert([...])
-          // REST API: fetch("/api/planos", {method: "POST", body: ...})
-       */}
         </div>
     );
 }

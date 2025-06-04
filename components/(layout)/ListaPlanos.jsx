@@ -1,7 +1,10 @@
 import styles from './ListaPlanos.module.css';
 import Link from "next/link";
+import { useUser } from "@/context/UserContext"; // Importa el hook del contexto
 
-export default function ListaPlanos({ planos = [], perfil }) {
+export default function ListaPlanos({ planos = [] }) {
+    const { user } = useUser(); // Obtén el usuario global
+
     if (!planos.length) {
         return <div className={styles.empty}>No hay planos disponibles.</div>;
     }
@@ -15,6 +18,8 @@ export default function ListaPlanos({ planos = [], perfil }) {
         }
     };
 
+    // Lógica para saber si tiene membresía (ajusta según cómo guardes en el contexto)
+    const tieneMembresia = user?.membresia === "premium" || user?.tieneMembresia === true;
 
     return (
         <div className={styles.lista}>
@@ -39,7 +44,7 @@ export default function ListaPlanos({ planos = [], perfil }) {
                             Ver detalles
                         </Link>
                         <div className={styles.botones}>
-                            {perfil?.tieneMembresia ? (
+                            {tieneMembresia ? (
                                 <button className={styles.descargar}>Descargar</button>
                             ) : (
                                 <button className={styles.comprar}>Comprar</button>

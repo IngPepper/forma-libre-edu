@@ -108,7 +108,7 @@ h1{
   margin-right: auto;
   box-sizing: border-box;
   /* Opcional: agrega separación arriba y abajo */
-  padding: 0 var(--espaciado-doble);
+  padding: 0 var(--espaciado);
   /* Para responsividad extra */
   min-width: 0;
 }
