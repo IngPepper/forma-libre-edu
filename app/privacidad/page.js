@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Privacidad() {
     return (
-        <section className="wrapper">
+        <section className={`minimalContentView wrapper`}>
             <h1 className="smallerText">Privacidad /</h1>
             <ContentSection
                 title="Política de Privacidad"

@@ -27,7 +27,7 @@
 }
 
 html, body {
-  height: 100%;
+  height: auto;
   font-family: 'Red Hat Mono', monospace;
   font-size: 18px;
   background-color: var(--color-fondo-claro);
@@ -106,6 +106,7 @@ h1{
 
 .wrapper {
   width: 100%;
+  height: auto;
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
@@ -159,6 +160,10 @@ body {
 }
 .footerWrapper {
   flex-shrink: 0;
+}
+
+.minimalContentView{
+  height: 100dvh;
 }
 
 @media(max-width: 450px){
