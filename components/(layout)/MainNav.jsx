@@ -3,16 +3,20 @@ import styles from './MainNav.module.css';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useUser } from '@/context/UserContext';
+import { useCart } from '@/context/CartContext';
 import AccountMenu from './AccountMenu';
 import BurgerMenuDropdown from "@/components/(utilities)/BurgerMenuDropdown";
 import { MdOutlineAccountCircle } from "react-icons/md";
-
+import { RiShoppingCartFill } from "react-icons/ri";
+import { useIsClient } from "@/components/(utilities)/useIsClient";
 
 function MainNav() {
     const pathname = usePathname();
     const esCatalogo = pathname === '/catalogo';
 
     const { user, setUser } = useUser();
+    const isClient = useIsClient();
+    const { totalItems } = useCart();
     // El login ahora también depende de hasAnAccount
     const login = !!user && !!user.hasAnAccount;
 
@@ -39,6 +43,16 @@ function MainNav() {
                         </Link>
                         <Link href={'/planes'} className={styles.navLink}>Planes</Link>
                     </div>
+
+                    {/* ICONO DEL CARRITO */}
+                    <Link href="/carrito" className={styles.cartLink} aria-label="Carrito">
+                        <RiShoppingCartFill className={styles.cartIcon} />
+                        {/* Solo renderiza el badge si ya estás en cliente */}
+                        {isClient && totalItems > 0 && (
+                            <span className={styles.cartBadge}>{totalItems}</span>
+                        )}
+                    </Link>
+
                     <BurgerMenuDropdown />
 
                     {/* SOLO muestra AccountMenu si tiene cuenta */}

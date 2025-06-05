@@ -5,6 +5,7 @@ import SmallSeparator from "@/components/(utilities)/SmallSeparator";
 
 
 import { UserProvider } from "@/context/UserContext";
+import {CartProvider} from "@/context/CartContext";
 
 export const metadata = {
     title: "Forma Libre",
@@ -16,10 +17,12 @@ export default function RootLayout({ children }) {
         <html lang="en">
         <body>
         <UserProvider>
-        <MainNav /> {/* ← Menú global */}
-        {children}         {/* ← Aquí va el contenido de cada página */}
-        <SmallSeparator />
-        <MainFooter />     {/* ← Footer global */}
+            <CartProvider>
+                <MainNav /> {/* ← Menú global */}
+                {children}         {/* ← Aquí va el contenido de cada página */}
+                <SmallSeparator />
+                <MainFooter />     {/* ← Footer global */}
+            </CartProvider>
         </UserProvider>
         </body>
         </html>

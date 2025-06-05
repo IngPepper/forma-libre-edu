@@ -48,11 +48,12 @@
     "id": 4,
     "imagen": "https://placehold.co/400x200?text=P+4",
     "titulo": "Plano 4",
-    "descripcion": "Descripción para el plano 4.",
+    "descripcion": "Descripción para el plano 4. lo que nunca supimos es que pasaba si este contenedor se extiende demaciado y los otros no.",
     "categoria": "Residencial",
+    "isDonated": "donated",
     "tamanoArchivo": "3.8 MB",
     "tipoArchivo": "PDF",
-    "precio": "$175",
+    "precio": "$0",
     "infoExtra": "Incluye detalles de acabados.",
     "enlaces": [
       { "label": "Ejemplo PDF", "url": "/archivos/plano4.pdf" },
@@ -65,6 +66,7 @@
     "titulo": "Plano 5",
     "descripcion": "Descripción para el plano 5.",
     "categoria": "Comercial",
+
     "tamanoArchivo": "4.1 MB",
     "tipoArchivo": "DWG, PDF",
     "precio": "$210",

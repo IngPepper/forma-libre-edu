@@ -1,0 +1,122 @@
+.carrito {
+    max-width: 700px;
+    margin: 2em auto;
+    background: var(--color-fondo-claro, #fff);
+    padding: 2em;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.09);
+}
+
+.lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border, #eee);
+    padding: 1em 0;
+    gap: 1.2em;
+}
+
+.imagen {
+    width: 90px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #f4f4f4;
+}
+
+.info {
+    flex: 1;
+}
+
+.categoria {
+    font-size: 0.85em;
+    color: var(--color-texto-suave, #7d7d7d);
+    margin-bottom: 0.4em;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 0.7em;
+}
+
+.qtyBtn {
+    background: var(--color-tarjeta, #eee);
+    border: none;
+    border-radius: 50%;
+    padding: 0.3em 0.45em;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background .2s;
+}
+.qtyBtn:hover {
+    background: var(--color-verde, #b0ff81);
+}
+
+.cantidad {
+    min-width: 2em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.precio {
+    font-weight: bold;
+    margin: 0 1.3em;
+    min-width: 70px;
+    text-align: right;
+}
+
+.eliminar {
+    background: transparent;
+    border: none;
+    color: var(--color-error, #e16363);
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 0.7em;
+}
+
+.resumen {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 0 1em 0;
+    font-size: 1.1em;
+}
+
+.acciones {
+    display: flex;
+    gap: 1em;
+    justify-content: flex-end;
+}
+
+.btn, .btnPrimario {
+    padding: 0.7em 2em;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1.07em;
+    margin-top: 1em;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn {
+    background: var(--color-tarjeta, #eee);
+    color: var(--color-texto, #222);
+}
+
+.btnPrimario {
+    background: var(--color-verde, #b0ff81);
+    color: var(--color-texto, #222);
+}
+
+.empty {
+    text-align: center;
+    padding: 4em 1em;
+}

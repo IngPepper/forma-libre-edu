@@ -3,30 +3,35 @@ import styles from './DetallePlano.module.css';
 import { FaArrowLeft, FaDownload, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useUser } from "@/context/UserContext"; // ← Usa el contexto
+import { useUser } from "@/context/UserContext";
+import { useCart } from "@/context/CartContext";
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 
+function parsePrecio(precio) {
+    // Devuelve número, si no se puede (ej: "¡Gratis!") regresa 0
+    const parsed = Number(String(precio).replace(/[^0-9.]+/g, ""));
+    return isNaN(parsed) ? 0 : parsed;
+}
+
 export default function DetallePlano({
+                                         id,
                                          imagen,
                                          titulo,
                                          descripcion,
                                          categoria,
-                                         tamanoArchivo,      // Ejemplo: "4.2 MB"
-                                         tipoArchivo,        // Ejemplo: "DWG, PDF"
-                                         precio,             // Ejemplo: "$199"
-                                         enlaces = [],       // [{ label: 'Ver PDF', url: '...' }, ...]
-                                         infoExtra,          // Texto extra o HTML
-                                         onBuy               // función que se dispara al comprar
+                                         isDonated,
+                                         tamanoArchivo,
+                                         tipoArchivo,
+                                         precio,
+                                         enlaces = [],
+                                         infoExtra,
                                      }) {
-    // 1. Saca el usuario global
     const { user } = useUser();
+    const { addToCart, cart } = useCart();
 
-    // 2. Por defecto no hay membresía
     const tieneMembresia = user?.membresia === "premium" || user?.tieneMembresia === true;
 
-    // Estado para la última categoría
     const [ultimaCategoria, setUltimaCategoria] = useState("");
-
     useEffect(() => {
         if (typeof window !== "undefined") {
             const cat = localStorage.getItem('ultimaCategoria');
@@ -36,7 +41,25 @@ export default function DetallePlano({
 
     const handleDownload = () => {
         alert(`Descargando ${titulo}...`);
-        // Aquí tu lógica de descarga real, si aplica
+    };
+
+    // Encuentra el item actual en el carrito para mostrar la cantidad
+    const itemEnCarrito = cart.find(item => String(item.id) === String(id));
+    const cantidadEnCarrito = itemEnCarrito ? itemEnCarrito.cantidad : 0;
+
+    // Handler para agregar al carrito
+    const handleAddToCart = () => {
+        addToCart({
+            id: String(id),
+            imagen,
+            titulo,
+            descripcion,
+            categoria,
+            precio: parsePrecio(precio),
+            tamanoArchivo,
+            tipoArchivo,
+            isDonated
+        }, 1);
     };
 
     return (
@@ -48,7 +71,6 @@ export default function DetallePlano({
                     <img src={imagen} alt={titulo} className={styles.imagen} />
                 </div>
                 <div className={styles.contenido}>
-                    {/* Categoría tipo chip */}
                     <div className={styles.chipRow}>
                         {categoria && (
                             <span className={styles.categoria}>{categoria}</span>
@@ -76,9 +98,13 @@ export default function DetallePlano({
                                 <strong>Precio:</strong> <span className={styles.precio}>{precio}</span>
                             </div>
                         )}
+                        {isDonated && isDonated.trim().length > 0 && (
+                            <div className="noPadding">
+                                <strong className={styles.categoriaDonated}>Donado</strong>
+                            </div>
+                        )}
                     </div>
 
-                    {/* BOTÓN QUE CAMBIA SEGÚN MEMBRESÍA */}
                     <div>
                         {tieneMembresia ? (
                             <button className={styles.comprar} onClick={handleDownload}>
@@ -86,9 +112,17 @@ export default function DetallePlano({
                                 Descargar
                             </button>
                         ) : (
-                            <button className={styles.comprar} onClick={onBuy}>
+                            <button
+                                className={styles.comprar}
+                                onClick={handleAddToCart}
+                            >
                                 <FaShoppingCart style={{ marginRight: 10 }} />
-                                Comprar ahora
+                                Agregar al carrito
+                                {cantidadEnCarrito > 0 && (
+                                    <span className={styles.cantidadEnCarrito}>
+                                        &nbsp;({cantidadEnCarrito} en carrito)
+                                    </span>
+                                )}
                             </button>
                         )}
                     </div>

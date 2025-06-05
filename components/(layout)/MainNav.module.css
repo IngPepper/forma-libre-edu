@@ -125,6 +125,39 @@
     padding: 8px;
 }
 
+.cartLink {
+    position: relative;
+    margin: 0 1rem;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--color-tarjeta);
+    transition: color .2s;
+}
+.cartLink:hover .cartIcon {
+    color: var(--color-acento);
+}
+.cartIcon {
+    font-size: 2rem;
+}
+.cartBadge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--color-verde, #b0ff81);
+    color: var(--color-texto);
+    border-radius: 50%;
+    padding: 0.12em 0.5em;
+    font-size: 0.9rem;
+    font-weight: bold;
+    min-width: 22px;
+    min-height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.13);
+}
+
 /* Para pantallas de 645px o menos */
 @media (max-width: 645px) {
     .navLinks {

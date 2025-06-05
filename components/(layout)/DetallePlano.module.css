@@ -12,6 +12,35 @@
     position: relative;
     animation: slideDown 0.25s ease-in-out forwards;
 }
+.categoria {
+    max-width: 150px;
+    display: inline-block;
+    background: #e8e2c9;
+    color: #7d6c38;
+    border: 2px solid var(--color-acento);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 0.5rem;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.categoriaDonated {
+    max-width: 150px;
+    display: inline-block;
+    background: var(--color-verde);
+    color: var(--color-texto);
+    border: 2px solid var(--color-texto-suave);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 0.5rem;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    text-align: center;
+}
 
 /* Contenedor general de la navegación */
 @keyframes slideDown {

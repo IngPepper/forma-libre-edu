@@ -1,54 +1,26 @@
-'use client';
-import { use, useEffect, useState } from "react";
-import DetallePlano from '@/components/(layout)/DetallePlano';
-import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
+// /app/levantamientos/[id]/page.jsx
+import DetallePlano from "@/components/(layout)/DetallePlano";
+// Si tu mock está en /public/data/planosMock.json, impórtalo así:
+import planosData from "@/public/data/planosMock.json"; // Ajusta la ruta si es necesario
 
+export default function LevantamientoDetallePage({ params }) {
+    const { id } = params;
 
-export default function LevantamientoDetalle({ params }) {
-    const { id } = use(params);
+    // Busca el plano correspondiente
+    const plano = planosData.find(p => String(p.id) === String(id));
 
-    const [plano, setPlano] = useState(null);
-    const [loading, setLoading] = useState(true);
+    if (!plano) {
+        return (
+            <div style={{
+                padding: "3em 0",
+                textAlign: "center",
+                color: "#a85353"
+            }}>
+                <h2>Plano no encontrado</h2>
+                <p>El plano solicitado no existe o fue removido.</p>
+            </div>
+        );
+    }
 
-    // Simulación de perfil
-    const perfil = { tieneMembresia: true };
-
-    useEffect(() => {
-        fetch('/data/planosMock.json')
-            .then(res => res.json())
-            .then(data => {
-                const found = data.find(p => String(p.id) === String(id));
-                setPlano(found || null);
-                setLoading(false);
-            })
-            .catch(() => {
-                setPlano(null);
-                setLoading(false);
-            });
-    }, [id]);
-
-    if (loading) return <div>Cargando...</div>;
-    if (!plano) return <div>Plano no encontrado.</div>;
-
-    return (
-        <>
-            <ScrollToTopOnNavigation />
-            <section className="wrapper">
-                <DetallePlano
-                    imagen={plano.imagen}
-                    titulo={plano.titulo}
-                    descripcion={plano.descripcion}
-                    categoria={plano.categoria}
-                    tamanoArchivo={plano.tamanoArchivo}
-                    tipoArchivo={plano.tipoArchivo}
-                    precio={plano.precio}
-                    infoExtra={plano.infoExtra}
-                    enlaces={plano.enlaces}
-                    perfil={perfil}
-                    onBuy={() => alert(`¡Compra iniciada para ${plano.titulo}!`)}
-                />
-            </section>
-        </>
-
-    );
+    return <DetallePlano {...plano} />;
 }
