@@ -1,0 +1,119 @@
+.checkout {
+    max-width: 440px;
+    margin: 2em auto;
+    background: #fff;
+    padding: 2.5em 1.7em 2.2em 1.7em;
+    border-radius: 14px;
+    box-shadow: 0 6px 32px rgba(60,60,40,0.10);
+    font-family: inherit;
+    animation: fadein .33s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; transform: translateY(22px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+.titulo {
+    font-size: 2.1em;
+    font-weight: bold;
+    margin-bottom: 1.2em;
+    text-align: center;
+    color: #2b2b2b;
+}
+
+.lista {
+    background: #f6fbe5;
+    border-radius: 9px;
+    padding: 1.1em 1em 0.9em 1.1em;
+    margin-bottom: 1.5em;
+    font-size: 1.04em;
+    list-style: none;
+    line-height: 1.7;
+}
+
+.listaItem {
+    margin-top: 0.35em;
+    border-top: 1px solid #e8ecd5;
+    padding-top: 0.32em;
+}
+
+.listaItem:not(:first-child) {
+    margin-top: 0.35em;
+    border-top: 1px solid #e8ecd5;
+    padding-top: 0.32em;
+}
+
+.totalTexto {
+    text-align: right;
+    margin-bottom: 2em;
+    font-size: 1.08em;
+    color: #1a3e0d;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1em;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    color: #222;
+    font-size: 1em;
+    margin-bottom: .1em;
+    gap: .36em;
+}
+
+.input {
+    padding: .65em 1em;
+    border-radius: 8px;
+    border: 1.5px solid #e1e3ce;
+    background: #f8f8f4;
+    font-size: 1em;
+    margin-top: 0.15em;
+    transition: border .18s;
+}
+
+.input:focus {
+    outline: none;
+    border: 1.5px solid #b0ff81;
+    background: #f4fff1;
+}
+
+.btnPrimario {
+    margin-top: 1.3em;
+    background: #b0ff81;
+    color: #2b2b2b;
+    border: none;
+    padding: 1em 1.5em;
+    border-radius: 9px;
+    font-weight: bold;
+    font-size: 1.07em;
+    cursor: pointer;
+    box-shadow: 0 2px 9px rgba(100,220,50,0.10);
+    transition: background .16s, transform .13s;
+}
+.btnPrimario:hover {
+    background: #eaffd0;
+    transform: scale(1.04);
+}
+
+.confirmacion {
+    text-align: center;
+    padding: 4em 1em 2em 1em;
+    background: #f6fbe5;
+    border-radius: 16px;
+    margin-top: 2em;
+}
+.confirmacionTitulo {
+    color: #2b2b2b;
+    font-size: 2em;
+    margin-bottom: 0.7em;
+}
+.confirmacionTexto {
+    color: #2c431d;
+    font-size: 1.1em;
+}

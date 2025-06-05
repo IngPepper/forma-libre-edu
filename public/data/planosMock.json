@@ -53,7 +53,7 @@
     "isDonated": "donated",
     "tamanoArchivo": "3.8 MB",
     "tipoArchivo": "PDF",
-    "precio": "$0",
+    "precio": "¡Gratis!",
     "infoExtra": "Incluye detalles de acabados.",
     "enlaces": [
       { "label": "Ejemplo PDF", "url": "/archivos/plano4.pdf" },

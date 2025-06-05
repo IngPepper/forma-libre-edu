@@ -4,14 +4,14 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 // Mock inicial (luego lo puedes quitar)
 const mockUser = {
-    idUsuario: "", // ← Aquí tu nuevo campo ID de usuario
-    email: "",
-    nombre: "",
-    miembroDesde: "",
+    idUsuario: "1234", // ← Aquí tu nuevo campo ID de usuario
+    email: "luis@luis.com",
+    nombre: "Luis Ledesma",
+    miembroDesde: "01 01 1990",
     membresia: "free", // "free" o "premium"
-    rol: "", //"admin" o "user"
+    rol: "admin", //"admin" o "user"
     hasAnAccount: true,
-    isAdmin: false,
+    isAdmin: true,
     facturas: [
         { id: 1, fecha: "2024-06-01", url: "/factura1.pdf"},
        //{ id: 12, fecha: "2025-06-01", url: "/factura2.pdf"}
