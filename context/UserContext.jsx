@@ -9,9 +9,9 @@ const mockUser = {
     nombre: "Luis Ledesma",
     miembroDesde: "01 01 1990",
     membresia: "free", // "free" o "premium"
-    rol: "admin", //"admin" o "user"
+    rol: "user", //"admin" o "user"
     hasAnAccount: true,
-    isAdmin: true,
+    isAdmin: false,
     facturas: [
         { id: 1, fecha: "2024-06-01", url: "/factura1.pdf"},
        //{ id: 12, fecha: "2025-06-01", url: "/factura2.pdf"}

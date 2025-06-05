@@ -50,7 +50,7 @@
     margin: var(--espaciado) 0;
     max-width: 1024px;
     position: sticky;
-    top: 132px; /* Ajusta según tu header/navbar */
+    top: 126px; /* Ajusta según tu header/navbar */
     z-index: 10;
     background: var(--color-fondo-claro, #ECEBDE);
     padding: var(--espaciado) var(--espaciado-doble);
@@ -148,7 +148,7 @@
     }
     .categorias {
         position: sticky;
-        top: 132px; /* Ajusta según tu header/navbar */
+        top: 127px; /* Ajusta según tu header/navbar */
         z-index: 10;
         display: flex !important;  /* Asegura que el contenedor tipo dropdown aparezca */
     }
@@ -163,9 +163,9 @@
 
     }
 
-    @media (max-width: 470px) {
+    @media (max-width: 395px) {
         .categorias {
-            top: 200px;
+            top: 65px;
             border-radius: 12px;
         }
 

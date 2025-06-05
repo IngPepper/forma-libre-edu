@@ -17,7 +17,6 @@ function MainNav() {
     const { user, setUser } = useUser();
     const isClient = useIsClient();
     const { totalItems } = useCart();
-    // El login ahora también depende de hasAnAccount
     const login = !!user && !!user.hasAnAccount;
 
     const cerrarSesionFn = () => {
@@ -27,8 +26,19 @@ function MainNav() {
     return (
         <nav className={styles.navWrapper}>
             <div className={styles.container}>
-                <Link href="/">
-                    <img src="/assets/l02H_B_marron_t.svg" alt="Logotipo" className={styles.logo} />
+                <Link href="/" className={styles.logoLink}>
+                    {/* Logo normal */}
+                    <img
+                        src="/assets/l02H_B_marron_t.svg"
+                        alt="Logotipo"
+                        className={`${styles.logo} ${styles.logoGrande}`}
+                    />
+                    {/* Logo mini */}
+                    <img
+                        src="/assets/iso02S_marron_t.svg"
+                        alt="Logo compacto"
+                        className={`${styles.logo} ${styles.logoMini}`}
+                    />
                 </Link>
 
                 <div className={styles.spacer}></div>
@@ -47,7 +57,6 @@ function MainNav() {
                     {/* ICONO DEL CARRITO */}
                     <Link href="/carrito" className={styles.cartLink} aria-label="Carrito">
                         <RiShoppingCartFill className={styles.cartIcon} />
-                        {/* Solo renderiza el badge si ya estás en cliente */}
                         {isClient && totalItems > 0 && (
                             <span className={styles.cartBadge}>{totalItems}</span>
                         )}
@@ -61,7 +70,6 @@ function MainNav() {
                             onLogout={cerrarSesionFn}
                         />
                     ) : (
-                        // Muestra solo el botón de registro cuando no tiene cuenta
                         <Link href="/register" aria-label="Cuenta">
                             <button className={styles.accountButton} type="button">
                                 <MdOutlineAccountCircle className={styles.menuIcon} />

@@ -11,6 +11,7 @@ export default function Planes() {
     return (
       <main className="wrapper">
           <ScrollToTopOnNavigation />
+          <h1 className={"smallerText"}>Planes /</h1>
           <CollapsibleSection maxHeight={500}>
               <ContentSection
                   title="Precios y Beneficios"

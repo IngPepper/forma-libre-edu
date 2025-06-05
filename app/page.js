@@ -13,6 +13,7 @@ import Link from "next/link";
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 import CollapsibleSection from "@/components/(utilities)/CollapsibleSection";
 
+
 // Si tu imagen está en public/, usa "/fondo.jpg"
 // Si es de internet, usa la url completa y configúralo en next.config.js
 
@@ -21,7 +22,7 @@ export default function Home() {
         <div>
             <div className="wrapper">
                 <ScrollToTopOnNavigation />
-
+                <h1 className={"smallerText"}>Inicio /</h1>
                 <CollapsibleSection
                     maxHeight = {600}
                 >

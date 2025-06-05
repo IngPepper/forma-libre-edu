@@ -1,6 +1,6 @@
 .checkout {
     max-width: 440px;
-    margin: 2em auto;
+    margin: 0 auto 1rem auto;
     background: #fff;
     padding: 2.5em 1.7em 2.2em 1.7em;
     border-radius: 14px;
@@ -116,4 +116,9 @@
 .confirmacionTexto {
     color: #2c431d;
     font-size: 1.1em;
+}
+
+.lastContent{
+    width: 1px;
+    height: 50dvh;
 }

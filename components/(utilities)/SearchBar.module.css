@@ -1,7 +1,7 @@
 /* Barra de búsqueda sticky justo debajo del navbar */
 .searchBarWrapper {
     position: sticky;
-    top: 135px;   /* Altura de tu navbar sticky; ajusta según lo que mida tu navbar */
+    top: 110px;   /* Altura de tu navbar sticky; ajusta según lo que mida tu navbar */
     z-index: 99; /* Debajo del nav, que tiene z-index: 100 */
     width: 100%;
     max-width: 1024px; /* Debe coincidir con el ancho del nav */
@@ -150,6 +150,9 @@
 
 /* Media query para ocultar el icono de la izquierda en móviles */
 @media (max-width: 600px) {
+    .searchBarWrapper{
+        top: 110px;
+    }
     .searchBar {
         max-width: 100%;
         gap: 1rem;
@@ -171,14 +174,14 @@
 }
 
 /* Opcional: ajuste aún más pequeño en pantallas diminutas */
-@media (max-width: 375px) {
+@media (max-width: 390px) {
     .button {
         padding: 0.38rem;
         min-width: 2rem;
     }
     .searchBarWrapper {
         position: sticky;
-        top: 189px;   /* Altura de tu navbar sticky; ajusta según lo que mida tu navbar */
+        top:65px;   /* Altura de tu navbar sticky; ajusta según lo que mida tu navbar */
         z-index: 99; /* Debajo del nav, que tiene z-index: 100 */
     }
 }

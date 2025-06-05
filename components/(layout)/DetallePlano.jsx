@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useUser } from "@/context/UserContext";
 import { useCart } from "@/context/CartContext";
+import toast from 'react-hot-toast';
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 
 function parsePrecio(precio) {
@@ -60,10 +61,11 @@ export default function DetallePlano({
             tipoArchivo,
             isDonated
         }, 1);
+        toast.success("¡Producto agregado al carrito!");
     };
 
     return (
-        <>
+        <section className={"wrapper"}>
             <ScrollToTopOnNavigation />
             <h1 className={styles.smallerText}>Detalles / </h1>
             <section className={styles.detalle}>
@@ -146,6 +148,6 @@ export default function DetallePlano({
                     )}
                 </div>
             </section>
-        </>
+        </section>
     );
 }

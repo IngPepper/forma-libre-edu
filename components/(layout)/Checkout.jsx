@@ -3,7 +3,9 @@ import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
 import styles from "./Checkout.module.css";
 import { useState, useEffect } from "react";
-import { useIsClient } from "@/components/(utilities)/useIsClient"; // <--- Tu hook
+import { useIsClient } from "@/components/(utilities)/useIsClient";
+import toast from "react-hot-toast";
+import Link from "next/link";
 
 export default function CheckoutPage() {
     const isClient = useIsClient(); // <--- Úsalo aquí
@@ -24,6 +26,7 @@ export default function CheckoutPage() {
         e.preventDefault();
         clearCart();
         setCompraRealizada(true);
+        toast.success("¡Compra realizada exitosamente!");
     };
 
     // 👇 Esto previene hydration mismatch
@@ -33,10 +36,14 @@ export default function CheckoutPage() {
 
     if (compraRealizada) {
         return (
-            <div className={styles.confirmacion}>
-                <h2 className={styles.confirmacionTitulo}>¡Gracias por tu compra!</h2>
-                <p className={styles.confirmacionTexto}>Se ha enviado el recibo a <b>{correo}</b>.</p>
-            </div>
+            <section className={"wrapper"} style={{padding:" 0 1rem 1rem 1rem", textAlign:"center"}}>
+                <div className={styles.confirmacion}>
+                    <h2 className={styles.confirmacionTitulo}>¡Gracias por tu compra!</h2>
+                    <p className={styles.confirmacionTexto}>Se ha enviado el recibo a <b>{correo}</b>.</p>
+                    <Link href={'/'} className={"link"}>Volver al inicio...</Link>
+                    <div className={styles.lastContent}></div>
+                </div>
+            </section>
         );
     }
 

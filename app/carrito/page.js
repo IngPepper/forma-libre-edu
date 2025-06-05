@@ -2,5 +2,9 @@
 import Carrito from "@/components/(layout)/Carrito";
 
 export default function CarritoPage() {
-    return <Carrito />;
+    return (
+        <section className={"wrapper"}>
+            <Carrito />
+        </section>
+        );
 }

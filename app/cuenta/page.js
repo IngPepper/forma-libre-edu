@@ -1,21 +1,23 @@
 // pages/cuenta.jsx
 "use client";
 import CuentaUsuario from "@/components/(layout)/CuentaUsuario";
+import { useUser } from "@/context/UserContext";
 
 export default function CuentaPage() {
-    // Mock del perfil del usuario
+    // Obtén el usuario real del contexto
+    const { user } = useUser();
+
+    // Puedes adaptar nombres de campos según tu modelo real
     const perfil = {
-        email: "luis@formalibre.com",
-        nombre: "LuisL",
-        miembroDesde: "2022-11-15",
-        tipoMembresia: "Premium",
+        email: user?.email || "",
+        nombre: user?.nombre || "",
+        miembroDesde: user?.miembroDesde || "",
+        tipoMembresia: user?.membresia === "premium" ? "Premium" : "Free",
+        // O agrega más campos si los tienes
     };
 
-    // Mock de facturas
-    const facturas = [
-        { id: "F001", fecha: "2024-04-05", monto: "$199.00 MXN" },
-        { id: "F002", fecha: "2024-05-05", monto: "$199.00 MXN" },
-    ];
+    // Usa las facturas reales si ya las tienes en el user
+    const facturas = user?.facturas || [];
 
     // Función para actualizar el perfil (simulación)
     const onActualizarPerfil = (nuevoPerfil) => {
@@ -38,7 +40,7 @@ export default function CuentaPage() {
     };
 
     return (
-        <main className={"wrapper"}>
+        <main className="wrapper">
             <CuentaUsuario
                 perfil={perfil}
                 facturas={facturas}

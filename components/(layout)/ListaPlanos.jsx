@@ -2,6 +2,7 @@ import styles from './ListaPlanos.module.css';
 import Link from "next/link";
 import { useUser } from "@/context/UserContext";
 import { useCart } from "@/context/CartContext";
+import toast from "react-hot-toast";
 
 // Helper para limpiar y convertir el precio
 function parsePrecio(precio) {
@@ -58,17 +59,20 @@ export default function ListaPlanos({ planos = [] }) {
                             ) : (
                                 <button
                                     className={styles.comprar}
-                                    onClick={() => addToCart({
-                                        id: String(plano.id),
-                                        imagen: plano.imagen,
-                                        titulo: plano.titulo,
-                                        descripcion: plano.descripcion,
-                                        categoria: plano.categoria,
-                                        precio: parsePrecio(plano.precio),
-                                        tamanoArchivo: plano.tamanoArchivo,
-                                        tipoArchivo: plano.tipoArchivo,
-                                        isDonated: plano.isDonated
-                                    }, 1)}
+                                    onClick={() => {
+                                        addToCart({
+                                            id: String(plano.id),
+                                            imagen: plano.imagen,
+                                            titulo: plano.titulo,
+                                            descripcion: plano.descripcion,
+                                            categoria: plano.categoria,
+                                            precio: parsePrecio(plano.precio),
+                                            tamanoArchivo: plano.tamanoArchivo,
+                                            tipoArchivo: plano.tipoArchivo,
+                                            isDonated: plano.isDonated
+                                        }, 1);
+                                        toast.success("¡Producto agregado al carrito!",{ duration: 500 } );
+                                    }}
                                 >
                                     Agregar al carrito
                                 </button>

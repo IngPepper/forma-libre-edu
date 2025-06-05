@@ -29,72 +29,75 @@ export default function CuentaUsuario() {
     const facturas = user.facturas || [];
 
     return (
-        <section className={styles.cuentaUsuario}>
-            <h2>Mi cuenta</h2>
-            <div className={styles.info}>
-                <div><b>Miembro desde:</b> {user.miembroDesde || "2024-01-01"}</div>
-                <div><b>Membresía:</b> {user.membresia || "Gratis"}</div>
-                <div><b>ID: </b>{user.idUsuario || "No tengo cuenta"}</div>
-            </div>
+        <section className={"wrapper"}>
+            <h1 className={"smallerText"}>Cuenta /</h1>
+            <div className={`${styles.cuentaUsuario} wrapper`}>
 
-            <div className={styles.facturas}>
-                <h3>Facturas</h3>
-                {facturas.length === 0 ? (
-                    <p>No hay facturas disponibles.</p>
-                ) : (
-                    <ul>
-                        {facturas.map(f => (
-                            <li key={f.id}>
-                                {f.fecha} – {f.monto}
-                                <button onClick={() => window.open(f.url, "_blank")}>Descargar PDF</button>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
+                <div className={styles.info}>
+                    <div><b>Miembro desde:</b> {user.miembroDesde || "2024-01-01"}</div>
+                    <div><b>Membresía:</b> {user.membresia || "Gratis"}</div>
+                    <div><b>ID: </b>{user.idUsuario || "No tengo cuenta"}</div>
+                </div>
 
-            <div className={styles.cancelar}>
-                <a href="#" onClick={e => {
-                    e.preventDefault();
-                    // Aquí pondrías la lógica para cancelar membresía
-                    alert("Funcionalidad de cancelar membresía aún no implementada.");
-                }}>
-                    Cancelar membresía
-                </a>
-            </div>
+                <div className={styles.facturas}>
+                    <h3>Facturas</h3>
+                    {facturas.length === 0 ? (
+                        <p>No hay facturas disponibles.</p>
+                    ) : (
+                        <ul>
+                            {facturas.map(f => (
+                                <li key={f.id}>
+                                    {f.fecha} – {f.monto}
+                                    <button onClick={() => window.open(f.url, "_blank")} className={styles.buttonFactura}>PDF</button>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
 
-            <div className={styles.perfilForm}>
-                <h3>Actualizar información</h3>
-                {editando ? (
-                    <form onSubmit={handleSubmit}>
-                        <label>
-                            Email:
-                            <input
-                                type="email"
-                                name="email"
-                                value={form.email}
-                                onChange={handleChange}
-                            />
-                        </label>
-                        <label>
-                            Nombre de usuario:
-                            <input
-                                type="text"
-                                name="nombre"
-                                value={form.nombre}
-                                onChange={handleChange}
-                            />
-                        </label>
-                        <button type="submit">Guardar cambios</button>
-                        <button type="button" onClick={() => setEditando(false)}>Cancelar</button>
-                    </form>
-                ) : (
-                    <div>
-                        <div><b>Email:</b> {user.email}</div>
-                        <div><b>Usuario:</b> {user.nombre}</div>
-                        <button onClick={() => setEditando(true)}>Editar</button>
-                    </div>
-                )}
+                <div className={styles.cancelar}>
+                    <a href="#" onClick={e => {
+                        e.preventDefault();
+                        // Aquí pondrías la lógica para cancelar membresía
+                        alert("Funcionalidad de cancelar membresía aún no implementada.");
+                    }}>
+                        Cancelar membresía
+                    </a>
+                </div>
+
+                <div className={styles.perfilForm}>
+                    <h3>Actualizar información</h3>
+                    {editando ? (
+                        <form onSubmit={handleSubmit}>
+                            <label>
+                                Email:
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={form.email}
+                                    onChange={handleChange}
+                                />
+                            </label>
+                            <label>
+                                Nombre de usuario:
+                                <input
+                                    type="text"
+                                    name="nombre"
+                                    value={form.nombre}
+                                    onChange={handleChange}
+                                />
+                            </label>
+                            <button type="submit">Guardar cambios</button>
+                            <button type="button" onClick={() => setEditando(false)}>Cancelar</button>
+                        </form>
+                    ) : (
+                        <div>
+                            <div><b>Email:</b> {user.email}</div>
+                            <div><b>Usuario:</b> {user.nombre}</div>
+                            <button onClick={() => setEditando(true)}>Editar</button>
+                        </div>
+                    )}
+                </div>
             </div>
         </section>
     );

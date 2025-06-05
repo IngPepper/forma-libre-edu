@@ -4,6 +4,8 @@ import Checkout from "@/components/(layout)/Checkout";
 
 export default function CheckoutPage(){
     return (
-        <Checkout/>
+        <section className={"wrapper"}>
+            <Checkout/>
+        </section>
     );
 }
