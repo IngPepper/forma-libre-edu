@@ -61,7 +61,7 @@ export default function DetallePlano({
             tipoArchivo,
             isDonated
         }, 1);
-        toast.success("¡Producto agregado al carrito!");
+        toast.success("¡Producto agregado al carrito!",{ duration: 1000 });
     };
 
     return (

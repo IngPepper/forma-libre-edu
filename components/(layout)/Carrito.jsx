@@ -26,7 +26,7 @@ export default function Carrito() {
         return (
             <section className={"wrapper"}>
                 <div className={styles.empty}>
-                    <h1 className={"smallerText"}>Tu carrito está vacío 🛒</h1>
+                    <h1 className={"smallerText"}>Tu carrito está vacío / 🛒</h1>
                     <Link href="/catalogo" className={styles.btn}>
                         Ir al catálogo
                     </Link>
@@ -72,7 +72,6 @@ export default function Carrito() {
                                 className={styles.eliminar}
                                 onClick={() => {
                                     removeFromCart(item.id);
-                                    toast("Producto eliminado", { icon: "🗑️" });
                                 }}
                                 title="Quitar del carrito"
                             >
@@ -94,7 +93,6 @@ export default function Carrito() {
                         className={styles.btn}
                         onClick={() => {
                             clearCart();
-                            toast("Carrito vaciado", { icon: "🧹" });
                         }}
                     >
                         Vaciar carrito

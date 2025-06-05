@@ -71,7 +71,7 @@ export default function ListaPlanos({ planos = [] }) {
                                             tipoArchivo: plano.tipoArchivo,
                                             isDonated: plano.isDonated
                                         }, 1);
-                                        toast.success("¡Producto agregado al carrito!",{ duration: 500 } );
+                                        toast.success("¡Producto agregado al carrito!",{ duration: 1000 } );
                                     }}
                                 >
                                     Agregar al carrito
