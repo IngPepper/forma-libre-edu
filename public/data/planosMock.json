@@ -135,20 +135,5 @@
       { "label": "Ejemplo PDF", "url": "/archivos/plano9.pdf" },
       { "label": "Ficha técnica", "url": "/fichas/plano9" }
     ]
-  },
-  {
-    "id": 10,
-    "imagen": "https://placehold.co/400x200?text=P+10",
-    "titulo": "Plano 10",
-    "descripcion": "Descripción para el plano 10.",
-    "categoria": "Residencial",
-    "tamanoArchivo": "3.4 MB",
-    "tipoArchivo": "DWG, PDF",
-    "precio": "$185",
-    "infoExtra": "Incluye planos de detalle constructivo.",
-    "enlaces": [
-      { "label": "Ejemplo PDF", "url": "/archivos/plano10.pdf" },
-      { "label": "Ficha técnica", "url": "/fichas/plano10" }
-    ]
   }
 ]
