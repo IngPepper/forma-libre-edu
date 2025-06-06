@@ -120,20 +120,5 @@
       { "label": "Ejemplo PDF", "url": "/archivos/plano8.pdf" },
       { "label": "Ficha técnica", "url": "/fichas/plano8" }
     ]
-  },
-  {
-    "id": 9,
-    "imagen": "https://placehold.co/400x200?text=P+9",
-    "titulo": "Plano 9",
-    "descripcion": "Descripción para el plano 9.",
-    "categoria": "Industrial",
-    "tamanoArchivo": "5.6 MB",
-    "tipoArchivo": "DWG, PDF",
-    "precio": "$270",
-    "infoExtra": "Incluye análisis de cargas.",
-    "enlaces": [
-      { "label": "Ejemplo PDF", "url": "/archivos/plano9.pdf" },
-      { "label": "Ficha técnica", "url": "/fichas/plano9" }
-    ]
   }
 ]
