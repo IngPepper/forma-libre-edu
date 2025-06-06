@@ -153,10 +153,6 @@ h1{
   flex-shrink: 0;
 }
 
-.minimalContentView{
-  height: 100dvh;
-}
-
 @media(max-width: 450px){
   .smallerText {
     font-size: 3rem;
