@@ -5,6 +5,7 @@
     padding: var(--espaciado);
 }
 
+
 .modal {
     background: var(--color-tarjeta);
     border-radius: var(--borde-radius-doble);

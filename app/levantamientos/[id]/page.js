@@ -22,5 +22,10 @@ export default async function LevantamientoDetallePage({ params }) {
         );
     }
 
-    return <DetallePlano {...plano} />;
+    return (
+        <section className={"wrapper"}>
+            <DetallePlano {...plano} />
+            <div className={"add500"}></div>
+        </section>
+    );
 }
