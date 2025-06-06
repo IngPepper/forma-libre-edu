@@ -23,28 +23,28 @@
 /* === NAV WRAPPER GENERAL === */
 .navWrapper {
     position: sticky;
-    top: 0;
-    z-index: 100;
-    margin-top: 0;
-    display: flex;
-    justify-content: center;
-    padding: 0 var(--espaciado) var(--espaciado);
-    background: transparent;
+    top: 0;        /* Se “engancha” al top de la ventana */
+    z-index: 100;  /* Asegura que quede por encima de otros elementos */
+    margin-top: 0; /* Elimina cualquier margen superior */
+    display: flex; /* Usa Flexbox para organizar elementos hijos */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    padding: 0 var(--espaciado) var(--espaciado); /* Espaciado alrededor del nav */
+    background-color: transparent; /* Color de fondo opcional */
     animation: slideDown 0.55s ease-out forwards;
 }
 
 /* === NAV CONTAINER === */
 .container {
     width: 100%;
-    max-width: 1024px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    max-width: 1024px; /* Ancho máximo */
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Logo | enlaces | botones */
+    align-items: center; /* Centrado vertical */
     gap: 1rem;
+
     background-color: var(--color-texto);
-    border-radius: 0 0 var(--espaciado) var(--espaciado);
-    box-shadow: var(--sombra);
+    border-radius: 0 0 var(--espaciado) var(--espaciado); /* Bordes redondeados solo abajo */
+    box-shadow: var(--sombra); /* Sombra para profundidad */
     padding: calc(var(--espaciado) * 1.5);
     height: auto;
 }
@@ -139,15 +139,18 @@
     .navActions { gap: 0;}
     .menuIcon { font-size: 30px;}
     .menuButton { display: flex; align-items: center; justify-content: center;}
+    .accountButton { padding: 0.30rem }
     .accountText { display: none;}
 }
 
 /* === EXTRA PEQUEÑO === */
 @media (max-width: 395px) {
+    .accountButton { padding: 0.25rem }
     .logoMini   { height: 30px; max-width: 60px;}
     .container  { padding: 0 var(--espaciado) 0 var(--espaciado-doble); }
 }
 @media (max-width: 376px) {
+    .accountButton { padding: 0.20rem }
     .container  { justify-content: space-between;}
     .logoMini   { height: 24px; max-width: 50px;}
 }

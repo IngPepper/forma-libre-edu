@@ -1,39 +1,73 @@
-// context/UserContext.js
 'use client';
 import { createContext, useContext, useState, useEffect } from "react";
-
-// Mock inicial (luego lo puedes quitar)
-const mockUser = {
-    idUsuario: "1234", // ← Aquí tu nuevo campo ID de usuario
-    email: "luis@luis.com",
-    nombre: "Luis Ledesma",
-    miembroDesde: "01 01 1990",
-    membresia: "free", // "free" o "premium"
-    rol: "user", //"admin" o "user"
-    hasAnAccount: true,
-    isAdmin: false,
-    facturas: [
-        { id: 1, fecha: "2024-06-01", url: "/factura1.pdf"},
-       //{ id: 12, fecha: "2025-06-01", url: "/factura2.pdf"}
-    ],
-};
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { getUserProfile } from "@/lib/userHelpers";
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    // Al montar, carga el mock de usuario (simula fetch)
+    // Función reutilizable para cargar usuario (para refetchUser y load inicial)
+    const loadUser = async (firebaseUser) => {
+        if (firebaseUser) {
+            const baseUser = {
+                idUsuario: firebaseUser.uid,
+                email: firebaseUser.email,
+                nombre: firebaseUser.displayName || "", // <- Siempre toma el displayName de Auth
+                miembroDesde: firebaseUser.metadata.creationTime,
+            };
+            try {
+                // Perfil extendido de Firestore
+                const perfil = await getUserProfile(firebaseUser.uid);
+                setUser((prev) => ({
+                    ...prev, // para no perder campos temporales locales
+                    ...baseUser,
+                    ...perfil, // solo sobreescribe los campos existentes
+                    nombre: firebaseUser.displayName || perfil?.nombre || "", // Siempre prioridad a displayName
+                    hasAnAccount: true,
+                    isAdmin: perfil?.rol === "admin",
+                }));
+            } catch (err) {
+                setUser((prev) => ({
+                    ...prev,
+                    ...baseUser,
+                    membresia: "free",
+                    rol: "user",
+                    facturas: [],
+                    hasAnAccount: true,
+                    isAdmin: false,
+                }));
+            }
+        } else {
+            setUser(null);
+        }
+        setLoading(false);
+    };
+
+    // Hook principal: escucha cambios de sesión
     useEffect(() => {
-        // Simula llamada a backend o localStorage
-        setTimeout(() => setUser(mockUser), 800); // simula loading
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            await loadUser(firebaseUser);
+        });
+        return () => unsubscribe();
+        // eslint-disable-next-line
     }, []);
 
-    // Funciones para actualizar datos (ejemplo)
-    const updateProfile = (newData) => setUser((u) => ({ ...u, ...newData }));
+    // Refetch para cuando hagas cambios de perfil
+    const refetchUser = async () => {
+        setLoading(true);
+        const firebaseUser = auth.currentUser;
+        await loadUser(firebaseUser);
+    };
+
+    // Actualiza SOLO los campos que se pasan, conservando el resto
+    const updateProfile = (newData) => setUser((u) => u ? { ...u, ...newData } : u);
 
     return (
-        <UserContext.Provider value={{ user, setUser, updateProfile }}>
+        <UserContext.Provider value={{ user, setUser, updateProfile, loading, refetchUser }}>
             {children}
         </UserContext.Provider>
     );

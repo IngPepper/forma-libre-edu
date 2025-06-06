@@ -1,9 +1,10 @@
 .cuentaUsuario {
     max-width: 540px;
-    margin: 2rem auto 3rem auto;
+    margin: 2rem auto 50dvh auto;
     padding: 2rem;
     background: var(--color-tarjeta, #eee);
     border-radius: var(--borde-radius, 8px);
+    border: var(--borde-oscuro);
     box-shadow: var(--sombra, 0 4px 24px rgba(0,0,0,0.10));
 }
 .info {
@@ -26,16 +27,22 @@
     margin-bottom: .5rem;
 }
 .cancelar {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
 }
 .cancelar a {
     color: var(--color-error, #a85353);
     text-decoration: underline;
     cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border-radius: var(--borde-radius);
+    border: 2px solid var(--color-error, #a85353);
 }
 .perfilForm {
     background: var(--color-fondo-claro, #f6f6f6);
     padding: 1rem;
+    border: var(--borde-oscuro);
+    box-shadow: var(--sombra);
     border-radius: var(--borde-radius, 8px);
 }
 .perfilForm form label {
@@ -52,9 +59,15 @@
 }
 .perfilForm button {
     margin-top: 2rem;
+    margin-right: 2rem;
     padding: .3rem;
+
 }
 
 .buttonFactura {
     padding: .3rem;
+}
+
+.hidden{
+    overflow: hidden;
 }

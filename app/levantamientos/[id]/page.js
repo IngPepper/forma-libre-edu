@@ -3,7 +3,7 @@ import DetallePlano from "@/components/(layout)/DetallePlano";
 // Si tu mock está en /public/data/planosMock.json, impórtalo así:
 import planosData from "@/public/data/planosMock.json"; // Ajusta la ruta si es necesario
 
-export default function LevantamientoDetallePage({ params }) {
+export default async function LevantamientoDetallePage({ params }) {
     const { id } = params;
 
     // Busca el plano correspondiente

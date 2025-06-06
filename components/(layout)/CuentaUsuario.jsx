@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useUser } from "@/context/UserContext";
 import styles from "./CuentaUsuario.module.css";
+import { updateUserProfileInFirestore, updateFirebaseDisplayName  } from "@/lib/userHelpers";
 
 export default function CuentaUsuario() {
     const { user, updateProfile } = useUser(); // ← saca del contexto global
@@ -12,17 +13,22 @@ export default function CuentaUsuario() {
     const [editando, setEditando] = useState(false);
 
     // Si aún no cargó el usuario, puedes poner un loading
-    if (!user) return <div>Cargando datos de usuario...</div>;
+    if (!user) return <div className={"minimalContentView"}>Cargando datos de usuario...</div>;
 
     // Manejadores de evento
     const handleChange = e => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        updateProfile(form); // ← actualiza el usuario globalmente
-        setEditando(false);
+        try {
+            await updateFirebaseDisplayName(form.nombre);
+            updateProfile({ displayName: form.nombre }); // Solo para reflejar en la UI
+            setEditando(false);
+        } catch (err) {
+            alert("Error al actualizar nombre: " + err.message);
+        }
     };
 
     // Si tienes facturas en user
@@ -31,12 +37,12 @@ export default function CuentaUsuario() {
     return (
         <section className={"wrapper"}>
             <h1 className={"smallerText"}>Cuenta /</h1>
-            <div className={`${styles.cuentaUsuario} wrapper`}>
+            <div className={styles.cuentaUsuario}>
 
                 <div className={styles.info}>
-                    <div><b>Miembro desde:</b> {user.miembroDesde || "2024-01-01"}</div>
+                    <div className={styles.hidden}><b>Miembro desde:</b> {user.miembroDesde || "2024-01-01"}</div>
                     <div><b>Membresía:</b> {user.membresia || "Gratis"}</div>
-                    <div><b>ID: </b>{user.idUsuario || "No tengo cuenta"}</div>
+                    <div className={styles.hidden}><b>ID: </b>{user.idUsuario || "No tengo cuenta"}</div>
                 </div>
 
                 <div className={styles.facturas}>
@@ -55,16 +61,6 @@ export default function CuentaUsuario() {
                     )}
                 </div>
 
-                <div className={styles.cancelar}>
-                    <a href="#" onClick={e => {
-                        e.preventDefault();
-                        // Aquí pondrías la lógica para cancelar membresía
-                        alert("Funcionalidad de cancelar membresía aún no implementada.");
-                    }}>
-                        Cancelar membresía
-                    </a>
-                </div>
-
                 <div className={styles.perfilForm}>
                     <h3>Actualizar información</h3>
                     {editando ? (
@@ -74,12 +70,13 @@ export default function CuentaUsuario() {
                                 <input
                                     type="email"
                                     name="email"
-                                    value={form.email}
-                                    onChange={handleChange}
+                                    value={user.email}
+                                    readOnly
+                                    disabled
                                 />
                             </label>
                             <label>
-                                Nombre de usuario:
+                                Nuevo nombre de usuario:
                                 <input
                                     type="text"
                                     name="nombre"
@@ -97,6 +94,16 @@ export default function CuentaUsuario() {
                             <button onClick={() => setEditando(true)}>Editar</button>
                         </div>
                     )}
+                </div>
+                <br/>
+                <div className={styles.cancelar}>
+                    <a href="#" onClick={e => {
+                        e.preventDefault();
+                        // Aquí pondrías la lógica para cancelar membresía
+                        alert("Funcionalidad de cancelar membresía aún no implementada.");
+                    }}>
+                        Cancelar membresía
+                    </a>
                 </div>
             </div>
         </section>

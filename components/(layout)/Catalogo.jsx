@@ -66,8 +66,7 @@ export default function Catalogo({
                         ))
                     )}
                 </nav>
-                {/* ...tu contenido, por ejemplo: */}
-                <ListaPlanos planos={planos} perfil={user} /> {/* ← Manda el usuario/perfil a ListaPlanos */}
+                <ListaPlanos planos={planos} perfil={user} />
             </section>
         </RequireAccount>
     );

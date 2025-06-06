@@ -37,7 +37,6 @@ html, body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 a {
@@ -123,7 +122,6 @@ h1{
     position: relative; /* ¡Esto es lo más importante! */
     min-height: 340px;
     overflow: hidden;
-    margin-top: 182px;
     padding-top: 0;
 }
 
@@ -150,14 +148,7 @@ h1{
   text-decoration: underline solid;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-.mainContent {  /* tu contenedor principal, cambia el selector si es diferente */
-  flex: 1 0 auto;
-}
+
 .footerWrapper {
   flex-shrink: 0;
 }
