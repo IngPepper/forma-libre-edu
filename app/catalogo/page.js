@@ -5,7 +5,8 @@ import Catalogo from "../../components/(layout)/Catalogo";
 import { useRouter, useSearchParams } from "next/navigation";
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 
-export default function CatalogoPage() {
+// El inner, aquí van los hooks de navegación:
+function CatalogoPageInner() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -41,17 +42,24 @@ export default function CatalogoPage() {
     );
 
     return (
+        <main>
+            <ScrollToTopOnNavigation />
+            <Catalogo
+                planos={planosFiltrados}
+                onCategoriaChange={handleCategoriaChange}
+                categoriaActual={categoria}
+                categorias={categorias}
+                perfil={perfil}
+            />
+        </main>
+    );
+}
+
+// El componente de página SOLO el Suspense:
+export default function CatalogoPage() {
+    return (
         <Suspense fallback={<div>Cargando catálogo...</div>}>
-            <main>
-                <ScrollToTopOnNavigation />
-                <Catalogo
-                    planos={planosFiltrados}
-                    onCategoriaChange={handleCategoriaChange}
-                    categoriaActual={categoria}
-                    categorias={categorias}
-                    perfil={perfil}
-                />
-            </main>
+            <CatalogoPageInner />
         </Suspense>
     );
 }
