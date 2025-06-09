@@ -1,8 +1,13 @@
+import fs from "fs";
+import path from "path";
 import DetallePlano from "@/components/(layout)/DetallePlano";
 
-export default async function LevantamientoDetallePage({ params }) {
-    const res = await fetch('http://localhost:3000/data/planosMock.json', { cache: 'no-store' });
-    const planosData = await res.json();
+export default function LevantamientoDetallePage({ params }) {
+    // Obtén la ruta absoluta al archivo JSON
+    const filePath = path.join(process.cwd(), "public", "data", "planosMock.json");
+    // Lee el archivo sincronamente (¡esto solo corre en server, es seguro!)
+    const fileData = fs.readFileSync(filePath, "utf8");
+    const planosData = JSON.parse(fileData);
 
     const id = String(params.id);
     const plano = planosData.find(p => String(p.id) === id);
@@ -23,3 +28,4 @@ export default async function LevantamientoDetallePage({ params }) {
         </section>
     );
 }
+
