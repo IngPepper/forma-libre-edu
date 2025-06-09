@@ -24,7 +24,7 @@ export default function RequireAccount({ children }) {
                     <h3>Para ver el catalogo crea una cuenta dando click aquí...</h3>
                 </Link>
             </div>
-            <div className={"minimalContentView"}></div>
+            <div className={"add500"}></div>
         </div>
         );
 

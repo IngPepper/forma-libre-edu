@@ -120,5 +120,86 @@
       { "label": "Ejemplo PDF", "url": "/archivos/plano8.pdf" },
       { "label": "Ficha técnica", "url": "/fichas/plano8" }
     ]
+  },
+  {
+    "id": 9,
+    "imagen": "https://placehold.co/400x200?text=P+9",
+    "titulo": "Plano 9",
+    "descripcion": "Proyecto residencial completo con varias plantas.",
+    "categoria": "Monumento",
+    "niveles": [
+      {
+        "nombre": "Planta Baja",
+        "descripcion": "Área social, cocina, baño y cochera.",
+        "tamanoArchivo": "1.5 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$100",
+        "infoExtra": "Incluye detalles de instalaciones hidráulicas.",
+        "enlaces": [
+          { "label": "Ejemplo PDF", "url": "/archivos/plano9-pb.pdf" }
+        ]
+      },
+      {
+        "nombre": "Planta Alta",
+        "descripcion": "Recámaras y baño completo.",
+        "tamanoArchivo": "1.2 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$80",
+        "infoExtra": "Con detalles de acabados.",
+        "enlaces": [
+          { "label": "Ejemplo PDF", "url": "/archivos/plano7-pa.pdf" }
+        ]
+      }
+    ],
+    "isDonated": "",
+    "imagenGeneral": "https://placehold.co/400x200?text=P+7"
+  },
+  {
+    "id": 10,
+    "imagen": "https://placehold.co/400x200?text=P+10",
+    "titulo": "Plano Residencial Moderno",
+    "estado": "Tamaulipas",
+    "descripcion": "Proyecto residencial con varias plantas, listo para construcción.",
+    "categoria": "Monumento",
+    "isDonated": "",
+    "precio": "$240",
+    "imagenGeneral": "https://placehold.co/400x200?text=P+7",
+    "niveles": [
+      {
+        "nombre": "Planta Baja",
+        "descripcion": "Sala, comedor, cocina, baño y cochera.",
+        "tamanoArchivo": "1.5 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$100",
+        "infoExtra": "Incluye detalles de instalaciones hidráulicas y sanitarias.",
+        "enlaces": [
+          { "label": "Ver PDF", "url": "/archivos/plano7-pb.pdf" },
+          { "label": "Ficha técnica", "url": "/fichas/plano7-pb" }
+        ]
+      },
+      {
+        "nombre": "Planta Alta",
+        "descripcion": "Recámaras, baños y sala de TV.",
+        "tamanoArchivo": "1.2 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$80",
+        "infoExtra": "Incluye detalles de acabados.",
+        "enlaces": [
+          { "label": "Ver PDF", "url": "/archivos/plano7-pa.pdf" }
+        ]
+      },
+      {
+        "nombre": "Roof Garden",
+        "descripcion": "Espacio abierto y área de lavado.",
+        "tamanoArchivo": "1.0 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$60",
+        "infoExtra": "Ideal para reuniones y asados.",
+        "enlaces": [
+          { "label": "Ver PDF", "url": "/archivos/plano7-roof.pdf" }
+        ]
+      }
+    ]
   }
+
 ]

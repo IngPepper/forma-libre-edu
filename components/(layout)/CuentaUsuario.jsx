@@ -102,7 +102,7 @@ export default function CuentaUsuario() {
                         // Aquí pondrías la lógica para cancelar membresía
                         alert("Funcionalidad de cancelar membresía aún no implementada.");
                     }}>
-                        Cancelar membresía
+                        Cancelar
                     </a>
                 </div>
             </div>

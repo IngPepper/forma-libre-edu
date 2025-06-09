@@ -32,17 +32,22 @@ export default function RegisterScreen() {
     // Redirige SOLO después del render, nunca en el render directamente
     useEffect(() => {
         if (user) {
-            router.push('/cuenta');
+            router.push('/');
         }
     }, [user, router]);
 
     const validate = () => {
+        const trimmedPassword = form.password ? form.password.trim() : '';
+        const trimmedEmail = form.email ? form.email.trim() : '';
+        const trimmedName = form.name ? form.name.trim() : '';
+
         const newErrors = {};
-        if (!form.name) newErrors.name = "Name is required";
-        if (!form.email) newErrors.email = "Email is required";
-        else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(form.email)) newErrors.email = "Invalid email";
-        if (!form.password) newErrors.password = "Password is required";
-        else if (form.password.length < 6) newErrors.password = "Min 6 characters";
+        if (!trimmedName) newErrors.name = "Name is required";
+        if (!trimmedEmail) newErrors.email = "Email is required";
+        else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(trimmedEmail)) newErrors.email = "Invalid email";
+        if (!trimmedPassword) newErrors.password = "Password is required";
+        else if (trimmedPassword.length < 6) newErrors.password = "Min 6 characters";
+        else if (trimmedPassword.length > 18) newErrors.password = "Max 18 characters";
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };

@@ -12,6 +12,7 @@
     flex-direction: column;
     gap: 2rem;
     margin-bottom: 1.5rem;
+    overflow: hidden;
 }
 .facturas {
     margin-bottom: 1.5rem;

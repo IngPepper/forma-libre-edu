@@ -1,6 +1,6 @@
 .lista {
     display: grid;
-    gap: 2rem;
+    gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
 }
 

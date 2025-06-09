@@ -10,9 +10,10 @@ function CatalogoPageInner() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const categoria = searchParams.get('cat') || "Todos";
+    // Ahora usamos 'estado' en lugar de 'cat' como parámetro en la URL
+    const estadoParam = searchParams.get('estado') || "Todos";
     const [planosMock, setPlanosMock] = useState([]);
-    const [categorias, setCategorias] = useState(["Todos"]);
+    const [estados, setEstados] = useState(["Todos"]);
     const perfil = { tieneMembresia: true };
 
     useEffect(() => {
@@ -20,35 +21,45 @@ function CatalogoPageInner() {
             .then(res => res.json())
             .then(data => {
                 setPlanosMock(data);
-                const cats = Array.from(new Set(data.map(p => p.categoria).filter(Boolean)));
-                setCategorias(["Todos", ...cats]);
+                // Extrae todos los estados únicos (si falta, lo agrupa como 'Sin Estado')
+                const lista = data.map(p => p.estado && p.estado.trim() ? p.estado : "Sin Estado");
+                // Si no quieres mostrar 'Sin Estado', simplemente filtra después
+                const unicos = Array.from(new Set(lista));
+                setEstados(["Todos", ...unicos.filter(e => e !== "Sin Estado")]); // Quita 'Sin Estado' de los filtros si quieres
             })
             .catch((err) => {
                 console.error("Error al cargar JSON:", err);
                 setPlanosMock([]);
-                setCategorias(["Todos"]);
+                setEstados(["Todos"]);
             });
     }, []);
 
-    const handleCategoriaChange = (cat) => {
-        router.push(`/catalogo?cat=${encodeURIComponent(cat)}`);
+    // Cambia el parámetro de búsqueda cuando seleccionas un estado
+    const handleEstadoChange = (nuevoEstado) => {
+        if (nuevoEstado === "Todos") {
+            router.push("/catalogo"); // Limpia el query param
+        } else {
+            router.push(`/catalogo?estado=${encodeURIComponent(nuevoEstado)}`);
+        }
     };
 
-    const planosFiltrados = useMemo(
-        () => categoria === "Todos"
-            ? planosMock
-            : planosMock.filter(p => p.categoria === categoria),
-        [planosMock, categoria]
-    );
+    // Filtra los planos por el estado seleccionado
+    const planosFiltrados = useMemo(() => {
+        if (estadoParam === "Todos") return planosMock;
+        // Los que no tienen estado se consideran solo en 'Todos'
+        return planosMock.filter(
+            p => (p.estado && p.estado.trim() ? p.estado : "Sin Estado") === estadoParam
+        );
+    }, [planosMock, estadoParam]);
 
     return (
         <main>
             <ScrollToTopOnNavigation />
             <Catalogo
                 planos={planosFiltrados}
-                onCategoriaChange={handleCategoriaChange}
-                categoriaActual={categoria}
-                categorias={categorias}
+                onCategoriaChange={handleEstadoChange}   // nombre del prop no afecta, pero podrías renombrar a onEstadoChange
+                categoriaActual={estadoParam}            // igual, puedes cambiar a estadoActual en el hijo y aquí
+                categorias={estados}                     // igual, puedes cambiar a estados en el hijo y aquí
                 perfil={perfil}
             />
         </main>

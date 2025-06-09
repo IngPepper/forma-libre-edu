@@ -39,7 +39,7 @@ export default function Catalogo({
                         <div className={styles.dropdownContainer}>
                         <span className={styles.leyenda}>
                             <BsBox2Heart className={styles.iconLeyenda} />
-                            Categorías
+                            Estados
                         </span>
                             <div className={styles.selectWrapper}>
                                 <select

@@ -1,17 +1,22 @@
 .detalle {
     display: flex;
-    gap: 2.5rem;
+    gap: 1rem;
     background: var(--color-fondo-claro, #F5F4ED);
     border-radius: var(--borde-radius-doble, 18px);
     border: 2px solid var(--color-border);
     box-shadow: var(--sombra);
-    padding: var(--espaciado-doble);
     margin: 2.5rem auto;
+    padding: var(--espaciado);
     max-width: 960px;
     align-items: stretch;
     position: relative;
     animation: slideDown 0.25s ease-in-out forwards;
 }
+.detalleImageWrapper{
+    display: flex;
+    flex-direction: column;
+}
+
 .categoria {
     max-width: 150px;
     display: inline-block;
@@ -23,6 +28,22 @@
     padding: 0 0.5rem;
     border-radius: 20px;
     letter-spacing: 1px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.estado {
+    display: inline-block;
+    background: #daf5ed;
+    color: #146754;
+    border: 2px solid #81d5bb;
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 0.32em 1em;
+    margin-left: 0.7em;
+    letter-spacing: 1px;
+    box-shadow: 0 1px 2px #0001;
     text-transform: capitalize;
     text-align: center;
 }
@@ -126,9 +147,10 @@
 /* Boton atras */
 .chipRow {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 0.7em;
+    gap: 0.1em;
     margin-bottom: 1.4em;
 }
 
@@ -249,6 +271,160 @@
     text-decoration: underline solid;
 }
 
+/* Carousel */
+/* --------- Carousel Container --------- */
+.carouselContainer {
+    width: 100%;
+    margin: 0;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    border-radius: 18px;
+    box-shadow: none;
+    position: relative;
+}
+
+/* --------- Slide Nav (flechas y nombre del nivel) --------- */
+.carouselNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1.4rem;
+    margin-bottom: 1.1rem;
+}
+
+.carouselBtn {
+    background: #ecebde;
+    color: var(--color-texto, #5a5a5a);
+    border-radius: 50%;
+    border: 2px solid #d7d3bf;
+    box-shadow: 0 1px 2px #0002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1rem;
+    transition: background 0.18s, color 0.12s, transform 0.14s;
+}
+.carouselBtn:hover,
+.carouselBtn:focus {
+    background: var(--color-verde, #b0ff81);
+    color: #343403;
+    transform: scale(1.08);
+    outline: none;
+}
+
+.carouselLabel {
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--color-texto, #222);
+    background: #faf9ee;
+    padding: 0.5em 1.2em;
+    border-radius: 1.2em;
+    border: 2px solid #d7d3bf;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(130,120,50,0.05);
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+}
+
+.bundleBadge {
+    font-size: 0.98em;
+    color: #438000;
+    background: #d4f7b4;
+    border: 2px solid #b0ff81;
+    border-radius: 10px;
+    padding: 0.18em 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+/* --------- Slide Content --------- */
+.carouselSlide {
+    background: #fff;
+    border-radius: 1.1em;
+    box-shadow: 0 3px 12px #0001;
+    padding: var(--espaciado);
+    margin: 0 auto 0.5em auto;
+    width: 98%;
+    max-width: 99%;
+    min-height: 160px;
+    transition: box-shadow 0.18s, background 0.22s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    animation: carouselFadeIn 0.28s;
+}
+
+@keyframes carouselFadeIn {
+    from { opacity: 0; transform: translateY(12px);}
+    to   { opacity: 1; transform: translateY(0);}
+}
+
+/* --------- Carousel Dots --------- */
+.carouselDots {
+    display: flex;
+    gap: 0.6em;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.carouselDot {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #ede8d5;
+    border: 2px solid #d3c79b;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: background 0.16s, border 0.16s, transform 0.14s;
+}
+.carouselDot:hover,
+.carouselDot:focus {
+    background: var(--color-acento, #C1BAA1);
+    transform: scale(1.15);
+}
+.carouselDot.active {
+    background: var(--color-verde, #b0ff81);
+    border: 2px solid #7ec055;
+    box-shadow: 0 0 2px #a1db70;
+    transform: scale(1.23);
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 900px) {
+    .carouselSlide {
+        padding: 1.2em 0.7em;
+        font-size: 1rem;
+    }
+    .carouselLabel {
+        text-align: center;
+        flex-direction: column;
+        font-size: 1em;
+        padding: 0.5em 0.8em;
+    }
+    .carouselContainer{
+        margin: 0;
+    }
+}
+@media (max-width: 510px) {
+    .carouselSlide {
+        padding: 0.9em 0.2em;
+        font-size: 0.95rem;
+    }
+}
+
+
+
+
 /* Responsive */
 @media (max-width: 900px) {
     .detalle {
@@ -263,7 +439,6 @@
         height: 100%;
     }
     .contenido {
-        align-items: flex-start;
         gap: 1.1rem;
     }
     .titulo {
@@ -278,9 +453,33 @@
     }
 }
 
+.cantidadEnCarrito {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--color-verde, #b0ff81);
+    color: var(--color-texto, #2b2b2b);
+    font-size: 0.80rem;
+    font-weight: bold;
+    min-width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 2px solid var(--color-fondo-claro, #ECEBDE);
+    z-index: 2;
+    pointer-events: none;
+    transition: background 0.2s;
+}
+
+
 @media (max-width: 510px) {
     .detalle {
-        padding: var(--espaciado-doble);
+        padding: 0.5rem;
         gap: 1.2rem;
     }
     .imagenBox {
@@ -297,5 +496,13 @@
     }
     .smallerText {
         font-size: 3rem;
+    }
+    .chipRow {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .miniWrapper {
+        display: flex;
     }
 }
