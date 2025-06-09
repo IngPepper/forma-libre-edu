@@ -13,16 +13,25 @@ function CatalogoPageInner() {
     const categoriaParam = searchParams.get('categoria') || "Todos";
 
     const [planosMock, setPlanosMock] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const perfil = { tieneMembresia: true };
 
     // --- Cargar datos mock
     useEffect(() => {
         fetch("/data/planosMock.json")
-            .then(res => res.json())
-            .then(setPlanosMock)
+            .then(res => {
+                if (!res.ok) throw new Error("No se pudo cargar el archivo de planos.");
+                return res.json();
+            })
+            .then(data => {
+                setPlanosMock(data);
+                setLoading(false);
+            })
             .catch((err) => {
-                console.error("Error al cargar JSON:", err);
+                setError("Error cargando el catálogo: " + err.message);
                 setPlanosMock([]);
+                setLoading(false);
             });
     }, []);
 
@@ -101,6 +110,9 @@ function CatalogoPageInner() {
             return pasaEstado && pasaCategoria;
         });
     }, [planosMock, estadoParam, categoriaParam]);
+
+    if (loading) return <section style={{padding: "2rem", textAlign: "center"}}>Cargando catálogo...</section>;
+    if (error) return <section style={{padding: "2rem", color: "#a85353", textAlign: "center"}}>{error}</section>;
 
     return (
         <main>
