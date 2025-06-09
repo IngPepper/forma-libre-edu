@@ -13,16 +13,68 @@ import Link from "next/link";
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 import CollapsibleSection from "@/components/(utilities)/CollapsibleSection";
 
+import React, { useState } from "react";
+import filtrarPlanos from '@/lib/searchHelpers.js';
+import planosMock from "@/public/data/planosMock.json";
 
 // Si tu imagen está en public/, usa "/fondo.jpg"
 // Si es de internet, usa la url completa y configúralo en next.config.js
 
 export default function Home() {
+    const [planos, setPlanos] = useState(planosMock);
+    const [filteredPlanos, setFilteredPlanos] = useState([]);
+    const [hasSearched, setHasSearched] = useState(false);
+    const [query, setQuery] = useState("");
+
+    const handleSearch = (q) => {
+        setQuery(q); // Guarda el query para saber si hay texto
+        setFilteredPlanos(filtrarPlanos(planos, q));
+    };
+
+
     return (
         <div>
             <div className="wrapper">
                 <ScrollToTopOnNavigation />
                 <h1 className={"smallerText"}>Inicio /</h1>
+                {/* --- SEARCH BAR --- */}
+                <SearchBar onSearch={handleSearch} autoFocus={true} />
+                {/* --- RESULTADOS FILTRADOS --- */}
+                {query.trim() !== "" && (
+                    <section className={styles2.wrapperTop}>
+                        <h3>Resultados de búsqueda:</h3>
+                        {filteredPlanos.length === 0 ? (
+                            <div style={{ color: "#a85353", margin: "2rem 0" }}>
+                                No se encontraron resultados.
+                            </div>
+                        ) : (
+                            <ul style={{ padding: 0, listStyle: "none" }}>
+                                {filteredPlanos.map(plano => (
+                                    <li
+                                        key={plano.id}
+                                        style={{
+                                            background: "#f9f9f9",
+                                            margin: "1rem 0",
+                                            borderRadius: "10px",
+                                            padding: "1rem",
+                                            cursor: "pointer",
+                                            transition: "background 0.2s"
+                                        }}
+                                    >
+                                        <Link href={`/levantamientos/${plano.id}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+                                            <h4>{plano.titulo}</h4>
+                                            <p>
+                                                <b>Categoría:</b> {plano.categoria} &nbsp;
+                                                <b>Estado:</b> {plano.estado || plano.isDonated || "N/A"}
+                                            </p>
+                                            <p>{plano.descripcion}</p>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </section>
+                )}
                 <CollapsibleSection
                     maxHeight = {600}
                 >
@@ -68,8 +120,6 @@ export default function Home() {
                     </ContentSection>
 
                 </CollapsibleSection>
-
-                <SearchBar />
                 <TripticoGeneral />
                 {/* Bienvenida */}
                 <ContentSection

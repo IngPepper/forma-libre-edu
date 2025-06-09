@@ -3,6 +3,7 @@ import styles from './DetallePlano.module.css';
 import { FaArrowLeft, FaDownload, FaShoppingCart, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useUser } from "@/context/UserContext";
 import { useCart } from "@/context/CartContext";
 import toast from 'react-hot-toast';
@@ -38,6 +39,8 @@ export default function DetallePlano({
     const { addToCart, cart } = useCart();
     const tieneMembresia = user?.membresia === "premium" || user?.tieneMembresia === true;
     const [ultimaCategoria, setUltimaCategoria] = useState("");
+
+    const router = useRouter();
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -121,13 +124,17 @@ export default function DetallePlano({
                             {estado && <span className={styles.estado}>{estado}</span>}
                         </div>
                         <div>
-                            <Link
-                                href={ultimaCategoria && ultimaCategoria.length > 0 ? `/catalogo?cat=${encodeURIComponent(ultimaCategoria)}` : "/catalogo"}
-                                className={styles.backBtn}
-                                title="Volver a la categoría"
+                            <button
+                                type="button"
+                                className={`${styles.backBtn} ${styles.backBtnReset}`}
+                                title="Regresar"
+                                onClick={() => {
+                                    if (window.history.length > 2) router.back();
+                                    else router.push('/catalogo');
+                                }}
                             >
                                 <FaArrowLeft size={16} />
-                            </Link>
+                            </button>
                             <span>Atrás</span>
                         </div>
                     </div>

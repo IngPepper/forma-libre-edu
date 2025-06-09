@@ -15,6 +15,7 @@
 .detalleImageWrapper{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .categoria {
@@ -25,7 +26,6 @@
     border: 2px solid var(--color-acento);
     font-size: 14px;
     font-weight: 600;
-    padding: 0 0.5rem;
     border-radius: 20px;
     letter-spacing: 1px;
     text-transform: capitalize;
@@ -40,7 +40,7 @@
     font-size: 1em;
     font-weight: 600;
     border-radius: 20px;
-    padding: 0.32em 1em;
+    padding: 0.2rem 0.4rem;
     margin-left: 0.7em;
     letter-spacing: 1px;
     box-shadow: 0 1px 2px #0001;
@@ -138,7 +138,6 @@
     border: 2px solid var(--color-acento);
     font-size: 1rem;
     font-weight: 600;
-    padding: 0.32em 1em;
     border-radius: 20px;
     letter-spacing: 1px;
     box-shadow: 0 2px 8px rgba(130,120,50,0.05);
@@ -179,16 +178,30 @@
     color: var(--color-texto-blanco);
 }
 
+/* SearchBar.module.css o DetallePlano.module.css */
+.backBtnReset {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    /* Si quieres, puedes ajustar aquí el hover, focus, etc */
+}
+
 .categoria {
     font-weight: bold;
     font-family: inherit;
     border-radius: 1.5em;
-    padding: 0.38em 1.25em;
-
+    padding: 0.2rem 0.4rem;
     font-size: 1em;
     box-shadow: 0 1px 2px #0001;
     transition: background 0.1s;
-
     background: #e8e2c9;
     color: #7d6c38;
     border: 2px solid var(--color-acento);
@@ -372,10 +385,15 @@
 /* --------- Carousel Dots --------- */
 .carouselDots {
     display: flex;
-    gap: 0.6em;
+    gap: 0.5rem;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    padding: 0.5rem;
+    max-width: 90%;   /* Puedes ajustar esto o usar 100% */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-acento) transparent;
 }
 
 .carouselDot {
@@ -388,6 +406,7 @@
     margin: 0 2px;
     cursor: pointer;
     transition: background 0.16s, border 0.16s, transform 0.14s;
+    flex: 0 0 auto;
 }
 .carouselDot:hover,
 .carouselDot:focus {
@@ -395,6 +414,7 @@
     transform: scale(1.15);
 }
 .carouselDot.active {
+    opacity: 1;
     background: var(--color-verde, #b0ff81);
     border: 2px solid #7ec055;
     box-shadow: 0 0 2px #a1db70;

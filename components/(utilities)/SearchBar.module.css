@@ -1,7 +1,7 @@
 /* Barra de búsqueda sticky justo debajo del navbar */
 .searchBarWrapper {
-    position: sticky;
-    top: 110px;   /* Altura de tu navbar sticky; ajusta según lo que mida tu navbar */
+    /*position: sticky;
+    top: 110px;*/
     z-index: 99; /* Debajo del nav, que tiene z-index: 100 */
     width: 100%;
     max-width: 1024px; /* Debe coincidir con el ancho del nav */
