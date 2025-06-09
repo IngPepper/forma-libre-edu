@@ -11,15 +11,17 @@ export function useCart() {
 }
 
 export function CartProvider({ children }) {
-    // Lee el carrito de localStorage al iniciar
-    const [cart, setCart] = useState(() => {
+    const [cart, setCart] = useState([]); // SIEMPRE vacío al inicio
+
+    // Cargar de localStorage sólo en cliente
+    useEffect(() => {
         try {
             const stored = localStorage.getItem("cart");
-            return stored ? JSON.parse(stored) : [];
+            setCart(stored ? JSON.parse(stored) : []);
         } catch {
-            return [];
+            setCart([]);
         }
-    });
+    }, []);
 
     // Guarda el carrito en localStorage cuando cambie
     useEffect(() => {

@@ -1,21 +1,15 @@
-// /app/levantamientos/[id]/page.jsx
 import DetallePlano from "@/components/(layout)/DetallePlano";
-// Si tu mock está en /public/data/planosMock.json, impórtalo así:
-import planosData from "@/public/data/planosMock.json"; // Ajusta la ruta si es necesario
 
 export default async function LevantamientoDetallePage({ params }) {
-    const { id } = params;
+    const res = await fetch('http://localhost:3000/data/planosMock.json', { cache: 'no-store' });
+    const planosData = await res.json();
 
-    // Busca el plano correspondiente
-    const plano = planosData.find(p => String(p.id) === String(id));
+    const id = String(params.id);
+    const plano = planosData.find(p => String(p.id) === id);
 
     if (!plano) {
         return (
-            <div style={{
-                padding: "3em 0",
-                textAlign: "center",
-                color: "#a85353"
-            }}>
+            <div style={{ padding: "3em 0", textAlign: "center", color: "#a85353" }}>
                 <h2>Plano no encontrado</h2>
                 <p>El plano solicitado no existe o fue removido.</p>
             </div>

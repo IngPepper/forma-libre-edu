@@ -55,9 +55,9 @@ function MainNav() {
                             href={esCatalogo ? '/' : '/catalogo'}
                             className={styles.navLink}
                         >
-                            {esCatalogo ? 'Inicio' : 'Catálogo'}
+                            {esCatalogo ? 'Inicio' : 'Planos'}
                         </Link>
-                        <Link href={'/planes'} className={styles.navLink}>Planes</Link>
+                        <Link href={'/planes'} className={styles.navLink}>Precio</Link>
                     </div>
 
                     {/* ICONO DEL CARRITO */}

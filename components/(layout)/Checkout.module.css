@@ -102,6 +102,7 @@
 }
 
 .confirmacion {
+    height: 400px;
     text-align: center;
     padding: 4em 1em 2em 1em;
     background: #f6fbe5;

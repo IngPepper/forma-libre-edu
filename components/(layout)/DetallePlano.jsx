@@ -7,17 +7,15 @@ import { useUser } from "@/context/UserContext";
 import { useCart } from "@/context/CartContext";
 import toast from 'react-hot-toast';
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
+import { useIsClient } from "@/components/(utilities)/useIsClient"; // <--- Importante
 
 function parsePrecio(precio) {
     const parsed = Number(String(precio).replace(/[^0-9.]+/g, ""));
     return isNaN(parsed) ? 0 : parsed;
 }
 
-// Helper para calcular el precio del bundle (puedes cambiar a suma o descuento)
 function calcularBundle(niveles) {
     let suma = niveles.reduce((acc, n) => acc + parsePrecio(n.precio), 0);
-    // Puedes aplicar un descuento aquí si quieres, por ejemplo, 10% off:
-    // suma = Math.round(suma * 0.9);
     return {
         nombre:"",
         descripcion: niveles.map(n => n.nombre).join(", "),
@@ -30,21 +28,12 @@ function calcularBundle(niveles) {
 }
 
 export default function DetallePlano({
-                                         id,
-                                         imagen,
-                                         titulo,
-                                         descripcion,
-                                         categoria,
-                                         estado,
-                                         isDonated,
-                                         tamanoArchivo,
-                                         tipoArchivo,
-                                         precio,
-                                         enlaces = [],
-                                         infoExtra,
-                                         niveles,           // Puede venir undefined o array
-                                         imagenGeneral
+                                         id, imagen, titulo, descripcion, categoria, estado, isDonated,
+                                         tamanoArchivo, tipoArchivo, precio, enlaces = [],
+                                         infoExtra, niveles, imagenGeneral
                                      }) {
+    const isClient = useIsClient(); // <--- Hook para saber si es cliente
+
     const { user } = useUser();
     const { addToCart, cart } = useCart();
     const tieneMembresia = user?.membresia === "premium" || user?.tieneMembresia === true;
@@ -57,22 +46,17 @@ export default function DetallePlano({
         }
     }, []);
 
-    // --- CARRUSEL STATE ---
     const hayNiveles = Array.isArray(niveles) && niveles.length > 0;
-    // El primer slide es el bundle
-    const slides = hayNiveles
-        ? [calcularBundle(niveles), ...niveles]
-        : [];
+    const slides = hayNiveles ? [calcularBundle(niveles), ...niveles] : [];
     const [slideActivo, setSlideActivo] = useState(0);
     const slide = hayNiveles ? slides[slideActivo] : null;
 
-    // --- PARA EL CARRITO ---
     const idCarrito = hayNiveles
         ? slideActivo === 0
             ? `${id}-bundle`
             : `${id}-nivel${slideActivo}`
         : String(id);
-    const itemEnCarrito = cart.find(item => String(item.id) === idCarrito);
+    const itemEnCarrito = isClient ? cart.find(item => String(item.id) === idCarrito) : null; // Solo en cliente
     const cantidadEnCarrito = itemEnCarrito ? itemEnCarrito.cantidad : 0;
 
     const handleAddToCart = () => {
@@ -108,7 +92,6 @@ export default function DetallePlano({
         alert(`Descargando ${titulo}${hayNiveles ? ` - ${slide.nombre}` : ''}...`);
     };
 
-    // Navegación del carrusel
     const prevSlide = () => setSlideActivo(a => (a === 0 ? slides.length - 1 : a - 1));
     const nextSlide = () => setSlideActivo(a => (a === slides.length - 1 ? 0 : a + 1));
 
@@ -133,8 +116,6 @@ export default function DetallePlano({
                 </div>
                 <div className={styles.contenido}>
                     <div className={styles.chipRow}>
-                        {/* Categoría y Estado, uno al lado del otro */}
-
                         <div className={styles.miniWrapper}>
                             <span className={styles.categoria}>{categoria}</span>
                             {estado && <span className={styles.estado}>{estado}</span>}
@@ -152,7 +133,6 @@ export default function DetallePlano({
                     </div>
 
                     <h2 className={styles.titulo}>{titulo}</h2>
-                    {/* ----------- CARRUSEL POR NIVELES O FALLBACK ----------- */}
                     {hayNiveles ? (
                         <div className={styles.carouselContainer}>
                             <div className={styles.carouselNav}>
@@ -194,7 +174,8 @@ export default function DetallePlano({
                                         >
                                             <FaShoppingCart style={{ marginRight: 10 }} />
                                             Agregar al carrito
-                                            {cantidadEnCarrito > 0 && (
+                                            {/* Solo muestra cantidadEnCarrito si es cliente */}
+                                            {isClient && cantidadEnCarrito > 0 && (
                                                 <span className={styles.cantidadEnCarrito}>
                                                     &nbsp;({cantidadEnCarrito} en carrito)
                                                 </span>
@@ -254,7 +235,8 @@ export default function DetallePlano({
                                     >
                                         <FaShoppingCart style={{ marginRight: 10 }} />
                                         Agregar al carrito
-                                        {cantidadEnCarrito > 0 && (
+                                        {/* Solo muestra cantidadEnCarrito si es cliente */}
+                                        {isClient && cantidadEnCarrito > 0 && (
                                             <span className={styles.cantidadEnCarrito}>
                                                 &nbsp;({cantidadEnCarrito} en carrito)
                                             </span>

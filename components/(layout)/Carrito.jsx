@@ -45,7 +45,7 @@ export default function Carrito() {
                             <img src={item.imagen} alt={item.titulo} className={styles.imagen} />
                             <div className={styles.info}>
                                 <h3>{item.titulo}</h3>
-                                <p>{item.descripcion}</p>
+                                <p className={styles.descripcion}>{item.descripcion}</p>
                                 <div className={styles.categoria}>{item.categoria}</div>
                                 <div className={styles.controls}>
                                     <button

@@ -131,6 +131,38 @@
     font-size: 1.8rem;
     color: #aaa;
 }
+/* Catalogo.module.css */
+
+.noResults {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: var(--color-fondo-claro, #ECEBDE);
+    border: 2px dashed var(--color-border, #404040);
+    color: var(--color-texto-suave, #5a5a5a);
+    font-size: 1.2rem;
+    border-radius: var(--borde-radius, 8px);
+    box-shadow: 0 2px 16px rgba(64,64,64,0.08);
+    transition: background 0.3s;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.noResults::before {
+    content: "🔍";
+    display: block;
+    font-size: 2.2rem;
+    margin-bottom: 0.3em;
+    opacity: 0.7;
+}
+.miniFlex{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
 
 /* Mobile: mejora el padding y el layout */
 @media (max-width: 640px) {
@@ -171,6 +203,9 @@
 
         .categoriaBtn {
             padding: var(--espaciado) 0.5rem;
+        }
+        .miniFlex{
+            flex-direction: column;
         }
     }
 }
