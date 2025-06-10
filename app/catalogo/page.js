@@ -8,6 +8,8 @@ import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavig
 import SearchBar from "@/components/(utilities)/SearchBar";
 import filtrarPlanos from "@/lib/searchHelpers";
 
+import { obtenerPlanos } from "@/lib/firebaseHelpers";
+
 
 function CatalogoPageInner() {
     const router = useRouter();
@@ -24,13 +26,10 @@ function CatalogoPageInner() {
     const [searchQuery, setSearchQuery] = useState("");
     const handleSearch = (q) => setSearchQuery(q);
 
-    // --- Cargar datos mock
+    // --- Cargar datos firebase
     useEffect(() => {
-        fetch("/data/planosMock.json")
-            .then(res => {
-                if (!res.ok) throw new Error("No se pudo cargar el archivo de planos.");
-                return res.json();
-            })
+        setLoading(true);
+        obtenerPlanos()
             .then(data => {
                 setPlanosMock(data);
                 setLoading(false);

@@ -14,7 +14,7 @@
     animation: slideDown 0.25s ease-in-out forwards;
 }
 .detalleImageWrapper{
-    background: var(--color-texto-suave);
+    background: var(--color-fondo);
     border: 2px solid var(--color-border);
     border-radius: var(--borde-radius-doble, 18px);
     box-shadow: var(--sombra);
@@ -638,9 +638,11 @@
         top: 25%;
     }
     .carouselLabel {
+        padding: 2rem 1rem;
         font-size: .8rem;
-        height: 100px;
-        padding: 0.1rem;
+        max-height: 100px;
+        min-height: 50px;
+
     }
 
 }

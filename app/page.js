@@ -13,24 +13,44 @@ import Link from "next/link";
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 import CollapsibleSection from "@/components/(utilities)/CollapsibleSection";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import filtrarPlanos from '@/lib/searchHelpers.js';
-import planosMock from "@/public/data/planosMock.json";
+
+import { obtenerPlanos } from "@/lib/firebaseHelpers";
 
 // Si tu imagen está en public/, usa "/fondo.jpg"
 // Si es de internet, usa la url completa y configúralo en next.config.js
 
 export default function Home() {
-    const [planos, setPlanos] = useState(planosMock);
+    const [planos, setPlanos] = useState([]);
     const [filteredPlanos, setFilteredPlanos] = useState([]);
     const [hasSearched, setHasSearched] = useState(false);
     const [query, setQuery] = useState("");
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        obtenerPlanos().then(data => {
+            setPlanos(data);
+            setLoading(false);
+        });
+    }, []);
 
     const handleSearch = (q) => {
-        setQuery(q); // Guarda el query para saber si hay texto
+        setQuery(q);
         setFilteredPlanos(filtrarPlanos(planos, q));
     };
 
+    if (loading) {
+        return (
+            <div style={{
+                padding: "3em 0",
+                textAlign: "center",
+                color: "#2b2b2b"
+            }}>
+                Cargando datos...
+            </div>
+        );
+    }
 
     return (
         <div>

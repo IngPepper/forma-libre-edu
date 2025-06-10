@@ -1,17 +1,27 @@
-import fs from "fs";
-import path from "path";
+"use client";
+import React from "react";
 import DetallePlano from "@/components/(layout)/DetallePlano";
 import RequireAccount from "@/components/(utilities)/RequireAccount.jsx";
+import { obtenerPlanoPorId } from "@/lib/firebaseHelpers";
 
 export default function LevantamientoDetallePage({ params }) {
-    // Obtén la ruta absoluta al archivo JSON
-    const filePath = path.join(process.cwd(), "public", "data", "planosMock.json");
-    // Lee el archivo sincronamente (¡esto solo corre en server, es seguro!)
-    const fileData = fs.readFileSync(filePath, "utf8");
-    const planosData = JSON.parse(fileData);
+    // ¡ESTO es lo nuevo!
+    const { id } = React.use(params);
 
-    const id = String(params.id);
-    const plano = planosData.find(p => String(p.id) === id);
+    const [plano, setPlano] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        if (!id) return;
+        obtenerPlanoPorId(id).then(p => {
+            setPlano(p);
+            setLoading(false);
+        });
+    }, [id]);
+
+    if (loading) {
+        return <div style={{ padding: "3em 0", textAlign: "center" }}>Cargando...</div>;
+    }
 
     if (!plano) {
         return (
@@ -24,11 +34,10 @@ export default function LevantamientoDetallePage({ params }) {
 
     return (
         <RequireAccount>
-        <section className={"wrapper"}>
-            <DetallePlano {...plano} />
-            <div className={"add500"}></div>
-        </section>
+            <section className={"wrapper"}>
+                <DetallePlano {...plano} />
+                <div className={"add500"}></div>
+            </section>
         </RequireAccount>
     );
 }
-
