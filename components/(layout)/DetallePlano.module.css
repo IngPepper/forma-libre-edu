@@ -385,12 +385,12 @@
 /* --------- Carousel Dots --------- */
 .carouselDots {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.2rem;
     justify-content: center;
     align-items: center;
     margin: 1rem 0;
     overflow-x: auto;
-    padding: 0.5rem;
+    padding: 0.1rem;
     max-width: 90%;   /* Puedes ajustar esto o usar 100% */
     scrollbar-width: thin;
     scrollbar-color: var(--color-acento) transparent;
@@ -419,6 +419,25 @@
     border: 2px solid #7ec055;
     box-shadow: 0 0 2px #a1db70;
     transform: scale(1.23);
+}
+
+.carouselDots {
+    display: flex;
+    gap: 8px;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.dotWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dotNumber {
+    font-size: 0.7em;
+    color: var(--color-texto);
+    /* Ajusta color y margen a tu gusto */
 }
 
 /* --------- Responsive --------- */
@@ -528,4 +547,11 @@
     .miniWrapper {
         display: flex;
     }
+    .carouselDot{
+        margin:  0.1rem 0;
+    }
+    .carouselDots{
+        gap: 4px;
+    }
+
 }

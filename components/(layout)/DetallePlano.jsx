@@ -109,11 +109,13 @@ export default function DetallePlano({
                     </div>
                     <div className={styles.carouselDots}>
                         {slides.map((_, i) => (
-                            <span
-                                key={i}
-                                className={`${styles.carouselDot} ${i === slideActivo ? styles.active : ''}`}
-                                onClick={() => setSlideActivo(i)}
-                            ></span>
+                            <div key={i} className={styles.dotWrapper}>
+            <span
+                className={`${styles.carouselDot} ${i === slideActivo ? styles.active : ''}`}
+                onClick={() => setSlideActivo(i)}
+            />
+                                <span className={styles.dotNumber}>{i + 1}</span>
+                            </div>
                         ))}
                     </div>
                 </div>

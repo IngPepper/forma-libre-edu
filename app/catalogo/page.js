@@ -5,6 +5,10 @@ import Catalogo from "../../components/(layout)/Catalogo";
 import { useRouter, useSearchParams } from "next/navigation";
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 
+import SearchBar from "@/components/(utilities)/SearchBar";
+import filtrarPlanos from "@/lib/searchHelpers";
+
+
 function CatalogoPageInner() {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -16,6 +20,9 @@ function CatalogoPageInner() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const perfil = { tieneMembresia: true };
+
+    const [searchQuery, setSearchQuery] = useState("");
+    const handleSearch = (q) => setSearchQuery(q);
 
     // --- Cargar datos mock
     useEffect(() => {
@@ -102,14 +109,20 @@ function CatalogoPageInner() {
 
     // --- Filtro combinado
     const planosFiltrados = useMemo(() => {
-        return planosMock.filter(p => {
+        // Primero filtras por estado/categoría
+        let resultado = planosMock.filter(p => {
             const estadoPlano = typeof p.estado === "string" ? p.estado.trim() : "";
             const categoriaPlano = typeof p.categoria === "string" ? p.categoria.trim() : "";
             const pasaEstado = estadoParam === "Todos" || estadoPlano === estadoParam;
             const pasaCategoria = categoriaParam === "Todos" || categoriaPlano === categoriaParam;
             return pasaEstado && pasaCategoria;
         });
-    }, [planosMock, estadoParam, categoriaParam]);
+        // Después, si hay búsqueda, filtramos también por el texto:
+        if (searchQuery.trim() !== "") {
+            resultado = filtrarPlanos(resultado, searchQuery);
+        }
+        return resultado;
+    }, [planosMock, estadoParam, categoriaParam, searchQuery]);
 
     if (loading) return <section style={{padding: "2rem", textAlign: "center"}}>Cargando catálogo...</section>;
     if (error) return <section style={{padding: "2rem", color: "#a85353", textAlign: "center"}}>{error}</section>;
@@ -117,6 +130,11 @@ function CatalogoPageInner() {
     return (
         <main>
             <ScrollToTopOnNavigation />
+
+            <section style={{marginBottom: "1.5rem"}}>
+                <SearchBar onSearch={handleSearch} placeholder="Buscar en catálogo..." />
+            </section>
+
             <Catalogo
                 planos={planosFiltrados}
                 categorias={estadosDisponibles}
