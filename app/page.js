@@ -38,7 +38,7 @@ export default function Home() {
                 <ScrollToTopOnNavigation />
                 <h1 className={"smallerText"}>Inicio /</h1>
                 {/* --- SEARCH BAR --- */}
-                <SearchBar onSearch={handleSearch} autoFocus={true} />
+                <SearchBar onSearch={handleSearch} autoFocus={false} />
                 {/* --- RESULTADOS FILTRADOS --- */}
                 {query.trim() !== "" && (
                     <section className={styles2.wrapperTop}>
