@@ -57,40 +57,44 @@ export default function CheckoutPage() {
     }
 
     return (
-        <section className={styles.checkout}>
-            <h1 className={styles.titulo}>Checkout</h1>
-            <ul className={styles.lista}>
-                {cart.map((item) => (
-                    <li key={item.id} className={styles.listaItem}>
-                        {item.titulo} x {item.cantidad} — {item.precio === 0 ? "¡Gratis!" : `$${item.precio}`}
-                    </li>
-                ))}
-            </ul>
-            <p className={styles.totalTexto}><strong>Total:</strong> {total === 0 ? "¡Gratis!" : `$${total}`}</p>
-            <form onSubmit={handleSubmit} className={styles.form}>
-                <label className={styles.label}>
-                    Nombre completo:
-                    <input
-                        className={styles.input}
-                        value={nombre}
-                        onChange={e => setNombre(e.target.value)}
-                        required
-                        autoComplete="name"
-                    />
-                </label>
-                <label className={styles.label}>
-                    Correo:
-                    <input
-                        type="email"
-                        className={styles.input}
-                        value={correo}
-                        onChange={e => setCorreo(e.target.value)}
-                        required
-                        autoComplete="email"
-                    />
-                </label>
-                <button className={styles.btnPrimario} type="submit">Finalizar compra</button>
-            </form>
+
+        <section className={"wrapper"}>
+            <h1 className={"smallerText"}>Resumen <br/> de compra /</h1>
+            <section className={styles.checkout}>
+                <h1 className={styles.titulo}>Recibo /</h1>
+                <ul className={styles.lista}>
+                    {cart.map((item) => (
+                        <li key={item.id} className={styles.listaItem}>
+                            {item.titulo} x {item.cantidad} — {item.precio === 0 ? "¡Gratis!" : `$${item.precio}`}
+                        </li>
+                    ))}
+                </ul>
+                <p className={styles.totalTexto}><strong>Total:</strong> {total === 0 ? "¡Gratis!" : `$${total}`}</p>
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <label className={styles.label}>
+                        Nombre completo:
+                        <input
+                            className={styles.input}
+                            value={nombre}
+                            onChange={e => setNombre(e.target.value)}
+                            required
+                            autoComplete="name"
+                        />
+                    </label>
+                    <label className={styles.label}>
+                        Correo:
+                        <input
+                            type="email"
+                            className={styles.input}
+                            value={correo}
+                            onChange={e => setCorreo(e.target.value)}
+                            required
+                            autoComplete="email"
+                        />
+                    </label>
+                    <button className={styles.btnPrimario} type="submit">Finalizar compra</button>
+                </form>
+            </section>
         </section>
     );
 }

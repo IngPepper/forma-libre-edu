@@ -133,7 +133,7 @@ export default function LoginScreen() {
                         {firebaseError && <div className={styles.errorMsg}>{firebaseError}</div>}
                     </form>
                     <p className={styles.text}>
-                        ¿No tienes una cuenta?{" "}
+                        ¿No tienes una cuenta?<br/>{" "}
                         <Link href="/register" className={styles.link}>Crea una aquí</Link>
                     </p>
                     <p className={styles.terms}>

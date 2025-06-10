@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import DetallePlano from "@/components/(layout)/DetallePlano";
+import RequireAccount from "@/components/(utilities)/RequireAccount.jsx";
 
 export default function LevantamientoDetallePage({ params }) {
     // Obtén la ruta absoluta al archivo JSON
@@ -22,10 +23,12 @@ export default function LevantamientoDetallePage({ params }) {
     }
 
     return (
+        <RequireAccount>
         <section className={"wrapper"}>
             <DetallePlano {...plano} />
             <div className={"add500"}></div>
         </section>
+        </RequireAccount>
     );
 }
 

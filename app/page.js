@@ -42,9 +42,22 @@ export default function Home() {
                 {/* --- RESULTADOS FILTRADOS --- */}
                 {query.trim() !== "" && (
                     <section className={styles2.wrapperTop}>
-                        <h3>Resultados de búsqueda:</h3>
+                        <h3 style={{
+                            color: "#2b2b2b",
+                            margin: "1rem 0",
+
+
+                        }}>Resultados de búsqueda:</h3>
                         {filteredPlanos.length === 0 ? (
-                            <div style={{ color: "#a85353", margin: "2rem 0" }}>
+                            <div style={{
+                                color: "#953232",
+                                margin: "0",
+                                background: "#f9f9f9",
+                                borderRadius: "10px",
+                                boxShadow:"var(--sombra)",
+                                padding: "1rem",
+
+                            }}>
                                 No se encontraron resultados.
                             </div>
                         ) : (
@@ -52,10 +65,12 @@ export default function Home() {
                                 {filteredPlanos.map(plano => (
                                     <li
                                         key={plano.id}
+                                        className={styles.catalogoItem}
                                         style={{
                                             background: "#f9f9f9",
                                             margin: "1rem 0",
                                             borderRadius: "10px",
+                                            boxShadow:"var(--sombra)",
                                             padding: "1rem",
                                             cursor: "pointer",
                                             transition: "background 0.2s"

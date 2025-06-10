@@ -161,7 +161,7 @@ export default function RegisterScreen() {
                         {firebaseError && <div className={styles.errorMsg}>{firebaseError}</div>}
                     </form>
                     <p className={styles.text}>
-                        ¿Ya tienes una cuenta?{" "}
+                        ¿Ya tienes una cuenta? <br/>{" "}
                         <Link href="/login" className={styles.link}>Sign in</Link>
                     </p>
                     <p className={styles.terms}>

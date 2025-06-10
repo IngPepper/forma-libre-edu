@@ -22,3 +22,19 @@
     text-align: justify;
 }
 
+.catalogoItem {
+    background: #f9f9f9;
+    margin: 1rem 0;
+    border-radius: 10px;
+    box-shadow: var(--sombra);
+    padding: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.catalogoItem:hover {
+    background: #eefee7;           /* o el color que prefieras */
+    transform: scale(1.035);       /* 1.03–1.05 se ve bien */
+    z-index: 2;                    /* por si se superpone */
+}
+

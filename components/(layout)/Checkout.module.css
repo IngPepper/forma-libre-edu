@@ -1,12 +1,17 @@
 .checkout {
     max-width: 440px;
-    margin: 0 auto 1rem auto;
     background: #fff;
     padding: 2.5em 1.7em 2.2em 1.7em;
-    border-radius: 14px;
-    box-shadow: 0 6px 32px rgba(60,60,40,0.10);
     font-family: inherit;
     animation: fadein .33s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--color-fondo-claro, #F5F4ED);
+    border-radius: var(--borde-radius-doble, 18px);
+    border: 2px solid var(--color-border);
+    box-shadow: var(--sombra);
+    margin: 2.5rem auto;
 }
 
 @keyframes fadein {
@@ -47,7 +52,7 @@
 .totalTexto {
     text-align: right;
     margin-bottom: 2em;
-    font-size: 1.08em;
+    font-size: 2rem;
     color: #1a3e0d;
 }
 
@@ -84,21 +89,17 @@
 }
 
 .btnPrimario {
-    margin-top: 1.3em;
-    background: #b0ff81;
-    color: #2b2b2b;
-    border: none;
-    padding: 1em 1.5em;
-    border-radius: 9px;
-    font-weight: bold;
-    font-size: 1.07em;
+    background: var(--color-acento, #c1baa1);
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 2px 9px rgba(100,220,50,0.10);
-    transition: background .16s, transform .13s;
+    transition: background 0.2s;
 }
 .btnPrimario:hover {
-    background: #eaffd0;
-    transform: scale(1.04);
+    background: var(--color-verde);
+    color: var(--color-texto, #2b2b2b);
 }
 
 .confirmacion {

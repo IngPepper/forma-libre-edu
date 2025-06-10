@@ -25,6 +25,7 @@ export default function RequireAccount({ children }) {
                 </Link>
             </div>
             <div className={"add500"}></div>
+            <div className={"add500"}></div>
         </div>
         );
 
