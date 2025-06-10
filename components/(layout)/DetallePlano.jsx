@@ -15,15 +15,15 @@ function parsePrecio(precio) {
     return isNaN(parsed) ? 0 : parsed;
 }
 
-function calcularBundle(niveles) {
+function calcularBundle(niveles, infoExtraPlano = "") {
     let suma = niveles.reduce((acc, n) => acc + parsePrecio(n.precio), 0);
     return {
-        nombre:"",
+        nombre: "",
         descripcion: niveles.map(n => n.nombre).join(", "),
-        precio: `$${suma}`,
-        tipoArchivo: niveles.map(n => n.tipoArchivo).join(" + "),
+        precio: `$${Math.round(suma * 0.95)}`,
+        tipoArchivo: niveles[0]?.tipoArchivo || "",
         tamanoArchivo: niveles.map(n => n.tamanoArchivo).join(" + "),
-        infoExtra: "Incluye todas las plantas en un solo paquete.",
+        infoExtra: infoExtraPlano, // ← Aquí
         enlaces: niveles.flatMap(n => n.enlaces || [])
     };
 }
@@ -50,7 +50,9 @@ export default function DetallePlano({
     }, []);
 
     const hayNiveles = Array.isArray(niveles) && niveles.length > 0;
-    const slides = hayNiveles ? [calcularBundle(niveles), ...niveles] : [];
+    const slides = hayNiveles
+        ? [calcularBundle(niveles, infoExtra), ...niveles]
+        : [];
     const [slideActivo, setSlideActivo] = useState(0);
     const slide = hayNiveles ? slides[slideActivo] : null;
 
@@ -104,9 +106,12 @@ export default function DetallePlano({
             <h1 className={styles.smallerText}>Detalles / </h1>
             <section className={styles.detalle}>
                 <div className={styles.detalleImageWrapper}>
-                    <div className={styles.imagenBox}>
-                        <img src={imagenGeneral || imagen} alt={titulo} className={styles.imagen} />
+                    <div className={styles.nivelLabel}>
+                        {slideActivo === 0
+                            ? (hayNiveles ? "Paquete completo" : "")
+                            : slides[slideActivo]?.nombre || ""}
                     </div>
+                    <img src={imagenGeneral || imagen} alt={titulo} className={styles.imagen} />
                     <div className={styles.carouselDots}>
                         {slides.map((_, i) => (
                             <div key={i} className={styles.dotWrapper}>
@@ -150,7 +155,7 @@ export default function DetallePlano({
                                 </button>
                                 <span className={styles.carouselLabel}>
                                     {slide.nombre}
-                                    {slideActivo === 0 && <span className={styles.bundleBadge}>Bundle</span>}
+                                    {slideActivo === 0 && <span className={styles.bundleBadge}>Paquete</span>}
                                 </span>
                                 <button onClick={nextSlide} type="button" aria-label="Siguiente" className={styles.carouselBtn}>
                                     <FaChevronRight />
@@ -158,9 +163,9 @@ export default function DetallePlano({
                             </div>
                             <p className={styles.descripcion}>{descripcion}</p>
                             <div className={styles.carouselSlide}>
-                                <p>{slide.descripcion}</p>
-                                <div><strong>Tipo:</strong> {slide.tipoArchivo}</div>
-                                <div><strong>Tamaño:</strong> {slide.tamanoArchivo}</div>
+                                <p className={styles.conjuntoPlanos}>{slide.descripcion}</p>
+                                <div className={styles.tipoDeArchivo}><strong>Tipo:</strong> {slide.tipoArchivo}</div>
+                                {/*<div><strong>Tamaño:</strong> {slide.tamanoArchivo}</div>*/}
                                 {!tieneMembresia && (
                                     <div><strong>Precio:</strong> <span className={styles.precio}>{slide.precio}</span></div>
                                 )}
@@ -213,9 +218,9 @@ export default function DetallePlano({
                             <div className={styles.datos}>
                                 <div className="noPadding">
                                     <strong>Tipo:</strong> {tipoArchivo}
-                                </div>
-                                <div className="noPadding">
-                                    <strong>Tamaño:</strong> {tamanoArchivo}
+                                    <div className="noPadding">
+                                        <strong>Tamaño:</strong> {tamanoArchivo}
+                                    </div>
                                 </div>
                                 {!tieneMembresia && (
                                     <div className="noPadding">

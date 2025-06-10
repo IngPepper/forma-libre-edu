@@ -88,13 +88,21 @@
 }
 
 .descripcion {
-    font-size: 1.1rem;
     color: var(--color-texto, #5a5a5a);
     border: 2px solid var(--color-acento);
     margin-bottom: .75rem;
     padding: var(--espaciado);
-    border-radius: 12px;
+    border-radius: 12px 0 0 12px;
     background: var(--color-fondo-claro);
+    text-align: initial;
+    font-size: 0.85rem;
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-tarjeta) #5a5a5a;
 }
 
 .botones {

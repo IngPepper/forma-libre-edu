@@ -1,138 +1,237 @@
 [
   {
     "id": 1,
-    "imagen": "https://placehold.co/400x200?text=P+1",
-    "titulo": "Monumento Urbano",
-    "estado": "Morelos 🏵️",
-    "descripcion": "Proyecto residencial con varias plantas, listo para construcción.",
-    "categoria": "Oficina",
-    "isDonated": "donated",
-    "precio": "$78",
-    "imagenGeneral": "https://placehold.co/400x200?text=Gen+1",
+    "imagen": "/assets/iglesia_optimizada.webp",
+    "titulo": "Templo de San Francisco de Asís de Güémez",
+    "estado": "Tamaulipas \uD83E\uDD80",
+    "descripcion": "El templo de Güemez es uno de los más antiguos de Tamaulipas, Siglo XVIII, digno\nrepresentante de la arquitectura clásica de la época virreinal del Nuevo Santander. Por\nun buen tiempo esta fue una iglesia modesta hecha de barro y madera debido al clima\nextremo, actualmente es un templo de mamposteria con vigueria de madera.",
+    "categoria": "Monumento",
+    "isDonated": "",
+    "precio": "$50000",
+    "imagenGeneral": "/assets/iglesia_optimizada.webp",
+    "infoExtra": "15% de descuento en paquete; plantas y alzados de casas curales, Cunta con calidad de linea y detalles",
     "niveles": [
       {
-        "nombre": "Planta Baja",
-        "descripcion": "Área social.",
-        "tamanoArchivo": "2.5 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$37",
-        "infoExtra": "Con terraza panorámica.",
+        "nombre": "Planta de conunto",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
         "enlaces": [
           {
             "label": "Ficha técnica",
-            "url": "/fichas/plano1-nivel1"
+            "url": "/fichas/plano2-nivel1"
           }
         ]
       },
       {
-        "nombre": "Planta Alta",
-        "descripcion": "Espacio abierto.",
-        "tamanoArchivo": "2.2 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$96",
-        "infoExtra": "Incluye instalaciones eléctricas.",
+        "nombre": "Planta del templo",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
         "enlaces": [
           {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano1-nivel2"
+            "label": "",
+            "url": ""
           }
         ]
       },
       {
-        "nombre": "Roof Garden",
-        "descripcion": "Estacionamiento subterráneo.",
-        "tamanoArchivo": "1.9 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$111",
-        "infoExtra": "Incluye jardín interior.",
+        "nombre": "Fachadas del templo",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
         "enlaces": [
           {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano1-nivel3"
+            "label": "",
+            "url": ""
           }
         ]
       },
       {
-        "nombre": "Sótano",
-        "descripcion": "Espacio abierto.",
-        "tamanoArchivo": "2.9 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$145",
-        "infoExtra": "Ideal para reuniones.",
+        "nombre": "Fachada atrio",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
         "enlaces": [
           {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano1-nivel4"
+            "label": "",
+            "url": ""
           }
         ]
       },
       {
-        "nombre": "Mezzanine",
-        "descripcion": "Recámaras y baños.",
-        "tamanoArchivo": "2.0 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$147",
-        "infoExtra": "Ideal para reuniones.",
+        "nombre": "Planta de cortes",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
         "enlaces": [
           {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano1-nivel5"
+            "label": "",
+            "url": ""
           }
         ]
       },
       {
-        "nombre": "Azotea",
-        "descripcion": "Recámaras y baños.",
-        "tamanoArchivo": "2.0 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$66",
-        "infoExtra": "Incluye detalles de acabados.",
+        "nombre": "Corte tranversal A-D",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
         "enlaces": [
           {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano1-nivel6"
+            "label": "",
+            "url": ""
           }
         ]
       },
       {
-        "nombre": "Nivel 1",
-        "descripcion": "Sala, comedor, cocina.",
-        "tamanoArchivo": "2.8 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$129",
-        "infoExtra": "Ideal para reuniones.",
+        "nombre": "Corte longitudinal E-F",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
         "enlaces": [
           {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano1-nivel7"
+            "label": "",
+            "url": ""
           }
         ]
       },
       {
-        "nombre": "Nivel 2",
-        "descripcion": "Recámaras y baños.",
-        "tamanoArchivo": "2.5 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$90",
-        "infoExtra": "Incluye detalles de acabados.",
+        "nombre": "Planta de Carpinterías",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
         "enlaces": [
           {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano1-nivel8"
+            "label": "",
+            "url": ""
           }
         ]
       },
       {
-        "nombre": "Nivel 3",
-        "descripcion": "Área social.",
-        "tamanoArchivo": "2.2 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$95",
-        "infoExtra": "Ideal para reuniones.",
+        "nombre": "Detalle de Puertas",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
         "enlaces": [
           {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano1-nivel9"
+            "label": "",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "nombre": "Detalles de Ventanas",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
+        "enlaces": [
+          {
+            "label": "",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "nombre": "Planta de vigueria, barandales y portón con detalles",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
+        "enlaces": [
+          {
+            "label": "",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "nombre": "Planta de azotea",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
+        "enlaces": [
+          {
+            "label": "",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "nombre": "Planta de conunto con localización de herrería",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
+        "enlaces": [
+          {
+            "label": "",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "nombre": "Detalles de herrerias del atrio",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
+        "enlaces": [
+          {
+            "label": "",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "nombre": "Planta de conjunto con vegetación",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
+        "enlaces": [
+          {
+            "label": "",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "nombre": "Plantas y alzados de casas curales",
+        "descripcion": "",
+        "tamanoArchivo": "",
+        "tipoArchivo": "DWG",
+        "precio": "$3125",
+        "infoExtra": "Cunta con calidad de linea y detalles",
+        "enlaces": [
+          {
+            "label": "",
+            "url": ""
           }
         ]
       }

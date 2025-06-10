@@ -141,3 +141,14 @@
     color: #ad8f3d;
     text-decoration: underline solid;
 }
+
+@media (max-width: 500px){
+    .modalWrapper {
+        padding: 0;
+    }
+    .modal{
+        padding: 1rem;
+    }
+
+}
+

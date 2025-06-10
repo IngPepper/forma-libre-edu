@@ -131,7 +131,7 @@ function CatalogoPageInner() {
         <main>
             <ScrollToTopOnNavigation />
 
-            <section style={{marginBottom: "1.5rem"}}>
+            <section className={"wrapper"}>
                 <SearchBar onSearch={handleSearch} placeholder="Buscar en catálogo..." />
             </section>
 
