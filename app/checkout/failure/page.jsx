@@ -4,6 +4,8 @@ export default function FailurePage() {
             <h1>Pago rechazado</h1>
             <p>No pudimos procesar tu pago. Intenta nuevamente o usa otro método.</p>
             <a href="/checkout">Intentar de nuevo</a>
+            <div className={"add500"}></div>
+            <div className={"add500"}></div>
         </section>
     );
 }
