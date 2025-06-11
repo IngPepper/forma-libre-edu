@@ -8,12 +8,13 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 
 export default function CheckoutPage() {
-    const isClient = useIsClient(); // <--- Úsalo aquí
+    const isClient = useIsClient();
     const { cart, total, clearCart } = useCart();
     const { user } = useUser();
     const [nombre, setNombre] = useState("");
     const [correo, setCorreo] = useState("");
     const [compraRealizada, setCompraRealizada] = useState(false);
+    const [debugUrl, setDebugUrl] = useState("");
 
     useEffect(() => {
         if (user) {
@@ -22,21 +23,66 @@ export default function CheckoutPage() {
         }
     }, [user]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        clearCart();
-        setCompraRealizada(true);
-        toast.success("¡Compra realizada exitosamente!");
+
+        if (!cart.length) {
+            toast.error("El carrito está vacío");
+            return;
+        }
+
+        const items = cart.map(item => ({
+            title: item.titulo,
+            unit_price: Number(item.precio),
+            quantity: Number(item.cantidad),
+        }));
+
+        // Usa variable de entorno o default localhost
+        const backendUrl =
+            process.env.NEXT_PUBLIC_BACKEND_URL?.replace(/\/$/, "") ||
+            "http://localhost:4000";
+        setDebugUrl(backendUrl);
+
+        try {
+            const response = await fetch(`${backendUrl}/api/create-preference`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    items,
+                    nombre,
+                    correo,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error("Respuesta inesperada:", errorText);
+                toast.error("Error al contactar el servidor");
+                return;
+            }
+
+            const data = await response.json();
+            if (data.id) {
+                // Redirige a Mercado Pago
+                console.log("Redirigiendo a Mercado Pago con pref_id:", data.id);
+                clearCart();
+                window.location.href = `https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=${data.id}`;
+            } else {
+                toast.error("No se pudo iniciar el pago");
+            }
+        } catch (err) {
+            toast.error("Error al procesar el pago");
+            console.error(err);
+        }
     };
 
-    // 👇 Esto previene hydration mismatch
     if (!isClient) {
-        return <div style={{padding:"3em 0", textAlign:"center"}}>Cargando checkout...</div>;
+        return <div style={{ padding: "3em 0", textAlign: "center" }}>Cargando checkout...</div>;
     }
 
     if (compraRealizada) {
         return (
-            <section className={"wrapper"} style={{padding:" 0 1rem 1rem 1rem", textAlign:"center"}}>
+            <section className={"wrapper"} style={{ padding: "0 1rem 1rem 1rem", textAlign: "center" }}>
                 <div className={styles.confirmacion}>
                     <h2 className={styles.confirmacionTitulo}>¡Gracias por tu compra!</h2>
                     <p className={styles.confirmacionTexto}>Se ha enviado el recibo a <b>{correo}</b>.</p>
@@ -57,9 +103,8 @@ export default function CheckoutPage() {
     }
 
     return (
-
         <section className={"wrapper"}>
-            <h1 className={"smallerText"}>Resumen <br/> de compra /</h1>
+            <h1 className={"smallerText"}>Resumen <br /> de compra /</h1>
             <section className={styles.checkout}>
                 <h1 className={styles.titulo}>Recibo /</h1>
                 <ul className={styles.lista}>
@@ -94,6 +139,14 @@ export default function CheckoutPage() {
                     </label>
                     <button className={styles.btnPrimario} type="submit">Finalizar compra</button>
                 </form>
+                {/* Debug: muestra la URL de backend usada */}
+                <div style={{
+                    fontSize: 12,
+                    marginTop: 8,
+                    color: "#888"
+                }}>
+                    <b>API backend:</b> {debugUrl}
+                </div>
             </section>
         </section>
     );
