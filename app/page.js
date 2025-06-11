@@ -24,7 +24,7 @@ import { obtenerPlanos } from "@/lib/firebaseHelpers";
 export default function Home() {
     const [planos, setPlanos] = useState([]);
     const [filteredPlanos, setFilteredPlanos] = useState([]);
-    const [hasSearched, setHasSearched] = useState(false);
+    //const [hasSearched, setHasSearched] = useState(false);
     const [query, setQuery] = useState("");
     const [loading, setLoading] = useState(true);
 

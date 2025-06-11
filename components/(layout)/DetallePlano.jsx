@@ -1,7 +1,6 @@
 "use client";
 import styles from './DetallePlano.module.css';
 import { FaArrowLeft, FaDownload, FaShoppingCart, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser } from "@/context/UserContext";
@@ -100,6 +99,20 @@ export default function DetallePlano({
     const prevSlide = () => setSlideActivo(a => (a === 0 ? slides.length - 1 : a - 1));
     const nextSlide = () => setSlideActivo(a => (a === slides.length - 1 ? 0 : a + 1));
 
+    // Antes del return
+    const [touchStartX, setTouchStartX] = useState(null);
+    const [touchEndX, setTouchEndX] = useState(null);
+
+    const [animacionSlide, setAnimacionSlide] = useState("");
+    const handleSwipe = (direction) => {
+        setAnimacionSlide(direction === "left" ? styles.slideLeft : styles.slideRight);
+        setTimeout(() => {
+            setAnimacionSlide("");
+            if (direction === "left") nextSlide();
+            else prevSlide();
+        }, 250);
+    };
+
     return (
         <section>
             <ScrollToTopOnNavigation />
@@ -111,7 +124,25 @@ export default function DetallePlano({
                             ? (hayNiveles ? "Paquete completo" : "")
                             : slides[slideActivo]?.nombre || ""}
                     </div>
-                    <img src={imagenGeneral || imagen} alt={titulo} className={styles.imagen} />
+                    <img
+                        src={imagenGeneral || imagen}
+                        alt={titulo}
+                        className={`${styles.imagen} ${animacionSlide}`}
+                        onTouchStart={e => setTouchStartX(e.targetTouches[0].clientX)}
+                        onTouchMove={e => setTouchEndX(e.targetTouches[0].clientX)}
+                        onTouchEnd={() => {
+                            if (touchStartX === null || touchEndX === null) return;
+                            const distance = touchStartX - touchEndX;
+                            const minSwipeDistance = 50;
+                            if (distance > minSwipeDistance) {
+                                handleSwipe("left");
+                            } else if (distance < -minSwipeDistance) {
+                                handleSwipe("right");
+                            }
+                            setTouchStartX(null);
+                            setTouchEndX(null);
+                        }}
+                    />
                     <div className={styles.carouselDots}>
                         {slides.map((_, i) => (
                             <div key={i} className={styles.dotWrapper}>

@@ -42,7 +42,12 @@ export default function ListaPlanos({ planos = [] }) {
                     <div className={styles.contenido}>
                         <h3 className={styles.titulo}>{plano.titulo}</h3>
                         <p className={styles.descripcion}>{plano.descripcion}</p>
-                        <h2 className={styles.categoria}>{plano.categoria}</h2>
+                        <div className={styles.metaInfo}>
+                            <h2 className={styles.categoria}>{plano.categoria}</h2>
+                            {plano.estado && (
+                                <h2 className={styles.estado}>{plano.estado}</h2>
+                            )}
+                        </div>
                         {typeof plano?.isDonated === "string" && plano.isDonated.length > 0 && (
                             <h2 className={styles.categoriaDonated}>{plano.isDonated}</h2>
                         )}
