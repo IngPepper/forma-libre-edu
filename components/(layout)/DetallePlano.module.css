@@ -6,8 +6,6 @@
     display: flex;
     background: var(--color-fondo-claro, #F5F4ED);
     border-radius: var(--borde-radius-doble, 18px);
-    border: 2px solid var(--color-border);
-    box-shadow: var(--sombra);
     margin: 2.5rem auto;
     align-items: stretch;
     position: relative;
@@ -20,6 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 0.5rem;
 }
 
 .categoria {
@@ -203,7 +202,6 @@
     justify-content: space-between;
     gap: 0.1em;
     padding-top: 2rem;
-    margin-bottom: 1.4em;
 }
 
 .backBtn {
@@ -619,9 +617,12 @@
         font-size: 3rem;
     }
     .chipRow {
+        padding-top: 0;
+        gap: 1rem;
         flex-direction: column;
-        align-items: center;
+        align-items: self-end;
         justify-content: center;
+
     }
     .miniWrapper {
         display: flex;

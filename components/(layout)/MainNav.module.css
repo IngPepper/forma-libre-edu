@@ -78,7 +78,7 @@
 }
 
 /* === ICONOS === */
-.menuIcon { font-size: 24px; color: var(--color-texto-blanco); transition: font-size 0.2s;}
+.menuIcon { font-size: 24px; color: var(--color-texto); transition: font-size 0.2s;}
 .cartIcon { font-size: 2rem; }
 .accountButton {
     display: grid;
@@ -90,7 +90,7 @@
     padding: var(--espaciado);
     transition: transform 0.2s, color 0.2s;
 }
-.accountButton:hover { transform: scale(1.05); color: var(--color-texto-hover-claro);}
+.accountButton:hover { transform: scale(1.05); color: var(--color-texto);}
 .accountText { display: inline-block; }
 
 /* === CARRITO === */

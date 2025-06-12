@@ -1,0 +1,80 @@
+.modalOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0 32px rgba(0,0,0,0.20);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    max-width: 340px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border-radius: 0.5rem;
+    border: 1.5px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input:focus {
+    border-color: #964B00;
+}
+
+.errorMsg {
+    color: #d32f2f;
+    font-size: 0.92rem;
+    margin-bottom: 0.3rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 0.6rem;
+}
+
+.primaryBtn {
+    background: #964B00;
+    color: #fff;
+    padding: 0.5rem 1.1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+
+.secondaryBtn {
+    background: #eee;
+    color: #333;
+    padding: 0.5rem 1.1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+
+.primaryBtn:disabled,
+.secondaryBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

@@ -174,7 +174,8 @@ export default function Home() {
                     </div>
                 </ContentSection>
 
-                {/* Precios */}
+                {/* Precios
+
                 <ContentPriceCard
                     image={romboRojo}
                     title="Planes"
@@ -183,7 +184,8 @@ export default function Home() {
                         <li>Soporte premium</li>
                         <li>Descargas instantáneas</li>
                     </ul>}
-                    onBuy={(type, price) => alert(`Compraste: ${type} por $${price}`)}/>
+                    onBuy={(type, price) => alert(`Compraste: ${type} por $${price}`)}/>*/}
+
                 <ContentSection
                     title="Quiénes Somos"
                     image="/assets/im01h_acentos_rojos.jpg"

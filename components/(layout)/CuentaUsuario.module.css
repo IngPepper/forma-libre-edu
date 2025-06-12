@@ -72,3 +72,53 @@
 .hidden{
     overflow: hidden;
 }
+.botonEliminar {
+    background: var(--color-texto);
+    color: #ec4343;
+    padding: 0.6rem 1.4rem;
+    border-radius: 0.7rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    border: 2px solid #ec4343;
+
+}
+.botonEliminar[disabled] {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.botonEliminar:hover {
+    background: #ec4343;
+    color: #fff;
+}
+
+.eliminar {
+    display: flex;
+    border-radius: 12px;
+    flex-direction: column;
+    align-items: center;
+    margin: 2.5rem 0 0 0;
+    padding: 1.2rem 0 1.2rem 0;
+    transition: background 0.2s;
+}
+
+.eliminar:hover {
+    background: #fff2f2;
+}
+
+.eliminar .botonEliminar {
+    margin-top: 0;
+    width: 80%;
+    max-width: 250px;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+}
+
+
+@media (max-width: 500px) {
+    .cuentaUsuario {
+        padding: 1rem 0.5rem;
+    }
+}
+

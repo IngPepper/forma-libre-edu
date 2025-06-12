@@ -13,7 +13,7 @@ export default function BurgerMenuDropdown() {
     const options = [
         { label: "Inicio", href: "/" },
         { label: "Planos", href: "/catalogo" },
-        { label: "Precio", href: "/planes" }
+        { label: "Precio", href: "/_planes" }
     ];
 
     const visibleOptions = options.filter(opt => opt.href !== pathname);

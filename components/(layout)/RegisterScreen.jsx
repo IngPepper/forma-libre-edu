@@ -62,17 +62,19 @@ export default function RegisterScreen() {
         if (validate()) {
             setSubmitting(true);
             try {
-                // 1. Registra al usuario
+                // 1. Registra al usuario en Firebase Auth
                 await registerWithEmail(form.email, form.password);
-                // 2. Actualiza el displayName (nombre)
+
+                // 2. Actualiza el displayName en Auth (opcional, solo para que lo veas en Firebase Console)
                 if (auth.currentUser) {
                     await updateProfile(auth.currentUser, {
                         displayName: form.name
                     });
-                    // 3. Guarda el perfil extendido en Firestore
-                    await createUserProfile(auth.currentUser, { displayName: form.name });
+
+                    // 3. Crea el perfil extendido en Firestore (usuarios o users, según tu helpers)
+                    await createUserProfile(auth.currentUser, { nombre: form.name });
                 }
-                // 4. NO hagas push aquí, espera a que el contexto lo haga y el useEffect redirija
+                // 4. No redirijas aquí, espera a que lo haga el contexto por user
             } catch (err) {
                 setFirebaseError(err.message);
             }

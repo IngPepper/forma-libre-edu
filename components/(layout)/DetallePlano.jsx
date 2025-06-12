@@ -118,6 +118,27 @@ export default function DetallePlano({
             <ScrollToTopOnNavigation />
             <h1 className={styles.smallerText}>Detalles / </h1>
             <section className={styles.detalle}>
+                <h2 className={styles.titulo}>{titulo}</h2>
+                <div className={styles.chipRow}>
+                    <div className={styles.miniWrapper}>
+                        <span className={styles.categoria}>{categoria}</span>
+                        {estado && <span className={styles.estado}>{estado}</span>}
+                    </div>
+                    <div>
+                        <button
+                            type="button"
+                            className={`${styles.backBtn} ${styles.backBtnReset}`}
+                            title="Regresar"
+                            onClick={() => {
+                                if (window.history.length > 2) router.back();
+                                else router.push('/catalogo');
+                            }}
+                        >
+                            <FaArrowLeft size={16} />
+                        </button>
+                        <span>Atrás</span>
+                    </div>
+                </div>
                 <div className={styles.detalleImageWrapper}>
                     <div className={styles.nivelLabel}>
                         {slideActivo === 0
@@ -156,28 +177,7 @@ export default function DetallePlano({
                     </div>
                 </div>
                 <div className={styles.contenido}>
-                    <div className={styles.chipRow}>
-                        <div className={styles.miniWrapper}>
-                            <span className={styles.categoria}>{categoria}</span>
-                            {estado && <span className={styles.estado}>{estado}</span>}
-                        </div>
-                        <div>
-                            <button
-                                type="button"
-                                className={`${styles.backBtn} ${styles.backBtnReset}`}
-                                title="Regresar"
-                                onClick={() => {
-                                    if (window.history.length > 2) router.back();
-                                    else router.push('/catalogo');
-                                }}
-                            >
-                                <FaArrowLeft size={16} />
-                            </button>
-                            <span>Atrás</span>
-                        </div>
-                    </div>
 
-                    <h2 className={styles.titulo}>{titulo}</h2>
                     {hayNiveles ? (
                         <div className={styles.carouselContainer}>
                             <div className={styles.carouselNav}>
