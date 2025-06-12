@@ -80,6 +80,11 @@
 /* === ICONOS === */
 .menuIcon { font-size: 24px; color: var(--color-texto); transition: font-size 0.2s;}
 .cartIcon { font-size: 2rem; }
+
+.cartIcon:hover {
+    color: var(--color-verde);
+}
+
 .accountButton {
     display: grid;
     grid-auto-flow: column;
@@ -103,7 +108,12 @@
     color: var(--color-tarjeta);
     transition: color .2s;
 }
-.cartLink:hover .cartIcon { color: var(--color-acento);}
+.cartLink:hover { color: var(--color-acento);}
+
+.cartIcon:hover {
+    color: var(--color-verde);
+}
+
 .cartBadge {
     position: absolute;
     top: -8px;
@@ -134,12 +144,12 @@
 @media (max-width: 645px) {
     .logoGrande { display: none; }
     .logoMini   { display: block; height: 36px; width: auto; max-width: 80px; object-fit: contain; }
-
+    .cartIcon { font-size: 1.9rem; }
     .navLinks { opacity: 0; max-width: 0; pointer-events: none;}
-    .navActions { gap: 0;}
+    .navActions { gap: 0; align-items: center; justify-content: center; }
     .menuIcon { font-size: 30px;}
     .menuButton { display: flex; align-items: center; justify-content: center;}
-    .accountButton { padding: 0.30rem }
+    .accountButton { padding: 0.30rem; margin-bottom: 12px; }
     .accountText { display: none;}
 }
 

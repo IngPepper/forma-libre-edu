@@ -39,10 +39,12 @@
     align-items: center;
 }
 .avatarButton {
+    color: var(--color-texto-blanco);
+    padding: 0;
+    box-shadow: none;
     background: var(--color-tarjeta);
     border: var(--borde-claro);
     border-radius: 12px;
-    padding: 0.25em 0.75em;
     display: flex;
     align-items: center;
     gap: 0.5em;
@@ -51,6 +53,7 @@
 }
 .avatarButton:hover {
     background: var(--color-fondo);
+    color: var(--color-verde);
 }
 .avatar {
     background: var(--color-acento);
@@ -158,9 +161,11 @@
         display: inline-block;
     }
     .avatarButton{
+        margin: 0;
         width: 75px;
         height: 55px;
         display: flex;
+        padding-right: 10px;
         align-items: center;
         justify-content: center;
         background: transparent;
@@ -172,7 +177,7 @@
     }
     .menu{
         right: 1rem;
-        top: 2.5rem;
+        top: 3rem;
     }
 
 }
