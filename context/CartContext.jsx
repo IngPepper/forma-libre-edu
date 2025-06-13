@@ -1,5 +1,8 @@
 "use client";
-import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { createContext, useContext, useState, useEffect, useMemo, useRef } from "react";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { useUser } from "@/context/UserContext";
 
 const CartContext = createContext();
 
@@ -7,73 +10,114 @@ export function useCart() {
     return useContext(CartContext);
 }
 
+function limpiarUndefined(obj) {
+    return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v !== undefined));
+}
+
 export function CartProvider({ children }) {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(undefined); // undefined = loading
+    const [cargado, setCargado] = useState(false); // <-- flag de "cargado"
+    const { user } = useUser();
+    const prevUID = useRef();
 
-    // Cargar del localStorage solo en cliente
+    // 1. Cargar carrito desde Firestore
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            try {
-                const stored = window.localStorage.getItem("cart");
-                setCart(stored ? JSON.parse(stored) : []);
-            } catch {
+        const uid = user?.uid || user?.idUsuario;
+        if (uid && prevUID.current !== uid) {
+            setCart(undefined); // loading
+            setCargado(false);  // NO permitir guardar aún
+            prevUID.current = uid;
+            const docRef = doc(db, "carts", uid);
+            getDoc(docRef).then(docSnap => {
+                if (docSnap.exists()) {
+                    const remoteCart = docSnap.data().cart || [];
+                    setCart(Array.isArray(remoteCart) ? remoteCart : []);
+                } else {
+                    setCart([]);
+                }
+                setCargado(true); // Ya puedes permitir guardar
+            }).catch(() => {
                 setCart([]);
-            }
+                setCargado(true);
+            });
+        } else if (!uid) {
+            setCart([]);
+            setCargado(false); // Sin usuario, no guardar nada
+            prevUID.current = null;
         }
-    }, []);
+    }, [user]);
 
-    // Guardar en localStorage solo en cliente
+    // 2. Guardar carrito SÓLO si está "cargado"
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            try {
-                window.localStorage.setItem("cart", JSON.stringify(cart));
-            } catch {
-                // Silencia el error para entornos sin storage
-            }
+        const uid = user?.uid || user?.idUsuario;
+        if (uid && cargado && Array.isArray(cart)) {
+            const cartClean = cart.map(limpiarUndefined);
+            const docRef = doc(db, "carts", uid);
+            setDoc(docRef, { cart: cartClean }, { merge: true });
         }
-    }, [cart]);
+    }, [cart, user, cargado]);
 
-    // ...lo demás igual
+    // Métodos del carrito
     const addToCart = (producto, cantidad = 1) => {
-        setCart((prev) => {
-            const existing = prev.find((p) => String(p.id) === String(producto.id));
+        const productoLimpio = limpiarUndefined(producto);
+        setCart(prev => {
+            const list = prev || [];
+            const existing = list.find(p => String(p.id) === String(producto.id));
             if (existing) {
-                return prev.map((p) =>
+                return list.map(p =>
                     String(p.id) === String(producto.id)
                         ? { ...p, cantidad: p.cantidad + cantidad }
                         : p
                 );
             } else {
-                return [...prev, { ...producto, cantidad }];
+                return [...list, { ...productoLimpio, cantidad }];
             }
         });
     };
 
-    const removeFromCart = (id) => {
-        setCart((prev) => prev.filter((p) => String(p.id) !== String(id)));
+    const removeFromCart = id => {
+        setCart(prev => {
+            const list = prev || [];
+            return list.filter(p => String(p.id) !== String(id));
+        });
     };
 
     const setProductQuantity = (id, cantidad) => {
-        setCart((prev) =>
-            prev.map((p) =>
+        setCart(prev => {
+            const list = prev || [];
+            return list.map(p =>
                 String(p.id) === String(id) ? { ...p, cantidad: Math.max(1, cantidad) } : p
-            )
-        );
+            );
+        });
     };
 
     const clearCart = () => setCart([]);
 
     const total = useMemo(
-        () => cart.reduce((acc, p) => acc + Number(p.precio) * Number(p.cantidad), 0),
+        () => (cart ? cart.reduce((acc, p) => acc + Number(p.precio) * Number(p.cantidad), 0) : 0),
         [cart]
     );
 
     const totalItems = useMemo(
-        () => cart.reduce((acc, p) => acc + Number(p.cantidad), 0),
+        () => (cart ? cart.reduce((acc, p) => acc + Number(p.cantidad), 0) : 0),
         [cart]
     );
 
-    const isEmpty = cart.length === 0;
+    const isEmpty = cart ? cart.length === 0 : true;
+
+    if (cart === undefined) return (
+        <div style={{
+            width: "100vw",
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "1.3rem",
+            color: "#888"
+        }}>
+            Cargando carrito...
+        </div>
+    );
 
     return (
         <CartContext.Provider

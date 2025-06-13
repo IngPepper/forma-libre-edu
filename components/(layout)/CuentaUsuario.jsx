@@ -16,6 +16,8 @@ import {
 import ModalConfirmacion from "@/components/(modals)/ModalConfirmacion";
 import ModalReautenticacion from "@/components/(modals)/ModalReautenticacion";
 
+import { updateUserProfileInFirestore } from "@/lib/userHelpers";
+
 export default function CuentaUsuario() {
     const { user, updateProfile } = useUser();
     const [deleting, setDeleting] = useState(false);
@@ -47,7 +49,8 @@ export default function CuentaUsuario() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await updateFirebaseDisplayName(form.nombre);
+            await updateFirebaseDisplayName(form.nombre); // Auth
+            await updateUserProfileInFirestore(user.idUsuario || user.uid, { nombre: form.nombre }); // Firestore
             updateProfile({ nombre: form.nombre });
             setEditando(false);
         } catch (err) {

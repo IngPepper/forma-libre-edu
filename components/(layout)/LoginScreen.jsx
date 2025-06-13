@@ -12,6 +12,8 @@ import { loginWithEmail } from "@/lib/authHelpers";
 import { useUser } from "@/context/UserContext";
 import Image from "next/image";
 
+import LoadingPage from "@/components/(utilities)/LoadingPage";
+
 export default function LoginScreen() {
     const [form, setForm] = useState({
         email: '',
@@ -35,7 +37,7 @@ export default function LoginScreen() {
     // }, [user, loading, router]);
 
     if (loading) {
-        return <div className={"minimalContentView"}>Cargando datos de usuario...</div>;
+        return <LoadingPage />;
     }
 
     const validate = () => {

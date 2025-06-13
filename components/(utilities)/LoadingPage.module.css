@@ -1,0 +1,58 @@
+.loadingWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    background: transparent;
+}
+
+.loaderLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.6em;
+    height: 120px;
+    width: 120px;
+}
+
+.logo {
+    width: 96px;
+    height: 96px;
+    user-select: none;
+    animation:
+            bounceLogo 1.2s infinite cubic-bezier(0.68,-0.55,0.27,1.55),
+            spinLogo 2.1s linear infinite;
+    filter: drop-shadow(0 6px 18px #533a2833);
+}
+
+@keyframes bounceLogo {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    16% {
+        transform: translateY(-26px) scale(1.07);
+    }
+    32% {
+        transform: translateY(0) scale(1);
+    }
+    40% {
+        transform: translateY(3px) scale(0.97);
+    }
+    48% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes spinLogo {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+}
+
+.text {
+    color: var(--color-acento, #70b753);
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    opacity: 0.77;
+}

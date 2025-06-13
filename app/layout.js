@@ -1,7 +1,6 @@
 import './globals.css';
 import MainNav from '../components/(layout)/MainNav';
 import MainFooter from '../components/(layout)/MainFooter';
-import SmallSeparator from "@/components/(utilities)/SmallSeparator";
 import { Toaster } from 'react-hot-toast';
 
 
