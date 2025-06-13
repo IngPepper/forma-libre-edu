@@ -1,109 +1,95 @@
 "use client";
-import styles from './Carrito.module.css';
-import Link from "next/link";
-import { useCart } from "@/context/CartContext";
-import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
-import { useIsClient } from "@/components/(utilities)/useIsClient";
-import toast from "react-hot-toast";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
 
-export default function Carrito() {
-    const isClient = useIsClient();
-    const {
-        cart,
-        removeFromCart,
-        setProductQuantity,
-        clearCart,
-        total,
-        totalItems,
-        isEmpty
-    } = useCart();
+const CartContext = createContext();
 
-    if (!isClient) {
-        return <div style={{padding:"3em 0", textAlign:"center"}}>Cargando carrito...</div>;
-    }
+export function useCart() {
+    return useContext(CartContext);
+}
 
-    if (isEmpty) {
-        return (
-            <section className={"wrapper"}>
-                <div className={styles.empty}>
-                    <h1 className={"smallerText"}>Tu carrito está vacío / 🛒</h1>
-                    <Link href="/catalogo" className={styles.btn}>
-                        Ir al catálogo
-                    </Link>
-                </div>
-            </section>
+export function CartProvider({ children }) {
+    const [cart, setCart] = useState(undefined); // <-- Nota: undefined al inicio
+
+    // Cargar de localStorage solo en cliente
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            try {
+                const stored = window.localStorage.getItem("cart");
+                setCart(stored ? JSON.parse(stored) : []);
+            } catch {
+                setCart([]);
+            }
+        }
+    }, []);
+
+    // Guarda el carrito en localStorage cuando cambie (y si cart ya está definido)
+    useEffect(() => {
+        if (typeof window !== "undefined" && cart !== undefined) {
+            try {
+                window.localStorage.setItem("cart", JSON.stringify(cart));
+            } catch {}
+        }
+    }, [cart]);
+
+    // --- Tus métodos igual
+    const addToCart = (producto, cantidad = 1) => {
+        setCart((prev = []) => {
+            const existing = prev.find((p) => String(p.id) === String(producto.id));
+            if (existing) {
+                return prev.map((p) =>
+                    String(p.id) === String(producto.id)
+                        ? { ...p, cantidad: p.cantidad + cantidad }
+                        : p
+                );
+            } else {
+                return [...prev, { ...producto, cantidad }];
+            }
+        });
+    };
+
+    const removeFromCart = (id) => {
+        setCart((prev = []) => prev.filter((p) => String(p.id) !== String(id)));
+    };
+
+    const setProductQuantity = (id, cantidad) => {
+        setCart((prev = []) =>
+            prev.map((p) =>
+                String(p.id) === String(id) ? { ...p, cantidad: Math.max(1, cantidad) } : p
+            )
         );
-    }
+    };
+
+    const clearCart = () => setCart([]);
+
+    const total = useMemo(
+        () => (cart ? cart.reduce((acc, p) => acc + Number(p.precio) * Number(p.cantidad), 0) : 0),
+        [cart]
+    );
+
+    const totalItems = useMemo(
+        () => (cart ? cart.reduce((acc, p) => acc + Number(p.cantidad), 0) : 0),
+        [cart]
+    );
+
+    const isEmpty = cart ? cart.length === 0 : true;
+
+    // --- Renderiza los children solo si cart ya fue cargado
+    if (cart === undefined) return null;
 
     return (
-        <div className={"wrapper"}>
-            <h1 className={"smallerText"}>Carrito de <br/> compras /</h1>
-            <section className={styles.carrito}>
-                <ul className={styles.lista}>
-                    {cart.map((item) => (
-                        <li key={item.id} className={styles.item}>
-                            <img src={item.imagen} alt={item.titulo} className={styles.imagen} />
-                            <div className={styles.info}>
-                                <h3>{item.titulo}</h3>
-                                <p className={styles.descripcion}>{item.descripcion}</p>
-                                <div className={styles.categoria}>{item.categoria}</div>
-                                <div className={styles.controls}>
-                                    <button
-                                        className={styles.qtyBtn}
-                                        onClick={() => setProductQuantity(item.id, Math.max(1, item.cantidad - 1))}
-                                        aria-label="Disminuir"
-                                    >
-                                        <FaMinus />
-                                    </button>
-                                    <span className={styles.cantidad}>{item.cantidad}</span>
-                                    <button
-                                        className={styles.qtyBtn}
-                                        onClick={() => setProductQuantity(item.id, item.cantidad + 1)}
-                                        aria-label="Aumentar"
-                                    >
-                                        <FaPlus />
-                                    </button>
-                                </div>
-                            </div>
-                            <div className={styles.precio}>
-                                {item.precio === 0 ? "¡Gratis!" : `$${item.precio}`}
-                            </div>
-                            <button
-                                className={styles.eliminar}
-                                onClick={() => {
-                                    removeFromCart(item.id);
-                                }}
-                                title="Quitar del carrito"
-                            >
-                                <FaTrash />
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-                <div className={styles.resumen}>
-                    <div>
-                        <strong>Total:</strong> {total === 0 ? "¡Gratis!" : `$${total}`}
-                    </div>
-                    <div>
-                        <strong>Artículos:</strong> {totalItems}
-                    </div>
-                </div>
-                <div className={styles.acciones}>
-                    <button
-                        className={styles.btn}
-                        onClick={() => {
-                            clearCart();
-                        }}
-                    >
-                        Vaciar carrito
-                    </button>
-                    <button className={`${styles.acciones} ${styles.btnPrimario}`}>
-                        <Link href="/checkout" className={styles.linkModule}>
-                            Proceder al pago
-                        </Link>
-                    </button>
-                </div>
-            </section>
-        </div>
+        <CartContext.Provider
+            value={{
+                cart,
+                addToCart,
+                removeFromCart,
+                setProductQuantity,
+                clearCart,
+                total,
+                totalItems,
+                isEmpty,
+            }}
+        >
+            {children}
+        </CartContext.Provider>
     );
 }
