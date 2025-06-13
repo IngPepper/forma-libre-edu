@@ -4,12 +4,10 @@ import { useEffect, useState, useMemo } from "react";
 import Catalogo from "../../components/(layout)/Catalogo";
 import { useRouter, useSearchParams } from "next/navigation";
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
-
 import SearchBar from "@/components/(utilities)/SearchBar";
 import filtrarPlanos from "@/lib/searchHelpers";
-
 import { obtenerPlanos } from "@/lib/firebaseHelpers";
-
+import LoadingPage from "@/components/(utilities)/LoadingPage.jsx";
 
 function CatalogoPageInner() {
     const router = useRouter();
@@ -108,7 +106,6 @@ function CatalogoPageInner() {
 
     // --- Filtro combinado
     const planosFiltrados = useMemo(() => {
-        // Primero filtras por estado/categoría
         let resultado = planosMock.filter(p => {
             const estadoPlano = typeof p.estado === "string" ? p.estado.trim() : "";
             const categoriaPlano = typeof p.categoria === "string" ? p.categoria.trim() : "";
@@ -116,14 +113,14 @@ function CatalogoPageInner() {
             const pasaCategoria = categoriaParam === "Todos" || categoriaPlano === categoriaParam;
             return pasaEstado && pasaCategoria;
         });
-        // Después, si hay búsqueda, filtramos también por el texto:
         if (searchQuery.trim() !== "") {
             resultado = filtrarPlanos(resultado, searchQuery);
         }
         return resultado;
     }, [planosMock, estadoParam, categoriaParam, searchQuery]);
 
-    if (loading) return <section style={{padding: "2rem", textAlign: "center"}}>Cargando catálogo...</section>;
+    // SOLO este loading es necesario:
+    if (loading) return <LoadingPage />;
     if (error) return <section style={{padding: "2rem", color: "#a85353", textAlign: "center"}}>{error}</section>;
 
     return (

@@ -3,10 +3,9 @@ import styles from './Carrito.module.css';
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
-import { useIsClient } from "@/components/(utilities)/useIsClient";
+import React from "react"
 
 export default function Carrito() {
-    const isClient = useIsClient();
     const {
         cart,
         removeFromCart,
@@ -16,10 +15,6 @@ export default function Carrito() {
         totalItems,
         isEmpty
     } = useCart();
-
-    if (!isClient) {
-        return <div style={{padding:"3em 0", textAlign:"center"}}>Cargando carrito...</div>;
-    }
 
     if (isEmpty) {
         return (
@@ -33,6 +28,7 @@ export default function Carrito() {
             </section>
         );
     }
+
 
     return (
         <div className={"wrapper"}>

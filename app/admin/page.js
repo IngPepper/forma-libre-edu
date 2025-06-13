@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { obtenerPlanos } from "@/lib/firebaseHelpers";
 import AdminConsole from "@/components/(layout)/AdminConsole";
-import LoadingPage from "@/components/(utilities)/LoadingPage";
+import Apploader from "@/components/(utilities)/AppLoader.jsx";
 
 export default function AdminPage() {
     const [planos, setPlanos] = useState([]);
@@ -24,7 +24,7 @@ export default function AdminPage() {
     }, []);
 
     if (loading) {
-        return <LoadingPage />;
+        return <Apploader />;
     }
 
     if (error) return <section className="wrapper"><div style={{color: "#a85353"}}>{error}</div></section>;

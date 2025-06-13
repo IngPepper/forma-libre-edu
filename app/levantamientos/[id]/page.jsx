@@ -3,6 +3,7 @@ import React from "react";
 import DetallePlano from "@/components/(layout)/DetallePlano";
 import RequireAccount from "@/components/(utilities)/RequireAccount.jsx";
 import { obtenerPlanoPorId } from "@/lib/firebaseHelpers";
+import LoadingPage from "@/components/(utilities)/LoadingPage.jsx";
 
 export default function LevantamientoDetallePage({ params }) {
     // ¡ESTO es lo nuevo!
@@ -20,7 +21,7 @@ export default function LevantamientoDetallePage({ params }) {
     }, [id]);
 
     if (loading) {
-        return <div style={{ padding: "3em 0", textAlign: "center" }}>Cargando...</div>;
+        return <LoadingPage />;
     }
 
     if (!plano) {

@@ -12,7 +12,7 @@ import { loginWithEmail } from "@/lib/authHelpers";
 import { useUser } from "@/context/UserContext";
 import Image from "next/image";
 
-import LoadingPage from "@/components/(utilities)/LoadingPage";
+import Apploader from "@/components/(utilities)/AppLoader.jsx";
 
 export default function LoginScreen() {
     const [form, setForm] = useState({
@@ -37,7 +37,7 @@ export default function LoginScreen() {
     // }, [user, loading, router]);
 
     if (loading) {
-        return <LoadingPage />;
+        return <Apploader />;
     }
 
     const validate = () => {

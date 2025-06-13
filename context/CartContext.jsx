@@ -16,7 +16,7 @@ function limpiarUndefined(obj) {
 
 export function CartProvider({ children }) {
     const [cart, setCart] = useState(undefined); // undefined = loading
-    const [cargado, setCargado] = useState(false); // <-- flag de "cargado"
+    const [cargado, setCargado] = useState(false);
     const { user } = useUser();
     const prevUID = useRef();
 
@@ -25,7 +25,7 @@ export function CartProvider({ children }) {
         const uid = user?.uid || user?.idUsuario;
         if (uid && prevUID.current !== uid) {
             setCart(undefined); // loading
-            setCargado(false);  // NO permitir guardar aún
+            setCargado(false);
             prevUID.current = uid;
             const docRef = doc(db, "carts", uid);
             getDoc(docRef).then(docSnap => {
@@ -35,14 +35,14 @@ export function CartProvider({ children }) {
                 } else {
                     setCart([]);
                 }
-                setCargado(true); // Ya puedes permitir guardar
+                setCargado(true);
             }).catch(() => {
                 setCart([]);
                 setCargado(true);
             });
         } else if (!uid) {
             setCart([]);
-            setCargado(false); // Sin usuario, no guardar nada
+            setCargado(false);
             prevUID.current = null;
         }
     }, [user]);
@@ -105,19 +105,7 @@ export function CartProvider({ children }) {
 
     const isEmpty = cart ? cart.length === 0 : true;
 
-    if (cart === undefined) return (
-        <div style={{
-            width: "100vw",
-            height: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "1.3rem",
-            color: "#888"
-        }}>
-            Cargando carrito...
-        </div>
-    );
+    // --- ¡YA NO HAY return de "Cargando carrito..." aquí! ---
 
     return (
         <CartContext.Provider

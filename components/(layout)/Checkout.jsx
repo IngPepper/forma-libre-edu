@@ -3,18 +3,18 @@ import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
 import styles from "./Checkout.module.css";
 import { useState, useEffect } from "react";
-import { useIsClient } from "@/components/(utilities)/useIsClient";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import ModalLoading from "@/components/(modals)/ModalLoading";
 
 export default function CheckoutPage() {
-    const isClient = useIsClient();
     const { cart, total, clearCart } = useCart();
     const { user } = useUser();
     const [nombre, setNombre] = useState("");
     const [correo, setCorreo] = useState("");
     const [compraRealizada, setCompraRealizada] = useState(false);
     const [debugUrl, setDebugUrl] = useState("");
+    const [loadingPago, setLoadingPago] = useState(false);
 
     useEffect(() => {
         if (user) {
@@ -31,13 +31,14 @@ export default function CheckoutPage() {
             return;
         }
 
+        setLoadingPago(true); // Muestra el modal
+
         const items = cart.map(item => ({
             title: item.titulo,
             unit_price: Number(item.precio),
             quantity: Number(item.cantidad),
         }));
 
-        // Usa variable de entorno o default localhost
         const backendUrl =
             process.env.NEXT_PUBLIC_BACKEND_URL?.replace(/\/$/, "") ||
             "http://localhost:4000";
@@ -58,27 +59,26 @@ export default function CheckoutPage() {
                 const errorText = await response.text();
                 console.error("Respuesta inesperada:", errorText);
                 toast.error("Error al contactar el servidor");
+                setLoadingPago(false);
                 return;
             }
 
             const data = await response.json();
             if (data.id) {
                 // Redirige a Mercado Pago
-                console.log("Redirigiendo a Mercado Pago con pref_id:", data.id);
                 clearCart();
                 window.location.href = `https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=${data.id}`;
+                // No se llega a setLoadingPago(false), porque se redirige
             } else {
                 toast.error("No se pudo iniciar el pago");
+                setLoadingPago(false);
             }
         } catch (err) {
             toast.error("Error al procesar el pago");
             console.error(err);
+            setLoadingPago(false);
         }
     };
-
-    if (!isClient) {
-        return <div style={{ padding: "3em 0", textAlign: "center" }}>Cargando checkout...</div>;
-    }
 
     if (compraRealizada) {
         return (
@@ -104,6 +104,7 @@ export default function CheckoutPage() {
 
     return (
         <section className={"wrapper"}>
+            <ModalLoading visible={loadingPago} texto="Procesando pago..." />
             <h1 className={"smallerText"}>Resumen <br /> de compra /</h1>
             <section className={styles.checkout}>
                 <h1 className={styles.titulo}>Recibo /</h1>
@@ -137,9 +138,10 @@ export default function CheckoutPage() {
                             autoComplete="email"
                         />
                     </label>
-                    <button className={styles.btnPrimario} type="submit">Finalizar compra</button>
+                    <button className={styles.btnPrimario} type="submit" disabled={loadingPago}>
+                        {loadingPago ? "Procesando..." : "Finalizar compra"}
+                    </button>
                 </form>
-                {/* Debug: muestra la URL de backend usada */}
                 <div style={{
                     fontSize: 12,
                     marginTop: 8,

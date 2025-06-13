@@ -7,7 +7,8 @@ import { useUser } from "@/context/UserContext";
 import { useCart } from "@/context/CartContext";
 import toast from 'react-hot-toast';
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
-import { useIsClient } from "@/components/(utilities)/useIsClient"; // <--- Importante
+import { useIsClient } from "@/components/(utilities)/useIsClient";
+import ModalLoading from "@/components/(modals)/ModalLoading"; // <-- Nuevo
 
 function parsePrecio(precio) {
     const parsed = Number(String(precio).replace(/[^0-9.]+/g, ""));
@@ -22,7 +23,7 @@ function calcularBundle(niveles, infoExtraPlano = "") {
         precio: `$${Math.round(suma * 0.95)}`,
         tipoArchivo: niveles[0]?.tipoArchivo || "",
         tamanoArchivo: niveles.map(n => n.tamanoArchivo).join(" + "),
-        infoExtra: infoExtraPlano, // ← Aquí
+        infoExtra: infoExtraPlano,
         enlaces: niveles.flatMap(n => n.enlaces || [])
     };
 }
@@ -32,12 +33,12 @@ export default function DetallePlano({
                                          tamanoArchivo, tipoArchivo, precio, enlaces = [],
                                          infoExtra, niveles, imagenGeneral
                                      }) {
-    const isClient = useIsClient(); // <--- Hook para saber si es cliente
-
+    const isClient = useIsClient();
     const { user } = useUser();
     const { addToCart, cart } = useCart();
     const tieneMembresia = user?.membresia === "premium" || user?.tieneMembresia === true;
     const [ultimaCategoria, setUltimaCategoria] = useState("");
+    const [loadingAdd, setLoadingAdd] = useState(false); // <-- Loader
 
     const router = useRouter();
 
@@ -60,36 +61,43 @@ export default function DetallePlano({
             ? `${id}-bundle`
             : `${id}-nivel${slideActivo}`
         : String(id);
-    const itemEnCarrito = isClient ? cart.find(item => String(item.id) === idCarrito) : null; // Solo en cliente
+    const itemEnCarrito = isClient ? cart.find(item => String(item.id) === idCarrito) : null;
     const cantidadEnCarrito = itemEnCarrito ? itemEnCarrito.cantidad : 0;
 
-    const handleAddToCart = () => {
-        if (hayNiveles) {
-            addToCart({
-                id: idCarrito,
-                imagen: imagenGeneral || imagen,
-                titulo: `${titulo} - ${slide.nombre}`,
-                descripcion: slide.descripcion,
-                categoria,
-                precio: parsePrecio(slide.precio),
-                tamanoArchivo: slide.tamanoArchivo,
-                tipoArchivo: slide.tipoArchivo,
-                isDonated
-            }, 1);
-        } else {
-            addToCart({
-                id: String(id),
-                imagen,
-                titulo,
-                descripcion,
-                categoria,
-                precio: parsePrecio(precio),
-                tamanoArchivo,
-                tipoArchivo,
-                isDonated
-            }, 1);
+    // ---- handleAddToCart con loader mínimo de 400ms
+    const handleAddToCart = async () => {
+        setLoadingAdd(true);
+        try {
+            if (hayNiveles) {
+                addToCart({
+                    id: idCarrito,
+                    imagen: imagenGeneral || imagen,
+                    titulo: `${titulo} - ${slide.nombre}`,
+                    descripcion: slide.descripcion,
+                    categoria,
+                    precio: parsePrecio(slide.precio),
+                    tamanoArchivo: slide.tamanoArchivo,
+                    tipoArchivo: slide.tipoArchivo,
+                    isDonated
+                }, 1);
+            } else {
+                addToCart({
+                    id: String(id),
+                    imagen,
+                    titulo,
+                    descripcion,
+                    categoria,
+                    precio: parsePrecio(precio),
+                    tamanoArchivo,
+                    tipoArchivo,
+                    isDonated
+                }, 1);
+            }
+            await new Promise(res => setTimeout(res, 400));
+            toast.success("¡Producto agregado al carrito!", { duration: 1000 });
+        } finally {
+            setLoadingAdd(false);
         }
-        toast.success("¡Producto agregado al carrito!", { duration: 1000 });
     };
 
     const handleDownload = () => {
@@ -99,7 +107,6 @@ export default function DetallePlano({
     const prevSlide = () => setSlideActivo(a => (a === 0 ? slides.length - 1 : a - 1));
     const nextSlide = () => setSlideActivo(a => (a === slides.length - 1 ? 0 : a + 1));
 
-    // Antes del return
     const [touchStartX, setTouchStartX] = useState(null);
     const [touchEndX, setTouchEndX] = useState(null);
 
@@ -115,6 +122,7 @@ export default function DetallePlano({
 
     return (
         <section>
+            <ModalLoading visible={loadingAdd} texto="Agregando al carrito..." />
             <ScrollToTopOnNavigation />
             <h1 className={styles.smallerText}>Detalles / </h1>
             <section className={styles.detalle}>
@@ -167,17 +175,16 @@ export default function DetallePlano({
                     <div className={styles.carouselDots}>
                         {slides.map((_, i) => (
                             <div key={i} className={styles.dotWrapper}>
-            <span
-                className={`${styles.carouselDot} ${i === slideActivo ? styles.active : ''}`}
-                onClick={() => setSlideActivo(i)}
-            />
+                                <span
+                                    className={`${styles.carouselDot} ${i === slideActivo ? styles.active : ''}`}
+                                    onClick={() => setSlideActivo(i)}
+                                />
                                 <span className={styles.dotNumber}>{i + 1}</span>
                             </div>
                         ))}
                     </div>
                 </div>
                 <div className={styles.contenido}>
-
                     {hayNiveles ? (
                         <div className={styles.carouselContainer}>
                             <div className={styles.carouselNav}>
@@ -196,7 +203,6 @@ export default function DetallePlano({
                             <div className={styles.carouselSlide}>
                                 <p className={styles.conjuntoPlanos}>{slide.descripcion}</p>
                                 <div className={styles.tipoDeArchivo}><strong>Tipo:</strong> {slide.tipoArchivo}</div>
-                                {/*<div><strong>Tamaño:</strong> {slide.tamanoArchivo}</div>*/}
                                 {!tieneMembresia && (
                                     <div><strong>Precio:</strong> <span className={styles.precio}>{slide.precio}</span></div>
                                 )}
@@ -216,10 +222,10 @@ export default function DetallePlano({
                                         <button
                                             className={styles.comprar}
                                             onClick={handleAddToCart}
+                                            disabled={loadingAdd}
                                         >
                                             <FaShoppingCart style={{ marginRight: 10 }} />
                                             Agregar al carrito
-                                            {/* Solo muestra cantidadEnCarrito si es cliente */}
                                             {isClient && cantidadEnCarrito > 0 && (
                                                 <span className={styles.cantidadEnCarrito}>
                                                     &nbsp;({cantidadEnCarrito} en carrito)
@@ -277,10 +283,10 @@ export default function DetallePlano({
                                     <button
                                         className={styles.comprar}
                                         onClick={handleAddToCart}
+                                        disabled={loadingAdd}
                                     >
                                         <FaShoppingCart style={{ marginRight: 10 }} />
                                         Agregar al carrito
-                                        {/* Solo muestra cantidadEnCarrito si es cliente */}
                                         {isClient && cantidadEnCarrito > 0 && (
                                             <span className={styles.cantidadEnCarrito}>
                                                 &nbsp;({cantidadEnCarrito} en carrito)

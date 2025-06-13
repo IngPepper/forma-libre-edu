@@ -3,9 +3,9 @@ import MainNav from '../components/(layout)/MainNav';
 import MainFooter from '../components/(layout)/MainFooter';
 import { Toaster } from 'react-hot-toast';
 
-
 import { UserProvider } from "@/context/UserContext";
-import {CartProvider} from "@/context/CartContext";
+import { CartProvider } from "@/context/CartContext";
+import AppLoader from "@/components/(utilities)/AppLoader.jsx";
 
 export const metadata = {
     title: "Forma Libre",
@@ -18,10 +18,15 @@ export default function RootLayout({ children }) {
         <body>
         <UserProvider>
             <CartProvider>
-                <MainNav />
-                {children}
-                <Toaster position={"top-center"} />
-                <MainFooter />
+                <AppLoader>
+                    {/* TODO el contenido va aquí, dentro de AppLoader */}
+                    <MainNav />
+                    {children}
+                    <div className={"add500"}></div>
+                    <div className={"add500"}></div>
+                    <Toaster position={"top-center"} />
+                    <MainFooter />
+                </AppLoader>
             </CartProvider>
         </UserProvider>
         </body>

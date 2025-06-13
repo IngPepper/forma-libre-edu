@@ -17,7 +17,7 @@ import React, { useState, useEffect } from "react";
 import filtrarPlanos from '@/lib/searchHelpers.js';
 
 import { obtenerPlanos } from "@/lib/firebaseHelpers";
-import LoadingPage from "@/components/(utilities)/LoadingPage.jsx";
+import Apploader from "@/components/(utilities)/AppLoader.jsx";
 
 // Si tu imagen está en public/, usa "/fondo.jpg"
 // Si es de internet, usa la url completa y configúralo en next.config.js
@@ -43,7 +43,7 @@ export default function Home() {
 
     if (loading) {
         return (
-            <LoadingPage />
+            <></>
         );
     }
 
