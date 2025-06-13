@@ -98,7 +98,7 @@
     transition: background 0.2s;
 }
 .btnPrimario:hover {
-    background: var(--color-verde);
+    background: #5ec1ff;
     color: var(--color-texto, #2b2b2b);
 }
 

@@ -152,42 +152,48 @@
 
 .acciones {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 1.12em;
-    justify-content: flex-end;
+}
+.btnPrimario{
+    background: var(--color-acento, #C1BAA1);
+    color: #2b2b2b;
+    border: 2px solid var(--color-border, #404040);
+    border-radius: 12px;
+    font-size: 1.08em;
+    font-weight: 700;
+    box-shadow: var(--sombra);
+    padding: 0.6em 2em;
+    cursor: pointer;
+    transition: background 0.13s, color 0.13s, box-shadow 0.13s;
+    margin-top: 0.9em;
+    margin-bottom: 0.4em;
 }
 
-.btn, .btnPrimario {
-    width: 100%;
-    border: inherit;
-    padding: var(--espaciado);
-    border: 2px solid var(--color-border);
-    border-radius: var(--borde-radius);
-    background: var(--color-fondo);
-    color: var(--color-texto-blanco);
-    font-weight: bold;
-    font-size: 1.07rem;
-    font-family: inherit;
-    cursor: pointer;
-    box-shadow: var(--sombra);
-    transition: background 0.15s, transform 0.11s;
-    text-align: center;
-}
 
 .btn {
-    background: var(--color-tarjeta, #E5E5D9);
-    color: var(--color-texto, #222);
+    background: var(--color-acento, #C1BAA1);
+    color: #2b2b2b;
+    border: 2px solid var(--color-border, #404040);
+    border-radius: 12px;
+    font-size: 1.08em;
+    font-weight: 700;
+    box-shadow: var(--sombra);
+    padding: 0.6em 2em;
+    cursor: pointer;
+    transition: background 0.13s, color 0.13s, box-shadow 0.13s;
+    margin-top: 0.9em;
+    margin-bottom: 0.4em;
 }
+
 .btn:hover {
     background: var(--color-verde, #b0ff81);
     color: var(--color-texto);
 }
 
-.btnPrimario {
-    color: var(--color-texto);
-    background: #b0ff81;
-}
 .btnPrimario:hover {
-    background: #93ff5e;
+    background: #5ec1ff;
     color: var(--color-texto);
     transform: scale(1.05);
 }
@@ -198,6 +204,15 @@
     padding: 4.2em 1.2em;
     color: var(--color-texto-suave, #5a5a5a);
     font-size: 1.14em;
+}
+
+.linkModule{
+    color: var(--color-texto);
+    text-decoration: none;
+}
+.linkModule:hover{
+    color: var(--color-texto);
+    text-decoration: none;
 }
 
 @media (max-width: 705px) {

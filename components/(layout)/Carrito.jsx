@@ -97,9 +97,11 @@ export default function Carrito() {
                     >
                         Vaciar carrito
                     </button>
-                    <Link href="/checkout" className={styles.btnPrimario}>
-                        Proceder al pago
-                    </Link>
+                    <button className={`${styles.acciones} ${styles.btnPrimario}`}>
+                        <Link href="/checkout" className={styles.linkModule}>
+                            Proceder al pago
+                        </Link>
+                    </button>
                 </div>
             </section>
         </div>
