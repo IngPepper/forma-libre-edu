@@ -102,6 +102,42 @@
     color: var(--color-texto, #2b2b2b);
 }
 
+.backBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d7d3bf;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #7e6c37;
+    border: 2px solid var(--color-border);
+    box-shadow: 0 1px 2px #0001;
+    transition: background 0.15s, box-shadow 0.1s;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+.backBtn:hover {
+    background: #c1baa1;
+    box-shadow: var(--sombra);
+    color: var(--color-texto-blanco);
+}
+
+.backBtnReset {
+    background: none;
+    border: 2px solid #d7d3bf;
+    outline: none;
+    box-shadow: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
 .confirmacion {
     height: 400px;
     text-align: center;

@@ -5,7 +5,9 @@ import styles from "./Checkout.module.css";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import ModalLoading from "@/components/(modals)/ModalLoading";
+import {FaArrowLeft} from "react-icons/fa";
 
 export default function CheckoutPage() {
     const { cart, total, clearCart } = useCart();
@@ -15,6 +17,7 @@ export default function CheckoutPage() {
     const [compraRealizada, setCompraRealizada] = useState(false);
     const [debugUrl, setDebugUrl] = useState("");
     const [loadingPago, setLoadingPago] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         if (user) {
@@ -142,13 +145,17 @@ export default function CheckoutPage() {
                         {loadingPago ? "Procesando..." : "Finalizar compra"}
                     </button>
                 </form>
-                <div style={{
-                    fontSize: 12,
-                    marginTop: 8,
-                    color: "#888"
-                }}>
-                    <b>API backend:</b> {debugUrl}
-                </div>
+                <button
+                    type="button"
+                    className={`${styles.backBtn} ${styles.backBtnReset}`} // Usa tu clase o crea una especial para "atrás"
+                    onClick={() => {
+                        if (window.history.length > 2) router.back();
+                        else router.push("/carrito");
+                    }}
+                    style={{ marginBottom: "1.5em" }}
+                >
+                    <FaArrowLeft size={16} />
+                </button>
             </section>
         </section>
     );

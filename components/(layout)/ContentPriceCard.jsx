@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./ContentPriceCard.module.css";
-import Image from "next/image";
+import ImageWithSkeleton from "@/components/(utilities)/ImageWithSkeleton";
 
 import imgIndividual from "@/public/assets/im07h_cubos_al_centro_acento_rojo.jpg";
 import imgMensual from "@/public/assets/im08h_paisaje_cubo_rojo_centro_izq.jpg";
@@ -26,13 +26,10 @@ export default function ContentPriceCard({
     return (
         <div className={`${styles.card} ${single ? styles.singleCard : ""} ${className}`}>
             <div className={styles.imageBox}>
-                <Image
+                <ImageWithSkeleton
                     src={current.image}
                     alt={title}
-                    fill
-                    style={{ objectFit: "cover", borderRadius: "var(--borde-radius)" }}
-                    sizes="720px"
-                    placeholder={"blur"}
+                    className={styles.imagen}
                 />
             </div>
             <div className={styles.content}>

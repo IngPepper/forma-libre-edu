@@ -2,6 +2,7 @@
 import styles from './Carrito.module.css';
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
 import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import React from "react"
 
@@ -28,7 +29,7 @@ export default function Carrito() {
             </section>
         );
     }
-
+    const router = useRouter();
 
     return (
         <div className={"wrapper"}>
@@ -63,15 +64,18 @@ export default function Carrito() {
                             <div className={styles.precio}>
                                 {item.precio === 0 ? "¡Gratis!" : `$${item.precio}`}
                             </div>
-                            <button
-                                className={styles.eliminar}
-                                onClick={() => {
-                                    removeFromCart(item.id);
-                                }}
-                                title="Quitar del carrito"
-                            >
-                                <FaTrash />
-                            </button>
+                            <div className={styles.eliminarWrapper}>
+                                <button
+                                    className={styles.eliminar}
+                                    onClick={() => {
+                                        removeFromCart(item.id);
+                                        window.scrollTo({ top: 0, behavior: "smooth" });
+                                    }}
+                                    title="Quitar del carrito"
+                                >
+                                    <FaTrash />
+                                </button>
+                            </div>
                         </li>
                     ))}
                 </ul>
@@ -88,14 +92,16 @@ export default function Carrito() {
                         className={styles.btn}
                         onClick={() => {
                             clearCart();
+                            window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
                     >
                         Vaciar carrito
                     </button>
-                    <button className={`${styles.acciones} ${styles.btnPrimario}`}>
-                        <Link href="/checkout" className={styles.linkModule}>
-                            Proceder al pago
-                        </Link>
+                    <button
+                        className={`${styles.acciones} ${styles.btnPrimario}`}
+                        onClick={() => router.push("/checkout")}
+                    >
+                        Proceder al pago
                     </button>
                 </div>
             </section>

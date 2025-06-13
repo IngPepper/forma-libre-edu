@@ -252,8 +252,11 @@
         margin-top: 0.5em;
         gap: 0.33em;
     }
-
+    .eliminarWrapper{
+        display: flex;
+    }
     .eliminar {
+        align-items: center;
         margin-left: 0.15em;
         font-size: 1em;
     }
