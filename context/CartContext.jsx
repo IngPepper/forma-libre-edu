@@ -1,9 +1,6 @@
 "use client";
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
 
-// Estructura de un producto en el carrito
-// { id, titulo, precio, cantidad, imagen, ... }
-
 const CartContext = createContext();
 
 export function useCart() {
@@ -11,24 +8,32 @@ export function useCart() {
 }
 
 export function CartProvider({ children }) {
-    const [cart, setCart] = useState([]); // SIEMPRE vacío al inicio
+    const [cart, setCart] = useState([]);
 
-    // Cargar de localStorage sólo en cliente
+    // Cargar del localStorage solo en cliente
     useEffect(() => {
-        try {
-            const stored = localStorage.getItem("cart");
-            setCart(stored ? JSON.parse(stored) : []);
-        } catch {
-            setCart([]);
+        if (typeof window !== "undefined") {
+            try {
+                const stored = window.localStorage.getItem("cart");
+                setCart(stored ? JSON.parse(stored) : []);
+            } catch {
+                setCart([]);
+            }
         }
     }, []);
 
-    // Guarda el carrito en localStorage cuando cambie
+    // Guardar en localStorage solo en cliente
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart));
+        if (typeof window !== "undefined") {
+            try {
+                window.localStorage.setItem("cart", JSON.stringify(cart));
+            } catch {
+                // Silencia el error para entornos sin storage
+            }
+        }
     }, [cart]);
 
-    // Agrega un producto (si ya existe, suma la cantidad)
+    // ...lo demás igual
     const addToCart = (producto, cantidad = 1) => {
         setCart((prev) => {
             const existing = prev.find((p) => String(p.id) === String(producto.id));
@@ -44,12 +49,10 @@ export function CartProvider({ children }) {
         });
     };
 
-    // Quita un producto completamente
     const removeFromCart = (id) => {
         setCart((prev) => prev.filter((p) => String(p.id) !== String(id)));
     };
 
-    // Modifica la cantidad (ej: desde un input)
     const setProductQuantity = (id, cantidad) => {
         setCart((prev) =>
             prev.map((p) =>
@@ -58,26 +61,18 @@ export function CartProvider({ children }) {
         );
     };
 
-    // Vacía el carrito
     const clearCart = () => setCart([]);
 
-    // Calcula el total del carrito
     const total = useMemo(
-        () =>
-            cart.reduce(
-                (acc, p) => acc + Number(p.precio) * Number(p.cantidad),
-                0
-            ),
+        () => cart.reduce((acc, p) => acc + Number(p.precio) * Number(p.cantidad), 0),
         [cart]
     );
 
-    // Número total de artículos
     const totalItems = useMemo(
         () => cart.reduce((acc, p) => acc + Number(p.cantidad), 0),
         [cart]
     );
 
-    // Si el carrito está vacío
     const isEmpty = cart.length === 0;
 
     return (
