@@ -63,7 +63,7 @@ export default function RegisterScreen() {
             setSubmitting(true);
             try {
                 // 1. Registra al usuario en Firebase Auth
-                await registerWithEmail(form.email, form.password);
+                await registerWithEmail(form.email, form.password, form.name);
 
                 // 2. Actualiza el displayName en Auth (opcional, solo para que lo veas en Firebase Console)
                 if (auth.currentUser) {

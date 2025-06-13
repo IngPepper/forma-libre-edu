@@ -13,7 +13,7 @@ export default function AdiosPage() {
                     <span className={styles.accent}>Nos vemos en el próximo proyecto.</span>
                 </p>
                 <Link href="/" className={styles.button}>
-                    Volver al inicio
+                    Inicio
                 </Link>
             </div>
         </section>
