@@ -22,7 +22,10 @@
 
 /* === NAV WRAPPER GENERAL === */
 .navWrapper {
-    position: sticky;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;  /* Asegura que quede por encima de otros elementos */
     margin-top: 0; /* Elimina cualquier margen superior */
     display: flex; /* Usa Flexbox para organizar elementos hijos */
@@ -30,8 +33,6 @@
     padding: 0 var(--espaciado) var(--espaciado); /* Espaciado alrededor del nav */
     background-color: transparent; /* Color de fondo opcional */
     animation: slideDown 0.55s ease-out forwards;
-
-
 }
 
 /* === NAV CONTAINER === */
