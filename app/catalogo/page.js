@@ -8,6 +8,7 @@ import SearchBar from "@/components/(utilities)/SearchBar";
 import filtrarPlanos from "@/lib/searchHelpers";
 import { obtenerPlanos } from "@/lib/firebaseHelpers";
 import LoadingPage from "@/components/(utilities)/LoadingPage.jsx";
+import MainFooter from "@/components/(layout)/MainFooter";
 
 function CatalogoPageInner() {
     const router = useRouter();
@@ -125,6 +126,7 @@ function CatalogoPageInner() {
 
     return (
         <main>
+            <div className={"add200"}></div>
             <ScrollToTopOnNavigation />
 
             <section className={"wrapper"}>
@@ -141,6 +143,7 @@ function CatalogoPageInner() {
                 onTipoCategoriaChange={handleCategoriaChange}
                 perfil={perfil}
             />
+            <MainFooter />
         </main>
     );
 }

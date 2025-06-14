@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { obtenerPlanos } from "@/lib/firebaseHelpers";
 import AdminConsole from "@/components/(layout)/AdminConsole";
 import Apploader from "@/components/(utilities)/AppLoader.jsx";
+import MainFooter from "@/components/(layout)/MainFooter.jsx";
 
 export default function AdminPage() {
     const [planos, setPlanos] = useState([]);
@@ -30,15 +31,18 @@ export default function AdminPage() {
     if (error) return <section className="wrapper"><div style={{color: "#a85353"}}>{error}</div></section>;
 
     return (
-        <section className="wrapper">
-            <h1 className={"smallerText"}>Admin Powers /</h1>
-            <AdminConsole
-                user={{ email: "admin@formalibre.com" }}
-                planos={planos}
-                setPlanos={setPlanos}
-            />
-            <div className={"add500"}></div>
-            <div className={"add500"}></div>
-        </section>
+        <>
+            <div className={"add200"}></div>
+            <section className="wrapper">
+                <h1 className={"smallerText"}>Admin Powers /</h1>
+                <AdminConsole
+                    user={{ email: "admin@formalibre.com" }}
+                    planos={planos}
+                    setPlanos={setPlanos}
+                />
+            </section>
+            <MainFooter />
+        </>
+
     );
 }

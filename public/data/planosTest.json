@@ -1,0 +1,76 @@
+[
+  {
+    "imagen": "https://placehold.co/400x200?text=Plano+1",
+    "titulo": "Casa Moderna Minimalista",
+    "descripcion": "Proyecto de casa minimalista de dos plantas, amplios ventanales y patio.",
+    "categoria": "Residencial",
+    "isDonated": "",
+    "imagenGeneral": "",
+    "niveles": [
+      {
+        "nombre": "Bundle Completo",
+        "descripcion": "Incluye todos los archivos fuente y PDF listos para impresión.",
+        "tamanoArchivo": "12MB",
+        "tipoArchivo": "ZIP",
+        "precio": "3500",
+        "infoExtra": "Incluye memoria descriptiva y acabados.",
+        "enlaces": [
+          { "label": "Descargar ZIP", "url": "https://placehold.co/zip/plano1.zip" }
+        ]
+      }
+    ]
+  },
+  {
+    "imagen": "https://placehold.co/400x200?text=Plano+2",
+    "titulo": "Departamento Compacto",
+    "descripcion": "Plano para un departamento de 60m2, ideal para jóvenes parejas.",
+    "categoria": "Residencial",
+    "isDonated": "donated",
+    "imagenGeneral": "https://placehold.co/400x200?text=Vista+General+2",
+    "niveles": [
+      {
+        "nombre": "Nivel 1",
+        "descripcion": "Planta arquitectónica.",
+        "tamanoArchivo": "2MB",
+        "tipoArchivo": "PDF",
+        "precio": "0",
+        "infoExtra": "",
+        "enlaces": [
+          { "label": "PDF Planta", "url": "https://placehold.co/pdf/depto2.pdf" }
+        ]
+      },
+      {
+        "nombre": "Nivel 2",
+        "descripcion": "Detalles estructurales.",
+        "tamanoArchivo": "3MB",
+        "tipoArchivo": "DWG",
+        "precio": "0",
+        "infoExtra": "",
+        "enlaces": [
+          { "label": "DWG Detalles", "url": "https://placehold.co/dwg/depto2.dwg" }
+        ]
+      }
+    ]
+  },
+  {
+    "imagen": "https://placehold.co/400x200?text=Plano+3",
+    "titulo": "Oficina Pequeña",
+    "descripcion": "Diseño de oficina pequeña para coworking, con sala de juntas y área común.",
+    "categoria": "Comercial",
+    "isDonated": "",
+    "imagenGeneral": "",
+    "niveles": [
+      {
+        "nombre": "Paquete Pro",
+        "descripcion": "Incluye todos los planos y detalles listos para construcción.",
+        "tamanoArchivo": "8MB",
+        "tipoArchivo": "ZIP",
+        "precio": "2100",
+        "infoExtra": "",
+        "enlaces": [
+          { "label": "Descargar ZIP", "url": "https://placehold.co/zip/oficina3.zip" }
+        ]
+      }
+    ]
+  }
+]

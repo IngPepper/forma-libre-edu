@@ -9,7 +9,10 @@ import {
     editarPlano,
     eliminarPlano,
     importarPlanos,
-    borrarCarritosVacios
+    borrarCarritosVacios,
+    obtenerOrdenesPendientesOFallidas,
+    eliminarOrden,
+    eliminarTodasOrdenesPendientesOFallidas
 } from "@/lib/firebaseHelpers";
 import ModalConfirmacion from "@/components/(modals)/ModalConfirmacion";
 
@@ -46,6 +49,7 @@ export default function AdminConsole({ }) {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const fileInputRef = useRef();
+
 
     // Protege admin
     if (!user || (user.rol !== "admin" && !user.isAdmin)) {
@@ -154,23 +158,31 @@ export default function AdminConsole({ }) {
     // Importar JSON
     const handleImportJSON = (e) => {
         setImportError("");
+        setMessage("");
         const file = e.target.files[0];
         if (!file) return;
+
         const reader = new FileReader();
         reader.onload = async (evt) => {
+            setLoading(true);
             try {
-                const data = JSON.parse(evt.target.result);
+                const result = evt.target.result;
+                // Si por alguna razón result no es string, lo decodificamos
+                const jsonStr = typeof result === "string"
+                    ? result
+                    : new TextDecoder().decode(result);
+                const data = JSON.parse(jsonStr);
+
                 if (Array.isArray(data)) {
-                    setLoading(true);
-                    await importarPlanos(data);
+                    await importarPlanos(data); // Tu helper debe agregar cada plano a Firestore
                     setPlanos(await obtenerPlanos());
                     setImportError("");
-                    setMessage("Planos importados correctamente.");
+                    setMessage(`Planos importados correctamente (${data.length}).`);
                 } else {
                     setImportError("El archivo debe contener un array de planos.");
                 }
             } catch (err) {
-                setImportError("El archivo no es un JSON válido.");
+                setImportError("El archivo no es un JSON válido o contiene datos inválidos.");
             } finally {
                 setLoading(false);
             }
@@ -198,6 +210,113 @@ export default function AdminConsole({ }) {
 
     const [modalAbierto, setModalAbierto] = useState(false);
     const [accionPendiente, setAccionPendiente] = useState(() => () => {});
+    const [modalMensaje, setModalMensaje] = useState("");
+    const [modalTitulo, setModalTitulo] = useState("");
+
+    const [ordenesPendientes, setOrdenesPendientes] = useState([]);
+    const [loadingOrdenes, setLoadingOrdenes] = useState(false);
+
+// Cargar órdenes pendientes/fallidas al cargar admin
+    useEffect(() => {
+        async function fetchOrdenes() {
+            await cargarOrdenesPendientes();
+        }
+        fetchOrdenes();
+    }, []);
+
+    async function cargarOrdenesPendientes() {
+        setLoadingOrdenes(true);
+        try {
+            const lista = await obtenerOrdenesPendientesOFallidas();
+            setOrdenesPendientes(lista);
+        } finally {
+            setLoadingOrdenes(false);
+        }
+    }
+    const [idEliminar, setIdEliminar] = useState("");
+
+    const handleEliminarOrden = (id) => {
+        setModalTitulo("Eliminar orden");
+        setModalMensaje("¿Estás seguro de eliminar esta orden pendiente o fallida?");
+        setAccionPendiente(() => async () => {
+            setModalAbierto(false);
+            setLoadingOrdenes(true);
+            try {
+                await eliminarOrden(id);
+                await cargarOrdenesPendientes();
+                setMessage("Orden eliminada.");
+            } catch (e) {
+                setMessage("Error al eliminar la orden.");
+                console.error(e);
+            } finally {
+                setLoadingOrdenes(false);
+            }
+        });
+        setModalAbierto(true);
+    };
+
+    const handleEliminarTodasOrdenes = () => {
+        setModalTitulo("Eliminar TODAS las órdenes");
+        setModalMensaje("¿Estás seguro de eliminar TODAS las órdenes pendientes y fallidas?");
+        setAccionPendiente(() => async () => {
+            setModalAbierto(false);
+            setLoadingOrdenes(true);
+            try {
+                await eliminarTodasOrdenesPendientesOFallidas();
+                await cargarOrdenesPendientes();
+                setMessage("Órdenes eliminadas.");
+            } catch (e) {
+                setMessage("Error al eliminar las órdenes.");
+                console.error(e);
+            } finally {
+                setLoadingOrdenes(false);
+            }
+        });
+        setModalAbierto(true);
+    };
+
+    const [filtroTitulo, setFiltroTitulo] = useState("");
+    const [filtroPrecioMin, setFiltroPrecioMin] = useState("");
+    const [filtroPrecioMax, setFiltroPrecioMax] = useState("");
+    const [filtroNivelesMin, setFiltroNivelesMin] = useState("");
+    const [filtroNivelesMax, setFiltroNivelesMax] = useState("");
+
+    const planosFiltrados = planos.filter(plano => {
+        // Filtro por título (insensible a mayúsculas)
+        const matchTitulo = filtroTitulo.trim() === "" ||
+            plano.titulo.toLowerCase().includes(filtroTitulo.trim().toLowerCase());
+
+        // Filtro por precio (en el primer nivel, asumiendo que está ahí)
+        let precio = 0;
+        if (plano.niveles && plano.niveles.length > 0) {
+            const precioNivel = plano.niveles[0].precio;
+            precio = Number(precioNivel) || 0;
+        }
+        const matchPrecioMin = filtroPrecioMin === "" || precio >= Number(filtroPrecioMin);
+        const matchPrecioMax = filtroPrecioMax === "" || precio <= Number(filtroPrecioMax);
+
+        // Filtro por cantidad de niveles
+        const numNiveles = plano.niveles ? plano.niveles.length : 0;
+        const matchNivelesMin = filtroNivelesMin === "" || numNiveles >= Number(filtroNivelesMin);
+        const matchNivelesMax = filtroNivelesMax === "" || numNiveles <= Number(filtroNivelesMax);
+
+        return (
+            matchTitulo &&
+            matchPrecioMin &&
+            matchPrecioMax &&
+            matchNivelesMin &&
+            matchNivelesMax
+        );
+    });
+
+    useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => setMessage(""), 4000);
+            return () => clearTimeout(timer);
+        }
+    }, [message]);
+
+
 
     return (
         <div className={styles.adminConsole}>
@@ -304,10 +423,15 @@ export default function AdminConsole({ }) {
                     style={{ display: "none" }}
                     onChange={handleImportJSON}
                 />
-                <h3>Acciones DB</h3>
-                <button onClick={() => fileInputRef.current.click()} className={styles.primaryBtn} disabled={loading}>
+                <button
+                    onClick={() => fileInputRef.current.click()}
+                    className={styles.primaryBtn}
+                    disabled={loading}
+                >
                     <FaUpload /> Importar JSON
                 </button>
+                {importError && <div className={styles.error}>{importError}</div>}
+                {message && <div className={styles.success}>{message}</div>}
                 {importError && <div className={styles.error}>{importError}</div>}
                 <button onClick={handleBorrarCarritosVacios} className={styles.primaryBtn} disabled={loading}>
                     <FaTrash /> Borrar carritos vacíos
@@ -315,22 +439,121 @@ export default function AdminConsole({ }) {
             </div>
 
             <div className={styles.section}>
+                <h3>Órdenes pendientes/fallidas</h3>
+                <div>
+                    <button
+                        className={styles.primaryBtn}
+                        onClick={handleEliminarTodasOrdenes}
+                        disabled={loadingOrdenes}
+                    >
+                        <FaTrash /> Eliminar TODAS las pendientes/fallidas
+                    </button>
+
+                    <div className={styles.orderID}>
+                        <input
+                            type="text"
+                            placeholder="ID de la orden"
+                            value={idEliminar}
+                            onChange={e => setIdEliminar(e.target.value)}
+                            className={styles.input}
+                        />
+                        <button
+                            className={styles.secondaryBtn}
+                            onClick={() => idEliminar && handleEliminarOrden(idEliminar)}
+                            disabled={loadingOrdenes || !idEliminar}
+                        >
+                            <FaTrash /> Eliminar por ID
+                        </button>
+                    </div>
+                </div>
+
+                {loadingOrdenes && <div className={styles.loading}>Cargando órdenes...</div>}
+                <div className={styles.ordenesList}>
+                    {ordenesPendientes.length === 0 && <div>No hay órdenes pendientes ni fallidas.</div>}
+                    {ordenesPendientes.map(ord => (
+                        <div key={ord.id} className={styles.ordenItem}>
+                            <b>{ord.nombre || ord.email}</b>
+                            <span> — {ord.status}</span>
+                            <span> — {new Date(ord.fecha.seconds * 1000).toLocaleString()}</span>
+                            <button
+                                className={styles.iconBtn}
+                                onClick={() => handleEliminarOrden(ord.id)}
+                                disabled={loadingOrdenes}
+                                title="Eliminar orden"
+                            >
+                                <FaTrash />
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className={styles.section}>
                 <h3>Lista de Planos ({planos.length})</h3>
+
+                {/* ---- FILTROS ---- */}
+                <div className={styles.filtrosPlanos}>
+                    <input
+                        type="text"
+                        className={styles.input}
+                        placeholder="Buscar por título"
+                        value={filtroTitulo}
+                        onChange={e => setFiltroTitulo(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        className={styles.input}
+                        placeholder="Precio mínimo"
+                        value={filtroPrecioMin}
+                        onChange={e => setFiltroPrecioMin(e.target.value)}
+                        min="0"
+                    />
+                    <input
+                        type="number"
+                        className={styles.input}
+                        placeholder="Precio máximo"
+                        value={filtroPrecioMax}
+                        onChange={e => setFiltroPrecioMax(e.target.value)}
+                        min="0"
+                    />
+                    <input
+                        type="number"
+                        className={styles.input}
+                        placeholder="# Niveles mínimo"
+                        value={filtroNivelesMin}
+                        onChange={e => setFiltroNivelesMin(e.target.value)}
+                        min="0"
+                    />
+                    <input
+                        type="number"
+                        className={styles.input}
+                        placeholder="# Niveles máximo"
+                        value={filtroNivelesMax}
+                        onChange={e => setFiltroNivelesMax(e.target.value)}
+                        min="0"
+                    />
+                </div>
+                {/* ---- FIN FILTROS ---- */}
+
                 <div className={styles.planoList}>
-                    {planos.map((plano) => (
+                    {planosFiltrados.length === 0 && (
+                        <div className={styles.error}>No se encontraron planos con los filtros actuales.</div>
+                    )}
+                    {planosFiltrados.map((plano) => (
                         <div key={plano.id} className={styles.planoItem}>
                             <img src={plano.imagen} alt={plano.titulo} className={styles.img} />
                             <div className={styles.info}>
-                                <b>{plano.titulo}</b> <span className={styles.categoria}>{plano.categoria}</span>
+                                <b>{plano.titulo}</b>
+                                <span className={styles.categoria}>{plano.categoria}</span>
                                 {plano.niveles && plano.niveles.length > 0 && (
                                     <div>
                                         <small>
                                             {plano.niveles.map((n, i) =>
-                                                <span key={i} className={styles.nivelTag}>
-                                                    {n.nombre}
-                                                    {i === 0 && n.precio ? ` ($${n.precio})` : ""}
-                                                    {i < plano.niveles.length - 1 ? ', ' : ''}
-                                                </span>
+                                                    <span key={i} className={styles.nivelTag}>
+                        {n.nombre}
+                                                        {i === 0 && n.precio ? ` ($${n.precio})` : ""}
+                                                        {i < plano.niveles.length - 1 ? ', ' : ''}
+                      </span>
                                             )}
                                         </small>
                                     </div>
@@ -348,8 +571,8 @@ export default function AdminConsole({ }) {
                 abierto={modalAbierto}
                 onClose={() => setModalAbierto(false)}
                 onConfirmar={accionPendiente}
-                titulo="Confirmar acción"
-                mensaje="¿Estás seguro de borrar todos los carritos vacíos?"
+                titulo={modalTitulo}
+                mensaje={modalMensaje}
             />
         </div>
     );

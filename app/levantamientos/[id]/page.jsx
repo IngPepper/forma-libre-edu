@@ -4,6 +4,7 @@ import DetallePlano from "@/components/(layout)/DetallePlano";
 import RequireAccount from "@/components/(utilities)/RequireAccount.jsx";
 import { obtenerPlanoPorId } from "@/lib/firebaseHelpers";
 import LoadingPage from "@/components/(utilities)/LoadingPage.jsx";
+import MainFooter from "@/components/(layout)/MainFooter.jsx";
 
 export default function LevantamientoDetallePage({ params }) {
     // ¡ESTO es lo nuevo!
@@ -34,11 +35,13 @@ export default function LevantamientoDetallePage({ params }) {
     }
 
     return (
-        <RequireAccount>
-            <section className={"wrapper"}>
-                <DetallePlano {...plano} />
-                <div className={"add500"}></div>
-            </section>
-        </RequireAccount>
+        <>
+            <RequireAccount>
+                <section className={"wrapper"}>
+                    <DetallePlano {...plano} />
+                </section>
+            </RequireAccount>
+        <MainFooter />
+        </>
     );
 }

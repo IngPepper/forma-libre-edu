@@ -114,8 +114,20 @@ h1{
   padding: 0 var(--espaciado);
   /* Para responsividad extra */
   min-width: 0;
+}
 
-
+.wrapperSmall{
+  width: 100%;
+  height: auto;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  box-sizing: border-box;
+  /* Opcional: agrega separación arriba y abajo */
+  padding: 0 var(--espaciado);
+  /* Para responsividad extra */
+  min-width: 0;
 }
 
 .topContent {
@@ -153,9 +165,17 @@ h1{
   flex-shrink: 0;
 }
 
+.add1000{
+  height: 1000px;
+}
 .add500{
   height: 500px;
 }
+
+.add200{
+  height: 200px;
+}
+
 .add100{
   height: 100px;
 }
@@ -174,9 +194,24 @@ h1{
 }
 
 
-@media(max-width: 450px){
+@media(max-width: 500px){
   .smallerText {
     font-size: 3rem;
 
+  }
+  .wrapperSmall{
+    margin-top: 0;
+  }
+  .add1000{
+    height: 0;
+  }
+
+
+  .add200{
+    height: 0;
+  }
+
+  .add100{
+    height: 0;
   }
 }

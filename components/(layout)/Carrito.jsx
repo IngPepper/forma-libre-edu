@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
-import React from "react"
-
+import React, { useState } from "react";
 import { borrarCarritoDeUsuario } from "@/lib/firebaseHelpers";
 import { useUser } from "@/context/UserContext";
 
@@ -20,6 +19,36 @@ export default function Carrito() {
         isEmpty
     } = useCart();
 
+    const router = useRouter();
+    const { user } = useUser();
+
+    const [loading, setLoading] = useState(false);
+
+    // Nueva función para crear la preferencia en el backend y redirigir a MP
+    async function crearPreferencia(cart, user) {
+        const items = cart.map(item => ({
+            id: item.id,
+            title: item.titulo,
+            quantity: item.cantidad,
+            unit_price: item.precio,
+        }));
+
+        const body = {
+            items,
+            nombre: user?.nombre || "Cliente",
+            correo: user?.email || "sin-email@dominio.com",
+            // Puedes agregar más campos si lo requiere tu backend (rfc, razonSocial, direccion, etc.)
+        };
+
+        const resp = await fetch("http://localhost:4000/api/create-preference", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+        });
+        const data = await resp.json();
+        return data.id;
+    }
+
     if (isEmpty) {
         return (
             <section className={"wrapper"}>
@@ -32,12 +61,10 @@ export default function Carrito() {
             </section>
         );
     }
-    const router = useRouter();
-    const { user } = useUser();
 
     return (
         <div className={"wrapper"}>
-            <h1 className={"smallerText"}>Carrito de <br/> compras /</h1>
+            <h1 className={"smallerText"}>Carrito de <br /> compras /</h1>
             <section className={styles.carrito}>
                 <ul className={styles.lista}>
                     {cart.map((item) => (
@@ -95,12 +122,13 @@ export default function Carrito() {
                     <button
                         className={styles.btn}
                         onClick={async () => {
-                            clearCart(); // Limpia estado local primero
+                            clearCart();
                             if (user?.uid || user?.idUsuario) {
                                 await borrarCarritoDeUsuario(user.uid || user.idUsuario);
                             }
                             window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
+                        disabled={loading}
                     >
                         Vaciar carrito
                     </button>

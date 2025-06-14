@@ -2,6 +2,7 @@
 "use client";
 import CuentaUsuario from "@/components/(layout)/CuentaUsuario";
 import { useUser } from "@/context/UserContext";
+import MainFooter from "@/components/(layout)/MainFooter.jsx";
 
 export default function CuentaPage() {
     // Obtén el usuario real del contexto
@@ -40,14 +41,18 @@ export default function CuentaPage() {
     };
 
     return (
-        <main className="wrapper">
-            <CuentaUsuario
-                perfil={perfil}
-                facturas={facturas}
-                onActualizarPerfil={onActualizarPerfil}
-                onCancelar={onCancelar}
-                onDescargarFactura={onDescargarFactura}
-            />
-        </main>
+        <>
+            <main className="wrapper">
+                <CuentaUsuario
+                    perfil={perfil}
+                    facturas={facturas}
+                    onActualizarPerfil={onActualizarPerfil}
+                    onCancelar={onCancelar}
+                    onDescargarFactura={onDescargarFactura}
+                />
+            </main>
+        <MainFooter/>
+        </>
+
     );
 }

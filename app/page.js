@@ -18,6 +18,7 @@ import filtrarPlanos from '@/lib/searchHelpers.js';
 
 import { obtenerPlanos } from "@/lib/firebaseHelpers";
 import Apploader from "@/components/(utilities)/AppLoader.jsx";
+import MainFooter from "@/components/(layout)/MainFooter.jsx";
 
 // Si tu imagen está en public/, usa "/fondo.jpg"
 // Si es de internet, usa la url completa y configúralo en next.config.js
@@ -48,7 +49,7 @@ export default function Home() {
     }
 
     return (
-        <div>
+        <>
             <div className="wrapper">
                 <ScrollToTopOnNavigation />
                 <h1 className={"smallerText"}>Inicio /</h1>
@@ -224,6 +225,7 @@ export default function Home() {
                 </ContentSection>
             </div>
             <div className={"add100"}></div>
-        </div>
+            <MainFooter/>
+        </>
     );
 }

@@ -1,6 +1,6 @@
 import './globals.css';
 import MainNav from '../components/(layout)/MainNav';
-import MainFooter from '../components/(layout)/MainFooter';
+
 import { Toaster } from 'react-hot-toast';
 
 import { UserProvider } from "@/context/UserContext";
@@ -22,7 +22,6 @@ export default function RootLayout({ children }) {
                     <div style={{ position: 'relative' }}>
                         <MainNav />
                         {children}
-                        <MainFooter />
                     </div>
                     <Toaster position={"top-center"} />
                 </AppLoader>
