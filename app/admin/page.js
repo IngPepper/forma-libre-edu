@@ -32,13 +32,13 @@ export default function AdminPage() {
     return (
         <section className="wrapper">
             <h1 className={"smallerText"}>Admin Powers /</h1>
-            <div className={"add500"}></div>
-            <div className={"add500"}></div>
             <AdminConsole
                 user={{ email: "admin@formalibre.com" }}
                 planos={planos}
                 setPlanos={setPlanos}
             />
+            <div className={"add500"}></div>
+            <div className={"add500"}></div>
         </section>
     );
 }

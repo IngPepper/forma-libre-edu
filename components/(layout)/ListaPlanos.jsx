@@ -82,15 +82,16 @@ export default function ListaPlanos({ planos = [] }) {
                                                 setLoadingAdd(true);
                                                 try {
                                                     await new Promise((res) => setTimeout(res, 400));
+                                                    const bundle = plano.niveles?.[0] || {};
                                                     addToCart({
                                                         id: String(plano.id),
                                                         imagen: plano.imagen,
                                                         titulo: plano.titulo,
                                                         descripcion: plano.descripcion,
                                                         categoria: plano.categoria,
-                                                        precio: parsePrecio(plano.precio),
-                                                        tamanoArchivo: plano.tamanoArchivo,
-                                                        tipoArchivo: plano.tipoArchivo,
+                                                        precio: parsePrecio(plano.precio || plano.niveles?.[0]?.precio || 0),
+                                                        tamanoArchivo: bundle.tamanoArchivo,
+                                                        tipoArchivo: bundle.tipoArchivo,
                                                         isDonated: plano.isDonated
                                                     }, 1);
                                                     toast.success("¡Producto agregado al carrito!", { duration: 1000 });

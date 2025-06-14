@@ -1,13 +1,19 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./AdminConsole.module.css";
 import { FaPlus, FaTrash, FaEdit, FaUpload } from "react-icons/fa";
 import { useUser } from "@/context/UserContext";
+import {
+    obtenerPlanos,
+    agregarPlano,
+    editarPlano,
+    eliminarPlano,
+    importarPlanos
+} from "@/lib/firebaseHelpers";
 
-// Plano y nivel vacíos
+// Factories
 function blankPlano() {
     return {
-        id: "",
         imagen: "",
         titulo: "",
         descripcion: "",
@@ -29,23 +35,33 @@ function blankNivel() {
     };
 }
 
-export default function AdminConsole({ planos, setPlanos }) {
+export default function AdminConsole({ }) {
     const { user } = useUser();
+    const [planos, setPlanos] = useState([]);
     const [editing, setEditing] = useState(null);
     const [form, setForm] = useState(blankPlano());
     const [importError, setImportError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
     const fileInputRef = useRef();
 
+    // Protege admin
     if (!user || (user.rol !== "admin" && !user.isAdmin)) {
         return null;
     }
+
+    // Cargar planos iniciales
+    useEffect(() => {
+        setLoading(true);
+        obtenerPlanos().then(setPlanos).finally(() => setLoading(false));
+    }, []);
 
     // CRUD Handlers
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    // Niveles handlers
+    // Niveles
     const handleAddNivel = () => {
         setForm({ ...form, niveles: [...(form.niveles || []), blankNivel()] });
     };
@@ -60,7 +76,7 @@ export default function AdminConsole({ planos, setPlanos }) {
         setForm({ ...form, niveles: newNiveles });
     };
 
-    // Enlaces por nivel
+    // Enlaces de nivel
     const handleAddNivelEnlace = (nivelIdx) => {
         const newNiveles = [...form.niveles];
         if (!newNiveles[nivelIdx].enlaces) newNiveles[nivelIdx].enlaces = [];
@@ -78,31 +94,56 @@ export default function AdminConsole({ planos, setPlanos }) {
         setForm({ ...form, niveles: newNiveles });
     };
 
-    // Crear o editar plano
-    const handleSubmit = (e) => {
+    // Submit: agrega o edita
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        let newPlanos;
-        if (editing) {
-            newPlanos = planos.map((p) => (p.id === editing ? { ...form, id: editing } : p));
-        } else {
-            newPlanos = [...planos, { ...form, id: Date.now() }];
+        setLoading(true);
+        try {
+            if (editing) {
+                await editarPlano(editing, form);
+                setMessage("Plano editado correctamente.");
+            } else {
+                await agregarPlano(form);
+                setMessage("Plano agregado correctamente.");
+            }
+            setForm(blankPlano());
+            setEditing(null);
+            const nuevosPlanos = await obtenerPlanos();
+            setPlanos(nuevosPlanos);
+        } catch (err) {
+            setMessage("Hubo un error al guardar el plano.");
+            console.error("Error en handleSubmit:", err);
+        } finally {
+            setLoading(false);
         }
-        setPlanos(newPlanos);
-        setForm(blankPlano());
-        setEditing(null);
     };
 
     // Borrar plano
-    const handleDelete = (id) => {
+    const handleDelete = async (id) => {
         if (!window.confirm("¿Seguro que deseas borrar este plano?")) return;
-        const newPlanos = planos.filter((p) => p.id !== id);
-        setPlanos(newPlanos);
+        setLoading(true);
+        try {
+            await eliminarPlano(id); // Tu helper: await deleteDoc(doc(db, "planos", id));
+            setMessage("Plano eliminado.");
+            setPlanos(await obtenerPlanos());
+        } catch (err) {
+            setMessage("Error al eliminar.");
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    // Editar plano
+    // Editar: carga datos en formulario
     const handleEdit = (plano) => {
-        setForm({ ...plano, niveles: plano.niveles || [] });
+        // Usa blankPlano como base para asegurar todos los campos
+        setForm({
+            ...blankPlano(),
+            ...plano,
+            niveles: plano.niveles ? plano.niveles.map((n) => ({ ...blankNivel(), ...n })) : []
+        });
         setEditing(plano.id);
+        setMessage("");
     };
 
     // Importar JSON
@@ -111,22 +152,22 @@ export default function AdminConsole({ planos, setPlanos }) {
         const file = e.target.files[0];
         if (!file) return;
         const reader = new FileReader();
-        reader.onload = (evt) => {
+        reader.onload = async (evt) => {
             try {
                 const data = JSON.parse(evt.target.result);
                 if (Array.isArray(data)) {
-                    setPlanos([
-                        ...planos,
-                        ...data.map((d) => ({
-                            ...d,
-                            id: d.id || Date.now() + Math.random(),
-                        })),
-                    ]);
+                    setLoading(true);
+                    await importarPlanos(data);
+                    setPlanos(await obtenerPlanos());
+                    setImportError("");
+                    setMessage("Planos importados correctamente.");
                 } else {
                     setImportError("El archivo debe contener un array de planos.");
                 }
             } catch (err) {
                 setImportError("El archivo no es un JSON válido.");
+            } finally {
+                setLoading(false);
             }
         };
         reader.readAsText(file);
@@ -137,12 +178,13 @@ export default function AdminConsole({ planos, setPlanos }) {
             <div className={styles.section}>
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <h3>{editing ? "Editar Plano" : "Agregar Nuevo Plano"}</h3>
-                    <input name="titulo" placeholder="Título" value={form.titulo} onChange={handleChange} required />
-                    <input name="imagen" placeholder="URL Imagen" value={form.imagen} onChange={handleChange} required />
-                    <input name="descripcion" placeholder="Descripción" value={form.descripcion} onChange={handleChange} />
-                    <input name="categoria" placeholder="Categoría" value={form.categoria} onChange={handleChange} />
-                    <input name="isDonated" placeholder="¿Donado? (vacío o donated)" value={form.isDonated} onChange={handleChange} />
+                    <input name="titulo" placeholder="Título" value={form.titulo || ""} onChange={handleChange} required />
+                    <input name="imagen" placeholder="URL Imagen" value={form.imagen || ""} onChange={handleChange} required />
+                    <input name="descripcion" placeholder="Descripción" value={form.descripcion || ""} onChange={handleChange} />
+                    <input name="categoria" placeholder="Categoría" value={form.categoria || ""} onChange={handleChange} />
+                    <input name="isDonated" placeholder="¿Donado? (vacío o donated)" value={form.isDonated || ""} onChange={handleChange} />
                     <input name="imagenGeneral" placeholder="Imagen General (opcional)" value={form.imagenGeneral || ""} onChange={handleChange} />
+
 
                     {/* ---- NIVELES ---- */}
                     <div>
@@ -157,35 +199,36 @@ export default function AdminConsole({ planos, setPlanos }) {
                                 <b>{idx === 0 ? "Bundle / Primer nivel" : `Nivel ${idx + 1}`}</b>
                                 <input
                                     placeholder="Nombre"
-                                    value={nivel.nombre}
+                                    value={nivel.nombre || ""}
                                     onChange={e => handleNivelChange(idx, "nombre", e.target.value)}
-                                    required={idx === 0} // bundle siempre debe tener nombre
+                                    required={idx === 0}
                                 />
                                 <input
                                     placeholder="Descripción"
-                                    value={nivel.descripcion}
+                                    value={nivel.descripcion || ""}
                                     onChange={e => handleNivelChange(idx, "descripcion", e.target.value)}
                                 />
                                 <input
                                     placeholder="Tamaño archivo"
-                                    value={nivel.tamanoArchivo}
+                                    value={nivel.tamanoArchivo || ""}
                                     onChange={e => handleNivelChange(idx, "tamanoArchivo", e.target.value)}
                                 />
                                 <input
                                     placeholder="Tipo archivo"
-                                    value={nivel.tipoArchivo}
+                                    value={nivel.tipoArchivo || ""}
                                     onChange={e => handleNivelChange(idx, "tipoArchivo", e.target.value)}
                                 />
                                 <input
                                     placeholder={idx === 0 ? "Precio Bundle" : "Precio"}
-                                    value={nivel.precio}
+                                    value={nivel.precio || ""}
                                     onChange={e => handleNivelChange(idx, "precio", e.target.value)}
                                 />
                                 <input
                                     placeholder="Info extra"
-                                    value={nivel.infoExtra}
+                                    value={nivel.infoExtra || ""}
                                     onChange={e => handleNivelChange(idx, "infoExtra", e.target.value)}
                                 />
+
                                 {/* Enlaces por nivel */}
                                 <div>
                                     <label>Enlaces:</label>
@@ -193,12 +236,12 @@ export default function AdminConsole({ planos, setPlanos }) {
                                         <div key={eidx} className={styles.enlaceRow}>
                                             <input
                                                 placeholder="Label"
-                                                value={enl.label}
+                                                value={enl.label || ""}
                                                 onChange={ev => handleNivelEnlaceChange(idx, eidx, "label", ev.target.value)}
                                             />
                                             <input
                                                 placeholder="URL"
-                                                value={enl.url}
+                                                value={enl.url || ""}
                                                 onChange={ev => handleNivelEnlaceChange(idx, eidx, "url", ev.target.value)}
                                             />
                                             <button type="button" onClick={() => handleRemoveNivelEnlace(idx, eidx)} className={styles.iconBtn}><FaTrash /></button>
@@ -214,10 +257,16 @@ export default function AdminConsole({ planos, setPlanos }) {
                     </div>
                     {/* ---- Fin NIVELES ---- */}
 
-                    <button type="submit" className={styles.primaryBtn}>{editing ? "Guardar cambios" : "Agregar"}</button>
+                    <button type="submit" className={styles.primaryBtn} disabled={loading}>
+                        {editing ? "Guardar cambios" : "Agregar"}
+                    </button>
                     {editing && (
-                        <button type="button" className={styles.secondaryBtn} onClick={() => { setForm(blankPlano()); setEditing(null); }}>Cancelar</button>
+                        <button type="button" className={styles.secondaryBtn} onClick={() => { setForm(blankPlano()); setEditing(null); setMessage(""); }}>
+                            Cancelar
+                        </button>
                     )}
+                    {message && <div className={styles.success}>{message}</div>}
+                    {loading && <div className={styles.loading}>Cargando...</div>}
                 </form>
             </div>
 
@@ -229,7 +278,7 @@ export default function AdminConsole({ planos, setPlanos }) {
                     style={{ display: "none" }}
                     onChange={handleImportJSON}
                 />
-                <button onClick={() => fileInputRef.current.click()} className={styles.primaryBtn}>
+                <button onClick={() => fileInputRef.current.click()} className={styles.primaryBtn} disabled={loading}>
                     <FaUpload /> Importar JSON
                 </button>
                 {importError && <div className={styles.error}>{importError}</div>}

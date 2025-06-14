@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from './Catalogo.module.css';
 import ListaPlanos from './ListaPlanos';
 import { BsBox2Heart } from "react-icons/bs";
@@ -19,7 +19,7 @@ function useMobile(breakpoint = 640) {
     return isMobile;
 }
 
-const PAGE_SIZE = 8; // Resultados iniciales
+const PAGE_SIZE = 8;
 
 export default function Catalogo({
                                      planos = [],
@@ -35,28 +35,32 @@ export default function Catalogo({
     const usarDropdown = isMobile || (categorias.length > 5);
     const { user } = useUser();
 
-    // Estado para el scroll infinito
     const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+    const loaderRef = useRef(null);
 
+    // Reiniciar al cambiar filtros o lista
     useEffect(() => {
         setVisibleCount(PAGE_SIZE);
     }, [categoriaActual, tipoCategoriaActual, planos]);
 
-    const handleScroll = useCallback(() => {
-        if (visibleCount >= planos.length) return;
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-            setVisibleCount(count => Math.min(count + PAGE_SIZE, planos.length));
-        }
-    }, [visibleCount, planos.length]);
-
+    // Trigger de scroll infinito
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [handleScroll]);
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setVisibleCount(prev => Math.min(prev + PAGE_SIZE, planos.length));
+            }
+        }, { threshold: 0.1 });
+
+        const loader = loaderRef.current;
+        if (loader) observer.observe(loader);
+
+        return () => {
+            if (loader) observer.unobserve(loader);
+        };
+    }, [planos.length]);
 
     const planosVisibles = planos.slice(0, visibleCount);
 
-    // Siempre ordenar alfabéticamente, dejando "Todos" arriba
     const categoriasOrdenadas =
         categorias[0] === "Todos"
             ? ["Todos", ...categorias.slice(1).sort((a, b) => a.localeCompare(b, "es"))]
@@ -73,12 +77,11 @@ export default function Catalogo({
                 <h1 className={styles.smallerText}>Auto CAD / Editables</h1>
                 <nav className={usarDropdown ? styles.categorias : styles.categoriasRow}>
                     <section className={styles.miniFlex}>
-                        {/* Dropdown Estados */}
                         <div className={styles.dropdownContainer}>
-                        <span className={styles.leyenda}>
-                            <TbFlagHeart className={styles.iconLeyenda} />
-                            Estados
-                        </span>
+                            <span className={styles.leyenda}>
+                                <TbFlagHeart className={styles.iconLeyenda} />
+                                Estados
+                            </span>
                             <div className={styles.selectWrapper}>
                                 <select
                                     className={styles.dropdown}
@@ -92,12 +95,12 @@ export default function Catalogo({
                                 <MdOutlineArrowDropDown className={styles.iconDropdown} />
                             </div>
                         </div>
-                        {/* Dropdown Categoría */}
+
                         <div className={styles.dropdownContainer}>
-                        <span className={styles.leyenda}>
-                            <BsBox2Heart className={styles.iconLeyenda} />
-                            Categoría
-                        </span>
+                            <span className={styles.leyenda}>
+                                <BsBox2Heart className={styles.iconLeyenda} />
+                                Categoría
+                            </span>
                             <div className={styles.selectWrapper}>
                                 <select
                                     className={styles.dropdown}
@@ -113,10 +116,12 @@ export default function Catalogo({
                         </div>
                     </section>
                 </nav>
+
                 <ListaPlanos planos={planosVisibles} perfil={user} />
+
                 {/* Loader visual o mensaje si se cargan todos */}
                 {visibleCount < planos.length ? (
-                    <div className={styles.loader}>Cargando más resultados...</div>
+                    <div ref={loaderRef} className={styles.loader}>Cargando más resultados...</div>
                 ) : (
                     planos.length === 0 ? <div className={styles.noResults}>Sin resultados.</div> : null
                 )}
