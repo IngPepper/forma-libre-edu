@@ -50,7 +50,7 @@ export function CartProvider({ children }) {
     // 2. Guardar carrito SÓLO si está "cargado"
     useEffect(() => {
         const uid = user?.uid || user?.idUsuario;
-        if (uid && cargado && Array.isArray(cart)) {
+        if (uid && cargado && Array.isArray(cart) && cart.length > 0) {
             const cartClean = cart.map(limpiarUndefined);
             const docRef = doc(db, "carts", uid);
             setDoc(docRef, { cart: cartClean }, { merge: true });

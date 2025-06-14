@@ -627,23 +627,29 @@
     .miniWrapper {
         display: flex;
     }
-    .carouselDot{
-        margin:  0.1rem 0;
-    }
     .carouselDots{
-        padding-left: 200px;
+        display: none;
     }
     .nivelLabel{
         font-size: .8rem;
         top: 25%;
     }
     .carouselLabel {
-        padding: 2rem 1rem;
         font-size: .8rem;
-        max-height: 100px;
-        min-height: 50px;
 
     }
+    .carouselSlide {
+        padding: 1rem;
+        margin: 0 auto;
+    }
+    .tipoDeArchivo{
+        margin: 0;
+    }
+    .estado, .categoria{
+        font-size: 0.7rem;
+    }
+
+
 
 }
 

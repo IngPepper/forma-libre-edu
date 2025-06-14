@@ -19,13 +19,12 @@ export default function RootLayout({ children }) {
         <UserProvider>
             <CartProvider>
                 <AppLoader>
-                    {/* TODO el contenido va aquí, dentro de AppLoader */}
-                    <MainNav />
-                    {children}
-                    <div className={"add500"}></div>
-                    <div className={"add500"}></div>
+                    <div style={{ position: 'relative' }}>
+                        <MainNav />
+                        {children}
+                        <MainFooter />
+                    </div>
                     <Toaster position={"top-center"} />
-                    <MainFooter />
                 </AppLoader>
             </CartProvider>
         </UserProvider>

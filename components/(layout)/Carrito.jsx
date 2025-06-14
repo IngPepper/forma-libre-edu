@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import React from "react"
 
+import { borrarCarritoDeUsuario } from "@/lib/firebaseHelpers";
+import { useUser } from "@/context/UserContext";
+
 export default function Carrito() {
     const {
         cart,
@@ -30,6 +33,7 @@ export default function Carrito() {
         );
     }
     const router = useRouter();
+    const { user } = useUser();
 
     return (
         <div className={"wrapper"}>
@@ -90,8 +94,11 @@ export default function Carrito() {
                 <div className={styles.acciones}>
                     <button
                         className={styles.btn}
-                        onClick={() => {
-                            clearCart();
+                        onClick={async () => {
+                            clearCart(); // Limpia estado local primero
+                            if (user?.uid || user?.idUsuario) {
+                                await borrarCarritoDeUsuario(user.uid || user.idUsuario);
+                            }
                             window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
                     >
@@ -105,6 +112,7 @@ export default function Carrito() {
                     </button>
                 </div>
             </section>
+            <div className={"add500"}></div>
         </div>
     );
 }

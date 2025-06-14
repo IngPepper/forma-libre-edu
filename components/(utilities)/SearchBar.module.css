@@ -5,7 +5,7 @@
     z-index: 99; /* Debajo del nav, que tiene z-index: 100 */
     width: 100%;
     max-width: 1024px; /* Debe coincidir con el ancho del nav */
-    margin: 0 auto;   /* Centra el contenedor */
+    margin: 1rem auto;   /* Centra el contenedor */
     padding: 0; /* Padding lateral igual que el nav */
 }
 
@@ -83,16 +83,17 @@
     border: none;
     font-size: 1.3rem;
     cursor: pointer;
-    margin-right: 0.3rem;
     color: var(--color-texto);
     opacity: 0.7;
     transition: opacity 0.15s, color 0.15s;
     padding: 0 0.3rem;
+    margin: 0;
 }
 .clearButton:hover, .clearButton:focus {
     opacity: 1;
     color: var(--color-texto-blanco);
     outline: none;
+    background-color: var(--color-texto);
 }
 
 /* Estilo general del botón de buscar */

@@ -175,9 +175,9 @@
         background: transparent;
         border: none;
     }
-    .menu{
+    .menu {
+        top: auto;
+        bottom: 3.2em; /* lo suficiente para separarlo del botón */
         right: 1rem;
-        top: 3rem;
     }
-
 }

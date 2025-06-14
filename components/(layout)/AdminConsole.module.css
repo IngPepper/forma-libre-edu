@@ -12,6 +12,8 @@
     animation: slideDown 0.25s ease-in-out forwards;
 }
 .section {
+    align-items: center;
+    justify-content: space-between;
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 2px 12px #0001;
@@ -123,8 +125,7 @@
     padding: 0.6em 2em;
     cursor: pointer;
     transition: background 0.13s, color 0.13s, box-shadow 0.13s;
-    margin-top: 0.9em;
-    margin-bottom: 0.4em;
+    margin: 0.9rem 0.4rem 0.4rem 0.4rem;
 }
 .primaryBtn:hover, .primaryBtn:focus {
     background: #b0ff81;

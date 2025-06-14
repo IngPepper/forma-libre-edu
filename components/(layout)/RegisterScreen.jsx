@@ -118,19 +118,7 @@ export default function RegisterScreen() {
                 <div className={styles.separator}><span>or</span></div>
                 */}
                     <form className={styles.form} onSubmit={handleSubmit} noValidate>
-                        <label className={styles.label}>
-                            Nombre
-                            <input
-                                className={`${styles.input} ${errors.name ? styles.errorInput : ''}`}
-                                name="name"
-                                type="text"
-                                autoComplete="name"
-                                value={form.name}
-                                onChange={handleChange}
-                                disabled={submitting}
-                            />
-                            {errors.name && <span className={styles.errorMsg}>{errors.name}</span>}
-                        </label>
+
                         <label className={styles.label}>
                             Correo
                             <input
@@ -143,6 +131,19 @@ export default function RegisterScreen() {
                                 disabled={submitting}
                             />
                             {errors.email && <span className={styles.errorMsg}>{errors.email}</span>}
+                        </label>
+                        <label className={styles.label}>
+                            Nombre
+                            <input
+                                className={`${styles.input} ${errors.name ? styles.errorInput : ''}`}
+                                name="name"
+                                type="text"
+                                autoComplete="name"
+                                value={form.name}
+                                onChange={handleChange}
+                                disabled={submitting}
+                            />
+                            {errors.name && <span className={styles.errorMsg}>{errors.name}</span>}
                         </label>
                         <label className={styles.label}>
                             Contraseña

@@ -8,8 +8,10 @@ import {
     agregarPlano,
     editarPlano,
     eliminarPlano,
-    importarPlanos
+    importarPlanos,
+    borrarCarritosVacios
 } from "@/lib/firebaseHelpers";
+import ModalConfirmacion from "@/components/(modals)/ModalConfirmacion";
 
 // Factories
 function blankPlano() {
@@ -144,6 +146,9 @@ export default function AdminConsole({ }) {
         });
         setEditing(plano.id);
         setMessage("");
+
+        // Scroll al inicio
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     // Importar JSON
@@ -172,6 +177,27 @@ export default function AdminConsole({ }) {
         };
         reader.readAsText(file);
     };
+
+    //Borrar Carritos Vacios
+    const handleBorrarCarritosVacios = () => {
+        setAccionPendiente(() => async () => {
+            setModalAbierto(false);
+            setLoading(true);
+            try {
+                await borrarCarritosVacios();
+                setMessage("Carritos vacíos eliminados correctamente.");
+            } catch (err) {
+                setMessage("Error al borrar carritos vacíos.");
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        });
+        setModalAbierto(true);
+    };
+
+    const [modalAbierto, setModalAbierto] = useState(false);
+    const [accionPendiente, setAccionPendiente] = useState(() => () => {});
 
     return (
         <div className={styles.adminConsole}>
@@ -278,10 +304,14 @@ export default function AdminConsole({ }) {
                     style={{ display: "none" }}
                     onChange={handleImportJSON}
                 />
+                <h3>Acciones DB</h3>
                 <button onClick={() => fileInputRef.current.click()} className={styles.primaryBtn} disabled={loading}>
                     <FaUpload /> Importar JSON
                 </button>
                 {importError && <div className={styles.error}>{importError}</div>}
+                <button onClick={handleBorrarCarritosVacios} className={styles.primaryBtn} disabled={loading}>
+                    <FaTrash /> Borrar carritos vacíos
+                </button>
             </div>
 
             <div className={styles.section}>
@@ -314,6 +344,13 @@ export default function AdminConsole({ }) {
                     ))}
                 </div>
             </div>
+            <ModalConfirmacion
+                abierto={modalAbierto}
+                onClose={() => setModalAbierto(false)}
+                onConfirmar={accionPendiente}
+                titulo="Confirmar acción"
+                mensaje="¿Estás seguro de borrar todos los carritos vacíos?"
+            />
         </div>
     );
 }

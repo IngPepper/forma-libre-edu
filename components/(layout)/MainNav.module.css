@@ -23,7 +23,6 @@
 /* === NAV WRAPPER GENERAL === */
 .navWrapper {
     position: sticky;
-    top: 0;        /* Se “engancha” al top de la ventana */
     z-index: 100;  /* Asegura que quede por encima de otros elementos */
     margin-top: 0; /* Elimina cualquier margen superior */
     display: flex; /* Usa Flexbox para organizar elementos hijos */
@@ -31,6 +30,8 @@
     padding: 0 var(--espaciado) var(--espaciado); /* Espaciado alrededor del nav */
     background-color: transparent; /* Color de fondo opcional */
     animation: slideDown 0.55s ease-out forwards;
+
+
 }
 
 /* === NAV CONTAINER === */
@@ -151,6 +152,18 @@
     .menuButton { display: flex; align-items: center; justify-content: center;}
     .accountButton { padding: 0.30rem; margin-bottom: 12px; }
     .accountText { display: none;}
+    .navWrapper {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); /* sombra hacia arriba */
+    }
+
+    .container {
+        border-radius: 12px; /* elimina bordes redondeados si quieres una apariencia más limpia */
+    }
 }
 
 /* === EXTRA PEQUEÑO === */

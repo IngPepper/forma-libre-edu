@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from 'react';
 import styles from './MainNav.module.css';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -24,12 +25,55 @@ function MainNav() {
 
     // Cierra sesión REAL en Firebase y actualiza el contexto
     const cerrarSesionFn = async () => {
-        await logout();          // Cierra sesión en Firebase Auth
+        await logout();
         if (refetchUser) {
-            await refetchUser(); // Refresca el contexto por si acaso
+            await refetchUser();
         }
-        router.push('/');        // Redirige al inicio (puedes usar window.location.href = "/" para reload completo)
+        router.push('/');
     };
+
+    // Sticky bottom nav hasta 542px del fondo (en móviles)
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const nav = document.querySelector(`.${styles.navWrapper}`);
+        if (!nav) return;
+
+        const handleScroll = () => {
+            const isMobile = window.innerWidth <= 645;
+            if (!isMobile) {
+                nav.style.position = '';
+                nav.style.bottom = '';
+                nav.style.top = '';
+                return;
+            }
+
+            const footer = document.querySelector('footer');
+            if (!footer) return;
+
+            const footerTop = footer.getBoundingClientRect().top;
+            const viewportHeight = window.innerHeight;
+
+            if (footerTop < viewportHeight + 10) {
+                nav.style.position = 'absolute';
+                nav.style.bottom = `${document.body.scrollHeight - footer.offsetTop + 10}px`;
+                nav.style.top = 'auto';
+            } else {
+                nav.style.position = 'fixed';
+                nav.style.bottom = '0';
+                nav.style.top = 'auto';
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+        handleScroll();
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleScroll);
+        };
+    }, []);
 
     return (
         <nav className={styles.navWrapper}>
@@ -57,10 +101,8 @@ function MainNav() {
                         >
                             {esCatalogo ? 'Inicio' : 'Planos'}
                         </Link>
-                        {/*<Link href={'/planes'} className={styles.navLink}>Precio</Link>*/}
                     </div>
 
-                    {/* ICONO DEL CARRITO */}
                     <Link href="/carrito" className={styles.cartLink} aria-label="Carrito">
                         <RiShoppingCartFill className={styles.cartIcon} />
                         {isClient && totalItems > 0 && (
@@ -70,11 +112,8 @@ function MainNav() {
 
                     <BurgerMenuDropdown />
 
-                    {/* SOLO muestra AccountMenu si tiene cuenta */}
                     {login ? (
-                        <AccountMenu
-                            onLogout={cerrarSesionFn}
-                        />
+                        <AccountMenu onLogout={cerrarSesionFn} />
                     ) : (
                         <Link href="/login" aria-label="Cuenta">
                             <button className={styles.accountButton} type="button">

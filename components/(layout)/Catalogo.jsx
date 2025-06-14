@@ -6,6 +6,7 @@ import { TbFlagHeart } from "react-icons/tb";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { useUser } from "@/context/UserContext";
 import RequireAccount from "@/components/(utilities)/RequireAccount";
+import SearchBar from "@/components/(utilities)/SearchBar.jsx";
 
 // Hook para detectar móvil
 function useMobile(breakpoint = 640) {
@@ -70,6 +71,7 @@ export default function Catalogo({
         tiposCategoria[0] === "Todos"
             ? ["Todos", ...tiposCategoria.slice(1).sort((a, b) => a.localeCompare(b, "es"))]
             : [...tiposCategoria].sort((a, b) => a.localeCompare(b, "es"));
+
 
     return (
         <RequireAccount>
