@@ -152,10 +152,27 @@ h1{
 .footerWrapper {
   flex-shrink: 0;
 }
- 
+
 .add500{
   height: 500px;
 }
+.add100{
+  height: 100px;
+}
+
+#nav-sticky-wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  pointer-events: none; /* evita tapar el footer en focus/tab */
+}
+
+#nav-sticky-wrapper nav {
+  pointer-events: auto; /* solo la nav es clickeable */
+}
+
 
 @media(max-width: 450px){
   .smallerText {

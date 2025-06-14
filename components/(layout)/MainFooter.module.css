@@ -1,6 +1,7 @@
 /* Wrapper del footer  */
 
 .footerWrapper {
+    position: relative;
     display: flex; /* Usa Flexbox para organizar elementos hijos */
     justify-content: center; /* Centra horizontalmente el contenido */
     /*animation: slideUp 0.55s ease-out forwards;*/
@@ -141,5 +142,11 @@
 .logo:hover {
     cursor: pointer; /* Cambia el cursor a mano para indicar interactividad */
     transform: scale(1.05); /* Efecto de escala al pasar el mouse */
+}
+
+@media (max-width: 500px) {
+    .footerWrapper {
+        padding-bottom: 100px;
+    }
 }
 

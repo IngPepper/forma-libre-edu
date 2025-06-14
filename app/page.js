@@ -212,15 +212,18 @@ export default function Home() {
                     image="/assets/im32h_rombos_lineas.jpg"
                     reverse
                 >
-                    <ul className={styles.textColor}>
-                        <li><b>Catálogo variado y actualizado</b>: Encuentra desde planos clásicos hasta propuestas innovadoras, siempre revisadas por profesionales.</li>
-                        <li><b>Accesibilidad</b>: Descarga, aprende y comparte sin costos ocultos ni procesos complicados.</li>
-                        <li><b>Comunidad activa</b>: Participa, pregunta, recibe retroalimentación y conecta con personas con tus mismos intereses.</li>
-                        <li><b>Inspiración y aprendizaje</b>: Acceso a contenido educativo, ejemplos prácticos y tendencias del mundo arquitectónico.</li>
-                        <li><b>Comparte tu trabajo</b>: Publica tus propios diseños y obtén reconocimiento, consejos y nuevas oportunidades.</li>
-                    </ul>
+                    <div className={"wrapper"}>
+                        <ul className={styles.textColor}>
+                            <li><b>Catálogo variado y actualizado</b>: Encuentra desde planos clásicos hasta propuestas innovadoras, siempre revisadas por profesionales.</li>
+                            <li><b>Accesibilidad</b>: Descarga, aprende y comparte sin costos ocultos ni procesos complicados.</li>
+                            <li><b>Comunidad activa</b>: Participa, pregunta, recibe retroalimentación y conecta con personas con tus mismos intereses.</li>
+                            <li><b>Inspiración y aprendizaje</b>: Acceso a contenido educativo, ejemplos prácticos y tendencias del mundo arquitectónico.</li>
+                            <li><b>Comparte tu trabajo</b>: Publica tus propios diseños y obtén reconocimiento, consejos y nuevas oportunidades.</li>
+                        </ul>
+                    </div>
                 </ContentSection>
             </div>
+            <div className={"add100"}></div>
         </div>
     );
 }

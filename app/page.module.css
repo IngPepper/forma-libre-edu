@@ -17,9 +17,8 @@
     flex-direction: column;
 }
 .textColor{
-    padding: var(--espaciado-doble);
     color: var(--color-texto-blanco);
-    text-align: justify;
+    text-align: left;
 }
 
 .catalogoItem {

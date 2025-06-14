@@ -46,8 +46,13 @@ export default function RegisterScreen() {
         if (!trimmedEmail) newErrors.email = "Email is required";
         else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(trimmedEmail)) newErrors.email = "Invalid email";
         if (!trimmedPassword) newErrors.password = "Password is required";
-        else if (trimmedPassword.length < 6) newErrors.password = "Min 6 characters";
-        else if (trimmedPassword.length > 18) newErrors.password = "Max 18 characters";
+        else if (trimmedPassword.length < 8) newErrors.password = "Mínimo 8 caracteres";
+        else if (trimmedPassword.length > 32) newErrors.password = "Máximo 32 caracteres";
+        else if (!/[A-Z]/.test(trimmedPassword)) newErrors.password = "Debe tener al menos una mayúscula";
+        else if (!/[a-z]/.test(trimmedPassword)) newErrors.password = "Debe tener al menos una minúscula";
+        else if (!/[0-9]/.test(trimmedPassword)) newErrors.password = "Debe tener al menos un número";
+        else if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(trimmedPassword)) newErrors.password = "Debe tener un caracter especial";
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -158,6 +163,13 @@ export default function RegisterScreen() {
                             />
                             {errors.password && <span className={styles.errorMsg}>{errors.password}</span>}
                         </label>
+                        <ul className={styles.passwordRequirements}>
+                            <li>Mínimo 8 caracteres</li>
+                            <li>Al menos una mayúscula (A-Z)</li>
+                            <li>Al menos una minúscula (a-z)</li>
+                            <li>Al menos un número (0-9)</li>
+                            <li>Al menos un caracter especial (!@#$...)</li>
+                        </ul>
                         <button className={styles.button} type="submit" disabled={submitting}>
                             {submitting ? "Registrando..." : "Regístrate"}
                         </button>

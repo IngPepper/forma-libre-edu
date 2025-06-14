@@ -96,7 +96,7 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.09);
     min-width: 160px;
     z-index: 20;
-    padding: 0.25em 0;
+    padding: 0;
 }
 .menuItem, .menuItemPremium {
     display: flex;
@@ -113,8 +113,10 @@
     transition: background 0.18s;
     transform: scale(1);
     border-radius: 0;
-
+    box-shadow: none;
+    margin-bottom: 0;
 }
+
 .menuItem:hover, .menuItemPremium:hover {
     background: var(--color-texto);
     color: var(--color-acento);
@@ -134,17 +136,17 @@
 .adminLegend {
     position: absolute;
     left: 50%;
-    top: 70%;/* Justo debajo del avatarButton */
+    top: 65%;/* Justo debajo del avatarButton */
     transform: translateX(-50%) translateY(6px); /* Centrado y separado 6px */
     z-index: 20;
-    min-width: 73px;
+    min-width: 50px;
     background: linear-gradient(90deg, #b0ff81 60%, #2aac63 100%);
     color: var(--color-texto);
     font-size: 12px;
     font-family: inherit;
     font-weight: bold;
     letter-spacing: 1px;
-    border-radius: 0 0 12px 12px;
+    border-radius: 12px;
     box-shadow: 0 2px 12px rgba(176, 255, 129, 0.13);
     border: 2px solid #b0ff81;
     text-align: center;
@@ -177,7 +179,13 @@
     }
     .menu {
         top: auto;
-        bottom: 3.2em; /* lo suficiente para separarlo del botón */
+        bottom: 3em; /* lo suficiente para separarlo del botón */
         right: 1rem;
     }
+    .adminLegend {
+        left: 45%;
+        top: 60%;/* Justo debajo del avatarButton */
+    }
 }
+
+

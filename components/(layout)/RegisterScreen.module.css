@@ -178,6 +178,13 @@
     text-decoration: underline solid;
 }
 
+.passwordRequirements{
+    padding:  0 1rem;
+    font-size: 0.75rem;
+    list-style: none;
+    color: var(--color-texto-suave);
+}
+
 @media (max-width: 500px){
     .modalWrapper {
         padding: 0;

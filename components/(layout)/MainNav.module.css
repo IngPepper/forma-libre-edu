@@ -9,44 +9,57 @@
 .logoMini {
     display: none;
 }
-.logoGrande:hover, .logoMini:hover {
+.logoGrande:hover,
+.logoMini:hover {
     cursor: pointer;
     transform: scale(1.05);
 }
 
 /* === ANIMACIÓN NAV === */
 @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-50px);}
-    to   { opacity: 1; transform: translateY(0);}
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* === NAV WRAPPER GENERAL === */
 .navWrapper {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    z-index: 100;  /* Asegura que quede por encima de otros elementos */
-    margin-top: 0; /* Elimina cualquier margen superior */
-    display: flex; /* Usa Flexbox para organizar elementos hijos */
-    justify-content: center; /* Centra horizontalmente el contenido */
-    padding: 0 var(--espaciado) var(--espaciado); /* Espaciado alrededor del nav */
-    background-color: transparent; /* Color de fondo opcional */
-    animation: slideDown 0.55s ease-out forwards;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 0 var(--espaciado) var(--espaciado);
+    background-color: transparent;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease-out;
+}
+
+.navReady {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* === NAV CONTAINER === */
 .container {
     width: 100%;
-    max-width: 1024px; /* Ancho máximo */
+    max-width: 1024px;
     display: grid;
-    grid-template-columns: auto 1fr auto; /* Logo | enlaces | botones */
-    align-items: center; /* Centrado vertical */
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
     gap: 1rem;
-
     background-color: var(--color-texto);
-    border-radius: 0 0 var(--espaciado) var(--espaciado); /* Bordes redondeados solo abajo */
-    box-shadow: var(--sombra); /* Sombra para profundidad */
+    border-radius: 0 0 var(--espaciado) var(--espaciado);
+    box-shadow: var(--sombra);
     padding: calc(var(--espaciado) * 1.5);
     height: auto;
 }
@@ -55,6 +68,7 @@
 .navActions {
     display: flex;
     align-items: center;
+    justify-content: end;
     gap: 1rem;
 }
 
@@ -66,7 +80,6 @@
     white-space: nowrap;
 }
 
-/* === ENLACE NAV === */
 .navLink {
     text-decoration: none;
     color: var(--color-texto-blanco);
@@ -80,13 +93,19 @@
 }
 
 /* === ICONOS === */
-.menuIcon { font-size: 24px; color: var(--color-texto); transition: font-size 0.2s;}
-.cartIcon { font-size: 2rem; }
-
+.menuIcon {
+    font-size: 24px;
+    color: var(--color-texto);
+    transition: font-size 0.2s;
+}
+.cartIcon {
+    font-size: 2rem;
+}
 .cartIcon:hover {
     color: var(--color-verde);
 }
 
+/* === CUENTA === */
 .accountButton {
     display: grid;
     grid-auto-flow: column;
@@ -97,8 +116,13 @@
     padding: var(--espaciado);
     transition: transform 0.2s, color 0.2s;
 }
-.accountButton:hover { transform: scale(1.05); color: var(--color-texto);}
-.accountText { display: inline-block; }
+.accountButton:hover {
+    transform: scale(1.05);
+    color: var(--color-texto);
+}
+.accountText {
+    display: inline-block;
+}
 
 /* === CARRITO === */
 .cartLink {
@@ -108,14 +132,11 @@
     align-items: center;
     font-size: 1rem;
     color: var(--color-tarjeta);
-    transition: color .2s;
+    transition: color 0.2s;
 }
-.cartLink:hover { color: var(--color-acento);}
-
-.cartIcon:hover {
-    color: var(--color-verde);
+.cartLink:hover {
+    color: var(--color-acento);
 }
-
 .cartBadge {
     position: absolute;
     top: -8px;
@@ -130,7 +151,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.13);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.13);
 }
 
 /* === BOTÓN DE MENÚ (BURGER) SOLO EN MÓVIL === */
@@ -142,39 +163,81 @@
     padding: 8px;
 }
 
-/* === RESPONSIVE: SOLO LOGO MINI EN MÓVIL === */
 @media (max-width: 645px) {
-    .logoGrande { display: none; }
-    .logoMini   { display: block; height: 36px; width: auto; max-width: 80px; object-fit: contain; }
-    .cartIcon { font-size: 1.9rem; }
-    .navLinks { opacity: 0; max-width: 0; pointer-events: none;}
-    .navActions { gap: 0; align-items: center; justify-content: center; }
-    .menuIcon { font-size: 30px;}
-    .menuButton { display: flex; align-items: center; justify-content: center;}
-    .accountButton { padding: 0.30rem; margin-bottom: 12px; }
-    .accountText { display: none;}
-    .navWrapper {
-        position: fixed;
-        bottom: 0;
-        top: auto;
-        width: 100%;
-        z-index: 1000;
-        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); /* sombra hacia arriba */
+    .logoGrande {
+        display: none;
     }
-
+    .logoMini {
+        display: block;
+        height: 36px;
+        width: auto;
+        max-width: 80px;
+        object-fit: contain;
+    }
+    .cartIcon {
+        font-size: 1.9rem;
+    }
+    .navLinks {
+        opacity: 0;
+        max-width: 0;
+        pointer-events: none;
+    }
+    .navActions {
+        gap: 0;
+        align-items: center;
+        justify-content: end;
+    }
+    .menuIcon {
+        font-size: 30px;
+    }
+    .menuButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .accountButton {
+        padding: 0.3rem;
+        margin-bottom: 12px;
+    }
+    .accountText {
+        display: none;
+    }
     .container {
-        border-radius: 12px; /* elimina bordes redondeados si quieres una apariencia más limpia */
+        border-radius: 12px;
+        padding: 0 var(--espaciado);
     }
 }
 
-/* === EXTRA PEQUEÑO === */
 @media (max-width: 395px) {
-    .accountButton { padding: 0.25rem }
-    .logoMini   { height: 30px; max-width: 60px;}
-    .container  { padding: 0 var(--espaciado) 0 var(--espaciado-doble); }
+    .accountButton {
+        padding: 0.25rem;
+    }
+    .logoMini {
+        height: 30px;
+        max-width: 60px;
+    }
+    .container {
+        padding: 0 0 0 var(--espaciado-doble);
+    }
 }
+
 @media (max-width: 376px) {
-    .accountButton { padding: 0.20rem }
-    .container  { justify-content: space-between;}
-    .logoMini   { height: 24px; max-width: 50px;}
+    .accountButton {
+        padding: 0.2rem;
+    }
+    .container {
+        justify-content: space-around;
+    }
+    .logoMini {
+        height: 24px;
+        max-width: 50px;
+    }
+}
+
+@media (min-width: 646px) {
+    .navWrapper {
+        top: 0;
+        bottom: auto;
+        box-shadow: none;
+    }
 }
