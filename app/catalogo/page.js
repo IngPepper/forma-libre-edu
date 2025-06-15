@@ -4,11 +4,8 @@ import { useEffect, useState, useMemo } from "react";
 import Catalogo from "../../components/(layout)/Catalogo";
 import { useRouter, useSearchParams } from "next/navigation";
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
-import SearchBar from "@/components/(utilities)/SearchBar";
-import filtrarPlanos from "@/lib/searchHelpers";
 import { obtenerPlanos } from "@/lib/firebaseHelpers";
 import LoadingPage from "@/components/(utilities)/LoadingPage.jsx";
-import MainFooter from "@/components/(layout)/MainFooter";
 
 function CatalogoPageInner() {
     const router = useRouter();
@@ -21,9 +18,6 @@ function CatalogoPageInner() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const perfil = { tieneMembresia: true };
-
-    const [searchQuery, setSearchQuery] = useState("");
-    const handleSearch = (q) => setSearchQuery(q);
 
     // --- Cargar datos firebase
     useEffect(() => {
@@ -105,36 +99,16 @@ function CatalogoPageInner() {
         router.push(`/catalogo?${params.toString()}`);
     };
 
-    // --- Filtro combinado
-    const planosFiltrados = useMemo(() => {
-        let resultado = planosMock.filter(p => {
-            const estadoPlano = typeof p.estado === "string" ? p.estado.trim() : "";
-            const categoriaPlano = typeof p.categoria === "string" ? p.categoria.trim() : "";
-            const pasaEstado = estadoParam === "Todos" || estadoPlano === estadoParam;
-            const pasaCategoria = categoriaParam === "Todos" || categoriaPlano === categoriaParam;
-            return pasaEstado && pasaCategoria;
-        });
-        if (searchQuery.trim() !== "") {
-            resultado = filtrarPlanos(resultado, searchQuery);
-        }
-        return resultado;
-    }, [planosMock, estadoParam, categoriaParam, searchQuery]);
-
-    // SOLO este loading es necesario:
     if (loading) return <LoadingPage />;
     if (error) return <section style={{padding: "2rem", color: "#a85353", textAlign: "center"}}>{error}</section>;
 
     return (
         <main>
-            <div className={"add200"}></div>
+            <div className={"add100"}></div>
             <ScrollToTopOnNavigation />
 
-            <section className={"wrapper"}>
-                <SearchBar onSearch={handleSearch} placeholder="Buscar en catálogo..." />
-            </section>
-
             <Catalogo
-                planos={planosFiltrados}
+                planos={planosMock}
                 categorias={estadosDisponibles}
                 categoriaActual={estadoParam}
                 onCategoriaChange={handleEstadoChange}
@@ -143,7 +117,6 @@ function CatalogoPageInner() {
                 onTipoCategoriaChange={handleCategoriaChange}
                 perfil={perfil}
             />
-            <MainFooter />
         </main>
     );
 }
