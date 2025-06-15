@@ -26,6 +26,7 @@ export default function Acerca() {
                 </ContentSection>
 
             </section>
+            <div className="add500"></div>
             <MainFooter />
         </>
 

@@ -26,27 +26,30 @@ export default function Carrito() {
 
     // Nueva función para crear la preferencia en el backend y redirigir a MP
     async function crearPreferencia(cart, user) {
+        // Prepara los items como Mercado Pago espera
         const items = cart.map(item => ({
-            id: item.id,
-            title: item.titulo,
-            quantity: item.cantidad,
+            title: item.titulo,                  // O usa el campo correcto de tu objeto
             unit_price: item.precio,
+            quantity: item.cantidad,
+            id: item.id,                      // Opcional, si quieres rastrear el producto
+            currency_id: "MXN"
         }));
 
         const body = {
             items,
             nombre: user?.nombre || "Cliente",
             correo: user?.email || "sin-email@dominio.com",
-            // Puedes agregar más campos si lo requiere tu backend (rfc, razonSocial, direccion, etc.)
+            // Puedes agregar más datos si tu backend los usa (rfc, razonSocial, direccion, etc.)
         };
 
-        const resp = await fetch("http://localhost:4000/api/create-preference", {
+        const res = await fetch("http://localhost:4000/api/create-preference", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
         });
-        const data = await resp.json();
-        return data.id;
+        const data = await res.json();
+        console.log("RES:", data);
+        return data;
     }
 
     if (isEmpty) {
