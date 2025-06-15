@@ -147,7 +147,7 @@ export default function Catalogo({
                                 onSearch={setSearchQuery}
                                 placeholder="Buscar..."
                             />
-                            <span className={styles.resultCount}>{planosFiltrados.length === 1 ? "1 resultado" : `${planosFiltrados.length}`}</span>
+                            <span className={styles.resultCount}>{planosFiltrados.length === 1 ? "1" : `${planosFiltrados.length}`}</span>
                         </div>
                     </nav>
                     <ListaPlanos planos={planosVisibles} perfil={user} />
