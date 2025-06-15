@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import { UserProvider } from "@/context/UserContext";
 import { CartProvider } from "@/context/CartContext";
 import AppLoader from "@/components/(utilities)/AppLoader.jsx";
+import Bubble from "@/components/(utilities)/Bubble";
 
 export const metadata = {
     title: "Forma Libre",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
                         <MainNav />
                         {children}
                     </div>
+                    <Bubble />
                     <Toaster position={"top-center"} />
                 </AppLoader>
             </CartProvider>
