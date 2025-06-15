@@ -9,11 +9,12 @@
   --color-texto-blanco: #fff;
   --color-border: #404040;
   --color-verde: #b0ff81;
-  --color-error: #a85353;
+  --color-error: #ffd68a;
   --fuente-grande: 5.5rem;
   --espaciado: 1rem;
   --espaciado-doble: 2rem;
   --borde-radius: 8px;
+  --color-principal: #41486a;
   --borde-radius-doble: 8px;
   --borde-oscuro: 2px solid #404040;
   --borde-claro: 2px solid #C1BAA1;

@@ -127,7 +127,7 @@ export default function CuentaUsuario() {
                         <ul>
                             {facturas.map(f => (
                                 <li key={f.id}>
-                                    {f.fecha} – {f.monto}
+                                    {f.fecha} – {f.monto || f.total || f.amount || f.precio || "Sin monto"}
                                     <button
                                         onClick={() => window.open(f.url, "_blank")}
                                         className={styles.buttonFactura}

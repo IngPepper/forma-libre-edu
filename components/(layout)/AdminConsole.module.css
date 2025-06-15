@@ -77,12 +77,12 @@
 }
 
 .nivelTag {
-    background: #e8e2c9;
-    color: #7d6c38;
-    border: 2px solid var(--color-acento);
+    background: #c9e7e8;
+    color: #11494e;
+    border: 2px solid var(--color-principal, #9c9e88);
     border-radius: 1.2em;
     padding: 0.22em 0.85em;
-    margin-right: 0.3em;
+    margin: 0.2em;
     font-size: 0.98em;
     box-shadow: 0 1px 2px #0001;
     display: inline-block;
@@ -97,7 +97,7 @@
 .enlaceRow input {
     max-width: 220px;
 }
-.iconBtn {
+.iconBtn, .iconBtnDel {
     background: #ecebde;
     color: #7d6c38;
     border: 2px solid #d7d3bf;
@@ -117,7 +117,11 @@
     color: #343403;
     outline: none;
 }
-.primaryBtn {
+
+.iconBtnDel:hover, .iconBtnDel:focus {
+    background-color: var(--color-error);
+}
+.primaryBtn .primaryBtnDel {
     background: var(--color-acento, #C1BAA1);
     color: #2b2b2b;
     border: 2px solid var(--color-border, #404040);
@@ -133,6 +137,10 @@
 .primaryBtn:hover, .primaryBtn:focus {
     background: #b0ff81;
     color: #353b15;
+}
+
+.primaryBtnDel:hover, .secondaryBtnDel:focus {
+    background: var(--color-error);
 }
 
 .secondaryBtn {
@@ -156,7 +164,7 @@
 .error {
     color: var(--color-error, #a85353);
     background: #f5e6e6;
-    border: 1.5px solid #d39e9e;
+    border: 2px solid #d39e9e;
     padding: 0.6em 1.2em;
     border-radius: 10px;
     font-weight: 600;
@@ -202,7 +210,6 @@
     font-size: 1em;
     border-radius: 18px;
     padding: 0.2em 0.8em;
-    margin-left: 0.7em;
     box-shadow: 0 1px 2px #0001;
 }
 
@@ -267,11 +274,11 @@
 .input {
     padding: 0.6em 1em;
     border-radius: 0.7em;
-    border: 1.5px solid var(--color-borde, #bbb);
+    border: 2px solid #bbb;
     font-size: 1em;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
-    background: var(--color-input-bg, #fafaff);
+    background: #fafaff;
     color: var(--color-texto, #3a3a3a);
     box-shadow: 0 2px 8px #00000008;
     margin-right: 0.5em;
@@ -292,7 +299,7 @@
 .success {
     color: #258a33;
     background: #e3faea;
-    border: 1.5px solid #49bb73;
+    border: 2px solid #49bb73;
     border-radius: 0.7em;
     padding: 0.7em 1.2em;
     margin-top: 1em;
@@ -306,7 +313,7 @@
 .error {
     color: #b72c2c;
     background: #fff0f0;
-    border: 1.5px solid #ed5f5f;
+    border: 2px solid #ed5f5f;
     border-radius: 0.7em;
     padding: 0.7em 1.2em;
     margin-top: 1em;
@@ -320,7 +327,7 @@
 .loading {
     color: #386fff;
     background: #f2f6ff;
-    border: 1.5px solid #b2d3fe;
+    border: 2px solid #b2d3fe;
     border-radius: 0.7em;
     padding: 0.7em 1.2em;
     margin-top: 1em;
@@ -349,7 +356,7 @@
     width: 100%;
     font-size: 1em;
     border-radius: 0.6em;
-    border: 2px solid var(--color-borde, #bbb);
+    border: 2px solid #bbb;
     padding: 0.5em 1em;
     background: #fff;
     transition: border-color 0.2s;

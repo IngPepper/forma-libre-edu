@@ -389,12 +389,12 @@ export default function AdminConsole({ }) {
                                                 value={enl.url || ""}
                                                 onChange={ev => handleNivelEnlaceChange(idx, eidx, "url", ev.target.value)}
                                             />
-                                            <button type="button" onClick={() => handleRemoveNivelEnlace(idx, eidx)} className={styles.iconBtn}><FaTrash /></button>
+                                            <button type="button" onClick={() => handleRemoveNivelEnlace(idx, eidx)} className={`${styles.iconBtn} ${styles.iconBtnDel}`}><FaTrash /></button>
                                         </div>
                                     ))}
                                     <button type="button" onClick={() => handleAddNivelEnlace(idx)} className={styles.iconBtn}><FaPlus /> Enlace</button>
                                 </div>
-                                <button type="button" onClick={() => handleRemoveNivel(idx)} className={styles.iconBtn}><FaTrash /> Eliminar nivel</button>
+                                <button type="button" onClick={() => handleRemoveNivel(idx)} className={`${styles.iconBtn} ${styles.iconBtnDel}`}><FaTrash /> Eliminar nivel</button>
                                 <hr />
                             </div>
                         ))}
@@ -433,7 +433,7 @@ export default function AdminConsole({ }) {
                 {importError && <div className={styles.error}>{importError}</div>}
                 {message && <div className={styles.success}>{message}</div>}
                 {importError && <div className={styles.error}>{importError}</div>}
-                <button onClick={handleBorrarCarritosVacios} className={styles.primaryBtn} disabled={loading}>
+                <button onClick={handleBorrarCarritosVacios} className={`${styles.primaryBtn} ${styles.primaryBtnDel}`} disabled={loading}>
                     <FaTrash /> Borrar carritos vacíos
                 </button>
             </div>
@@ -560,7 +560,7 @@ export default function AdminConsole({ }) {
                                 )}
                                 <div className={styles.actions}>
                                     <button onClick={() => handleEdit(plano)} className={styles.iconBtn}><FaEdit /></button>
-                                    <button onClick={() => handleDelete(plano.id)} className={styles.iconBtn}><FaTrash /></button>
+                                    <button onClick={() => handleDelete(plano.id)} className={`${styles.iconBtn} ${styles.iconBtnDel}`}><FaTrash /></button>
                                 </div>
                             </div>
                         </div>

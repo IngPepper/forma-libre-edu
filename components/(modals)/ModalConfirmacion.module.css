@@ -34,6 +34,10 @@
     cursor: pointer;
 }
 
+.botonConfirma:hover {
+    background: #fa3535;
+}
+
 .botonCancela {
     background: #ddd;
     color: #222;
