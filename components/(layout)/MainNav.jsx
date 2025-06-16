@@ -12,6 +12,7 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { RiShoppingCartFill } from "react-icons/ri";
 import { useIsClient } from '@/components/(utilities)/useIsClient';
 import { logout } from '@/lib/authHelpers';
+import { useNearBottom } from "@/components/(utilities)/useNearBottom";
 
 export default function MainNav() {
     const pathname = usePathname();
@@ -35,9 +36,17 @@ export default function MainNav() {
         router.push('/');
     };
 
+    const isNearBottom = useNearBottom(542);
+
     return (
-        <nav className={`${styles.navWrapper} ${hydrated ? styles.navReady : ''}`}>
-            <div className={styles.container}>
+        <nav className={`
+                ${styles.navWrapper} 
+                ${hydrated ? styles.navReady : ''} 
+            `}>
+            <div className={`                
+                ${styles.container}
+                ${isNearBottom ? styles.navAtBottom : ''}`
+            }>
                 <Link
                     href="/"
                     className={styles.logoLink}
