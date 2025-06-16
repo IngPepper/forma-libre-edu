@@ -8,7 +8,7 @@ export default function FormularioArchivoPage(){
 
     return (
         <>
-            <section className={"wrapperSmall"}>
+            <section className={"wrapper"}>
                 <h1 className={"smallerText"}>Comparte /</h1>
                 <FormularioArchivo />
                 <div className={"add500"}></div>

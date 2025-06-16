@@ -27,6 +27,10 @@
   padding: 0;
 }
 
+*:focus {
+  outline: none;
+}
+
 html, body {
   height: auto;
   font-family: 'Red Hat Mono', monospace;

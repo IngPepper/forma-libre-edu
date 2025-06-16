@@ -7,7 +7,7 @@ import MainFooter from "@/components/(layout)/MainFooter.jsx";
 export default function Acerca() {
     return (
         <>
-            <section className="wrapperSmall">
+            <section className="wrapper">
                 <h1 className="smallerText">¿Quienes <br/> somos? /</h1>
                 <ContentSection
                     title="Acerca de Forma Libre"

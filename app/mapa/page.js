@@ -5,7 +5,7 @@ import MainFooter from '@/components/(layout)/MainFooter';
 export default function MapaDelSitio() {
     return (
         <>
-            <section className="wrapperSmall">
+            <section className="wrapper">
                 <h1 className="smallerText">Mapa <br/> del Sitio /</h1>
                 <ContentSection
                     title="Mapa del Sitio"

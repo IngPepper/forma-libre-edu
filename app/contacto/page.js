@@ -5,7 +5,7 @@ import MainFooter from "@/components/(layout)/MainFooter.jsx";
 export default function Contacto() {
     return (
         <>
-            <section className="wrapperSmall">
+            <section className="wrapper">
                 <h1 className="smallerText">Queremos <br/> saber de ti /</h1>
                 <ContentSection
                     title="Contáctanos"

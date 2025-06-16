@@ -6,9 +6,8 @@ import MainFooter from "@/components/(layout)/MainFooter.jsx";
 export default function CheckoutPage(){
     return (
         <>
-            <section className={"wrapperSmall"}>
+            <section className={"wrapper"}>
                 <Checkout/>
-                <div className={"add500"}></div>
             </section>
         <MainFooter />
         </>

@@ -192,7 +192,6 @@ export default function CuentaUsuario() {
                         </a>
                     </div>
                 )}
-                <div className={"add500"}></div>
                 {/* Eliminar cuenta */}
                 <div className={styles.eliminar}>
                     <button

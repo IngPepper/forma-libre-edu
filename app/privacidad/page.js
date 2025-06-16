@@ -6,7 +6,7 @@ export default function Privacidad() {
     return (
 
         <>
-            <section className={`minimalContentView wrapperSmall`}>
+            <section className={`minimalContentView wrapper`}>
                 <h1 className="smallerText">Privacidad /</h1>
                 <ContentSection
                     title="Política de Privacidad"

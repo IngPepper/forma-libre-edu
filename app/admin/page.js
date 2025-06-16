@@ -32,7 +32,6 @@ export default function AdminPage() {
 
     return (
         <>
-            <div className={"add200"}></div>
             <section className="wrapper">
                 <h1 className={"smallerText"}>Admin Powers /</h1>
                 <AdminConsole

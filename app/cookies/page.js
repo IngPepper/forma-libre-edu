@@ -6,7 +6,7 @@ import MainFooter from "@/components/(layout)/MainFooter.jsx";
 export default function Cookies() {
     return (
         <>
-            <section className={"wrapperSmall"}>
+            <section className={"wrapper"}>
                 <h1 className={"smallerText"}>Cookies 🍪 /</h1>
                 <ContentSection
                     title="Política de Cookies"

@@ -5,7 +5,7 @@ import MainFooter from "@/components/(layout)/MainFooter.jsx";
 export default function Politicas() {
     return (
         <>
-            <section className="wrapperSmall">
+            <section className="wrapper">
                 <h1 className="smallerText">Políticas /</h1>
                 <ContentSection
                     title="Políticas Generales"
