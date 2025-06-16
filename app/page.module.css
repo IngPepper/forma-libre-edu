@@ -37,6 +37,12 @@
     z-index: 2;                    /* por si se superpone */
 }
 
+.whiteBackground {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
 /* Animaciones */
 
 @keyframes bounceInUp {

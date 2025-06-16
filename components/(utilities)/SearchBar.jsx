@@ -1,33 +1,55 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./SearchBar.module.css";
+import { AnimatePresence, motion } from "framer-motion";
 
-export default function SearchBar({ placeholder = "Buscar...", onSearch, autoFocus = false }) {
+export default function SearchBar({
+                                      placeholder = "Buscar...",
+                                      onSearch,
+                                      autoFocus = false,
+                                      debounceMs = 400, // puedes ajustar el delay aquí
+                                  }) {
     const [query, setQuery] = useState("");
     const inputRef = useRef(null);
+    const debounceTimeout = useRef();
 
-    // Auto-focus al montar (opcional, si quieres enfocar al entrar a la página)
     useEffect(() => {
         if (autoFocus && inputRef.current) {
             inputRef.current.focus();
         }
     }, [autoFocus]);
 
+    useEffect(() => {
+        // Limpiar el timeout anterior
+        clearTimeout(debounceTimeout.current);
+
+        // Solo debouncamos si hay handler de búsqueda
+        if (onSearch) {
+            debounceTimeout.current = setTimeout(() => {
+                onSearch(query);
+            }, debounceMs);
+        }
+
+        // Limpiar timeout si desmonta/cambia antes del tiempo
+        return () => clearTimeout(debounceTimeout.current);
+    }, [query, onSearch, debounceMs]);
+
     const handleChange = (e) => {
         setQuery(e.target.value);
-        if (onSearch) onSearch(e.target.value);
     };
 
     const handleClear = () => {
         setQuery("");
         if (onSearch) onSearch("");
-        if (inputRef.current) inputRef.current.focus(); // <-- focus tras limpiar
+        if (inputRef.current) inputRef.current.focus();
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // Forzamos búsqueda inmediata al enviar
+        clearTimeout(debounceTimeout.current);
         if (onSearch) onSearch(query);
-        if (inputRef.current) inputRef.current.focus(); // Opcional: focus tras buscar
+        if (inputRef.current) inputRef.current.focus();
     };
 
     return (
@@ -47,7 +69,7 @@ export default function SearchBar({ placeholder = "Buscar...", onSearch, autoFoc
                     </svg>
                 </span>
                 <input
-                    ref={inputRef} // <-- aquí el ref
+                    ref={inputRef}
                     className={styles.input}
                     type="search"
                     aria-label="Buscar"
@@ -66,16 +88,6 @@ export default function SearchBar({ placeholder = "Buscar...", onSearch, autoFoc
                         &#10005;
                     </button>
                 )}
-                {/*<button type="submit" className={styles.button} aria-label="Buscar">
-                    <span className={styles.buttonText}>Buscar</span>
-                    <span className={styles.buttonIcon}>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                             strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                            <circle cx="11" cy="11" r="8" />
-                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                        </svg>
-                    </span>
-                </button>*/}
             </form>
         </div>
     );

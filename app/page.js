@@ -18,6 +18,8 @@ import filtrarPlanos from '@/lib/searchHelpers.js';
 import { obtenerPlanos } from "@/lib/firebaseHelpers";
 import MainFooter from "@/components/(layout)/MainFooter.jsx";
 
+import { AnimatePresence, motion } from "framer-motion";
+
 // Si tu imagen está en public/, usa "/fondo.jpg"
 // Si es de internet, usa la url completa y configúralo en next.config.js
 
@@ -55,56 +57,79 @@ export default function Home() {
                 <SearchBar onSearch={handleSearch} autoFocus={false} />
                 {/* --- RESULTADOS FILTRADOS --- */}
                 {query.trim() !== "" && (
-                    <section className={styles2.wrapperTop}>
+                    <section className={`${styles2.wrapperTop} ${styles.whiteBackground}`}>
                         <h3 style={{
                             color: "#2b2b2b",
                             margin: "1rem 0",
-
-
                         }}>Resultados de búsqueda:</h3>
-                        {filteredPlanos.length === 0 ? (
-                            <div style={{
-                                color: "#953232",
-                                margin: "0",
-                                background: "#f9f9f9",
-                                borderRadius: "10px",
-                                boxShadow:"var(--sombra)",
-                                padding: "1rem",
-
-                            }}>
-                                No se encontraron resultados.
-                            </div>
-                        ) : (
-                            <ul style={{ padding: 0, listStyle: "none" }}>
-                                {filteredPlanos.map((plano, idx) => (
-                                    <li
-                                        key={plano.id}
-                                        className={`${styles.catalogoItem} ${styles.resultItemAnim}`}
+                        <ul style={{ padding: 0, listStyle: "none" }}>
+                            {/*Framer Motion*/}
+                            <AnimatePresence>
+                                {filteredPlanos.length === 0 ? (
+                                    <motion.div
+                                        key="no-results"
+                                        initial={{ opacity: 0, y: 12 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -12 }}
+                                        transition={{ duration: 0.18 }}
                                         style={{
+                                            color: "#953232",
+                                            margin: "0",
                                             background: "#f9f9f9",
-                                            margin: "1rem 0",
                                             borderRadius: "10px",
                                             boxShadow: "var(--sombra)",
                                             padding: "1rem",
-                                            cursor: "pointer",
-                                            transition: "background 0.2s",
-                                            animationDelay: `${idx * 60}ms`, // <-- AQUÍ ya tienes idx
                                         }}
                                     >
-                                        <Link href={`/levantamientos/${plano.id}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
-                                            <h4>{plano.titulo}</h4>
-                                            <p>
-                                                <b>Categoría:</b> {plano.categoria} &nbsp;
-                                                <b>Estado:</b> {plano.estado || plano.isDonated || "N/A"}
-                                            </p>
-                                            <p>{plano.descripcion}</p>
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
+                                        No se encontraron resultados.
+                                    </motion.div>
+                                ) : (
+                                    filteredPlanos.map((plano, idx) => (
+                                        <motion.li
+                                            key={plano.id}
+                                            className={`${styles.catalogoItem} ${styles.resultItemAnim}`}
+                                            style={{
+                                                background: "#f9f9f9",
+                                                margin: "1rem 0",
+                                                borderRadius: "10px",
+                                                boxShadow: "var(--sombra)",
+                                                padding: "1rem",
+                                                cursor: "pointer",
+                                                transition: "background 0.2s",
+                                                // animationDelay: `${idx * 60}ms`,
+                                            }}
+                                            initial={{ opacity: 0, y: 32 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -24 }}
+                                            transition={{
+                                                type: "spring",
+                                                stiffness: 320,
+                                                damping: 22,
+                                                duration: 0
+                                            }}
+                                            whileHover={{
+                                                scale: 1.05,
+                                                y: -4,
+                                                backgroundColor: "#C1BAA1",
+                                            }}
+
+                                        >
+                                            <Link href={`/levantamientos/${plano.id}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+                                                <h4>{plano.titulo}</h4>
+                                                <p>
+                                                    <b>Categoría:</b> {plano.categoria} &nbsp;
+                                                    <b>Estado:</b> {plano.estado || plano.isDonated || "N/A"}
+                                                </p>
+                                                {/*<p>{plano.descripcion}</p>*/}
+                                            </Link>
+                                        </motion.li>
+                                    ))
+                                )}
+                            </AnimatePresence>
+                        </ul>
                     </section>
                 )}
+
                 <CollapsibleSection
                     maxHeight = {600}
                 >
