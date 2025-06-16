@@ -23,7 +23,7 @@ export default function Bubble({ threshold = 400, offsetBottom = "5.5rem" }) {
             className={`${styles.bubble} ${styles.bubbleReset} ${visible ? styles.visible : ""}`}
             onClick={scrollToTop}
             aria-label="Volver al inicio"
-            style={{ bottom: offsetBottom, right: "2rem" }}
+            style={{ bottom: offsetBottom, right: "1rem" }}
             type="button"
         >
             <FaArrowUp />

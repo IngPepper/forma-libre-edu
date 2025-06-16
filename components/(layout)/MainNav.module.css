@@ -180,7 +180,8 @@
         font-size: 1.7rem;
     }
     .container.navAtBottom {
-        border: 2px solid var(--color-tarjeta);  /* O el color que quieras */
+        border: 2px solid var(--color-tarjeta); /* O el color que quieras */
+        margin-bottom: var(--espaciado);
     }
     .navLinks {
         opacity: 0;

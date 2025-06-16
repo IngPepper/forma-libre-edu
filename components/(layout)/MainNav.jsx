@@ -36,7 +36,7 @@ export default function MainNav() {
         router.push('/');
     };
 
-    const isNearBottom = useNearBottom(542);
+    const isNearBottom = useNearBottom(600);
 
     return (
         <nav className={`
