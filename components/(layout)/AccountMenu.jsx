@@ -80,7 +80,7 @@ export default function AccountMenu({ onLogout = () => {} }) {
                         {esAdmin && (
                             <Link href="/admin" className={styles.menuItem} onClick={() => setOpen(false)}>
                                 <GrUserAdmin className={styles.menuIconSmall} />
-                                <span>Admin Panel</span>
+                                <span>Panel</span>
                             </Link>
                         )}
                         <button

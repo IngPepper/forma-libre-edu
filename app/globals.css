@@ -27,8 +27,9 @@
   padding: 0;
 }
 
-*:focus {
+button, a, input, textarea, select, svg {
   outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html, body {

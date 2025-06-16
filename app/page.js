@@ -6,7 +6,6 @@ import TripticoGeneral from "@/components/(layout)/TripticoGeneral";
 
 import SearchBar  from "@/components/(utilities)/SearchBar";
 import Image from "next/image";
-import ContentPriceCard from "@/components/(layout)/ContentPriceCard";
 import romboRojo from '@/public/assets/im16h_rombo_rojo.jpg';
 import imageTest from '@/public/assets/im19h_rotulador_lineas.jpg';
 import Link from "next/link";
@@ -17,7 +16,6 @@ import React, { useState, useEffect } from "react";
 import filtrarPlanos from '@/lib/searchHelpers.js';
 
 import { obtenerPlanos } from "@/lib/firebaseHelpers";
-import Apploader from "@/components/(utilities)/AppLoader.jsx";
 import MainFooter from "@/components/(layout)/MainFooter.jsx";
 
 // Si tu imagen está en public/, usa "/fondo.jpg"
@@ -78,18 +76,19 @@ export default function Home() {
                             </div>
                         ) : (
                             <ul style={{ padding: 0, listStyle: "none" }}>
-                                {filteredPlanos.map(plano => (
+                                {filteredPlanos.map((plano, idx) => (
                                     <li
                                         key={plano.id}
-                                        className={styles.catalogoItem}
+                                        className={`${styles.catalogoItem} ${styles.resultItemAnim}`}
                                         style={{
                                             background: "#f9f9f9",
                                             margin: "1rem 0",
                                             borderRadius: "10px",
-                                            boxShadow:"var(--sombra)",
+                                            boxShadow: "var(--sombra)",
                                             padding: "1rem",
                                             cursor: "pointer",
-                                            transition: "background 0.2s"
+                                            transition: "background 0.2s",
+                                            animationDelay: `${idx * 60}ms`, // <-- AQUÍ ya tienes idx
                                         }}
                                     >
                                         <Link href={`/levantamientos/${plano.id}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>

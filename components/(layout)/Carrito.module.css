@@ -201,7 +201,7 @@
 .empty {
     height: auto;
     text-align: left;
-    padding: 4.2em 1.2em;
+    padding: 1rem;
     color: var(--color-texto-suave, #5a5a5a);
     font-size: 1.14em;
 }

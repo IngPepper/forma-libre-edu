@@ -37,3 +37,28 @@
     z-index: 2;                    /* por si se superpone */
 }
 
+/* Animaciones */
+
+@keyframes bounceInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-6px) scale(1.05);
+    }
+    80% {
+        transform: translateY(3px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Aplica la animación solo a los nuevos resultados */
+.resultItemAnim {
+    animation: bounceInUp 0.5s cubic-bezier(.48,1.41,.36,1.03) both;
+    /* Puedes ajustar la duración y timing para hacerlo más suave o rápido */
+}

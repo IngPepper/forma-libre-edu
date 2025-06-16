@@ -4,15 +4,15 @@
     padding: var(--espaciado-doble);
     max-width: 99vw;
     display: flex;
-    background: var(--color-fondo-claro, #F5F4ED);
     border-radius: var(--borde-radius-doble, 18px);
     margin: 2.5rem auto;
     align-items: stretch;
     position: relative;
     animation: slideDown 0.25s ease-in-out forwards;
+    background-color: #fff;
 }
 .detalleImageWrapper{
-    background: var(--color-fondo);
+    background: var(--color-texto-blanco);
     border-radius: var(--borde-radius-doble, 18px);
     box-shadow: var(--sombra);
     display: flex;
@@ -154,10 +154,9 @@
     font-size: 2.5rem;
     font-weight: bolder;
     color: var(--color-texto, #222);
-    margin-bottom: .5rem;
     line-height: 1.15;
     padding: 1rem;
-    border-radius: 18px;
+    border-radius:  18px 18px 0 0;
     background: var(--color-texto-blanco);
 }
 
@@ -201,7 +200,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.1em;
-    padding-top: 2rem;
+    padding: 1rem ;
+    margin-bottom: 0.5rem;
+    background-color: var(--color-texto-blanco);
+    border-radius: 0 0 18px 18px;
 }
 
 .backBtn {
@@ -355,7 +357,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 1.4rem;
-    margin-bottom: 1.1rem;
+    padding: 0.5rem 1rem;
+    margin: 1.1rem 0 0 0;
+    border-radius: 18px;
+    background-color: var(--color-texto-blanco);
 }
 
 .carouselBtn {
@@ -491,7 +496,7 @@
 
 .dotNumber {
     font-size: 0.9rem;
-    color: var(--color-texto-blanco);
+    color: var(--color-texto-suave);
     /* Ajusta color y margen a tu gusto */
 }
 
@@ -599,7 +604,7 @@
 @media (max-width: 510px) {
     .detalle {
         padding: 0.5rem;
-        gap: 1.2rem;
+        gap: 0;
     }
     .imagenBox {
         min-width: 110px;

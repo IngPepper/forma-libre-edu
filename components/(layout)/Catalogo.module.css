@@ -15,11 +15,11 @@
     max-width: 1024px;
     z-index: 10;
     background: var(--color-fondo-claro, #ECEBDE);
-    padding: var(--espaciado) var(--espaciado-doble);
+    padding: 1rem 0.5rem 0 0.5rem;
     display: flex;
     flex-direction: column; /* Importante para centrar dropdown/leyenda */
     align-items: center;    /* Centra hijos horizontalmente */
-    gap: 0.7rem;
+    gap: 0;
     border: 2px solid var(--color-border);
     box-shadow: var(--sombra);
     border-radius: 12px;

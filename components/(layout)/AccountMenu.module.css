@@ -97,6 +97,8 @@
     min-width: 160px;
     z-index: 20;
     padding: 0;
+    animation: growUpBounce 310ms cubic-bezier(.45,1.42,.34,1.01);
+    animation-fill-mode: backwards;
 }
 .menuItem, .menuItemPremium {
     display: flex;
@@ -114,7 +116,7 @@
     transform: scale(1);
     border-radius: 0;
     box-shadow: none;
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .menuItem:hover, .menuItemPremium:hover {
@@ -180,7 +182,7 @@
     .menu {
         top: auto;
         bottom: 3em; /* lo suficiente para separarlo del botón */
-        right: 1rem;
+        right: 2.5rem;
     }
     .adminLegend {
         left: 45%;
@@ -188,4 +190,33 @@
     }
 }
 
+/*Animaciones*/
+
+.menuItem, .menuItemPremium {
+    animation: growUpBounce 340ms cubic-bezier(.45,1.42,.34,1.01);
+    animation-fill-mode: backwards;
+}
+
+.menuItem:nth-child(1) { animation-delay: 70ms; }
+.menuItem:nth-child(2) { animation-delay: 130ms; }
+.menuItem:nth-child(3) { animation-delay: 180ms; }
+.menuItem:nth-child(4) { animation-delay: 220ms; }
+
+@keyframes growUpBounce {
+    0% {
+        transform: translateY(30%) scaleY(0.8);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(-5%) scaleY(1.05);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(2%) scaleY(0.97);
+    }
+    100% {
+        transform: translateY(0%) scaleY(1);
+        opacity: 1;
+    }
+}
 

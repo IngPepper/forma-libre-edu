@@ -104,7 +104,6 @@ function CatalogoPageInner() {
 
     return (
         <main>
-            <div className={"add100"}></div>
             <ScrollToTopOnNavigation />
 
             <Catalogo
