@@ -236,6 +236,7 @@
 
 @media (min-width: 646px) {
     .navWrapper {
+        position: relative;
         top: 0;
         bottom: auto;
         box-shadow: none;
