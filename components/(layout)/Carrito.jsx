@@ -61,6 +61,7 @@ export default function Carrito() {
                         Ir al catálogo
                     </Link>
                 </div>
+                <div className={"add500"}></div>
             </section>
         );
     }

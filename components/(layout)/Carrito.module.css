@@ -199,7 +199,7 @@
 }
 
 .empty {
-    height: 100dvh;
+    height: auto;
     text-align: left;
     padding: 4.2em 1.2em;
     color: var(--color-texto-suave, #5a5a5a);
