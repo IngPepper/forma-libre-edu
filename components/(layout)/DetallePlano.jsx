@@ -144,7 +144,7 @@ export default function DetallePlano({
                         >
                             <FaArrowLeft size={16} />
                         </button>
-                        <span>Atrás</span>
+                        <span className={styles.invisible}>Atrás</span>
                     </div>
                 </div>
                 <div className={styles.detalleImageWrapper}>
