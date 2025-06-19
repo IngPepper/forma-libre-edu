@@ -51,6 +51,17 @@ export default function AdminConsole({ }) {
     const fileInputRef = useRef();
 
 
+    const [modalAbierto, setModalAbierto] = useState(false);
+    const [accionPendiente, setAccionPendiente] = useState(() => () => {});
+    const [modalMensaje, setModalMensaje] = useState("");
+    const [modalTitulo, setModalTitulo] = useState("");
+
+    const [ordenesPendientes, setOrdenesPendientes] = useState([]);
+    const [loadingOrdenes, setLoadingOrdenes] = useState(false);
+    const [accionCompletada, setAccionCompletada] = useState(false);
+
+
+
     // Protege admin
     if (!user || (user.rol !== "admin" && !user.isAdmin)) {
         return null;
@@ -192,29 +203,26 @@ export default function AdminConsole({ }) {
 
     //Borrar Carritos Vacios
     const handleBorrarCarritosVacios = () => {
-        setAccionPendiente(() => async () => {
-            setModalAbierto(false);
-            setLoading(true);
-            try {
-                await borrarCarritosVacios();
-                setMessage("Carritos vacíos eliminados correctamente.");
-            } catch (err) {
-                setMessage("Error al borrar carritos vacíos.");
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        });
+        setModalMensaje("¿Estás seguro de borrar los carritos vacíos?");
         setModalAbierto(true);
+        setAccionCompletada(false);
     };
 
-    const [modalAbierto, setModalAbierto] = useState(false);
-    const [accionPendiente, setAccionPendiente] = useState(() => () => {});
-    const [modalMensaje, setModalMensaje] = useState("");
-    const [modalTitulo, setModalTitulo] = useState("");
+    const handleConfirmar = async () => {
+        setLoading(true);
+        try {
+            await borrarCarritosVacios();
+            setModalMensaje("Carritos vacíos eliminados correctamente.");
+            setAccionCompletada(true);
+        } catch (err) {
+            setModalMensaje("Error al borrar carritos vacíos.");
+            setAccionCompletada(true);
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-    const [ordenesPendientes, setOrdenesPendientes] = useState([]);
-    const [loadingOrdenes, setLoadingOrdenes] = useState(false);
 
 // Cargar órdenes pendientes/fallidas al cargar admin
     useEffect(() => {
@@ -560,7 +568,30 @@ export default function AdminConsole({ }) {
                                 )}
                                 <div className={styles.actions}>
                                     <button onClick={() => handleEdit(plano)} className={styles.iconBtn}><FaEdit /></button>
-                                    <button onClick={() => handleDelete(plano.id)} className={`${styles.iconBtn} ${styles.iconBtnDel}`}><FaTrash /></button>
+                                    <button
+                                        onClick={() => {
+                                            setModalTitulo("Eliminar plano");
+                                            setModalMensaje("¿Seguro que deseas eliminar este plano?");
+                                            setAccionPendiente(() => async () => {
+                                                setLoading(true);
+                                                try {
+                                                    await eliminarPlano(plano.id); // tu helper para borrar el doc
+                                                    setMessage("Plano eliminado.");
+                                                    setPlanos(await obtenerPlanos());
+                                                } catch (err) {
+                                                    setMessage("Error al eliminar.");
+                                                    console.error(err);
+                                                } finally {
+                                                    setLoading(false);
+                                                    setModalAbierto(false);
+                                                }
+                                            });
+                                            setModalAbierto(true);
+                                        }}
+                                        className={`${styles.iconBtn} ${styles.iconBtnDel}`}
+                                    >
+                                        <FaTrash />
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -569,10 +600,12 @@ export default function AdminConsole({ }) {
             </div>
             <ModalConfirmacion
                 abierto={modalAbierto}
+                titulo="Confirmar borrado"
+                mensaje={modalMensaje}
                 onClose={() => setModalAbierto(false)}
                 onConfirmar={accionPendiente}
-                titulo={modalTitulo}
-                mensaje={modalMensaje}
+                accionCompletada={accionCompletada}
+                loading={loading}
             />
         </div>
     );
