@@ -55,7 +55,7 @@
     margin-top: .3rem;
     margin-bottom: .5rem;
     padding: .5rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-tarjeta);
     border-radius: 6px;
 }
 .perfilForm button {
@@ -74,13 +74,13 @@
 }
 .botonEliminar {
     background: var(--color-texto);
-    color: #ec4343;
+    color: var(--color-error-oscuro);
     padding: 0.6rem 1.4rem;
     border-radius: 0.7rem;
     font-weight: bold;
     cursor: pointer;
     margin-top: 1.5rem;
-    border: 2px solid #ec4343;
+    border: 2px solid var(--color-error-border);
 
 }
 .botonEliminar[disabled] {
@@ -89,8 +89,8 @@
 }
 
 .botonEliminar:hover {
-    background: #ec4343;
-    color: #fff;
+    background: var(--color-error);
+    color:  var(--color-texto);
 }
 
 .eliminar {
@@ -103,9 +103,6 @@
     transition: background 0.2s;
 }
 
-.eliminar:hover {
-    background: #fff2f2;
-}
 
 .eliminar .botonEliminar {
     margin-top: 0;

@@ -7,7 +7,7 @@
     border-radius: 50%;
     width: 44px;
     height: 44px;
-    color: #7e6c37;
+    color: var(--color-enlace);
     border: 2px solid var(--color-border, #beb28f);
     box-shadow: 0 1px 4px #0001;
     transition: background 0.18s, box-shadow 0.12s, color 0.15s;
@@ -31,7 +31,7 @@
 
 .bubbleReset {
     background: none;
-    border: 2px solid #d7d3bf;
+    border: 2px solid var(--color-fondo-item);
     outline: none;
     box-shadow: none;
     color: inherit;
@@ -46,14 +46,15 @@
 
 
 .bubble.visible {
+    color: var(--color-fondo);
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0) scale(1);
 }
 .bubble:hover,
 .bubble:focus {
-    background: #c1baa1cc;
+    background: var(--color-fondo);
     color: var(--color-texto-blanco, #fff);
-    box-shadow: 0 4px 12px #0002;
+    box-shadow: var(--sombra);
     outline: none;
 }

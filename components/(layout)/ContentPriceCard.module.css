@@ -132,7 +132,7 @@
 }
 
 .buyButton:hover {
-    background: #8a8167;
+    background: var(--color-secondary-btn);
 }
 
 /* Responsive */

@@ -13,7 +13,7 @@
     transition: box-shadow 0.3s, transform 0.2s;
 }
 .promo:hover {
-    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    box-shadow: var(--sombra);
     transform: translateY(-2px) scale(1.01);
 }
 

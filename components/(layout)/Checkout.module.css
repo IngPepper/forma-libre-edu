@@ -1,6 +1,6 @@
 .checkout {
-    max-width: 440px;
-    background: #fff;
+    max-width: 600px;
+    background: var(--color-fondo-item);
     padding: 2.5em 1.7em 2.2em 1.7em;
     font-family: inherit;
     animation: fadein .33s;
@@ -28,7 +28,7 @@
 }
 
 .lista {
-    background: #f6fbe5;
+    background:  var(--color-fondo-item);
     border-radius: 9px;
     padding: 1.1em 1em 0.9em 1.1em;
     margin-bottom: 1.5em;
@@ -39,13 +39,13 @@
 
 .listaItem {
     margin-top: 0.35em;
-    border-top: 1px solid #e8ecd5;
+    border-top: 1px solid  var(--color-categoria-fondo);
     padding-top: 0.32em;
 }
 
 .listaItem:not(:first-child) {
     margin-top: 0.35em;
-    border-top: 1px solid #e8ecd5;
+    border-top: 1px solid var(--color-categoria-fondo);
     padding-top: 0.32em;
 }
 
@@ -53,7 +53,7 @@
     text-align: right;
     margin-bottom: 2em;
     font-size: 2rem;
-    color: #1a3e0d;
+    color: var(--color-principal);
 }
 
 .form {
@@ -75,8 +75,8 @@
 .input {
     padding: .65em 1em;
     border-radius: 8px;
-    border: 1.5px solid #e1e3ce;
-    background: #f8f8f4;
+    border: 1.5px solid var(--color-texto);
+    background: var(--color-fondo-item);
     font-size: 1em;
     margin-top: 0.15em;
     transition: border .18s;
@@ -84,8 +84,8 @@
 
 .input:focus {
     outline: none;
-    border: 1.5px solid #b0ff81;
-    background: #f4fff1;
+    border: 1.5px solid var(--color-acento);
+    background: var(--color-fondo-item );
 }
 
 .btnPrimario {
@@ -106,27 +106,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #d7d3bf;
+    background: var(--color-acento);
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    color: #7e6c37;
+    color: var(--color-btn);
     border: 2px solid var(--color-border);
-    box-shadow: 0 1px 2px #0001;
+    box-shadow: var(--sombra);
     transition: background 0.15s, box-shadow 0.1s;
     cursor: pointer;
     text-decoration: none;
     font-size: 1.1em;
 }
 .backBtn:hover {
-    background: #c1baa1;
+    background: var(--color-acento);
     box-shadow: var(--sombra);
     color: var(--color-texto-blanco);
 }
 
 .backBtnReset {
     background: none;
-    border: 2px solid #d7d3bf;
+    border: 2px solid var(--color-acento);
     outline: none;
     box-shadow: none;
     color: inherit;
@@ -142,17 +142,17 @@
     height: 400px;
     text-align: center;
     padding: 4em 1em 2em 1em;
-    background: #f6fbe5;
+    background: var(--color-fondo-item);
     border-radius: 16px;
     margin-top: 2em;
 }
 .confirmacionTitulo {
-    color: #2b2b2b;
+    color: var(--color-texto);
     font-size: 2em;
     margin-bottom: 0.7em;
 }
 .confirmacionTexto {
-    color: #2c431d;
+    color: var(--color-verde-oscuro);
     font-size: 1.1em;
 }
 

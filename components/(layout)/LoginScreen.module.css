@@ -64,7 +64,7 @@
     display: flex;
     align-items: center;
     text-align: center;
-    color: #b1b1b1;
+    color: var(--color-texto-hover-claro);
     margin: 1.4rem 0 1.1rem 0;
     font-size: 0.98rem;
 }
@@ -72,7 +72,7 @@
 .separator::after {
     content: "";
     flex: 1;
-    border-bottom: 2px solid #e1e1e1;
+    border-bottom: 2px solid var(--color-fondo-claro);
     margin: 0 10px;
 }
 
@@ -126,7 +126,7 @@
 }
 
 .button:hover {
-    background: #b0ff81;
+    background: var(--color-verde);
     transform: translateY(-1.5px) scale(1.01);
 }
 
@@ -142,7 +142,7 @@
 
 .errorInput {
     border: 2px solid var(--color-error);
-    background: #fff0f5;
+    background: var( --color-error-fondo);
 }
 
 .text {
@@ -153,29 +153,29 @@
 }
 
 .link {
-    color: #796d2c;
+    color:var(--color-enlace);
     text-decoration: underline dotted;
     margin-left: 2px;
     font-weight: 500;
     transition: color 0.18s;
 }
 .link:hover {
-    color: #ad8f3d;
+    color: var(--color-enlace-hover);
     text-decoration: underline solid;
 }
 
 .terms {
     margin-top: 1.2rem;
     font-size: 0.88rem;
-    color: #8e8e8e;
+    color: var(--color-texto-suave);
     text-align: center;
 }
 .termsLink {
-    color: #796d2c;
+    color: var(--color-texto-suave);
     text-decoration: underline dotted;
 }
 .termsLink:hover {
-    color: #ad8f3d;
+    color: var(--color-enlace-hover);
     text-decoration: underline solid;
 }
 

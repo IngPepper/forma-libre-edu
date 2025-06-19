@@ -1,7 +1,7 @@
 .catalogo {
     max-width: 1024px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding:  0 1rem 1rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -101,6 +101,8 @@
     max-width: 320px;
     display: flex;
     justify-content: center;
+    animation: growUpBounce 340ms cubic-bezier(.45,1.42,.34,1.01);
+    animation-fill-mode: backwards;
 }
 
 .dropdown {
@@ -117,10 +119,12 @@
     appearance: none;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
+    animation: growUpBounce 340ms cubic-bezier(.45,1.42,.34,1.01);
+    animation-fill-mode: backwards;
 }
 .dropdown:focus {
     border-color: var(--color-acento, #c1baa1);
-    box-shadow: 0 0 0 2px rgba(193,186,161,0.15);
+    box-shadow: var(--sombra);
 }
 .iconDropdown {
     position: absolute;
@@ -129,7 +133,7 @@
     transform: translateY(-50%);
     pointer-events: none;
     font-size: 1.8rem;
-    color: #aaa;
+    color: var(--color-texto-suave, #5a5a5a);
 }
 /* Catalogo.module.css */
 
@@ -164,7 +168,7 @@
 }
 
 .resultCount {
-    color: #fff;
+    color: var(--color-fondo-item);
     font-weight: 600;
     font-size: 1rem;
     margin-left: 1.5rem;
@@ -184,6 +188,8 @@
     align-items: center;
     justify-content: space-around;
     width: 100%;
+    animation: growUpBounce 340ms cubic-bezier(.45,1.42,.34,1.01);
+    animation-fill-mode: backwards;
 
 }
 
@@ -222,7 +228,6 @@
 
     @media (max-width: 395px) {
         .categorias {
-            top: 65px;
             border-radius: 12px;
         }
 
@@ -234,3 +239,34 @@
         }
     }
 }
+
+/*Animaciones*/
+
+.dropdown {
+    animation: growUpBounce 340ms cubic-bezier(.45,1.42,.34,1.01);
+    animation-fill-mode: backwards;
+}
+
+.dropdownContainer:nth-child(1) { animation-delay: 70ms; }
+.dropdownContainer:nth-child(2) { animation-delay: 130ms; }
+.dropdownContainer:nth-child(3) { animation-delay: 180ms; }
+.dropdownContainer:nth-child(4) { animation-delay: 220ms; }
+
+@keyframes growUpBounce {
+    0% {
+        transform: translateY(30%) scaleY(0.8);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(-5%) scaleY(1.05);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(2%) scaleY(0.97);
+    }
+    100% {
+        transform: translateY(0%) scaleY(1);
+        opacity: 1;
+    }
+}
+

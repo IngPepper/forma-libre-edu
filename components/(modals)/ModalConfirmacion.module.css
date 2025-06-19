@@ -9,7 +9,7 @@
 }
 
 .modal {
-    background: #fff;
+    background: var(--color-texto);
     padding: 2rem;
     border-radius: 1rem;
     max-width: 350px;
@@ -26,8 +26,8 @@
 }
 
 .botonConfirma {
-    background: #d32f2f;
-    color: #fff;
+    background: var(--color-error-oscuro);
+    color: var(--color-fondo-item);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
@@ -35,12 +35,12 @@
 }
 
 .botonConfirma:hover {
-    background: #fa3535;
+    background: var(--color-error);
 }
 
 .botonCancela {
-    background: #ddd;
-    color: #222;
+    background: var(--color-fondo-item);
+    color: var(--color-texto);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;

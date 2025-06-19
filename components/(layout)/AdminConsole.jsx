@@ -433,7 +433,7 @@ export default function AdminConsole({ }) {
                 {importError && <div className={styles.error}>{importError}</div>}
                 {message && <div className={styles.success}>{message}</div>}
                 {importError && <div className={styles.error}>{importError}</div>}
-                <button onClick={handleBorrarCarritosVacios} className={`${styles.primaryBtn} ${styles.primaryBtnDel}`} disabled={loading}>
+                <button onClick={handleBorrarCarritosVacios} className={`${styles.primaryBtnDel}`} disabled={loading}>
                     <FaTrash /> Borrar carritos vacíos
                 </button>
             </div>
@@ -442,7 +442,7 @@ export default function AdminConsole({ }) {
                 <h3>Órdenes pendientes/fallidas</h3>
                 <div>
                     <button
-                        className={styles.primaryBtn}
+                        className={styles.primaryBtnDel}
                         onClick={handleEliminarTodasOrdenes}
                         disabled={loadingOrdenes}
                     >

@@ -1,4 +1,7 @@
 :root {
+  --color-precio: #796d2c;
+  --color-enlace: #796d2c;
+  --color-enlace-hover: #ad8f3d;
   --color-fondo: #A59D84;
   --color-fondo-claro: #ECEBDE;
   --color-acento: #C1BAA1;
@@ -8,17 +11,48 @@
   --color-texto-hover-claro: #ddd;
   --color-texto-blanco: #fff;
   --color-border: #404040;
+  --color-verde-claro: #d4f7b4;
   --color-verde: #b0ff81;
-  --color-error: #ffd68a;
+  --color-verde-oscuro: #388e3c;
+  --color-error: #ff9f8a;
+  --color-error-oscuro: #a85353 ;
+  --color-error-fondo: #f5e6e6;
+  --color-error-border: #d39e9e;
+  --color-fondo-item: #f9f9f9;
+  --color-label: #6e6727;
+  --color-label-oscuro: #7d6c38;
+  --color-principal: #41486a;
+  --color-nivel: #11494e;
+  --color-nivel-fondo: #c9e7e8;
+  --color-loading: #386fff;
+  --color-loading-fondo: #f2f6ff;
+  --color-loading-borde: #b2d3fe;
+  --color-btn: #7d6c38;
+  --color-btn-fondo: #ecebde;
+  --color-secondary-btn: #8a8151;
+  --color-secondary-btn-fondo: #ecebde;
+  --color-secondary-btn-hover: #ffd;
+  --color-categoria-fondo: #e8e2c9;
+  --color-categoria: #7d6c38;
+  --color-estado: #146754;
+  --color-estado-fondo: #daf5ed;
+  --color-estado-borde: #81d5bb;
+  --color-tipo-archivo: #673714;
+  --color-tipo-archivo-fondo: #d59781;
+  --color-tipo-archivo-borde: #f5e3da;
+  --borde-oscuro: 2px solid #404040;
+  --borde-claro: 2px solid #C1BAA1;
+  --sombra: 0 5px 3px rgba(0, 0, 0, 0.25);
+  --gradiente: linear-gradient(90deg, #81c784 30%, #43a047 80%);
+  --gradiente-bicolor: linear-gradient(120deg, #e0ecfc 0%, #d4fc79 100%);
+  --gradiente-bicolor-oscuro: radial-gradient(circle at 60% 40%, #82e0aa 70%, #66bb6a 100%);
+  --gradiente-admin: linear-gradient(90deg, #b0ff81 60%, #2aac63 100%);
+
   --fuente-grande: 5.5rem;
   --espaciado: 1rem;
   --espaciado-doble: 2rem;
   --borde-radius: 8px;
-  --color-principal: #41486a;
   --borde-radius-doble: 8px;
-  --borde-oscuro: 2px solid #404040;
-  --borde-claro: 2px solid #C1BAA1;
-  --sombra: 0 5px 3px rgba(0, 0, 0, 0.25);
 }
 
 * {
