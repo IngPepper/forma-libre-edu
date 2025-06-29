@@ -17,12 +17,14 @@ function parsePrecio(precio) {
 
 function calcularBundle(niveles, infoExtraPlano = "") {
     let suma = niveles.reduce((acc, n) => acc + parsePrecio(n.precio), 0);
+    let sumaMetros = niveles.reduce((acc, n) => acc + (Number(n.metrosCuadrados) || 0), 0);
     return {
         nombre: "",
         descripcion: niveles.map(n => n.nombre).join(", "),
         precio: `$${Math.round(suma * 0.95)}`,
         tipoArchivo: niveles[0]?.tipoArchivo || "",
         tamanoArchivo: niveles.map(n => n.tamanoArchivo).join(" + "),
+        metrosCuadrados: sumaMetros,
         infoExtra: infoExtraPlano,
         enlaces: niveles.flatMap(n => n.enlaces || [])
     };
@@ -31,7 +33,7 @@ function calcularBundle(niveles, infoExtraPlano = "") {
 export default function DetallePlano({
                                          id, imagen, titulo, descripcion, categoria, estado, isDonated,
                                          tamanoArchivo, tipoArchivo, precio, enlaces = [],
-                                         infoExtra, niveles, imagenGeneral
+                                         infoExtra, niveles, imagenGeneral, metrosCuadrados
                                      }) {
     const isClient = useIsClient();
     const { user } = useUser();
@@ -207,7 +209,15 @@ export default function DetallePlano({
                             <p className={styles.descripcion}>{descripcion}</p>
                             <div className={styles.carouselSlide}>
                                 <p className={styles.conjuntoPlanos}>{slide.descripcion}</p>
-                                <div className={styles.tipoDeArchivo}><strong>Tipo:</strong> {slide.tipoArchivo}</div>
+                                <div className={styles.flagWrapper}>
+                                    {/*Tipo de archivo*/}
+                                    <div className={styles.tipoDeArchivo}><strong>Tipo:</strong> {slide.tipoArchivo}
+                                    </div>
+                                    {/*Metros Cuadrados*/}
+                                    <div className={styles.metros2}>
+                                        <strong>m&nbsp;&sup2;:</strong> {slide.metrosCuadrados ? slide.metrosCuadrados : "N/D"}
+                                    </div>
+                                </div>
                                 {!tieneMembresia && (
                                     <div><strong>Precio:</strong> <span className={styles.precio}>{slide.precio}</span></div>
                                 )}
@@ -263,7 +273,11 @@ export default function DetallePlano({
                                     <div className="noPadding">
                                         <strong>Tamaño:</strong> {tamanoArchivo}
                                     </div>
+                                    <div className="noPadding">
+                                        <strong>Superficie:</strong> {metrosCuadrados ? `${metrosCuadrados} m²` : "N/D"}
+                                    </div>
                                 </div>
+
                                 {!tieneMembresia && (
                                     <div className="noPadding">
                                         <strong>Precio:</strong> <span className={styles.precio}>{precio}</span>

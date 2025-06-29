@@ -19,6 +19,8 @@ import { obtenerPlanos } from "@/lib/firebaseHelpers";
 import MainFooter from "@/components/(layout)/MainFooter.jsx";
 
 import { AnimatePresence, motion } from "framer-motion";
+import MapaMexicoClient from "@/components/(utilities)/MapaMexicoClient";
+
 
 // Si tu imagen está en public/, usa "/fondo.jpg"
 // Si es de internet, usa la url completa y configúralo en next.config.js
@@ -173,8 +175,8 @@ export default function Home() {
                                 ¡Juntos hacemos que el diseño llegue más lejos!</p>
                         </div>
                     </ContentSection>
-
                 </CollapsibleSection>
+                <MapaMexicoClient />
                 <TripticoGeneral />
                 {/* Bienvenida */}
                 <ContentSection

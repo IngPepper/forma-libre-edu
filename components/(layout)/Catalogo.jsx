@@ -21,6 +21,15 @@ function useMobile(breakpoint = 640) {
     return isMobile;
 }
 
+function normalizarEstado(str) {
+    if (!str) return "";
+    return String(str)
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // quita acentos
+        .replace(/[^\w\s]/gi, '') // quita emojis y símbolos raros
+        .trim()
+        .toLowerCase();
+}
+
 const PAGE_SIZE = 8;
 
 export default function Catalogo({
@@ -37,16 +46,23 @@ export default function Catalogo({
     const usarDropdown = isMobile || (categorias.length > 5);
     const { user } = useUser();
 
-    // 1. Estado para búsqueda
+    // Estado para búsqueda
     const [searchQuery, setSearchQuery] = useState("");
 
-    // 2. Filtrar planos por categoría/estado y búsqueda
+    // Filtrar planos por estado/categoría y búsqueda
     const planosFiltrados = useMemo(() => {
         let resultado = planos.filter(p => {
+            // Usa 'estado' para filtrar
             const estadoPlano = typeof p.estado === "string" ? p.estado.trim() : "";
             const categoriaPlano = typeof p.categoria === "string" ? p.categoria.trim() : "";
-            const pasaEstado = categoriaActual === "Todos" || estadoPlano === categoriaActual;
-            const pasaCategoria = tipoCategoriaActual === "Todos" || categoriaPlano === tipoCategoriaActual;
+
+            // Filtra con normalización
+            const pasaEstado = categoriaActual === "Todos"
+                || normalizarEstado(estadoPlano) === normalizarEstado(categoriaActual);
+
+            const pasaCategoria = tipoCategoriaActual === "Todos"
+                || categoriaPlano === tipoCategoriaActual;
+
             return pasaEstado && pasaCategoria;
         });
         if (searchQuery.trim() !== "") {
@@ -55,7 +71,7 @@ export default function Catalogo({
         return resultado;
     }, [planos, categoriaActual, tipoCategoriaActual, searchQuery]);
 
-    // 3. Scroll infinito sobre resultados filtrados
+    // Scroll infinito sobre resultados filtrados
     const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
     const loaderRef = useRef(null);
 
@@ -97,14 +113,13 @@ export default function Catalogo({
                 <section className={styles.catalogo}>
                     <h1 className={styles.smallerText}>Auto CAD / Editables</h1>
 
-
                     <nav className={usarDropdown ? styles.categorias : styles.categorias}>
                         <section className={styles.miniFlex}>
                             <div className={styles.dropdownContainer}>
-                            <span className={styles.leyenda}>
-                                <TbFlagHeart className={styles.iconLeyenda} />
-                                Estados
-                            </span>
+                <span className={styles.leyenda}>
+                  <TbFlagHeart className={styles.iconLeyenda} />
+                  Estados
+                </span>
                                 <div className={styles.selectWrapper}>
                                     <select
                                         className={styles.dropdown}
@@ -120,10 +135,10 @@ export default function Catalogo({
                             </div>
 
                             <div className={styles.dropdownContainer}>
-                            <span className={styles.leyenda}>
-                                <BsBox2Heart className={styles.iconLeyenda} />
-                                Categoría
-                            </span>
+                <span className={styles.leyenda}>
+                  <BsBox2Heart className={styles.iconLeyenda} />
+                  Categoría
+                </span>
                                 <div className={styles.selectWrapper}>
                                     <select
                                         className={styles.dropdown}
@@ -139,17 +154,19 @@ export default function Catalogo({
                             </div>
                         </section>
 
-
-
                         {/* Barra de búsqueda */}
                         <div className={styles.barraBusquedaCounter}>
                             <SearchBar
                                 onSearch={setSearchQuery}
                                 placeholder="Buscar..."
                             />
-                            <span className={styles.resultCount}>{planosFiltrados.length === 1 ? "1" : `${planosFiltrados.length}`}</span>
+                            <span className={styles.resultCount}>
+                {planosFiltrados.length === 1 ? "1" : `${planosFiltrados.length}`}
+              </span>
                         </div>
                     </nav>
+
+                    {/* AQUÍ ES CLAVE: Cada plano tiene su id real de Firestore */}
                     <ListaPlanos planos={planosVisibles} perfil={user} />
 
                     {/* Loader visual o mensaje si se cargan todos */}

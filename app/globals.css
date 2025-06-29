@@ -49,6 +49,11 @@
   --gradiente-bicolor-oscuro: radial-gradient(circle at 60% 40%, #82e0aa 70%, #66bb6a 100%);
   --gradiente-admin: linear-gradient(90deg, #b0ff81 60%, #2aac63 100%);
 
+  --color-borde-estado: #5e512a;
+  --color-fondo-estado: #cfcec2;
+  --color-fondo-hover-estado: #6d8a51;
+  --color-activo-estado: #d4f7b4;
+
 /*
   --color-precio: #e36c0a;
   --color-enlace: #3259a8;

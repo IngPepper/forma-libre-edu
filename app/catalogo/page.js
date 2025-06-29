@@ -63,7 +63,8 @@ function CatalogoPageInner() {
         ).filter(c => c && c !== "Sin Categoría" && c !== "Todos")];
     }, [planosMock, estadoParam]);
 
-    // --- Si el valor seleccionado ya no existe en la lista, resetea a "Todos"
+/*
+     // --- Si el valor seleccionado ya no existe en la lista, resetea a "Todos"
     useEffect(() => {
         if (
             estadoParam !== "Todos" &&
@@ -82,7 +83,7 @@ function CatalogoPageInner() {
             handleCategoriaChange("Todos");
         }
         // eslint-disable-next-line
-    }, [estadoParam, categoriasDisponibles]);
+    }, [estadoParam, categoriasDisponibles]);*/
 
     // --- Handlers de los dropdowns
     const handleEstadoChange = (nuevoEstado) => {

@@ -3,38 +3,38 @@
 const fs = require('fs');
 
 const estadosConIcono = [
-    { nombre: "Aguascalientes", icono: "🚉" },
-    { nombre: "Baja California", icono: "🌵" },
-    { nombre: "Baja California Sur", icono: "🏝️" },
-    { nombre: "Campeche", icono: "🏰" },
-    { nombre: "Chiapas", icono: "🌄" },
-    { nombre: "Chihuahua", icono: "🐕" },
-    { nombre: "Ciudad de México", icono: "🏙️" },
-    { nombre: "Coahuila", icono: "🌵" },
-    { nombre: "Colima", icono: "🌋" },
-    { nombre: "Durango", icono: "🌲" },
-    { nombre: "Estado de México", icono: "🏞️" },
-    { nombre: "Guanajuato", icono: "⛪" },
-    { nombre: "Guerrero", icono: "🏖️" },
-    { nombre: "Hidalgo", icono: "🗿" },
-    { nombre: "Jalisco", icono: "🎶" },
-    { nombre: "Michoacán", icono: "🦋" },
-    { nombre: "Morelos", icono: "🏵️" },
-    { nombre: "Nayarit", icono: "🏄" },
-    { nombre: "Nuevo León", icono: "⛰️" },
-    { nombre: "Oaxaca", icono: "🎭" },
-    { nombre: "Puebla", icono: "🍬" },
-    { nombre: "Querétaro", icono: "🏛️" },
-    { nombre: "Quintana Roo", icono: "🏝️" },
-    { nombre: "San Luis Potosí", icono: "💧" },
-    { nombre: "Sinaloa", icono: "🦐" },
-    { nombre: "Sonora", icono: "🌵" },
-    { nombre: "Tabasco", icono: "🍃" },
-    { nombre: "Tamaulipas", icono: "🦀" },
-    { nombre: "Tlaxcala", icono: "🏺" },
-    { nombre: "Veracruz", icono: "🚢" },
-    { nombre: "Yucatán", icono: "🦎" },
-    { nombre: "Zacatecas", icono: "⛏️" }
+    { clave: "AGS", nombre: "Aguascalientes", icono: "🚉" },
+    { clave: "BCN", nombre: "Baja California", icono: "🌵" },
+    { clave: "BCS", nombre: "Baja California Sur", icono: "🏝️" },
+    { clave: "CAM", nombre: "Campeche", icono: "🏰" },
+    { clave: "CHP", nombre: "Chiapas", icono: "🌄" },
+    { clave: "CHI", nombre: "Chihuahua", icono: "🐕" },         // CHI
+    { clave: "CMX", nombre: "Ciudad de México", icono: "🏙️" },  // CMX
+    { clave: "COA", nombre: "Coahuila", icono: "🌵" },
+    { clave: "COL", nombre: "Colima", icono: "🌋" },
+    { clave: "DUR", nombre: "Durango", icono: "🌲" },
+    { clave: "GRO", nombre: "Guerrero", icono: "🏖️" },
+    { clave: "GTO", nombre: "Guanajuato", icono: "⛪" },
+    { clave: "HGO", nombre: "Hidalgo", icono: "🗿" },
+    { clave: "JAL", nombre: "Jalisco", icono: "🎶" },
+    { clave: "MEX", nombre: "Estado de México", icono: "🏞️" },
+    { clave: "MIC", nombre: "Michoacán", icono: "🦋" },
+    { clave: "MOR", nombre: "Morelos", icono: "🏵️" },
+    { clave: "NAY", nombre: "Nayarit", icono: "🏄" },
+    { clave: "NLE", nombre: "Nuevo León", icono: "⛰️" },        // NLE
+    { clave: "OAX", nombre: "Oaxaca", icono: "🎭" },
+    { clave: "PUE", nombre: "Puebla", icono: "🍬" },
+    { clave: "QUE", nombre: "Querétaro", icono: "🏛️" },
+    { clave: "ROO", nombre: "Quintana Roo", icono: "🏝️" },      // ROO
+    { clave: "SLP", nombre: "San Luis Potosí", icono: "💧" },
+    { clave: "SIN", nombre: "Sinaloa", icono: "🦐" },
+    { clave: "SON", nombre: "Sonora", icono: "🌵" },
+    { clave: "TAB", nombre: "Tabasco", icono: "🍃" },
+    { clave: "TAM", nombre: "Tamaulipas", icono: "🦀" },
+    { clave: "TLA", nombre: "Tlaxcala", icono: "🏺" },
+    { clave: "VER", nombre: "Veracruz", icono: "🚢" },
+    { clave: "YUC", nombre: "Yucatán", icono: "🦎" },
+    { clave: "ZAC", nombre: "Zacatecas", icono: "⛏️" }
 ];
 
 const categorias = ["Residencial", "Comercial", "Monumento", "Oficina", "Educativo", "Industrial"];
@@ -54,6 +54,10 @@ function randomPrecio(base = 50, extra = 250) {
 
 function randomMB() {
     return (1 + Math.random() * 2).toFixed(1) + " MB";
+}
+
+function randomMetrosCuadrados(min = 30, max = 200) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function crearNivel(i, idPlano) {
@@ -80,8 +84,8 @@ function crearNivel(i, idPlano) {
         enlaces: [
             { label: "Ficha técnica", url: `/fichas/plano${idPlano}-nivel${i+1}` }
         ],
-        // Aquí agregas la imagen para el nivel:
-        foto: `https://placehold.co/400x200?text=P${idPlano}-N${i + 1}`
+        foto: `https://placehold.co/400x200?text=P${idPlano}-N${i + 1}`,
+        metrosCuadrados: randomMetrosCuadrados()
     };
 }
 
@@ -91,8 +95,14 @@ function crearPlano(id) {
     const estadoObj = randomFrom(estadosConIcono);
     const estadoNombreConIcono = `${estadoObj.nombre} ${estadoObj.icono}`;
 
+    let metrosCuadrados;
+    if (nivelArr.length > 0) {
+        metrosCuadrados = nivelArr.reduce((acc, n) => acc + (Number(n.metrosCuadrados) || 0), 0);
+    } else {
+        metrosCuadrados = randomMetrosCuadrados();
+    }
+
     return {
-        id: id,
         imagen: `https://placehold.co/400x200?text=P+${id}`,
         titulo: randomFrom([
             "Plano Residencial Moderno",
@@ -103,6 +113,7 @@ function crearPlano(id) {
             "Edificio de Departamentos"
         ]),
         estado: estadoNombreConIcono,
+        codigoEstado: estadoObj.clave,
         descripcion: randomFrom([
             "Proyecto residencial con varias plantas, listo para construcción.",
             "Diseño funcional y moderno para múltiples usos.",
@@ -114,7 +125,8 @@ function crearPlano(id) {
         isDonated: Math.random() < 0.2 ? "donated" : "",
         precio: randomPrecio(),
         imagenGeneral: `https://placehold.co/400x200?text=Gen+${id}`,
-        niveles: nivelArr
+        niveles: nivelArr,
+        metrosCuadrados // <--- Aquí
     };
 }
 
@@ -123,10 +135,9 @@ function crearPlanosFake(n = 20) {
 }
 
 // --- USO PRINCIPAL ---
-const planosFake = crearPlanosFake(25);
+const planosFake = crearPlanosFake(5);
 
-// Guarda el archivo en /public/data/planosMock.json (asegúrate que la carpeta exista)
-const outputDir = './public/data';
+const outputDir = '../public/data';
 const outputPath = `${outputDir}/planosMock.json`;
 
 if (!fs.existsSync(outputDir)){
