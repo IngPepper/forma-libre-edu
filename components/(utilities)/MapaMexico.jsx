@@ -691,7 +691,7 @@ export default function MapaMexico({ planosPorEstado }) {
             <div style={{ margin: "2rem 0", textAlign: "center" }}>
                 {hovered ? (
                     <span>
-      Levantamientos en {estados[hovered]}: {planosPorEstado[hovered] || 0}
+      Levantamientos en  <strong>{estados[hovered]}</strong>: {planosPorEstado[hovered] || "Aun no, pero pronto"}
     </span>
                 ) : (
                     <span>
