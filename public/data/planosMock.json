@@ -1,22 +1,22 @@
 [
   {
     "imagen": "https://placehold.co/400x200?text=P+1",
-    "titulo": "Monumento Urbano",
-    "estado": "Quintana Roo 🏝️",
-    "codigoEstado": "ROO",
-    "descripcion": "Ideal para familias grandes o pequeñas oficinas.",
-    "categoria": "Educativo",
+    "titulo": "Edificio de Departamentos",
+    "estado": "Veracruz 🚢",
+    "codigoEstado": "VER",
+    "descripcion": "Incluye instalaciones listas para uso inmediato.",
+    "categoria": "Residencial",
     "isDonated": "",
-    "precio": "$130",
+    "precio": "$282",
     "imagenGeneral": "https://placehold.co/400x200?text=Gen+1",
     "niveles": [
       {
         "nombre": "Planta Baja",
-        "descripcion": "Sala, comedor, cocina.",
-        "tamanoArchivo": "2.6 MB",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "2.5 MB",
         "tipoArchivo": "PDF",
-        "precio": "$61",
-        "infoExtra": "Ideal para reuniones.",
+        "precio": "$109",
+        "infoExtra": "Incluye detalles de acabados.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -24,14 +24,14 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P1-N1",
-        "metrosCuadrados": 121
+        "metrosCuadrados": 172
       },
       {
         "nombre": "Planta Alta",
-        "descripcion": "Estacionamiento subterráneo.",
-        "tamanoArchivo": "2.0 MB",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "2.4 MB",
         "tipoArchivo": "PDF",
-        "precio": "$96",
+        "precio": "$149",
         "infoExtra": "Ideal para reuniones.",
         "enlaces": [
           {
@@ -40,15 +40,15 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P1-N2",
-        "metrosCuadrados": 68
+        "metrosCuadrados": 167
       },
       {
         "nombre": "Roof Garden",
-        "descripcion": "Sala, comedor, cocina.",
-        "tamanoArchivo": "1.7 MB",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "1.4 MB",
         "tipoArchivo": "PDF",
-        "precio": "$70",
-        "infoExtra": "Incluye jardín interior.",
+        "precio": "$42",
+        "infoExtra": "Con terraza panorámica.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -56,45 +56,29 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P1-N3",
-        "metrosCuadrados": 124
-      },
-      {
-        "nombre": "Sótano",
-        "descripcion": "Área de servicio.",
-        "tamanoArchivo": "2.5 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$59",
-        "infoExtra": "Incluye detalles de acabados.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano1-nivel4"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P1-N4",
-        "metrosCuadrados": 77
+        "metrosCuadrados": 145
       }
     ],
-    "metrosCuadrados": 390
+    "metrosCuadrados": 484
   },
   {
     "imagen": "https://placehold.co/400x200?text=P+2",
     "titulo": "Proyecto de Casa Contemporánea",
-    "estado": "San Luis Potosí 💧",
-    "codigoEstado": "SLP",
-    "descripcion": "Proyecto residencial con varias plantas, listo para construcción.",
-    "categoria": "Industrial",
+    "estado": "Ciudad de México 🏙️",
+    "codigoEstado": "CMX",
+    "descripcion": "Diseño funcional y moderno para múltiples usos.",
+    "categoria": "Educativo",
     "isDonated": "",
-    "precio": "$217",
+    "precio": "$83",
     "imagenGeneral": "https://placehold.co/400x200?text=Gen+2",
     "niveles": [
       {
         "nombre": "Planta Baja",
-        "descripcion": "Estacionamiento subterráneo.",
-        "tamanoArchivo": "1.6 MB",
+        "descripcion": "Espacio abierto.",
+        "tamanoArchivo": "2.9 MB",
         "tipoArchivo": "PDF",
-        "precio": "$49",
-        "infoExtra": "Incluye jardín interior.",
+        "precio": "$78",
+        "infoExtra": "Incluye detalles de acabados.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -102,15 +86,15 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P2-N1",
-        "metrosCuadrados": 193
+        "metrosCuadrados": 106
       },
       {
         "nombre": "Planta Alta",
-        "descripcion": "Área social.",
-        "tamanoArchivo": "1.4 MB",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "2.7 MB",
         "tipoArchivo": "PDF",
-        "precio": "$50",
-        "infoExtra": "Incluye detalles de acabados.",
+        "precio": "$130",
+        "infoExtra": "Incluye instalaciones eléctricas.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -118,14 +102,14 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P2-N2",
-        "metrosCuadrados": 109
+        "metrosCuadrados": 141
       },
       {
         "nombre": "Roof Garden",
-        "descripcion": "Área de servicio.",
-        "tamanoArchivo": "1.2 MB",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "2.9 MB",
         "tipoArchivo": "PDF",
-        "precio": "$39",
+        "precio": "$69",
         "infoExtra": "Incluye jardín interior.",
         "enlaces": [
           {
@@ -134,14 +118,14 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P2-N3",
-        "metrosCuadrados": 124
+        "metrosCuadrados": 133
       },
       {
         "nombre": "Sótano",
         "descripcion": "Área de servicio.",
-        "tamanoArchivo": "1.8 MB",
+        "tamanoArchivo": "2.9 MB",
         "tipoArchivo": "PDF",
-        "precio": "$95",
+        "precio": "$46",
         "infoExtra": "Ideal para reuniones.",
         "enlaces": [
           {
@@ -150,15 +134,15 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P2-N4",
-        "metrosCuadrados": 35
+        "metrosCuadrados": 109
       },
       {
         "nombre": "Mezzanine",
-        "descripcion": "Estacionamiento subterráneo.",
-        "tamanoArchivo": "2.5 MB",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "2.9 MB",
         "tipoArchivo": "PDF",
-        "precio": "$134",
-        "infoExtra": "Incluye jardín interior.",
+        "precio": "$101",
+        "infoExtra": "Ideal para reuniones.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -166,29 +150,29 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P2-N5",
-        "metrosCuadrados": 60
+        "metrosCuadrados": 80
       }
     ],
-    "metrosCuadrados": 521
+    "metrosCuadrados": 569
   },
   {
     "imagen": "https://placehold.co/400x200?text=P+3",
-    "titulo": "Plano Residencial Moderno",
-    "estado": "Guanajuato ⛪",
-    "codigoEstado": "GTO",
-    "descripcion": "Ideal para familias grandes o pequeñas oficinas.",
-    "categoria": "Industrial",
+    "titulo": "Monumento Urbano",
+    "estado": "Querétaro 🏛️",
+    "codigoEstado": "QUE",
+    "descripcion": "Incluye instalaciones listas para uso inmediato.",
+    "categoria": "Monumento",
     "isDonated": "",
-    "precio": "$264",
+    "precio": "$294",
     "imagenGeneral": "https://placehold.co/400x200?text=Gen+3",
     "niveles": [
       {
         "nombre": "Planta Baja",
         "descripcion": "Estacionamiento subterráneo.",
-        "tamanoArchivo": "1.5 MB",
+        "tamanoArchivo": "3.0 MB",
         "tipoArchivo": "PDF",
-        "precio": "$96",
-        "infoExtra": "Con terraza panorámica.",
+        "precio": "$78",
+        "infoExtra": "Incluye jardín interior.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -196,15 +180,15 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P3-N1",
-        "metrosCuadrados": 101
+        "metrosCuadrados": 69
       },
       {
         "nombre": "Planta Alta",
-        "descripcion": "Recámaras y baños.",
-        "tamanoArchivo": "2.1 MB",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "2.7 MB",
         "tipoArchivo": "PDF",
-        "precio": "$87",
-        "infoExtra": "Incluye jardín interior.",
+        "precio": "$35",
+        "infoExtra": "Incluye detalles de acabados.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -212,15 +196,15 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P3-N2",
-        "metrosCuadrados": 89
+        "metrosCuadrados": 195
       },
       {
         "nombre": "Roof Garden",
-        "descripcion": "Área social.",
-        "tamanoArchivo": "1.6 MB",
+        "descripcion": "Estacionamiento subterráneo.",
+        "tamanoArchivo": "1.4 MB",
         "tipoArchivo": "PDF",
-        "precio": "$135",
-        "infoExtra": "Con terraza panorámica.",
+        "precio": "$32",
+        "infoExtra": "Ideal para reuniones.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -228,14 +212,14 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P3-N3",
-        "metrosCuadrados": 44
+        "metrosCuadrados": 57
       },
       {
         "nombre": "Sótano",
-        "descripcion": "Estacionamiento subterráneo.",
-        "tamanoArchivo": "2.9 MB",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "1.3 MB",
         "tipoArchivo": "PDF",
-        "precio": "$71",
+        "precio": "$95",
         "infoExtra": "Incluye detalles de acabados.",
         "enlaces": [
           {
@@ -244,14 +228,14 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P3-N4",
-        "metrosCuadrados": 153
+        "metrosCuadrados": 47
       },
       {
         "nombre": "Mezzanine",
-        "descripcion": "Espacio abierto.",
-        "tamanoArchivo": "2.8 MB",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "1.8 MB",
         "tipoArchivo": "PDF",
-        "precio": "$99",
+        "precio": "$100",
         "infoExtra": "Incluye instalaciones eléctricas.",
         "enlaces": [
           {
@@ -260,14 +244,14 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P3-N5",
-        "metrosCuadrados": 190
+        "metrosCuadrados": 172
       },
       {
         "nombre": "Azotea",
-        "descripcion": "Recámaras y baños.",
-        "tamanoArchivo": "2.0 MB",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "2.2 MB",
         "tipoArchivo": "PDF",
-        "precio": "$63",
+        "precio": "$108",
         "infoExtra": "Ideal para reuniones.",
         "enlaces": [
           {
@@ -276,15 +260,15 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P3-N6",
-        "metrosCuadrados": 160
+        "metrosCuadrados": 78
       },
       {
         "nombre": "Nivel 1",
-        "descripcion": "Recámaras y baños.",
-        "tamanoArchivo": "2.8 MB",
+        "descripcion": "Espacio abierto.",
+        "tamanoArchivo": "2.1 MB",
         "tipoArchivo": "PDF",
-        "precio": "$129",
-        "infoExtra": "Ideal para reuniones.",
+        "precio": "$112",
+        "infoExtra": "Incluye jardín interior.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -292,15 +276,15 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P3-N7",
-        "metrosCuadrados": 190
+        "metrosCuadrados": 57
       },
       {
         "nombre": "Nivel 2",
-        "descripcion": "Sala, comedor, cocina.",
-        "tamanoArchivo": "2.2 MB",
+        "descripcion": "Espacio abierto.",
+        "tamanoArchivo": "2.7 MB",
         "tipoArchivo": "PDF",
-        "precio": "$141",
-        "infoExtra": "Incluye jardín interior.",
+        "precio": "$82",
+        "infoExtra": "Incluye instalaciones eléctricas.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -308,61 +292,29 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P3-N8",
-        "metrosCuadrados": 33
-      },
-      {
-        "nombre": "Nivel 3",
-        "descripcion": "Área social.",
-        "tamanoArchivo": "2.2 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$137",
-        "infoExtra": "Ideal para reuniones.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano3-nivel9"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P3-N9",
-        "metrosCuadrados": 194
-      },
-      {
-        "nombre": "Nivel 4",
-        "descripcion": "Área social.",
-        "tamanoArchivo": "1.3 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$104",
-        "infoExtra": "Incluye instalaciones eléctricas.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano3-nivel10"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P3-N10",
-        "metrosCuadrados": 75
+        "metrosCuadrados": 63
       }
     ],
-    "metrosCuadrados": 1229
+    "metrosCuadrados": 738
   },
   {
     "imagen": "https://placehold.co/400x200?text=P+4",
-    "titulo": "Centro Educativo",
-    "estado": "Oaxaca 🎭",
-    "codigoEstado": "OAX",
-    "descripcion": "Con acabados de alta calidad y espacios abiertos.",
-    "categoria": "Residencial",
-    "isDonated": "donated",
-    "precio": "$161",
+    "titulo": "Plano Residencial Moderno",
+    "estado": "Colima 🌋",
+    "codigoEstado": "COL",
+    "descripcion": "Incluye instalaciones listas para uso inmediato.",
+    "categoria": "Monumento",
+    "isDonated": "",
+    "precio": "$54",
     "imagenGeneral": "https://placehold.co/400x200?text=Gen+4",
     "niveles": [
       {
         "nombre": "Planta Baja",
-        "descripcion": "Sala, comedor, cocina.",
-        "tamanoArchivo": "1.4 MB",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "1.5 MB",
         "tipoArchivo": "PDF",
-        "precio": "$65",
-        "infoExtra": "Incluye detalles de acabados.",
+        "precio": "$41",
+        "infoExtra": "Ideal para reuniones.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -370,15 +322,15 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P4-N1",
-        "metrosCuadrados": 64
+        "metrosCuadrados": 137
       },
       {
         "nombre": "Planta Alta",
-        "descripcion": "Recámaras y baños.",
-        "tamanoArchivo": "2.8 MB",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "2.0 MB",
         "tipoArchivo": "PDF",
-        "precio": "$80",
-        "infoExtra": "Incluye jardín interior.",
+        "precio": "$108",
+        "infoExtra": "Incluye detalles de acabados.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -386,196 +338,20 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P4-N2",
-        "metrosCuadrados": 58
-      },
-      {
-        "nombre": "Roof Garden",
-        "descripcion": "Área social.",
-        "tamanoArchivo": "1.0 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$138",
-        "infoExtra": "Ideal para reuniones.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel3"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N3",
-        "metrosCuadrados": 82
-      },
-      {
-        "nombre": "Sótano",
-        "descripcion": "Recámaras y baños.",
-        "tamanoArchivo": "2.8 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$123",
-        "infoExtra": "Incluye jardín interior.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel4"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N4",
-        "metrosCuadrados": 56
-      },
-      {
-        "nombre": "Mezzanine",
-        "descripcion": "Estacionamiento subterráneo.",
-        "tamanoArchivo": "1.8 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$132",
-        "infoExtra": "Con terraza panorámica.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel5"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N5",
-        "metrosCuadrados": 136
-      },
-      {
-        "nombre": "Azotea",
-        "descripcion": "Área social.",
-        "tamanoArchivo": "1.4 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$42",
-        "infoExtra": "Incluye detalles de acabados.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel6"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N6",
-        "metrosCuadrados": 37
-      },
-      {
-        "nombre": "Nivel 1",
-        "descripcion": "Área social.",
-        "tamanoArchivo": "1.1 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$111",
-        "infoExtra": "Incluye jardín interior.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel7"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N7",
-        "metrosCuadrados": 156
-      },
-      {
-        "nombre": "Nivel 2",
-        "descripcion": "Espacio abierto.",
-        "tamanoArchivo": "2.3 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$137",
-        "infoExtra": "Incluye detalles de acabados.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel8"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N8",
-        "metrosCuadrados": 105
-      },
-      {
-        "nombre": "Nivel 3",
-        "descripcion": "Estacionamiento subterráneo.",
-        "tamanoArchivo": "2.9 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$121",
-        "infoExtra": "Incluye instalaciones eléctricas.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel9"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N9",
-        "metrosCuadrados": 130
-      },
-      {
-        "nombre": "Nivel 4",
-        "descripcion": "Área de servicio.",
-        "tamanoArchivo": "2.0 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$149",
-        "infoExtra": "Incluye instalaciones eléctricas.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel10"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N10",
-        "metrosCuadrados": 86
-      },
-      {
-        "nombre": "Nivel 5",
-        "descripcion": "Estacionamiento subterráneo.",
-        "tamanoArchivo": "2.7 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$31",
-        "infoExtra": "Incluye jardín interior.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel11"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N11",
-        "metrosCuadrados": 140
-      },
-      {
-        "nombre": "Nivel 6",
-        "descripcion": "Recámaras y baños.",
-        "tamanoArchivo": "2.7 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$129",
-        "infoExtra": "Incluye detalles de acabados.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel12"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N12",
-        "metrosCuadrados": 197
-      },
-      {
-        "nombre": "Nivel 7",
-        "descripcion": "Espacio abierto.",
-        "tamanoArchivo": "1.1 MB",
-        "tipoArchivo": "PDF",
-        "precio": "$132",
-        "infoExtra": "Incluye detalles de acabados.",
-        "enlaces": [
-          {
-            "label": "Ficha técnica",
-            "url": "/fichas/plano4-nivel13"
-          }
-        ],
-        "foto": "https://placehold.co/400x200?text=P4-N13",
-        "metrosCuadrados": 138
+        "metrosCuadrados": 46
       }
     ],
-    "metrosCuadrados": 1385
+    "metrosCuadrados": 183
   },
   {
     "imagen": "https://placehold.co/400x200?text=P+5",
     "titulo": "Monumento Urbano",
-    "estado": "Tlaxcala 🏺",
-    "codigoEstado": "TLA",
-    "descripcion": "Ideal para familias grandes o pequeñas oficinas.",
-    "categoria": "Comercial",
+    "estado": "Durango 🌲",
+    "codigoEstado": "DUR",
+    "descripcion": "Incluye instalaciones listas para uso inmediato.",
+    "categoria": "Monumento",
     "isDonated": "",
-    "precio": "$298",
+    "precio": "$71",
     "imagenGeneral": "https://placehold.co/400x200?text=Gen+5",
     "niveles": [
       {
@@ -583,8 +359,8 @@
         "descripcion": "Área de servicio.",
         "tamanoArchivo": "2.2 MB",
         "tipoArchivo": "PDF",
-        "precio": "$41",
-        "infoExtra": "Incluye jardín interior.",
+        "precio": "$46",
+        "infoExtra": "Incluye detalles de acabados.",
         "enlaces": [
           {
             "label": "Ficha técnica",
@@ -592,9 +368,735 @@
           }
         ],
         "foto": "https://placehold.co/400x200?text=P5-N1",
-        "metrosCuadrados": 157
+        "metrosCuadrados": 106
+      },
+      {
+        "nombre": "Planta Alta",
+        "descripcion": "Estacionamiento subterráneo.",
+        "tamanoArchivo": "2.6 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$46",
+        "infoExtra": "Incluye detalles de acabados.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel2"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N2",
+        "metrosCuadrados": 70
+      },
+      {
+        "nombre": "Roof Garden",
+        "descripcion": "Recámaras y baños.",
+        "tamanoArchivo": "2.6 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$116",
+        "infoExtra": "Ideal para reuniones.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel3"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N3",
+        "metrosCuadrados": 120
+      },
+      {
+        "nombre": "Sótano",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "1.2 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$31",
+        "infoExtra": "Con terraza panorámica.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel4"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N4",
+        "metrosCuadrados": 144
+      },
+      {
+        "nombre": "Mezzanine",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "2.4 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$92",
+        "infoExtra": "Incluye jardín interior.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel5"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N5",
+        "metrosCuadrados": 181
+      },
+      {
+        "nombre": "Azotea",
+        "descripcion": "Recámaras y baños.",
+        "tamanoArchivo": "2.6 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$61",
+        "infoExtra": "Incluye jardín interior.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel6"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N6",
+        "metrosCuadrados": 125
+      },
+      {
+        "nombre": "Nivel 1",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "1.5 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$56",
+        "infoExtra": "Con terraza panorámica.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel7"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N7",
+        "metrosCuadrados": 127
+      },
+      {
+        "nombre": "Nivel 2",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "1.8 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$33",
+        "infoExtra": "Incluye instalaciones eléctricas.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel8"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N8",
+        "metrosCuadrados": 53
+      },
+      {
+        "nombre": "Nivel 3",
+        "descripcion": "Espacio abierto.",
+        "tamanoArchivo": "2.8 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$114",
+        "infoExtra": "Incluye jardín interior.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel9"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N9",
+        "metrosCuadrados": 121
+      },
+      {
+        "nombre": "Nivel 4",
+        "descripcion": "Recámaras y baños.",
+        "tamanoArchivo": "2.6 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$124",
+        "infoExtra": "Incluye instalaciones eléctricas.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel10"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N10",
+        "metrosCuadrados": 179
+      },
+      {
+        "nombre": "Nivel 5",
+        "descripcion": "Recámaras y baños.",
+        "tamanoArchivo": "2.3 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$41",
+        "infoExtra": "Ideal para reuniones.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel11"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N11",
+        "metrosCuadrados": 112
+      },
+      {
+        "nombre": "Nivel 6",
+        "descripcion": "Estacionamiento subterráneo.",
+        "tamanoArchivo": "1.1 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$140",
+        "infoExtra": "Incluye detalles de acabados.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel12"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N12",
+        "metrosCuadrados": 169
+      },
+      {
+        "nombre": "Nivel 7",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "2.2 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$65",
+        "infoExtra": "Incluye detalles de acabados.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano5-nivel13"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P5-N13",
+        "metrosCuadrados": 196
       }
     ],
-    "metrosCuadrados": 157
+    "metrosCuadrados": 1703
+  },
+  {
+    "imagen": "https://placehold.co/400x200?text=P+6",
+    "titulo": "Plano Residencial Moderno",
+    "estado": "Ciudad de México 🏙️",
+    "codigoEstado": "CMX",
+    "descripcion": "Proyecto residencial con varias plantas, listo para construcción.",
+    "categoria": "Oficina",
+    "isDonated": "",
+    "precio": "$251",
+    "imagenGeneral": "https://placehold.co/400x200?text=Gen+6",
+    "niveles": [
+      {
+        "nombre": "Planta Baja",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "2.9 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$106",
+        "infoExtra": "Incluye instalaciones eléctricas.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano6-nivel1"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P6-N1",
+        "metrosCuadrados": 80
+      },
+      {
+        "nombre": "Planta Alta",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "2.2 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$92",
+        "infoExtra": "Incluye detalles de acabados.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano6-nivel2"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P6-N2",
+        "metrosCuadrados": 90
+      },
+      {
+        "nombre": "Roof Garden",
+        "descripcion": "Estacionamiento subterráneo.",
+        "tamanoArchivo": "2.5 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$148",
+        "infoExtra": "Con terraza panorámica.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano6-nivel3"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P6-N3",
+        "metrosCuadrados": 54
+      },
+      {
+        "nombre": "Sótano",
+        "descripcion": "Espacio abierto.",
+        "tamanoArchivo": "2.9 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$113",
+        "infoExtra": "Con terraza panorámica.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano6-nivel4"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P6-N4",
+        "metrosCuadrados": 97
+      }
+    ],
+    "metrosCuadrados": 321
+  },
+  {
+    "imagen": "https://placehold.co/400x200?text=P+7",
+    "titulo": "Centro Educativo",
+    "estado": "San Luis Potosí 💧",
+    "codigoEstado": "SLP",
+    "descripcion": "Diseño funcional y moderno para múltiples usos.",
+    "categoria": "Residencial",
+    "isDonated": "",
+    "precio": "$193",
+    "imagenGeneral": "https://placehold.co/400x200?text=Gen+7",
+    "niveles": [
+      {
+        "nombre": "Planta Baja",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "2.6 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$147",
+        "infoExtra": "Incluye instalaciones eléctricas.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano7-nivel1"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P7-N1",
+        "metrosCuadrados": 175
+      },
+      {
+        "nombre": "Planta Alta",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "1.8 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$95",
+        "infoExtra": "Incluye instalaciones eléctricas.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano7-nivel2"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P7-N2",
+        "metrosCuadrados": 89
+      },
+      {
+        "nombre": "Roof Garden",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "1.4 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$101",
+        "infoExtra": "Incluye jardín interior.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano7-nivel3"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P7-N3",
+        "metrosCuadrados": 48
+      },
+      {
+        "nombre": "Sótano",
+        "descripcion": "Estacionamiento subterráneo.",
+        "tamanoArchivo": "2.9 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$123",
+        "infoExtra": "Incluye jardín interior.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano7-nivel4"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P7-N4",
+        "metrosCuadrados": 72
+      },
+      {
+        "nombre": "Mezzanine",
+        "descripcion": "Estacionamiento subterráneo.",
+        "tamanoArchivo": "2.6 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$140",
+        "infoExtra": "Con terraza panorámica.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano7-nivel5"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P7-N5",
+        "metrosCuadrados": 121
+      },
+      {
+        "nombre": "Azotea",
+        "descripcion": "Estacionamiento subterráneo.",
+        "tamanoArchivo": "1.9 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$136",
+        "infoExtra": "Ideal para reuniones.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano7-nivel6"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P7-N6",
+        "metrosCuadrados": 195
+      },
+      {
+        "nombre": "Nivel 1",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "2.4 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$39",
+        "infoExtra": "Incluye detalles de acabados.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano7-nivel7"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P7-N7",
+        "metrosCuadrados": 93
+      },
+      {
+        "nombre": "Nivel 2",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "2.2 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$132",
+        "infoExtra": "Incluye jardín interior.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano7-nivel8"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P7-N8",
+        "metrosCuadrados": 197
+      }
+    ],
+    "metrosCuadrados": 990
+  },
+  {
+    "imagen": "https://placehold.co/400x200?text=P+8",
+    "titulo": "Centro Educativo",
+    "estado": "Durango 🌲",
+    "codigoEstado": "DUR",
+    "descripcion": "Proyecto residencial con varias plantas, listo para construcción.",
+    "categoria": "Educativo",
+    "isDonated": "donated",
+    "precio": "$112",
+    "imagenGeneral": "https://placehold.co/400x200?text=Gen+8",
+    "niveles": [
+      {
+        "nombre": "Planta Baja",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "1.3 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$80",
+        "infoExtra": "Ideal para reuniones.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano8-nivel1"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P8-N1",
+        "metrosCuadrados": 130
+      },
+      {
+        "nombre": "Planta Alta",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "2.9 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$45",
+        "infoExtra": "Incluye instalaciones eléctricas.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano8-nivel2"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P8-N2",
+        "metrosCuadrados": 41
+      }
+    ],
+    "metrosCuadrados": 171
+  },
+  {
+    "imagen": "https://placehold.co/400x200?text=P+9",
+    "titulo": "Monumento Urbano",
+    "estado": "Nayarit 🏄",
+    "codigoEstado": "NAY",
+    "descripcion": "Incluye instalaciones listas para uso inmediato.",
+    "categoria": "Educativo",
+    "isDonated": "",
+    "precio": "$294",
+    "imagenGeneral": "https://placehold.co/400x200?text=Gen+9",
+    "niveles": [
+      {
+        "nombre": "Planta Baja",
+        "descripcion": "Estacionamiento subterráneo.",
+        "tamanoArchivo": "1.8 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$104",
+        "infoExtra": "Incluye instalaciones eléctricas.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano9-nivel1"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P9-N1",
+        "metrosCuadrados": 198
+      },
+      {
+        "nombre": "Planta Alta",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "2.1 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$101",
+        "infoExtra": "Con terraza panorámica.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano9-nivel2"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P9-N2",
+        "metrosCuadrados": 65
+      },
+      {
+        "nombre": "Roof Garden",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "1.9 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$34",
+        "infoExtra": "Incluye instalaciones eléctricas.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano9-nivel3"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P9-N3",
+        "metrosCuadrados": 54
+      },
+      {
+        "nombre": "Sótano",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "2.7 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$76",
+        "infoExtra": "Incluye detalles de acabados.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano9-nivel4"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P9-N4",
+        "metrosCuadrados": 73
+      },
+      {
+        "nombre": "Mezzanine",
+        "descripcion": "Espacio abierto.",
+        "tamanoArchivo": "1.1 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$130",
+        "infoExtra": "Incluye jardín interior.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano9-nivel5"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P9-N5",
+        "metrosCuadrados": 162
+      }
+    ],
+    "metrosCuadrados": 552
+  },
+  {
+    "imagen": "https://placehold.co/400x200?text=P+10",
+    "titulo": "Plano Residencial Moderno",
+    "estado": "Nayarit 🏄",
+    "codigoEstado": "NAY",
+    "descripcion": "Ideal para familias grandes o pequeñas oficinas.",
+    "categoria": "Industrial",
+    "isDonated": "",
+    "precio": "$247",
+    "imagenGeneral": "https://placehold.co/400x200?text=Gen+10",
+    "niveles": [
+      {
+        "nombre": "Planta Baja",
+        "descripcion": "Recámaras y baños.",
+        "tamanoArchivo": "1.8 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$45",
+        "infoExtra": "Incluye detalles de acabados.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano10-nivel1"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P10-N1",
+        "metrosCuadrados": 109
+      },
+      {
+        "nombre": "Planta Alta",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "2.3 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$48",
+        "infoExtra": "Ideal para reuniones.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano10-nivel2"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P10-N2",
+        "metrosCuadrados": 198
+      },
+      {
+        "nombre": "Roof Garden",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "1.7 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$48",
+        "infoExtra": "Incluye jardín interior.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano10-nivel3"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P10-N3",
+        "metrosCuadrados": 134
+      },
+      {
+        "nombre": "Sótano",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "2.6 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$34",
+        "infoExtra": "Incluye detalles de acabados.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano10-nivel4"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P10-N4",
+        "metrosCuadrados": 171
+      },
+      {
+        "nombre": "Mezzanine",
+        "descripcion": "Recámaras y baños.",
+        "tamanoArchivo": "1.9 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$50",
+        "infoExtra": "Ideal para reuniones.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano10-nivel5"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P10-N5",
+        "metrosCuadrados": 119
+      },
+      {
+        "nombre": "Azotea",
+        "descripcion": "Recámaras y baños.",
+        "tamanoArchivo": "2.2 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$115",
+        "infoExtra": "Incluye jardín interior.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano10-nivel6"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P10-N6",
+        "metrosCuadrados": 155
+      },
+      {
+        "nombre": "Nivel 1",
+        "descripcion": "Área de servicio.",
+        "tamanoArchivo": "1.3 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$146",
+        "infoExtra": "Incluye detalles de acabados.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano10-nivel7"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P10-N7",
+        "metrosCuadrados": 88
+      },
+      {
+        "nombre": "Nivel 2",
+        "descripcion": "Sala, comedor, cocina.",
+        "tamanoArchivo": "1.8 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$135",
+        "infoExtra": "Ideal para reuniones.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano10-nivel8"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P10-N8",
+        "metrosCuadrados": 33
+      },
+      {
+        "nombre": "Nivel 3",
+        "descripcion": "Área social.",
+        "tamanoArchivo": "2.0 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$119",
+        "infoExtra": "Con terraza panorámica.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano10-nivel9"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P10-N9",
+        "metrosCuadrados": 168
+      },
+      {
+        "nombre": "Nivel 4",
+        "descripcion": "Estacionamiento subterráneo.",
+        "tamanoArchivo": "1.3 MB",
+        "tipoArchivo": "PDF",
+        "precio": "$53",
+        "infoExtra": "Incluye instalaciones eléctricas.",
+        "enlaces": [
+          {
+            "label": "Ficha técnica",
+            "url": "/fichas/plano10-nivel10"
+          }
+        ],
+        "foto": "https://placehold.co/400x200?text=P10-N10",
+        "metrosCuadrados": 162
+      }
+    ],
+    "metrosCuadrados": 1337
   }
 ]

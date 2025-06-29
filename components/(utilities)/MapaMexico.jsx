@@ -689,7 +689,15 @@ export default function MapaMexico({ planosPorEstado }) {
 
             </svg>
             <div style={{ margin: "2rem 0", textAlign: "center" }}>
-                {hovered && <span>Levantamientos en {estados[hovered]}: {planosPorEstado[hovered] || 0}</span>}
+                {hovered ? (
+                    <span>
+      Levantamientos en {estados[hovered]}: {planosPorEstado[hovered] || 0}
+    </span>
+                ) : (
+                    <span>
+      Pasa el cursor sobre un estado para ver el número de levantamientos.
+    </span>
+                )}
             </div>
         </div>
     );

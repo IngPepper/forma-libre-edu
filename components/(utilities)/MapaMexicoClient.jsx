@@ -31,11 +31,8 @@ export default function MapaMexicoClient() {
 
     return (
         <>
-            <h1>Planos por estado /</h1>
+            <h1 className={"smallerText"}>Planos por <br></br>estado /</h1>
             <MapaMexico planosPorEstado={conteo} />
-            <p>
-                Filtra los planos disponibles, solo haz click en el estado.
-            </p>
         </>
     );
 }

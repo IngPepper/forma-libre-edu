@@ -135,7 +135,7 @@ function crearPlanosFake(n = 20) {
 }
 
 // --- USO PRINCIPAL ---
-const planosFake = crearPlanosFake(5);
+const planosFake = crearPlanosFake(10);
 
 const outputDir = '../public/data';
 const outputPath = `${outputDir}/planosMock.json`;

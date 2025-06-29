@@ -20,7 +20,7 @@ export default function ModalConfirmacion({
                     {!accionCompletada ? (
                         <>
                             <button onClick={onConfirmar} disabled={loading} className={styles.botonConfirma}>
-                                {loading ? "Eliminando..." : "Sí, cancelar"}
+                                {loading ? "Eliminando..." : "Sí"}
                             </button>
                             <button onClick={onClose} disabled={loading} className={styles.botonCancela}>
                                 No, volver
