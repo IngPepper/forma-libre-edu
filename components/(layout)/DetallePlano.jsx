@@ -154,7 +154,12 @@ export default function DetallePlano({
                             : slides[slideActivo]?.nombre || ""}
                     </div>
                     <img
-                        src={imagenGeneral || imagen}
+                        src={
+                            // Si hay niveles y NO estamos en el bundle (slideActivo > 0), muestra la foto del nivel si existe.
+                            hayNiveles && slideActivo > 0
+                                ? slides[slideActivo]?.foto || imagenGeneral || imagen
+                                : imagenGeneral || imagen
+                        }
                         alt={titulo}
                         className={`${styles.imagen} ${animacionSlide}`}
                         onTouchStart={e => setTouchStartX(e.targetTouches[0].clientX)}

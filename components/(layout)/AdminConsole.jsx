@@ -4,16 +4,12 @@ import styles from "./AdminConsole.module.css";
 import { FaPlus, FaTrash, FaEdit, FaUpload } from "react-icons/fa";
 import { useUser } from "@/context/UserContext";
 import {
-    obtenerPlanos,
-    agregarPlano,
-    editarPlano,
-    eliminarPlano,
-    importarPlanos,
     borrarCarritosVacios,
     obtenerOrdenesPendientesOFallidas,
     eliminarOrden,
     eliminarTodasOrdenesPendientesOFallidas
 } from "@/lib/firebaseHelpers";
+import { usePlano } from "@/context/PlanoContext";
 import ModalConfirmacion from "@/components/(modals)/ModalConfirmacion";
 
 // Factories
@@ -41,16 +37,16 @@ function blankNivel() {
 }
 
 export default function AdminConsole({ }) {
+    // ---- Cambia aquí: extrae todo de usePlano
+    const { planos, loading, agregarPlano, editarPlano, eliminarPlano, importarPlanos, error } = usePlano();
     const { user } = useUser();
-    const [planos, setPlanos] = useState([]);
     const [editing, setEditing] = useState(null);
     const [form, setForm] = useState(blankPlano());
     const [importError, setImportError] = useState("");
-    const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const fileInputRef = useRef();
 
-
+    // Modal y loaders locales para órdenes
     const [modalAbierto, setModalAbierto] = useState(false);
     const [accionPendiente, setAccionPendiente] = useState(() => () => {});
     const [modalMensaje, setModalMensaje] = useState("");
@@ -60,28 +56,14 @@ export default function AdminConsole({ }) {
     const [loadingOrdenes, setLoadingOrdenes] = useState(false);
     const [accionCompletada, setAccionCompletada] = useState(false);
 
-
-
     // Protege admin
     if (!user || (user.rol !== "admin" && !user.isAdmin)) {
         return null;
     }
 
-    // Cargar planos iniciales
-    useEffect(() => {
-        setLoading(true);
-        obtenerPlanos().then(setPlanos).finally(() => setLoading(false));
-    }, []);
-
-    // CRUD Handlers
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
-
-    // Niveles
-    const handleAddNivel = () => {
-        setForm({ ...form, niveles: [...(form.niveles || []), blankNivel()] });
-    };
+    // ---- handlers de formulario y niveles (igual)
+    const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+    const handleAddNivel = () => setForm({ ...form, niveles: [...(form.niveles || []), blankNivel()] });
     const handleRemoveNivel = (idx) => {
         const newNiveles = [...form.niveles];
         newNiveles.splice(idx, 1);
@@ -114,7 +96,6 @@ export default function AdminConsole({ }) {
     // Submit: agrega o edita
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
         try {
             if (editing) {
                 await editarPlano(editing, form);
@@ -125,35 +106,14 @@ export default function AdminConsole({ }) {
             }
             setForm(blankPlano());
             setEditing(null);
-            const nuevosPlanos = await obtenerPlanos();
-            setPlanos(nuevosPlanos);
         } catch (err) {
             setMessage("Hubo un error al guardar el plano.");
             console.error("Error en handleSubmit:", err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    // Borrar plano
-    const handleDelete = async (id) => {
-        if (!window.confirm("¿Seguro que deseas borrar este plano?")) return;
-        setLoading(true);
-        try {
-            await eliminarPlano(id); // Tu helper: await deleteDoc(doc(db, "planos", id));
-            setMessage("Plano eliminado.");
-            setPlanos(await obtenerPlanos());
-        } catch (err) {
-            setMessage("Error al eliminar.");
-            console.error(err);
-        } finally {
-            setLoading(false);
         }
     };
 
     // Editar: carga datos en formulario
     const handleEdit = (plano) => {
-        // Usa blankPlano como base para asegurar todos los campos
         setForm({
             ...blankPlano(),
             ...plano,
@@ -161,32 +121,41 @@ export default function AdminConsole({ }) {
         });
         setEditing(plano.id);
         setMessage("");
-
-        // Scroll al inicio
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    // Importar JSON
+    // Borrar plano con modal de confirmación
+    const handleDelete = async (id) => {
+        setModalTitulo("Eliminar plano");
+        setModalMensaje("¿Seguro que deseas eliminar este plano?");
+        setAccionPendiente(() => async () => {
+            try {
+                await eliminarPlano(id);
+                setMessage("Plano eliminado.");
+            } catch (err) {
+                setMessage("Error al eliminar.");
+                console.error(err);
+            } finally {
+                setModalAbierto(false);
+            }
+        });
+        setModalAbierto(true);
+    };
+
+    // Importar JSON de planos usando el handler del contexto
     const handleImportJSON = (e) => {
         setImportError("");
         setMessage("");
         const file = e.target.files[0];
         if (!file) return;
-
         const reader = new FileReader();
         reader.onload = async (evt) => {
-            setLoading(true);
             try {
                 const result = evt.target.result;
-                // Si por alguna razón result no es string, lo decodificamos
-                const jsonStr = typeof result === "string"
-                    ? result
-                    : new TextDecoder().decode(result);
+                const jsonStr = typeof result === "string" ? result : new TextDecoder().decode(result);
                 const data = JSON.parse(jsonStr);
-
                 if (Array.isArray(data)) {
-                    await importarPlanos(data); // Tu helper debe agregar cada plano a Firestore
-                    setPlanos(await obtenerPlanos());
+                    await importarPlanos(data); // Handler del contexto
                     setImportError("");
                     setMessage(`Planos importados correctamente (${data.length}).`);
                 } else {
@@ -194,37 +163,30 @@ export default function AdminConsole({ }) {
                 }
             } catch (err) {
                 setImportError("El archivo no es un JSON válido o contiene datos inválidos.");
-            } finally {
-                setLoading(false);
             }
         };
         reader.readAsText(file);
     };
 
-    //Borrar Carritos Vacios
+    // --- Acciones de carritos y órdenes (mantén loading local para estos) ---
     const handleBorrarCarritosVacios = () => {
         setModalMensaje("¿Estás seguro de borrar los carritos vacíos?");
         setModalAbierto(true);
         setAccionCompletada(false);
+        setAccionPendiente(() => async () => {
+            try {
+                await borrarCarritosVacios();
+                setModalMensaje("Carritos vacíos eliminados correctamente.");
+                setAccionCompletada(true);
+            } catch (err) {
+                setModalMensaje("Error al borrar carritos vacíos.");
+                setAccionCompletada(true);
+                console.error(err);
+            }
+        });
     };
 
-    const handleConfirmar = async () => {
-        setLoading(true);
-        try {
-            await borrarCarritosVacios();
-            setModalMensaje("Carritos vacíos eliminados correctamente.");
-            setAccionCompletada(true);
-        } catch (err) {
-            setModalMensaje("Error al borrar carritos vacíos.");
-            setAccionCompletada(true);
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-
-// Cargar órdenes pendientes/fallidas al cargar admin
+    // Órdenes
     useEffect(() => {
         async function fetchOrdenes() {
             await cargarOrdenesPendientes();
@@ -283,6 +245,7 @@ export default function AdminConsole({ }) {
         setModalAbierto(true);
     };
 
+    // Filtros
     const [filtroTitulo, setFiltroTitulo] = useState("");
     const [filtroPrecioMin, setFiltroPrecioMin] = useState("");
     const [filtroPrecioMax, setFiltroPrecioMax] = useState("");
@@ -290,11 +253,8 @@ export default function AdminConsole({ }) {
     const [filtroNivelesMax, setFiltroNivelesMax] = useState("");
 
     const planosFiltrados = planos.filter(plano => {
-        // Filtro por título (insensible a mayúsculas)
         const matchTitulo = filtroTitulo.trim() === "" ||
             plano.titulo.toLowerCase().includes(filtroTitulo.trim().toLowerCase());
-
-        // Filtro por precio (en el primer nivel, asumiendo que está ahí)
         let precio = 0;
         if (plano.niveles && plano.niveles.length > 0) {
             const precioNivel = plano.niveles[0].precio;
@@ -302,8 +262,6 @@ export default function AdminConsole({ }) {
         }
         const matchPrecioMin = filtroPrecioMin === "" || precio >= Number(filtroPrecioMin);
         const matchPrecioMax = filtroPrecioMax === "" || precio <= Number(filtroPrecioMax);
-
-        // Filtro por cantidad de niveles
         const numNiveles = plano.niveles ? plano.niveles.length : 0;
         const matchNivelesMin = filtroNivelesMin === "" || numNiveles >= Number(filtroNivelesMin);
         const matchNivelesMax = filtroNivelesMax === "" || numNiveles <= Number(filtroNivelesMax);
@@ -324,8 +282,7 @@ export default function AdminConsole({ }) {
         }
     }, [message]);
 
-
-
+    // --- Render igual ---
     return (
         <div className={styles.adminConsole}>
             <div className={styles.section}>
@@ -337,9 +294,7 @@ export default function AdminConsole({ }) {
                     <input name="categoria" placeholder="Categoría" value={form.categoria || ""} onChange={handleChange} />
                     <input name="isDonated" placeholder="¿Donado? (vacío o donated)" value={form.isDonated || ""} onChange={handleChange} />
                     <input name="imagenGeneral" placeholder="Imagen General (opcional)" value={form.imagenGeneral || ""} onChange={handleChange} />
-
-
-                    {/* ---- NIVELES ---- */}
+                    {/* NIVELES */}
                     <div>
                         <label>
                             Niveles:{" "}
@@ -362,6 +317,11 @@ export default function AdminConsole({ }) {
                                     onChange={e => handleNivelChange(idx, "descripcion", e.target.value)}
                                 />
                                 <input
+                                    placeholder="URL de la foto del nivel"
+                                    value={nivel.foto || ""}
+                                    onChange={e => handleNivelChange(idx, "foto", e.target.value)}
+                                />
+                                <input
                                     placeholder="Tamaño archivo"
                                     value={nivel.tamanoArchivo || ""}
                                     onChange={e => handleNivelChange(idx, "tamanoArchivo", e.target.value)}
@@ -381,7 +341,6 @@ export default function AdminConsole({ }) {
                                     value={nivel.infoExtra || ""}
                                     onChange={e => handleNivelChange(idx, "infoExtra", e.target.value)}
                                 />
-
                                 {/* Enlaces por nivel */}
                                 <div>
                                     <label>Enlaces:</label>
@@ -440,7 +399,6 @@ export default function AdminConsole({ }) {
                 </button>
                 {importError && <div className={styles.error}>{importError}</div>}
                 {message && <div className={styles.success}>{message}</div>}
-                {importError && <div className={styles.error}>{importError}</div>}
                 <button onClick={handleBorrarCarritosVacios} className={`${styles.primaryBtnDel}`} disabled={loading}>
                     <FaTrash /> Borrar carritos vacíos
                 </button>
@@ -474,7 +432,6 @@ export default function AdminConsole({ }) {
                         </button>
                     </div>
                 </div>
-
                 {loadingOrdenes && <div className={styles.loading}>Cargando órdenes...</div>}
                 <div className={styles.ordenesList}>
                     {ordenesPendientes.length === 0 && <div>No hay órdenes pendientes ni fallidas.</div>}
@@ -498,8 +455,6 @@ export default function AdminConsole({ }) {
 
             <div className={styles.section}>
                 <h3>Lista de Planos ({planos.length})</h3>
-
-                {/* ---- FILTROS ---- */}
                 <div className={styles.filtrosPlanos}>
                     <input
                         type="text"
@@ -541,8 +496,6 @@ export default function AdminConsole({ }) {
                         min="0"
                     />
                 </div>
-                {/* ---- FIN FILTROS ---- */}
-
                 <div className={styles.planoList}>
                     {planosFiltrados.length === 0 && (
                         <div className={styles.error}>No se encontraron planos con los filtros actuales.</div>
@@ -557,11 +510,11 @@ export default function AdminConsole({ }) {
                                     <div>
                                         <small>
                                             {plano.niveles.map((n, i) =>
-                                                    <span key={i} className={styles.nivelTag}>
-                        {n.nombre}
-                                                        {i === 0 && n.precio ? ` ($${n.precio})` : ""}
-                                                        {i < plano.niveles.length - 1 ? ', ' : ''}
-                      </span>
+                                                <span key={i} className={styles.nivelTag}>
+                                                    {n.nombre}
+                                                    {i === 0 && n.precio ? ` ($${n.precio})` : ""}
+                                                    {i < plano.niveles.length - 1 ? ', ' : ''}
+                                                </span>
                                             )}
                                         </small>
                                     </div>
@@ -569,25 +522,7 @@ export default function AdminConsole({ }) {
                                 <div className={styles.actions}>
                                     <button onClick={() => handleEdit(plano)} className={styles.iconBtn}><FaEdit /></button>
                                     <button
-                                        onClick={() => {
-                                            setModalTitulo("Eliminar plano");
-                                            setModalMensaje("¿Seguro que deseas eliminar este plano?");
-                                            setAccionPendiente(() => async () => {
-                                                setLoading(true);
-                                                try {
-                                                    await eliminarPlano(plano.id); // tu helper para borrar el doc
-                                                    setMessage("Plano eliminado.");
-                                                    setPlanos(await obtenerPlanos());
-                                                } catch (err) {
-                                                    setMessage("Error al eliminar.");
-                                                    console.error(err);
-                                                } finally {
-                                                    setLoading(false);
-                                                    setModalAbierto(false);
-                                                }
-                                            });
-                                            setModalAbierto(true);
-                                        }}
+                                        onClick={() => handleDelete(plano.id)}
                                         className={`${styles.iconBtn} ${styles.iconBtnDel}`}
                                     >
                                         <FaTrash />
@@ -600,7 +535,7 @@ export default function AdminConsole({ }) {
             </div>
             <ModalConfirmacion
                 abierto={modalAbierto}
-                titulo="Confirmar borrado"
+                titulo={modalTitulo}
                 mensaje={modalMensaje}
                 onClose={() => setModalAbierto(false)}
                 onConfirmar={accionPendiente}

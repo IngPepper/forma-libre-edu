@@ -98,7 +98,7 @@ export default function Catalogo({
                     <h1 className={styles.smallerText}>Auto CAD / Editables</h1>
 
 
-                    <nav className={usarDropdown ? styles.categorias : styles.categoriasRow}>
+                    <nav className={usarDropdown ? styles.categorias : styles.categorias}>
                         <section className={styles.miniFlex}>
                             <div className={styles.dropdownContainer}>
                             <span className={styles.leyenda}>

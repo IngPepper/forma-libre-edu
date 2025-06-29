@@ -1,12 +1,11 @@
 import './globals.css';
-import MainNav from '../components/(layout)/MainNav';
-
-import { Toaster } from 'react-hot-toast';
-
 import { UserProvider } from "@/context/UserContext";
 import { CartProvider } from "@/context/CartContext";
-import AppLoader from "@/components/(utilities)/AppLoader.jsx";
+import { PlanoProvider } from "@/context/PlanoContext";
+import AppLoader from "@/components/(utilities)/AppLoader";
+import MainNav from "@/components/(layout)/MainNav";
 import Bubble from "@/components/(utilities)/Bubble";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
     title: "Forma Libre",
@@ -19,14 +18,16 @@ export default function RootLayout({ children }) {
         <body>
         <UserProvider>
             <CartProvider>
-                <AppLoader>
-                    <div style={{ position: 'relative' }}>
-                        <MainNav />
-                        {children}
-                    </div>
-                    <Bubble />
-                    <Toaster position={"top-center"} />
-                </AppLoader>
+                <PlanoProvider> {/* <-- AGREGA AQUÍ */}
+                    <AppLoader>
+                        <div style={{ position: 'relative' }}>
+                            <MainNav />
+                            {children}
+                        </div>
+                        <Bubble />
+                        <Toaster position={"top-center"} />
+                    </AppLoader>
+                </PlanoProvider>
             </CartProvider>
         </UserProvider>
         </body>

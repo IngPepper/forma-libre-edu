@@ -57,7 +57,6 @@ function randomMB() {
 }
 
 function crearNivel(i, idPlano) {
-    // Solo ficha técnica (sin PDF)
     return {
         nombre: nombresNiveles[i] || `Nivel ${i + 1}`,
         descripcion: [
@@ -80,7 +79,9 @@ function crearNivel(i, idPlano) {
         ][Math.floor(Math.random() * 5)],
         enlaces: [
             { label: "Ficha técnica", url: `/fichas/plano${idPlano}-nivel${i+1}` }
-        ]
+        ],
+        // Aquí agregas la imagen para el nivel:
+        foto: `https://placehold.co/400x200?text=P${idPlano}-N${i + 1}`
     };
 }
 
