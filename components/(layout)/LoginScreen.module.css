@@ -178,6 +178,14 @@
     color: var(--color-enlace-hover);
     text-decoration: underline solid;
 }
+.isoEffect {
+    filter: none;
+    transition: filter 0.3s ease-in-out; /* <-- aquí va la animación */
+}
+
+.isoEffect:hover{
+    filter: drop-shadow( 5px 0.6rem var(--color-verde));
+}
 
 @media (max-width: 500px){
     .modalWrapper {

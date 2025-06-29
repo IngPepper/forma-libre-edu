@@ -76,6 +76,7 @@ export default function LoginScreen() {
                 <section className={styles.modal}>
                     <div className={styles.modalWrapper}>
                         <Image
+                            className={styles.isoEffect}
                             src="/assets/iso02S_marron_t.svg"
                             alt="Fondo artístico"
                             width={150}

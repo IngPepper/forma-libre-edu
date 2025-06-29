@@ -94,11 +94,14 @@ export default function RegisterScreen() {
                 <section className={styles.modal}>
                     <div className={styles.modalWrapper}>
                         <Image
+                            className={styles.isoEffect}
                             src="/assets/iso02S_marron_t.svg"
                             alt="Logotipo isotipo"
                             width={150}
                             height={150}
-                            style={{ objectFit: "cover"}}
+                            style={{
+                                objectFit: "cover",
+                            }}
                             priority
                         />
                     </div>
