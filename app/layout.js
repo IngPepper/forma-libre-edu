@@ -1,4 +1,5 @@
 import './globals.css';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { UserProvider } from "@/context/UserContext";
 import { CartProvider } from "@/context/CartContext";
 import { PlanoProvider } from "@/context/PlanoContext";
@@ -6,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import AppLoader from "@/components/(utilities)/AppLoader";
 import MainNav from "@/components/(layout)/MainNav";
 import Bubble from "@/components/(utilities)/Bubble";
+
 
 export const metadata = {
     title: "Forma Libre",
@@ -66,6 +68,7 @@ export default function RootLayout({ children }) {
                         </div>
                         <Bubble />
                         <Toaster position={"top-center"} />
+                        <SpeedInsights />
                     </AppLoader>
                 </PlanoProvider>
             </CartProvider>
