@@ -3,7 +3,7 @@
     flex-direction: column;
     max-width: 740px;
     margin: 2.5em auto;
-    background: var(--color-tarjeta, #D7D3BF);
+    background: var(--color-fondo-item);
     padding: 2.7em 2em 2em 2em;
     border-radius: var(--borde-radius);
     box-shadow: var(--sombra);
@@ -27,15 +27,11 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    border: var(--borde-oscuro);
     gap: 1em;
     padding: var(--espaciado);
     border-radius: var(--borde-radius);
     transition: background .22s;
-    background: var(--color-fondo-claro);
-}
-.item:hover {
-    background: var(--color-texto-blanco);
+    background: var(--color-fondo-gris-claro);
 }
 
 .descripcion {

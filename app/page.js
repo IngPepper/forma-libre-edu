@@ -110,7 +110,7 @@ export default function Home() {
                                             whileHover={{
                                                 scale: 1.05,
                                                 y: -4,
-                                                backgroundColor: "#C1BAA1",
+                                                backgroundColor: "var(--color-verde)",
                                             }}
 
                                         >

@@ -7,6 +7,7 @@ import { FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import React, { useState } from "react";
 import { borrarCarritoDeUsuario } from "@/lib/firebaseHelpers";
 import { useUser } from "@/context/UserContext";
+import {color} from "framer-motion";
 
 export default function Carrito() {
     const {
@@ -56,7 +57,7 @@ export default function Carrito() {
         return (
             <section className={"wrapper"}>
                 <div className={styles.empty}>
-                    <h1 className={"smallerText"}>Tu carrito está vacío / 🛒</h1>
+                    <h1 style={{color: "var(--color-texto)"}} className={"smallerText"}>Tu carrito está vacío / 🛒</h1>
                     <Link href="/catalogo" className={styles.btn}>
                         Ir al catálogo
                     </Link>

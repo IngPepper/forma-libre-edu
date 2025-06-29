@@ -7,20 +7,24 @@
     pointer-events: none;
     opacity: 0.35;
 }
+
+/* Contenedor principal de contenido encima del fondo */
 .contentOverlay {
     position: relative;
     z-index: 2;
-
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.textColor{
+
+/* Color de texto blanco general */
+.textColor {
     color: var(--color-texto-blanco);
     text-align: left;
 }
 
+/* Item de catálogo */
 .catalogoItem {
     background: var(--color-fondo-item);
     margin: 1rem 0;
@@ -29,21 +33,24 @@
     padding: 1rem;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
+    position: relative; /* Por si necesitas stacking local */
+    z-index: 1;
 }
 
 .catalogoItem:hover {
-    background: var(--color-fondo-item);           /* o el color que prefieras */
-    transform: scale(1.035);       /* 1.03–1.05 se ve bien */
-    z-index: 2;                    /* por si se superpone */
+    background: var(--color-fondo-item); /* cámbialo si prefieres otro color al hover */
+    transform: scale(1.035);
+    z-index: 2;
 }
 
+/* Fondo blanco para overlays o bloques destacados */
 .whiteBackground {
     background-color: var(--color-texto-blanco);
     border-radius: 12px;
     padding: 1rem;
 }
 
-/* Animaciones */
+/* --- Animaciones --- */
 
 @keyframes bounceInUp {
     0% {
@@ -63,7 +70,7 @@
     }
 }
 
-/* Aplica la animación solo a los nuevos resultados */
+/* Esta clase aplica la animación de bounceInUp solo a los resultados nuevos o filtrados */
 .resultItemAnim {
     animation: bounceInUp 0.5s cubic-bezier(.48,1.41,.36,1.03) both;
     /* Puedes ajustar la duración y timing para hacerlo más suave o rápido */

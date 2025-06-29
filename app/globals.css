@@ -3,7 +3,7 @@
   --color-enlace: #796d2c;
   --color-enlace-hover: #ad8f3d;
   --color-fondo: #A59D84;
-  --color-fondo-claro: #ECEBDE;
+  --color-fondo-claro: #cfcec2;
   --color-acento: #C1BAA1;
   --color-tarjeta: #D7D3BF;
   --color-fondo-gris-claro: #f1f1f1;
@@ -48,6 +48,58 @@
   --gradiente-bicolor: linear-gradient(120deg, #e0ecfc 0%, #d4fc79 100%);
   --gradiente-bicolor-oscuro: radial-gradient(circle at 60% 40%, #82e0aa 70%, #66bb6a 100%);
   --gradiente-admin: linear-gradient(90deg, #b0ff81 60%, #2aac63 100%);
+
+/*
+  --color-precio: #e36c0a;
+  --color-enlace: #3259a8;
+  --color-enlace-hover: #f08334;
+  --color-fondo: #e9ecf5;
+  --color-fondo-claro: #f7f9fc;
+  --color-acento: #6c7eb6;
+  --color-tarjeta: #ffffff;
+  --color-fondo-gris-claro: #e0e4ea;
+  --color-texto: #222b38;
+  --color-texto-suave: #7a859c;
+  --color-texto-hover-claro: #eee;
+  --color-texto-blanco: #fff;
+  --color-border: #7a859c;
+  --color-verde-claro: #baf2c8;
+  --color-verde: #59ce87;
+  --color-verde-oscuro: #27684a;
+  --color-error: #f0594f;
+  --color-error-oscuro: #ac3b2a;
+  --color-error-fondo: #fbeceb;
+  --color-error-border: #efb2a8;
+  --color-fondo-item: #f4f8ff;
+  --color-label: #33487c;
+  --color-label-oscuro: #2b3668;
+  --color-principal: #385987;
+  --color-nivel: #295278;
+  --color-nivel-fondo: #d2e1f3;
+  --color-loading: #2a9cff;
+  --color-loading-fondo: #ecf5ff;
+  --color-loading-borde: #a3c7e7;
+  --color-btn: #f08334;
+  --color-btn-fondo: #e9ecf5;
+  --color-secondary-btn: #6c7eb6;
+  --color-secondary-btn-fondo: #e9ecf5;
+  --color-secondary-btn-hover: #fff3e6;
+  --color-categoria-fondo: #d2e1f3;
+  --color-categoria: #385987;
+  --color-estado: #42867a;
+  --color-estado-fondo: #daf3ef;
+  --color-estado-borde: #8ccfc2;
+  --color-tipo-archivo: #ab411a;
+  --color-tipo-archivo-fondo: #ffd6c5;
+  --color-tipo-archivo-borde: #ffe8e1;
+  --borde-oscuro: 2px solid #385987;
+  --borde-claro: 2px solid #a3c7e7;
+  --sombra: 0 5px 3px rgba(30, 60, 100, 0.15);
+  --gradiente: linear-gradient(90deg, #a0bdfa 30%, #2a9cff 80%);
+  --gradiente-bicolor: linear-gradient(120deg, #f5fafd 0%, #fcd97b 100%);
+  --gradiente-bicolor-oscuro: radial-gradient(circle at 60% 40%, #b8d6fa 70%, #2a9cff 100%);
+  --gradiente-admin: linear-gradient(90deg, #59ce87 60%, #2a9cff 100%);
+*/
 
   --fuente-grande: 5.5rem;
   --espaciado: 1rem;
@@ -99,7 +151,7 @@ img {
 
 button {
   background: var(--color-acento, #C1BAA1);
-  color: #2b2b2b;
+  color: var(--color-texto);
   border: 2px solid var(--color-border, #404040);
   border-radius: 12px;
   font-size: 1.08em;
@@ -113,7 +165,7 @@ button {
 }
 
 button:hover {
-  background: #b0ff81;
+  background: var(--color-verde);
   color:  var(--color-texto);
 }
 
