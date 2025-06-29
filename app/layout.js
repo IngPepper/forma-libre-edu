@@ -43,9 +43,12 @@ export const metadata = {
         icon: "/favicon.ico",
         apple: "/apple-touch-icon.png"
     },
-    themeColor: "#2b2b2b",
     robots: "index, follow",
     canonical: "https://www.formalibre.mx"
+};
+
+export const viewport = {
+    themeColor: "#2b2b2b",
 };
 
 
