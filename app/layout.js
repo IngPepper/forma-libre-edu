@@ -2,10 +2,10 @@ import './globals.css';
 import { UserProvider } from "@/context/UserContext";
 import { CartProvider } from "@/context/CartContext";
 import { PlanoProvider } from "@/context/PlanoContext";
+import { Toaster } from "react-hot-toast";
 import AppLoader from "@/components/(utilities)/AppLoader";
 import MainNav from "@/components/(layout)/MainNav";
 import Bubble from "@/components/(utilities)/Bubble";
-import { Toaster } from "react-hot-toast";
 
 export const metadata = {
     title: "Forma Libre",
