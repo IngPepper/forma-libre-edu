@@ -17,6 +17,7 @@ import ModalConfirmacion from "@/components/(modals)/ModalConfirmacion";
 import ModalReautenticacion from "@/components/(modals)/ModalReautenticacion";
 
 import { updateUserProfileInFirestore } from "@/lib/userHelpers";
+import { formatoBonitoFecha } from "@/lib/dateFormat";
 
 export default function CuentaUsuario() {
     const { user, updateProfile } = useUser();
@@ -113,7 +114,9 @@ export default function CuentaUsuario() {
             <div className={styles.cuentaUsuario}>
                 {/* Info básica */}
                 <div className={styles.info}>
-                    <div className={styles.hidden}><b>Miembro desde:</b> {user.miembroDesde || "2024-01-01"}</div>
+                    <div className={styles.hidden}>
+                        <b>Miembro desde:</b> {formatoBonitoFecha(user.miembroDesde || "2024-01-01")}
+                    </div>
                     <div><b>Membresía:</b> {user.membresia || "Gratis"}</div>
                     <div className={styles.hidden}><b>ID: </b>{user.idUsuario || "No tengo cuenta"}</div>
                 </div>
