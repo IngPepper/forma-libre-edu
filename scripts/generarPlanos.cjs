@@ -9,7 +9,7 @@ const estadosConIcono = [
     { clave: "CAM", nombre: "Campeche", icono: "🏰" },
     { clave: "CHP", nombre: "Chiapas", icono: "🌄" },
     { clave: "CHI", nombre: "Chihuahua", icono: "🐕" },         // CHI
-    { clave: "CMX", nombre: "CDMX", icono: "🏙️" },  // CMX
+    { clave: "CMX", nombre: "CDMX", icono: "🏙️" },              // CMX
     { clave: "COA", nombre: "Coahuila", icono: "🌵" },
     { clave: "COL", nombre: "Colima", icono: "🌋" },
     { clave: "DUR", nombre: "Durango", icono: "🌲" },
