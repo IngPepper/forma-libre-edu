@@ -4,12 +4,12 @@ const fs = require('fs');
 
 const estadosConIcono = [
     { clave: "AGS", nombre: "Aguascalientes", icono: "🚉" },
-    { clave: "BCN", nombre: "Baja California", icono: "🌵" },
-    { clave: "BCS", nombre: "Baja California Sur", icono: "🏝️" },
+    { clave: "BCN", nombre: "B California", icono: "🌵" },
+    { clave: "BCS", nombre: "B.C. Sur", icono: "🏝️" },
     { clave: "CAM", nombre: "Campeche", icono: "🏰" },
     { clave: "CHP", nombre: "Chiapas", icono: "🌄" },
     { clave: "CHI", nombre: "Chihuahua", icono: "🐕" },         // CHI
-    { clave: "CMX", nombre: "Ciudad de México", icono: "🏙️" },  // CMX
+    { clave: "CMX", nombre: "CDMX", icono: "🏙️" },  // CMX
     { clave: "COA", nombre: "Coahuila", icono: "🌵" },
     { clave: "COL", nombre: "Colima", icono: "🌋" },
     { clave: "DUR", nombre: "Durango", icono: "🌲" },
@@ -17,7 +17,7 @@ const estadosConIcono = [
     { clave: "GTO", nombre: "Guanajuato", icono: "⛪" },
     { clave: "HGO", nombre: "Hidalgo", icono: "🗿" },
     { clave: "JAL", nombre: "Jalisco", icono: "🎶" },
-    { clave: "MEX", nombre: "Estado de México", icono: "🏞️" },
+    { clave: "MEX", nombre: "Edo Méx", icono: "🏞️" },
     { clave: "MIC", nombre: "Michoacán", icono: "🦋" },
     { clave: "MOR", nombre: "Morelos", icono: "🏵️" },
     { clave: "NAY", nombre: "Nayarit", icono: "🏄" },
@@ -26,7 +26,7 @@ const estadosConIcono = [
     { clave: "PUE", nombre: "Puebla", icono: "🍬" },
     { clave: "QUE", nombre: "Querétaro", icono: "🏛️" },
     { clave: "ROO", nombre: "Quintana Roo", icono: "🏝️" },      // ROO
-    { clave: "SLP", nombre: "San Luis Potosí", icono: "💧" },
+    { clave: "SLP", nombre: "S.L. Potosí", icono: "💧" },
     { clave: "SIN", nombre: "Sinaloa", icono: "🦐" },
     { clave: "SON", nombre: "Sonora", icono: "🌵" },
     { clave: "TAB", nombre: "Tabasco", icono: "🍃" },
