@@ -215,7 +215,7 @@ export default function DetallePlano({
                                     </div>
                                     {/*Metros Cuadrados*/}
                                     <div className={styles.metros2}>
-                                        <strong>m&nbsp;&sup2;:</strong> {slide.metrosCuadrados ? slide.metrosCuadrados : "N/D"}
+                                        <strong>m&sup2;:</strong> {slide.metrosCuadrados ? slide.metrosCuadrados : "N/D"}
                                     </div>
                                 </div>
                                 {!tieneMembresia && (

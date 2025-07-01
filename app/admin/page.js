@@ -34,11 +34,7 @@ export default function AdminPage() {
         <>
             <section className="wrapper">
                 <h1 className={"smallerText"}>Admin Powers /</h1>
-                <AdminConsole
-                    user={{ email: "admin@formalibre.com" }}
-                    planos={planos}
-                    setPlanos={setPlanos}
-                />
+                <AdminConsole/>
             </section>
             <MainFooter />
         </>

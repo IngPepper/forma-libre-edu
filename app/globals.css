@@ -291,6 +291,9 @@ h1{
   pointer-events: auto; /* solo la nav es clickeable */
 }
 
+.min{
+  min-height: 100dvh;
+}
 
 @media(max-width: 600px){
   .smallerText {

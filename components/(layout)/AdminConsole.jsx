@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import styles from "./AdminConsole.module.css";
+
 import { FaPlus, FaTrash, FaEdit, FaUpload } from "react-icons/fa";
 import { useUser } from "@/context/UserContext";
 import {
@@ -10,7 +10,11 @@ import {
     eliminarTodasOrdenesPendientesOFallidas
 } from "@/lib/firebaseHelpers";
 import { usePlano } from "@/context/PlanoContext";
+
+import styles from "./AdminConsole.module.css";
 import ModalConfirmacion from "@/components/(modals)/ModalConfirmacion";
+import AppLoader from "@/components/(utilities)/AppLoader";
+
 
 // Factories
 function blankPlano() {
@@ -37,9 +41,11 @@ function blankNivel() {
 }
 
 export default function AdminConsole({ }) {
-    // ---- Cambia aquí: extrae todo de usePlano
-    const { planos, loading, agregarPlano, editarPlano, eliminarPlano, importarPlanos, error } = usePlano();
-    const { user } = useUser();
+
+    // ---- usePlano
+    const { planos, loading, agregarPlano, editarPlano, eliminarPlano, importarPlanos } = usePlano();
+
+    // ---- Hooks normales
     const [editing, setEditing] = useState(null);
     const [form, setForm] = useState(blankPlano());
     const [importError, setImportError] = useState("");
@@ -51,14 +57,65 @@ export default function AdminConsole({ }) {
     const [accionPendiente, setAccionPendiente] = useState(() => () => {});
     const [modalMensaje, setModalMensaje] = useState("");
     const [modalTitulo, setModalTitulo] = useState("");
-
     const [ordenesPendientes, setOrdenesPendientes] = useState([]);
     const [loadingOrdenes, setLoadingOrdenes] = useState(false);
     const [accionCompletada, setAccionCompletada] = useState(false);
 
-    // Protege admin
-    if (!user || (user.rol !== "admin" && !user.isAdmin)) {
-        return null;
+    // ---- useUser
+    const { user, firebaseUser } = useUser();
+    const [esAdmin, setEsAdmin] = useState(false);
+    const [checkedAdmin, setCheckedAdmin] = useState(false);
+
+    // ---- Efectos
+    useEffect(() => {
+        if (!firebaseUser) {
+            setEsAdmin(false);
+            setCheckedAdmin(true);
+            return;
+        }
+        let cancelado = false;
+        firebaseUser.getIdTokenResult().then((idTokenResult) => {
+            if (!cancelado) {
+                setEsAdmin(!!idTokenResult.claims.admin);
+                setCheckedAdmin(true);
+            }
+        });
+        return () => { cancelado = true; };
+    }, [firebaseUser]);
+
+    useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => setMessage(""), 4000);
+            return () => clearTimeout(timer);
+        }
+    }, [message]);
+
+    // Órdenes
+    useEffect(() => {
+        async function fetchOrdenes() {
+            await cargarOrdenesPendientes();
+        }
+        fetchOrdenes();
+    }, []);
+
+    // Filtros
+    const [filtroTitulo, setFiltroTitulo] = useState("");
+    const [filtroPrecioMin, setFiltroPrecioMin] = useState("");
+    const [filtroPrecioMax, setFiltroPrecioMax] = useState("");
+    const [filtroNivelesMin, setFiltroNivelesMin] = useState("");
+    const [filtroNivelesMax, setFiltroNivelesMax] = useState("");
+
+    const [idEliminar, setIdEliminar] = useState("");
+
+
+    // ---- Admin protection (fuera de hooks)
+    if (!checkedAdmin) {
+        return <AppLoader />;
+    }
+    if (!user || !esAdmin) {
+        return (
+            <div className={"min"}>No tienes permisos para ver esta sección 😘</div>
+        )
     }
 
     // ---- handlers de formulario y niveles (igual)
@@ -108,7 +165,6 @@ export default function AdminConsole({ }) {
             setEditing(null);
         } catch (err) {
             setMessage("Hubo un error al guardar el plano.");
-            console.error("Error en handleSubmit:", err);
         }
     };
 
@@ -186,14 +242,6 @@ export default function AdminConsole({ }) {
         });
     };
 
-    // Órdenes
-    useEffect(() => {
-        async function fetchOrdenes() {
-            await cargarOrdenesPendientes();
-        }
-        fetchOrdenes();
-    }, []);
-
     async function cargarOrdenesPendientes() {
         setLoadingOrdenes(true);
         try {
@@ -203,7 +251,6 @@ export default function AdminConsole({ }) {
             setLoadingOrdenes(false);
         }
     }
-    const [idEliminar, setIdEliminar] = useState("");
 
     const handleEliminarOrden = (id) => {
         setModalTitulo("Eliminar orden");
@@ -245,13 +292,6 @@ export default function AdminConsole({ }) {
         setModalAbierto(true);
     };
 
-    // Filtros
-    const [filtroTitulo, setFiltroTitulo] = useState("");
-    const [filtroPrecioMin, setFiltroPrecioMin] = useState("");
-    const [filtroPrecioMax, setFiltroPrecioMax] = useState("");
-    const [filtroNivelesMin, setFiltroNivelesMin] = useState("");
-    const [filtroNivelesMax, setFiltroNivelesMax] = useState("");
-
     const planosFiltrados = planos.filter(plano => {
         const matchTitulo = filtroTitulo.trim() === "" ||
             plano.titulo.toLowerCase().includes(filtroTitulo.trim().toLowerCase());
@@ -274,13 +314,6 @@ export default function AdminConsole({ }) {
             matchNivelesMax
         );
     });
-
-    useEffect(() => {
-        if (message) {
-            const timer = setTimeout(() => setMessage(""), 4000);
-            return () => clearTimeout(timer);
-        }
-    }, [message]);
 
     // --- Render igual ---
     return (

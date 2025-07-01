@@ -180,7 +180,7 @@ export default function RegisterScreen() {
                     </form>
                     <p className={styles.text}>
                         ¿Ya tienes una cuenta? <br/>{" "}
-                        <Link href="/login" className={styles.link}>Sign in</Link>
+                        <Link href="/login" className={styles.link}>Loguéate</Link>
                     </p>
                     <p className={styles.terms}>
                         Al acceder aceptas que eres mayor de 18 años y nuestras{" "}

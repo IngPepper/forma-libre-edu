@@ -1,4 +1,5 @@
 'use client';
+
 import { createContext, useContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
@@ -7,26 +8,26 @@ import { getUserProfile } from "@/lib/userHelpers";
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null); // Objeto PLANO (como ahora)
+    const [firebaseUser, setFirebaseUser] = useState(null); // El de Firebase Auth
     const [loading, setLoading] = useState(true);
 
-    // Función reutilizable para cargar usuario (para refetchUser y load inicial)
-    const loadUser = async (firebaseUser) => {
-        if (firebaseUser) {
+    const loadUser = async (firebaseUserObj) => {
+        setFirebaseUser(firebaseUserObj); // <-- Aquí lo guardas SIEMPRE
+        if (firebaseUserObj) {
             const baseUser = {
-                idUsuario: firebaseUser.uid,
-                email: firebaseUser.email,
-                nombre: firebaseUser.displayName || "", // <- Siempre toma el displayName de Auth
-                miembroDesde: firebaseUser.metadata.creationTime,
+                idUsuario: firebaseUserObj.uid,
+                email: firebaseUserObj.email,
+                nombre: firebaseUserObj.displayName || "",
+                miembroDesde: firebaseUserObj.metadata.creationTime,
             };
             try {
-                // Perfil extendido de Firestore
-                const perfil = await getUserProfile(firebaseUser.uid);
+                const perfil = await getUserProfile(firebaseUserObj.uid);
                 setUser((prev) => ({
-                    ...prev, // para no perder campos temporales locales
+                    ...prev,
                     ...baseUser,
-                    ...perfil, // solo sobreescribe los campos existentes
-                    nombre: firebaseUser.displayName || perfil?.nombre || "", // Siempre prioridad a displayName
+                    ...perfil,
+                    nombre: firebaseUserObj.displayName || perfil?.nombre || "",
                     hasAnAccount: true,
                     isAdmin: perfil?.rol === "admin",
                 }));
@@ -47,27 +48,30 @@ export function UserProvider({ children }) {
         setLoading(false);
     };
 
-    // Hook principal: escucha cambios de sesión
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-            await loadUser(firebaseUser);
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUserObj) => {
+            await loadUser(firebaseUserObj);
         });
         return () => unsubscribe();
-        // eslint-disable-next-line
     }, []);
 
-    // Refetch para cuando hagas cambios de perfil
     const refetchUser = async () => {
         setLoading(true);
-        const firebaseUser = auth.currentUser;
-        await loadUser(firebaseUser);
+        const firebaseUserObj = auth.currentUser;
+        await loadUser(firebaseUserObj);
     };
 
-    // Actualiza SOLO los campos que se pasan, conservando el resto
     const updateProfile = (newData) => setUser((u) => u ? { ...u, ...newData } : u);
 
     return (
-        <UserContext.Provider value={{ user, setUser, updateProfile, loading, refetchUser }}>
+        <UserContext.Provider value={{
+            user,               // Objeto plano enriquecido
+            firebaseUser,       // Objeto REAL de Firebase Auth
+            setUser,
+            updateProfile,
+            loading,
+            refetchUser
+        }}>
             {children}
         </UserContext.Provider>
     );
