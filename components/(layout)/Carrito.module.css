@@ -189,7 +189,7 @@
 }
 
 .btnPrimario:hover {
-    background: var(--color-loading);
+    background: var(--color-loading-claro);
     color: var(--color-texto);
     transform: scale(1.05);
 }

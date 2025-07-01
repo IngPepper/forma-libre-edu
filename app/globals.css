@@ -26,6 +26,7 @@
   --color-nivel: #11494e;
   --color-nivel-fondo: #c9e7e8;
   --color-loading: #386fff;
+  --color-loading-claro: #5ec1ff;
   --color-loading-fondo: #f2f6ff;
   --color-loading-borde: #b2d3fe;
   --color-btn: #7d6c38;
@@ -121,6 +122,7 @@
 
 button, a, input, textarea, select, svg {
   outline: none;
+  font-family: inherit;
   -webkit-tap-highlight-color: transparent;
 }
 
