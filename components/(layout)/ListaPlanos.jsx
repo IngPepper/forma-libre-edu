@@ -7,6 +7,7 @@ import { useCart } from "@/context/CartContext";
 import toast from "react-hot-toast";
 import { useIsClient } from "@/components/(utilities)/useIsClient";
 import ModalLoading from "@/components/(modals)/ModalLoading"; // <-- Importa tu modal aquí
+import { estadosConIcono } from "@/components/(utilities)/MapaMexico";
 
 function parsePrecio(precio) {
     const parsed = Number(String(precio).replace(/[^0-9.]+/g, ""));
@@ -50,9 +51,18 @@ export default function ListaPlanos({ planos = [] }) {
                             <p className={styles.descripcion}>{plano.descripcion}</p>
                             <div className={styles.metaInfo}>
                                 <h2 className={styles.categoria}>{plano.categoria}</h2>
-                                {plano.estado && (
-                                    <h2 className={styles.estado}>{plano.estado}</h2>
-                                )}
+                                {plano.estado && (() => {
+                                    const est = estadosConIcono.find(e => e.clave === plano.estado);
+                                    return est ? (
+                                        <div className={`${styles.estadoPlano} ${styles.estado}`}>
+                                            {est.nombre} {est.icono}
+                                        </div>
+                                    ) : (
+                                        <div className={`${styles.estadoPlano} ${styles.estado}`}>
+                                            {plano.estado}
+                                        </div>
+                                    );
+                                })()}
                             </div>
                             {typeof plano?.isDonated === "string" && plano.isDonated.length > 0 && (
                                 <h2 className={styles.categoriaDonated}>{plano.isDonated}</h2>

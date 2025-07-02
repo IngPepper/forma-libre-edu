@@ -158,7 +158,6 @@
 
 
 .estado {
-    max-width: 150px;
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
@@ -170,4 +169,5 @@
     background: #daf5ed;
     color: #146754;
     border: 2px solid #81d5bb;
+    white-space: nowrap;
 }

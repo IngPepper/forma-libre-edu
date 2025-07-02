@@ -9,6 +9,7 @@ import RequireAccount from "@/components/(utilities)/RequireAccount";
 import SearchBar from "@/components/(utilities)/SearchBar.jsx";
 import filtrarPlanos from "@/lib/searchHelpers";
 import MainFooter from "@/components/(layout)/MainFooter.jsx";
+import { estadosConIcono } from "@/components/(utilities)/MapaMexico";
 
 function useMobile(breakpoint = 640) {
     const [isMobile, setIsMobile] = useState(false);
@@ -106,7 +107,6 @@ export default function Catalogo({
         tiposCategoria[0] === "Todos"
             ? ["Todos", ...tiposCategoria.slice(1).sort((a, b) => a.localeCompare(b, "es"))]
             : [...tiposCategoria].sort((a, b) => a.localeCompare(b, "es"));
-
     return (
         <>
             <RequireAccount>
@@ -126,9 +126,17 @@ export default function Catalogo({
                                         value={categoriaActual}
                                         onChange={e => onCategoriaChange(e.target.value)}
                                     >
-                                        {categoriasOrdenadas.map(cat => (
-                                            <option key={cat} value={cat}>{cat}</option>
-                                        ))}
+                                        {categoriasOrdenadas.map(cat => {
+                                            if (cat === "Todos") {
+                                                return <option key={cat} value={cat}>Todos</option>;
+                                            }
+                                            const est = estadosConIcono.find(eObj => eObj.clave === cat);
+                                            return (
+                                                <option key={cat} value={cat}>
+                                                    {est ? `${est.nombre} ${est.icono}` : cat}
+                                                </option>
+                                            );
+                                        })}
                                     </select>
                                     <MdOutlineArrowDropDown className={styles.iconDropdown} />
                                 </div>

@@ -19,6 +19,7 @@ function CatalogoPageInner() {
     const [error, setError] = useState(null);
     const perfil = { tieneMembresia: true };
 
+
     // --- Cargar datos firebase
     useEffect(() => {
         setLoading(true);

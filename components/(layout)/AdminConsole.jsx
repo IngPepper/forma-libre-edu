@@ -15,6 +15,7 @@ import styles from "./AdminConsole.module.css";
 import ModalConfirmacion from "@/components/(modals)/ModalConfirmacion";
 import AppLoader from "@/components/(utilities)/AppLoader";
 
+import { estadosConIcono } from "@/components/(utilities)/MapaMexico";
 
 // Factories
 function blankPlano() {
@@ -27,6 +28,7 @@ function blankPlano() {
         imagenGeneral: "",
         niveles: [],
         metrosCuadrados: "",
+        estado: "",
     };
 }
 function blankNivel() {
@@ -49,6 +51,7 @@ export default function AdminConsole({ }) {
 
     // ---- Hooks normales
     const [editing, setEditing] = useState(null);
+    const [nivelesAbiertos, setNivelesAbiertos] = useState([]);
     const [form, setForm] = useState(blankPlano());
     const [importError, setImportError] = useState("");
     const [message, setMessage] = useState("");
@@ -67,6 +70,8 @@ export default function AdminConsole({ }) {
     const { user, firebaseUser } = useUser();
     const [esAdmin, setEsAdmin] = useState(false);
     const [checkedAdmin, setCheckedAdmin] = useState(false);
+
+
 
     // ---- Efectos
     useEffect(() => {
@@ -108,6 +113,14 @@ export default function AdminConsole({ }) {
     const [filtroNivelesMax, setFiltroNivelesMax] = useState("");
 
     const [idEliminar, setIdEliminar] = useState("");
+
+    const toggleNivel = (idx) => {
+        setNivelesAbiertos((prev) =>
+            prev.includes(idx)
+                ? prev.filter((i) => i !== idx) // cerrar si está abierto
+                : [...prev, idx] // abrir si está cerrado
+        );
+    };
 
 
     // ---- Admin protection (fuera de hooks)
@@ -335,7 +348,23 @@ export default function AdminConsole({ }) {
                             required
                         />
                     </div>
-
+                    <div className={styles.formInput}>
+                        <label htmlFor="estado">Estado</label>
+                        <select
+                            id="estado"
+                            name="estado"
+                            value={form.estado || ""}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Selecciona un estado...</option>
+                            {estadosConIcono.map(est => (
+                                <option key={est.clave} value={est.clave}>
+                                    {est.nombre} {est.icono}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                     <div className={styles.formGroup}>
                         <label htmlFor="imagen">URL de la imagen principal</label>
                         <input
@@ -347,7 +376,28 @@ export default function AdminConsole({ }) {
                             required
                         />
                     </div>
-
+                    <div className={styles.formGroup}>
+                        <label htmlFor="imagenGeneral">Imagen general (opcional)</label>
+                        <input
+                            id="imagenGeneral"
+                            name="imagenGeneral"
+                            placeholder="Imagen General (opcional)"
+                            value={form.imagenGeneral || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <label htmlFor="metrosCuadrados">Metros Cuadrados Totales</label>
+                        <input
+                            id="metrosCuadrados"
+                            name="metrosCuadrados"
+                            type="number"
+                            min="0"
+                            placeholder="Metros Cuadrados Totales"
+                            value={form.metrosCuadrados || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
                     <div className={styles.formGroup}>
                         <label htmlFor="descripcion">Descripción</label>
                         <input
@@ -380,30 +430,6 @@ export default function AdminConsole({ }) {
                             onChange={handleChange}
                         />
                     </div>
-
-                    <div className={styles.formGroup}>
-                        <label htmlFor="imagenGeneral">Imagen general (opcional)</label>
-                        <input
-                            id="imagenGeneral"
-                            name="imagenGeneral"
-                            placeholder="Imagen General (opcional)"
-                            value={form.imagenGeneral || ""}
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className={styles.formGroup}>
-                        <label htmlFor="metrosCuadrados">Metros Cuadrados Totales</label>
-                        <input
-                            id="metrosCuadrados"
-                            name="metrosCuadrados"
-                            type="number"
-                            min="0"
-                            placeholder="Metros Cuadrados Totales"
-                            value={form.metrosCuadrados || ""}
-                            onChange={handleChange}
-                        />
-                    </div>
                     {/* NIVELES */}
                     <div>
                         <label>
@@ -414,120 +440,180 @@ export default function AdminConsole({ }) {
                         </label>
                         {form.niveles.map((nivel, idx) => (
                             <div key={idx} className={styles.nivelBox}>
-                                <b>{idx === 0 ? "Bundle / Primer nivel" : `Nivel ${idx + 1}`}</b>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor={`nivel-nombre-${idx}`}>Nombre del nivel</label>
-                                    <input
-                                        id={`nivel-nombre-${idx}`}
-                                        placeholder="Nombre"
-                                        value={nivel.nombre || ""}
-                                        onChange={e => handleNivelChange(idx, "nombre", e.target.value)}
-                                        required={idx === 0}
-                                    />
+                                {/* Header */}
+                                <div
+                                    className={styles.nivelHeader}
+                                    onClick={() => toggleNivel(idx)}
+                                >
+                                    <b>
+                                        {nivel.nombre ||
+                                            (idx === 0 ? "Bundle / Primer nivel" : `Nivel ${idx + 1}`)}
+                                    </b>
+                                    <span style={{ float: "right" }}>
+          {nivelesAbiertos.includes(idx) ? "▲" : "▼"}
+        </span>
                                 </div>
 
-                                <div className={styles.formGroup}>
-                                    <label htmlFor={`nivel-descripcion-${idx}`}>Descripción</label>
-                                    <input
-                                        id={`nivel-descripcion-${idx}`}
-                                        placeholder="Descripción"
-                                        value={nivel.descripcion || ""}
-                                        onChange={e => handleNivelChange(idx, "descripcion", e.target.value)}
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor={`nivel-foto-${idx}`}>URL de la foto del nivel</label>
-                                    <input
-                                        id={`nivel-foto-${idx}`}
-                                        placeholder="URL de la foto del nivel"
-                                        value={nivel.foto || ""}
-                                        onChange={e => handleNivelChange(idx, "foto", e.target.value)}
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor={`nivel-tamanoArchivo-${idx}`}>Tamaño archivo</label>
-                                    <input
-                                        id={`nivel-tamanoArchivo-${idx}`}
-                                        placeholder="Tamaño archivo"
-                                        value={nivel.tamanoArchivo || ""}
-                                        onChange={e => handleNivelChange(idx, "tamanoArchivo", e.target.value)}
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor={`nivel-metrosCuadrados-${idx}`}>Metros cuadrados (m²)</label>
-                                    <input
-                                        id={`nivel-metrosCuadrados-${idx}`}
-                                        placeholder="m2"
-                                        type="number"
-                                        min="0"
-                                        value={nivel.metrosCuadrados || ""}
-                                        onChange={e => handleNivelChange(idx, "metrosCuadrados", e.target.value)}
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor={`nivel-tipoArchivo-${idx}`}>Tipo archivo</label>
-                                    <input
-                                        id={`nivel-tipoArchivo-${idx}`}
-                                        placeholder="Tipo archivo"
-                                        value={nivel.tipoArchivo || ""}
-                                        onChange={e => handleNivelChange(idx, "tipoArchivo", e.target.value)}
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor={`nivel-precio-${idx}`}>{idx === 0 ? "Precio Bundle" : "Precio"}</label>
-                                    <input
-                                        id={`nivel-precio-${idx}`}
-                                        placeholder={idx === 0 ? "Precio Bundle" : "Precio"}
-                                        type="number"
-                                        min="0"
-                                        value={nivel.precio || ""}
-                                        onChange={e => handleNivelChange(idx, "precio", e.target.value)}
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor={`nivel-infoExtra-${idx}`}>Info extra</label>
-                                    <input
-                                        id={`nivel-infoExtra-${idx}`}
-                                        placeholder="Info extra"
-                                        value={nivel.infoExtra || ""}
-                                        onChange={e => handleNivelChange(idx, "infoExtra", e.target.value)}
-                                    />
-                                </div>
-                                {/* Enlaces por nivel */}
-                                <div>
-                                    <label>Enlaces:</label>
-                                    {(nivel.enlaces || []).map((enl, eidx) => (
-                                        <div key={eidx} className={styles.enlaceRow}>
-                                            <input
-                                                placeholder="Label"
-                                                value={enl.label || ""}
-                                                onChange={ev => handleNivelEnlaceChange(idx, eidx, "label", ev.target.value)}
-                                            />
-                                            <input
-                                                placeholder="URL"
-                                                value={enl.url || ""}
-                                                onChange={ev => handleNivelEnlaceChange(idx, eidx, "url", ev.target.value)}
-                                            />
-                                            <button type="button" onClick={() => handleRemoveNivelEnlace(idx, eidx)} className={`${styles.iconBtn} ${styles.iconBtnDel}`}><FaTrash /></button>
+                                {/* Animated Body */}
+                                <div
+                                    className={`${styles.nivelBody} ${
+                                        nivelesAbiertos.includes(idx) ? styles.open : ""
+                                    }`}
+                                >
+                                    {/* Inputs solo si está abierto para evitar problemas de foco */}
+                                    {nivelesAbiertos.includes(idx) && (
+                                        <div>
+                                            <div className={styles.formGroup}>
+                                                <label htmlFor={`nivel-nombre-${idx}`}>Nombre del nivel</label>
+                                                <input
+                                                    id={`nivel-nombre-${idx}`}
+                                                    placeholder="Nombre"
+                                                    value={nivel.nombre || ""}
+                                                    onChange={e =>
+                                                        handleNivelChange(idx, "nombre", e.target.value)
+                                                    }
+                                                    required={idx === 0}
+                                                />
+                                            </div>
+                                            <div className={styles.formGroup}>
+                                                <label htmlFor={`nivel-descripcion-${idx}`}>Descripción</label>
+                                                <input
+                                                    id={`nivel-descripcion-${idx}`}
+                                                    placeholder="Descripción"
+                                                    value={nivel.descripcion || ""}
+                                                    onChange={e =>
+                                                        handleNivelChange(idx, "descripcion", e.target.value)
+                                                    }
+                                                />
+                                            </div>
+                                            <div className={styles.formGroup}>
+                                                <label htmlFor={`nivel-foto-${idx}`}>URL de la foto del nivel</label>
+                                                <input
+                                                    id={`nivel-foto-${idx}`}
+                                                    placeholder="URL de la foto del nivel"
+                                                    value={nivel.foto || ""}
+                                                    onChange={e => handleNivelChange(idx, "foto", e.target.value)}
+                                                />
+                                            </div>
+                                            <div className={styles.formGroup}>
+                                                <label htmlFor={`nivel-tamanoArchivo-${idx}`}>Tamaño archivo</label>
+                                                <input
+                                                    id={`nivel-tamanoArchivo-${idx}`}
+                                                    placeholder="Tamaño archivo"
+                                                    value={nivel.tamanoArchivo || ""}
+                                                    onChange={e =>
+                                                        handleNivelChange(idx, "tamanoArchivo", e.target.value)
+                                                    }
+                                                />
+                                            </div>
+                                            <div className={styles.formGroup}>
+                                                <label htmlFor={`nivel-metrosCuadrados-${idx}`}>
+                                                    Metros cuadrados (m²)
+                                                </label>
+                                                <input
+                                                    id={`nivel-metrosCuadrados-${idx}`}
+                                                    placeholder="m2"
+                                                    type="number"
+                                                    min="0"
+                                                    value={nivel.metrosCuadrados || ""}
+                                                    onChange={e =>
+                                                        handleNivelChange(idx, "metrosCuadrados", e.target.value)
+                                                    }
+                                                />
+                                            </div>
+                                            <div className={styles.formGroup}>
+                                                <label htmlFor={`nivel-tipoArchivo-${idx}`}>Tipo archivo</label>
+                                                <input
+                                                    id={`nivel-tipoArchivo-${idx}`}
+                                                    placeholder="Tipo archivo"
+                                                    value={nivel.tipoArchivo || ""}
+                                                    onChange={e =>
+                                                        handleNivelChange(idx, "tipoArchivo", e.target.value)
+                                                    }
+                                                />
+                                            </div>
+                                            <div className={styles.formGroup}>
+                                                <label htmlFor={`nivel-precio-${idx}`}>
+                                                    {idx === 0 ? "Precio Bundle" : "Precio"}
+                                                </label>
+                                                <div style={{ display: "flex", alignItems: "center" }}>
+                                                    <span style={{ marginRight: 4 }}>$</span>
+                                                    <input
+                                                        id={`nivel-precio-${idx}`}
+                                                        placeholder={idx === 0 ? "Precio Bundle" : "Precio"}
+                                                        type="number"
+                                                        min="0"
+                                                        value={nivel.precio || ""}
+                                                        onChange={e => handleNivelChange(idx, "precio", e.target.value)}
+                                                        style={{ flex: 1 }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className={styles.formGroup}>
+                                                <label htmlFor={`nivel-infoExtra-${idx}`}>Info extra</label>
+                                                <input
+                                                    id={`nivel-infoExtra-${idx}`}
+                                                    placeholder="Info extra"
+                                                    value={nivel.infoExtra || ""}
+                                                    onChange={e =>
+                                                        handleNivelChange(idx, "infoExtra", e.target.value)
+                                                    }
+                                                />
+                                            </div>
+                                            {/* Enlaces por nivel */}
+                                            <div>
+                                                <label>Enlaces:</label>
+                                                {(nivel.enlaces || []).map((enl, eidx) => (
+                                                    <div key={eidx} className={styles.enlaceRow}>
+                                                        <input
+                                                            placeholder="Label"
+                                                            value={enl.label || ""}
+                                                            onChange={ev =>
+                                                                handleNivelEnlaceChange(idx, eidx, "label", ev.target.value)
+                                                            }
+                                                        />
+                                                        <input
+                                                            placeholder="URL"
+                                                            value={enl.url || ""}
+                                                            onChange={ev =>
+                                                                handleNivelEnlaceChange(idx, eidx, "url", ev.target.value)
+                                                            }
+                                                        />
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleRemoveNivelEnlace(idx, eidx)}
+                                                            className={`${styles.iconBtn} ${styles.iconBtnDel}`}
+                                                        >
+                                                            <FaTrash />
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleAddNivelEnlace(idx)}
+                                                    className={styles.iconBtn}
+                                                >
+                                                    <FaPlus /> Enlace
+                                                </button>
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleRemoveNivel(idx)}
+                                                className={`${styles.iconBtn} ${styles.iconBtnDel}`}
+                                            >
+                                                <FaTrash /> Eliminar nivel
+                                            </button>
                                         </div>
-                                    ))}
-                                    <button type="button" onClick={() => handleAddNivelEnlace(idx)} className={styles.iconBtn}><FaPlus /> Enlace</button>
+                                    )}
                                 </div>
-                                <button type="button" onClick={() => handleRemoveNivel(idx)} className={`${styles.iconBtn} ${styles.iconBtnDel}`}><FaTrash /> Eliminar nivel</button>
-                                <hr />
                             </div>
                         ))}
-                        <button type="button" onClick={handleAddNivel} className={styles.iconBtn}><FaPlus /> Agregar Nivel</button>
+                        <button type="button" onClick={handleAddNivel} className={styles.iconBtn}>
+                            <FaPlus /> Agregar Nivel
+                        </button>
                     </div>
-                    {/* ---- Fin NIVELES ---- */}
 
+                    {/*Fin niveles*/}
                     <button type="submit" className={styles.primaryBtn} disabled={loading}>
                         {editing ? "Guardar cambios" : "Agregar"}
                     </button>
@@ -664,16 +750,27 @@ export default function AdminConsole({ }) {
                             <img src={plano.imagen} alt={plano.titulo} className={styles.img} />
                             <div className={styles.info}>
                                 <b>{plano.titulo}</b>
+                                {/* Estado con nombre e icono */}
+                                {plano.estado && (
+                                    <div className={styles.estadoPlano}>
+                                        {
+                                            (estadosConIcono.find(e => e.clave === plano.estado)?.nombre) || plano.estado
+                                        }{" "}
+                                        {
+                                            (estadosConIcono.find(e => e.clave === plano.estado)?.icono) || ""
+                                        }
+                                    </div>
+                                )}
                                 <span className={styles.categoria}>{plano.categoria}</span>
                                 {plano.niveles && plano.niveles.length > 0 && (
                                     <div>
                                         <small>
                                             {plano.niveles.map((n, i) =>
-                                                <span key={i} className={styles.nivelTag}>
-                                                    {n.nombre}
-                                                    {i === 0 && n.precio ? ` ($${n.precio})` : ""}
-                                                    {i < plano.niveles.length - 1 ? ', ' : ''}
-                                                </span>
+                                                    <span key={i} className={styles.nivelTag}>
+                                    {n.nombre}
+                                                        {i === 0 && n.precio ? ` ($${n.precio})` : ""}
+                                                        {i < plano.niveles.length - 1 ? ', ' : ''}
+                                </span>
                                             )}
                                         </small>
                                     </div>

@@ -37,7 +37,7 @@ const estados = {
     ZAC: "Zacatecas"
 };
 
-const estadosConIcono = [
+export const estadosConIcono = [
     { clave: "AGS", nombre: "Aguascalientes", icono: "🚉" },
     { clave: "BCN", nombre: "B. California", icono: "🌵" },
     { clave: "BCS", nombre: "B.C. Sur", icono: "🏝️" },

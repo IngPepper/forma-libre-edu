@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import ScrollToTopOnNavigation from "@/components/(utilities)/ScrollToTopOnNavigation";
 import { useIsClient } from "@/components/(utilities)/useIsClient";
 import ModalLoading from "@/components/(modals)/ModalLoading"; // <-- Nuevo
+import { estadosConIcono } from "@/components/(utilities)/MapaMexico";
 
 function parsePrecio(precio) {
     const parsed = Number(String(precio).replace(/[^0-9.]+/g, ""));
@@ -36,6 +37,11 @@ export default function DetallePlano({
                                          infoExtra, niveles, imagenGeneral, metrosCuadrados
                                      }) {
     const isClient = useIsClient();
+    const estadoObj = estadosConIcono.find(est =>
+        est.clave === estado ||
+        `${est.nombre} ${est.icono}` === estado ||
+        est.nombre === estado
+    );
     const { user } = useUser();
     const { addToCart, cart } = useCart();
     const tieneMembresia = user?.membresia === "premium" || user?.tieneMembresia === true;
@@ -122,6 +128,7 @@ export default function DetallePlano({
         }, 250);
     };
 
+
     return (
         <section>
             <ModalLoading visible={loadingAdd} texto="Agregando al carrito..." />
@@ -132,7 +139,11 @@ export default function DetallePlano({
                 <div className={styles.chipRow}>
                     <div className={styles.miniWrapper}>
                         <span className={styles.categoria}>{categoria}</span>
-                        {estado && <span className={styles.estado}>{estado}</span>}
+                        {estado && (
+                            <span className={styles.estado}>
+        {estadoObj ? `${estadoObj.nombre} ${estadoObj.icono}` : estado}
+      </span>
+                        )}
                     </div>
                     <div>
                         <button
@@ -219,7 +230,9 @@ export default function DetallePlano({
                                     </div>
                                 </div>
                                 {!tieneMembresia && (
-                                    <div><strong>Precio:</strong> <span className={styles.precio}>{slide.precio}</span></div>
+                                    <div><strong>Precio:</strong> <span className={styles.precio}>
+  ${Number(parsePrecio(slide.precio)).toLocaleString()}
+</span></div>
                                 )}
                                 {isDonated && isDonated.trim().length > 0 && (
                                     <div>
@@ -280,7 +293,9 @@ export default function DetallePlano({
 
                                 {!tieneMembresia && (
                                     <div className="noPadding">
-                                        <strong>Precio:</strong> <span className={styles.precio}>{precio}</span>
+                                        <strong>Precio:</strong> <span className={styles.precio}>
+  ${Number(parsePrecio(precio)).toLocaleString()}
+</span>
                                     </div>
                                 )}
                                 {isDonated && isDonated.trim().length > 0 && (
