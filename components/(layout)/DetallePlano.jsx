@@ -25,7 +25,7 @@ function calcularBundle(niveles, infoExtraPlano = "") {
         precio: `$${Math.round(suma * 0.95)}`,
         tipoArchivo: niveles[0]?.tipoArchivo || "",
         tamanoArchivo: niveles.map(n => n.tamanoArchivo).join(" + "),
-        metrosCuadrados: sumaMetros,
+        metrosCuadrados: parseFloat(sumaMetros.toFixed(2)), // <--- aquí lo recortas a 2 decimales
         infoExtra: infoExtraPlano,
         enlaces: niveles.flatMap(n => n.enlaces || [])
     };
@@ -37,11 +37,7 @@ export default function DetallePlano({
                                          infoExtra, niveles, imagenGeneral, metrosCuadrados
                                      }) {
     const isClient = useIsClient();
-    const estadoObj = estadosConIcono.find(est =>
-        est.clave === estado ||
-        `${est.nombre} ${est.icono}` === estado ||
-        est.nombre === estado
-    );
+    const estadoObj = estadosConIcono.find(est => est.clave === estado);
     const { user } = useUser();
     const { addToCart, cart } = useCart();
     const tieneMembresia = user?.membresia === "premium" || user?.tieneMembresia === true;

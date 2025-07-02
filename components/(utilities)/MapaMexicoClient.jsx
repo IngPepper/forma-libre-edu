@@ -8,8 +8,8 @@ import { obtenerPlanos } from "@/lib/firebaseHelpers.js";
 function getConteoPorEstado(planos) {
     const conteo = {};
     planos.forEach(plano => {
-        if (plano.codigoEstado) {
-            conteo[plano.codigoEstado] = (conteo[plano.codigoEstado] || 0) + 1;
+        if (plano.estado) {
+            conteo[plano.estado] = (conteo[plano.estado] || 0) + 1;
         }
     });
     return conteo;

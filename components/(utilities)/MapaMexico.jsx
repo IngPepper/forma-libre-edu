@@ -78,14 +78,14 @@ export default function MapaMexico({ planosPorEstado }) {
     const [hovered, setHovered] = useState(null);
 
     const handleEstadoClick = (clave) => {
+        // Opcional: validación si la clave existe en tu mapping
         const estadoObj = estadosConIcono.find(e => e.clave === clave);
         if (!estadoObj) {
-            // Manejo de error: por si acaso la clave no existe
             alert("Estado no encontrado");
             return;
         }
-        const nombreCompleto = `${estadoObj.nombre} ${estadoObj.icono}`;
-        router.push(`/catalogo?estado=${encodeURIComponent(nombreCompleto)}`);
+        // Solo mandamos el código del estado en la URL (más limpio y fácil de manejar)
+        router.push(`/catalogo?estado=${encodeURIComponent(clave)}`);
     };
 
     return (

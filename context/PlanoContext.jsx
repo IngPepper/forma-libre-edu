@@ -39,8 +39,8 @@ export function PlanoProvider({ children }) {
     // Agregar un nuevo plano
     async function handleAgregarPlano(nuevoPlano) {
         try {
-            const added = await agregarPlano(nuevoPlano);
-            setPlanos(prev => [...prev, added]);
+            await agregarPlano(nuevoPlano);
+            await cargarPlanos(); // <--- recarga después de agregar
         } catch (err) {
             setError("No se pudo agregar el plano");
         }
@@ -49,10 +49,8 @@ export function PlanoProvider({ children }) {
     // Editar un plano (sobreescribe todo el objeto)
     async function handleEditarPlano(id, data) {
         try {
-            const actualizado = await editarPlano(id, data);
-            setPlanos(prev =>
-                prev.map(p => String(p.id) === String(id) ? { ...p, ...actualizado } : p)
-            );
+            await editarPlano(id, data);
+            await cargarPlanos(); // <--- recarga después de editar
         } catch (err) {
             setError("No se pudo editar el plano");
         }
@@ -62,7 +60,7 @@ export function PlanoProvider({ children }) {
     async function handleEliminarPlano(id) {
         try {
             await eliminarPlano(id);
-            setPlanos(prev => prev.filter(p => String(p.id) !== String(id)));
+            await cargarPlanos(); // <--- recarga después de eliminar
         } catch (err) {
             setError("No se pudo eliminar el plano");
         }
