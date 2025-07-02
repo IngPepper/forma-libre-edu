@@ -9,6 +9,7 @@ import MainNav from "@/components/(layout)/MainNav";
 import Bubble from "@/components/(utilities)/Bubble";
 
 
+
 export const metadata = {
     title: "Forma Libre",
     description: "La mejor web para obtener archivos AutoCAD, planos arquitectónicos y recursos digitales para arquitectura en español.",

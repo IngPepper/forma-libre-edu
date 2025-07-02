@@ -15,7 +15,6 @@
     font-size: 1.3em;
     position: fixed;
     right: 2rem;
-    bottom: 5.5rem; /* Ajusta según tu footer/nav inferior */
     z-index: 2020;
     opacity: 100%;
     pointer-events: none;

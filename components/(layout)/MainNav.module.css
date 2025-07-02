@@ -181,7 +181,7 @@
     }
     .container.navAtBottom {
         border: 2px solid var(--color-tarjeta); /* O el color que quieras */
-        margin-bottom: var(--espaciado);
+        margin-bottom: 3rem;
     }
     .navLinks {
         opacity: 0;

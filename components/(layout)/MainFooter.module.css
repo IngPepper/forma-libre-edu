@@ -69,6 +69,7 @@
 }
 
 .linkList {
+    min-width: 150px;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -147,6 +148,10 @@
 @media (max-width: 500px) {
     .footerWrapper {
         padding-bottom: 100px;
+    }
+    .saludo {
+        padding: 0 2rem;
+        text-align: center;
     }
 }
 

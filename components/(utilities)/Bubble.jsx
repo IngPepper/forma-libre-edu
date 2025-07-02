@@ -2,8 +2,10 @@
 import { useEffect, useState } from "react";
 import styles from "./Bubble.module.css";
 import { FaArrowUp } from "react-icons/fa";
+import useNavAtBottom from "@/components/(utilities)/useNavAtBottom";
 
 export default function Bubble({ threshold = 400, offsetBottom = "5.5rem" }) {
+    const navAtBottom = useNavAtBottom();
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
@@ -23,7 +25,7 @@ export default function Bubble({ threshold = 400, offsetBottom = "5.5rem" }) {
             className={`${styles.bubble} ${styles.bubbleReset} ${visible ? styles.visible : ""}`}
             onClick={scrollToTop}
             aria-label="Volver al inicio"
-            style={{ bottom: offsetBottom, right: "1rem" }}
+            style={{bottom: navAtBottom ? "8rem" : "3rem", right: "1rem"  }}
             type="button"
         >
             <FaArrowUp />

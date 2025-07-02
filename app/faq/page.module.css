@@ -1,0 +1,47 @@
+.faqAnswer {
+    max-height: 0;
+    overflow: hidden;
+    color: var(--color-texto-suave);
+    transition: max-height 0.35s cubic-bezier(.54,1.3,.49,1.01), padding-top 0.25s;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    padding-top: 0;
+    opacity: 0;
+}
+
+.open {
+    max-height: 300px;
+    padding-top: 0.5rem;
+    opacity: 1;
+    /* Bounce animation */
+    animation: faqBounceDropIn 0.55s cubic-bezier(.32,1.35,.52,.97);
+}
+
+.breakDegradado {
+    width: 100%;
+    height: 6px;
+    margin: 1.5rem 0;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.56), transparent);
+    animation: fadeInLine 0.8s ease-in-out;
+}
+
+@keyframes faqBounceDropIn {
+    0% {
+        transform: translateY(-70px);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(16px);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(-7px);
+    }
+    90% {
+        transform: translateY(2px);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
