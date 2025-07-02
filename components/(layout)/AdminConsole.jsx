@@ -26,6 +26,7 @@ function blankPlano() {
         isDonated: "",
         imagenGeneral: "",
         niveles: [],
+        metrosCuadrados: "",
     };
 }
 function blankNivel() {
@@ -37,6 +38,7 @@ function blankNivel() {
         precio: "",
         infoExtra: "",
         enlaces: [],
+        metrosCuadrados: "",
     };
 }
 
@@ -321,12 +323,87 @@ export default function AdminConsole({ }) {
             <div className={styles.section}>
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <h3>{editing ? "Editar Plano" : "Agregar Nuevo Plano"}</h3>
-                    <input name="titulo" placeholder="Título" value={form.titulo || ""} onChange={handleChange} required />
-                    <input name="imagen" placeholder="URL Imagen" value={form.imagen || ""} onChange={handleChange} required />
-                    <input name="descripcion" placeholder="Descripción" value={form.descripcion || ""} onChange={handleChange} />
-                    <input name="categoria" placeholder="Categoría" value={form.categoria || ""} onChange={handleChange} />
-                    <input name="isDonated" placeholder="¿Donado? (vacío o donated)" value={form.isDonated || ""} onChange={handleChange} />
-                    <input name="imagenGeneral" placeholder="Imagen General (opcional)" value={form.imagenGeneral || ""} onChange={handleChange} />
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="titulo">Título</label>
+                        <input
+                            id="titulo"
+                            name="titulo"
+                            placeholder="Título"
+                            value={form.titulo || ""}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="imagen">URL de la imagen principal</label>
+                        <input
+                            id="imagen"
+                            name="imagen"
+                            placeholder="URL Imagen"
+                            value={form.imagen || ""}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="descripcion">Descripción</label>
+                        <input
+                            id="descripcion"
+                            name="descripcion"
+                            placeholder="Descripción"
+                            value={form.descripcion || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="categoria">Categoría</label>
+                        <input
+                            id="categoria"
+                            name="categoria"
+                            placeholder="Categoría"
+                            value={form.categoria || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="isDonated">¿Donado?</label>
+                        <input
+                            id="isDonated"
+                            name="isDonated"
+                            placeholder="¿Donado? (vacío o donated)"
+                            value={form.isDonated || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="imagenGeneral">Imagen general (opcional)</label>
+                        <input
+                            id="imagenGeneral"
+                            name="imagenGeneral"
+                            placeholder="Imagen General (opcional)"
+                            value={form.imagenGeneral || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="metrosCuadrados">Metros Cuadrados Totales</label>
+                        <input
+                            id="metrosCuadrados"
+                            name="metrosCuadrados"
+                            type="number"
+                            min="0"
+                            placeholder="Metros Cuadrados Totales"
+                            value={form.metrosCuadrados || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
                     {/* NIVELES */}
                     <div>
                         <label>
@@ -338,42 +415,91 @@ export default function AdminConsole({ }) {
                         {form.niveles.map((nivel, idx) => (
                             <div key={idx} className={styles.nivelBox}>
                                 <b>{idx === 0 ? "Bundle / Primer nivel" : `Nivel ${idx + 1}`}</b>
-                                <input
-                                    placeholder="Nombre"
-                                    value={nivel.nombre || ""}
-                                    onChange={e => handleNivelChange(idx, "nombre", e.target.value)}
-                                    required={idx === 0}
-                                />
-                                <input
-                                    placeholder="Descripción"
-                                    value={nivel.descripcion || ""}
-                                    onChange={e => handleNivelChange(idx, "descripcion", e.target.value)}
-                                />
-                                <input
-                                    placeholder="URL de la foto del nivel"
-                                    value={nivel.foto || ""}
-                                    onChange={e => handleNivelChange(idx, "foto", e.target.value)}
-                                />
-                                <input
-                                    placeholder="Tamaño archivo"
-                                    value={nivel.tamanoArchivo || ""}
-                                    onChange={e => handleNivelChange(idx, "tamanoArchivo", e.target.value)}
-                                />
-                                <input
-                                    placeholder="Tipo archivo"
-                                    value={nivel.tipoArchivo || ""}
-                                    onChange={e => handleNivelChange(idx, "tipoArchivo", e.target.value)}
-                                />
-                                <input
-                                    placeholder={idx === 0 ? "Precio Bundle" : "Precio"}
-                                    value={nivel.precio || ""}
-                                    onChange={e => handleNivelChange(idx, "precio", e.target.value)}
-                                />
-                                <input
-                                    placeholder="Info extra"
-                                    value={nivel.infoExtra || ""}
-                                    onChange={e => handleNivelChange(idx, "infoExtra", e.target.value)}
-                                />
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor={`nivel-nombre-${idx}`}>Nombre del nivel</label>
+                                    <input
+                                        id={`nivel-nombre-${idx}`}
+                                        placeholder="Nombre"
+                                        value={nivel.nombre || ""}
+                                        onChange={e => handleNivelChange(idx, "nombre", e.target.value)}
+                                        required={idx === 0}
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor={`nivel-descripcion-${idx}`}>Descripción</label>
+                                    <input
+                                        id={`nivel-descripcion-${idx}`}
+                                        placeholder="Descripción"
+                                        value={nivel.descripcion || ""}
+                                        onChange={e => handleNivelChange(idx, "descripcion", e.target.value)}
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor={`nivel-foto-${idx}`}>URL de la foto del nivel</label>
+                                    <input
+                                        id={`nivel-foto-${idx}`}
+                                        placeholder="URL de la foto del nivel"
+                                        value={nivel.foto || ""}
+                                        onChange={e => handleNivelChange(idx, "foto", e.target.value)}
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor={`nivel-tamanoArchivo-${idx}`}>Tamaño archivo</label>
+                                    <input
+                                        id={`nivel-tamanoArchivo-${idx}`}
+                                        placeholder="Tamaño archivo"
+                                        value={nivel.tamanoArchivo || ""}
+                                        onChange={e => handleNivelChange(idx, "tamanoArchivo", e.target.value)}
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor={`nivel-metrosCuadrados-${idx}`}>Metros cuadrados (m²)</label>
+                                    <input
+                                        id={`nivel-metrosCuadrados-${idx}`}
+                                        placeholder="m2"
+                                        type="number"
+                                        min="0"
+                                        value={nivel.metrosCuadrados || ""}
+                                        onChange={e => handleNivelChange(idx, "metrosCuadrados", e.target.value)}
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor={`nivel-tipoArchivo-${idx}`}>Tipo archivo</label>
+                                    <input
+                                        id={`nivel-tipoArchivo-${idx}`}
+                                        placeholder="Tipo archivo"
+                                        value={nivel.tipoArchivo || ""}
+                                        onChange={e => handleNivelChange(idx, "tipoArchivo", e.target.value)}
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor={`nivel-precio-${idx}`}>{idx === 0 ? "Precio Bundle" : "Precio"}</label>
+                                    <input
+                                        id={`nivel-precio-${idx}`}
+                                        placeholder={idx === 0 ? "Precio Bundle" : "Precio"}
+                                        type="number"
+                                        min="0"
+                                        value={nivel.precio || ""}
+                                        onChange={e => handleNivelChange(idx, "precio", e.target.value)}
+                                    />
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label htmlFor={`nivel-infoExtra-${idx}`}>Info extra</label>
+                                    <input
+                                        id={`nivel-infoExtra-${idx}`}
+                                        placeholder="Info extra"
+                                        value={nivel.infoExtra || ""}
+                                        onChange={e => handleNivelChange(idx, "infoExtra", e.target.value)}
+                                    />
+                                </div>
                                 {/* Enlaces por nivel */}
                                 <div>
                                     <label>Enlaces:</label>
