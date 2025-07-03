@@ -185,6 +185,7 @@ export default function Catalogo({
                     )}
                 </section>
             </RequireAccount>
+            <div className={"min"}></div>
             <MainFooter />
         </>
     );
