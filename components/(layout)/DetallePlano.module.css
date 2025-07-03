@@ -477,7 +477,7 @@
     margin: 0.4rem 0;
     overflow-x: auto;
     padding: 0.1rem;
-    max-width: 90%;   /* Puedes ajustar esto o usar 100% */
+    max-width: 100%;   /* Puedes ajustar esto o usar 100% */
     scrollbar-width: thin;
     scrollbar-color: var(--color-acento) transparent;
 }
