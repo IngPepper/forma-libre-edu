@@ -4,8 +4,8 @@ export default function PendingPage() {
             <h1>Pago pendiente</h1>
             <p>Tu pago está pendiente de confirmación. Recibirás un correo cuando se confirme.</p>
             <a href="/">Volver al inicio</a>
-            <div className={"add500"}></div>
-            <div className={"add500"}></div>
+            <div className={"min"}></div>
+            <div className={"min"}></div>
         </section>
     );
 }

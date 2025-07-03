@@ -61,7 +61,7 @@ export default function Carrito() {
                         Cargando usuario...
                     </h1>
                 </div>
-                <div className="add500"></div>
+                <div className="min"></div>
             </section>
         );
     }
@@ -78,7 +78,7 @@ export default function Carrito() {
                         Iniciar sesión
                     </Link>
                 </div>
-                <div className="add500"></div>
+                <div className="min"></div>
             </section>
         );
     }
@@ -95,7 +95,7 @@ export default function Carrito() {
                         Ir al catálogo
                     </Link>
                 </div>
-                <div className="add500"></div>
+                <div className="min"></div>
             </section>
         );
     }
@@ -181,7 +181,6 @@ export default function Carrito() {
                     </button>
                 </div>
             </section>
-            <div className="add500"></div>
         </div>
     );
 }

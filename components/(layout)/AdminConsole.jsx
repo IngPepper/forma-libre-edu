@@ -23,6 +23,7 @@ function blankPlano() {
         imagen: "",
         titulo: "",
         descripcion: "",
+        infoExtra: "",
         categoria: "",
         isDonated: "",
         imagenGeneral: "",
@@ -387,18 +388,6 @@ export default function AdminConsole({ }) {
                         />
                     </div>
                     <div className={styles.formGroup}>
-                        <label htmlFor="metrosCuadrados">Metros Cuadrados Totales</label>
-                        <input
-                            id="metrosCuadrados"
-                            name="metrosCuadrados"
-                            type="number"
-                            min="0"
-                            placeholder="Metros Cuadrados Totales"
-                            value={form.metrosCuadrados || ""}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
                         <label htmlFor="descripcion">Descripción</label>
                         <input
                             id="descripcion"
@@ -408,7 +397,16 @@ export default function AdminConsole({ }) {
                             onChange={handleChange}
                         />
                     </div>
-
+                    <div className={styles.formGroup}>
+                        <label htmlFor="infoExtra">Info Extra</label>
+                        <input
+                            id="infoExtra"
+                            name="infoExtra"
+                            placeholder="Información adicional"
+                            value={form.infoExtra || ""}
+                            onChange={handleChange}
+                        />
+                    </div>
                     <div className={styles.formGroup}>
                         <label htmlFor="categoria">Categoría</label>
                         <input
@@ -522,15 +520,62 @@ export default function AdminConsole({ }) {
                                                 />
                                             </div>
                                             <div className={styles.formGroup}>
-                                                <label htmlFor={`nivel-tipoArchivo-${idx}`}>Tipo archivo</label>
-                                                <input
-                                                    id={`nivel-tipoArchivo-${idx}`}
-                                                    placeholder="Tipo archivo"
-                                                    value={nivel.tipoArchivo || ""}
-                                                    onChange={e =>
-                                                        handleNivelChange(idx, "tipoArchivo", e.target.value)
-                                                    }
-                                                />
+                                                <label htmlFor={`nivel-tipoArchivo-${idx}`}>Tipo de archivo</label>
+                                                <div className={styles.formTipoArchivo}>
+                                                    <label>
+                                                        <input
+                                                            type="radio"
+                                                            name={`nivel-tipoArchivo-${idx}`}
+                                                            value="PDF"
+                                                            checked={nivel.tipoArchivo === "PDF"}
+                                                            onChange={() => handleNivelChange(idx, "tipoArchivo", "PDF")}
+                                                        />
+                                                        PDF
+                                                    </label>
+                                                    <label>
+                                                        <input
+                                                            type="radio"
+                                                            name={`nivel-tipoArchivo-${idx}`}
+                                                            value="DWG"
+                                                            checked={nivel.tipoArchivo === "DWG"}
+                                                            onChange={() => handleNivelChange(idx, "tipoArchivo", "DWG")}
+                                                        />
+                                                        DWG
+                                                    </label>
+                                                    <label>
+                                                        <input
+                                                            type="radio"
+                                                            name={`nivel-tipoArchivo-${idx}`}
+                                                            value="OTRO"
+                                                            checked={
+                                                                nivel.tipoArchivo !== "PDF" &&
+                                                                nivel.tipoArchivo !== "DWG" &&
+                                                                Boolean(nivel.tipoArchivo)
+                                                            }
+                                                            onChange={() => handleNivelChange(idx, "tipoArchivo", "")}
+                                                        />
+                                                        <input
+                                                            type="text"
+                                                            style={{ textTransform: "uppercase" }}
+                                                            placeholder="Otro tipo"
+                                                            // El campo de texto se activa siempre para poder seleccionarlo y escribir
+                                                            value={
+                                                                nivel.tipoArchivo !== "PDF" && nivel.tipoArchivo !== "DWG"
+                                                                    ? nivel.tipoArchivo || ""
+                                                                    : ""
+                                                            }
+                                                            onFocus={e => {
+                                                                // Al hacer focus en el input, selecciona el radio de "OTRO"
+                                                                if (nivel.tipoArchivo === "PDF" || nivel.tipoArchivo === "DWG") {
+                                                                    handleNivelChange(idx, "tipoArchivo", "");
+                                                                }
+                                                            }}
+                                                            onChange={e =>
+                                                                handleNivelChange(idx, "tipoArchivo", e.target.value.toUpperCase())
+                                                            }
+                                                        />
+                                                    </label>
+                                                </div>
                                             </div>
                                             <div className={styles.formGroup}>
                                                 <label htmlFor={`nivel-precio-${idx}`}>

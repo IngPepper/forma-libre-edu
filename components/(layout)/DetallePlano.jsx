@@ -22,7 +22,7 @@ function calcularBundle(niveles, infoExtraPlano = "") {
     return {
         nombre: "",
         descripcion: niveles.map(n => n.nombre).join(", "),
-        precio: `$${Math.round(suma * 0.95)}`,
+        precio: `$${(Math.round(suma * 0.95 * 100) / 100).toFixed(2)}`,
         tipoArchivo: niveles[0]?.tipoArchivo || "",
         tamanoArchivo: niveles.map(n => n.tamanoArchivo).join(" + "),
         metrosCuadrados: parseFloat(sumaMetros.toFixed(2)), // <--- aquí lo recortas a 2 decimales
@@ -201,20 +201,23 @@ export default function DetallePlano({
                 <div className={styles.contenido}>
                     {hayNiveles ? (
                         <div className={styles.carouselContainer}>
-                            <div className={styles.carouselNav}>
-                                <button onClick={prevSlide} type="button" aria-label="Anterior" className={styles.carouselBtn}>
-                                    <FaChevronLeft />
-                                </button>
-                                <span className={styles.carouselLabel}>
-                                    {slide.nombre}
-                                    {slideActivo === 0 && <span className={styles.bundleBadge}>Paquete</span>}
-                                </span>
-                                <button onClick={nextSlide} type="button" aria-label="Siguiente" className={styles.carouselBtn}>
-                                    <FaChevronRight />
-                                </button>
-                            </div>
                             <p className={styles.descripcion}>{descripcion}</p>
+
+                                <div className={styles.carouselNav}>
+                                    <button onClick={prevSlide} type="button" aria-label="Anterior" className={styles.carouselBtn}>
+                                        <FaChevronLeft />
+                                    </button>
+                                    <span className={styles.carouselLabel}>
+                                    {slide.nombre}
+                                        {slideActivo === 0 && <span className={styles.bundleBadge}>Paquete</span>}
+                                </span>
+                                    <button onClick={nextSlide} type="button" aria-label="Siguiente" className={styles.carouselBtn}>
+                                        <FaChevronRight />
+                                    </button>
+                                </div>
+
                             <div className={styles.carouselSlide}>
+                                <h4>Contenido</h4>
                                 <p className={styles.conjuntoPlanos}>{slide.descripcion}</p>
                                 <div className={styles.flagWrapper}>
                                     {/*Tipo de archivo*/}
@@ -222,13 +225,16 @@ export default function DetallePlano({
                                     </div>
                                     {/*Metros Cuadrados*/}
                                     <div className={styles.metros2}>
-                                        <strong>m&sup2;:</strong> {slide.metrosCuadrados ? slide.metrosCuadrados : "N/D"}
+                                        <strong>m&sup2;:</strong>
+                                        {slide.metrosCuadrados != null && !isNaN(slide.metrosCuadrados)
+                                            ? Number(slide.metrosCuadrados).toFixed(2)
+                                            : "N/D"}
                                     </div>
                                 </div>
                                 {!tieneMembresia && (
-                                    <div><strong>Precio:</strong> <span className={styles.precio}>
-  ${Number(parsePrecio(slide.precio)).toLocaleString()}
-</span></div>
+                                    <div className={styles.cajaPrecio}><strong>Precio:</strong> <span className={styles.precio}>
+                                    ${Number(parsePrecio(slide.precio)).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                </span></div>
                                 )}
                                 {isDonated && isDonated.trim().length > 0 && (
                                     <div>
@@ -283,15 +289,17 @@ export default function DetallePlano({
                                         <strong>Tamaño:</strong> {tamanoArchivo}
                                     </div>
                                     <div className="noPadding">
-                                        <strong>Superficie:</strong> {metrosCuadrados ? `${metrosCuadrados} m²` : "N/D"}
+                                        <strong>Superficie:</strong> {metrosCuadrados != null && !isNaN(metrosCuadrados)
+                                        ? `${Number(metrosCuadrados).toFixed(2)} m²`
+                                        : "N/D"}
                                     </div>
                                 </div>
 
                                 {!tieneMembresia && (
-                                    <div className="noPadding">
-                                        <strong>Precio:</strong> <span className={styles.precio}>
-  ${Number(parsePrecio(precio)).toLocaleString()}
-</span>
+                                    <div className={`noPadding ${styles.cajaPrecio}`}>
+                                        <strong>Precio:</strong> <strong>Precio:</strong> <span className={styles.precio}>
+                                            ${Number(parsePrecio(precio)).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                        </span>
                                     </div>
                                 )}
                                 {isDonated && isDonated.trim().length > 0 && (

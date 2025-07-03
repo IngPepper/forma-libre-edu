@@ -51,7 +51,7 @@ export default function CuentaPage() {
                     onDescargarFactura={onDescargarFactura}
                 />
             </main>
-            <div className={"add500"}></div>
+            <div className={"min"}></div>
         <MainFooter/>
         </>
 

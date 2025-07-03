@@ -10,7 +10,7 @@ export default function Register() {
             <main className="wrapper">
                 <ScrollToTopOnNavigation />
                 <RegisterScreen />
-                <div className={"add500"}></div>
+                <div className={"min"}></div>
             </main>
         <MainFooter/>
         </>

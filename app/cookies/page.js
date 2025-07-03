@@ -24,7 +24,7 @@ export default function Cookies() {
                         <Link href="/politicas" className={"link"}>políticas generales</Link>.
                     </p>
                 </ContentSection>
-                <div className={"add500"}></div>
+                <div className={"min"}></div>
             </section>
         <MainFooter/>
         </>

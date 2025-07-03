@@ -4,21 +4,34 @@
     padding: var(--espaciado-doble);
     max-width: 99vw;
     display: flex;
-    border-radius: var(--borde-radius-doble, 18px);
+    border-radius: 30px;
     margin: 2.5rem auto;
     align-items: stretch;
     position: relative;
     animation: slideDown 0.25s ease-in-out forwards;
     background-color: #fff;
+    border: 2px solid var(--color-texto);
 }
 .detalleImageWrapper{
     background: var(--color-texto-blanco);
     border-radius: var(--borde-radius-doble, 18px);
-    box-shadow: var(--sombra);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 0.5rem;
+}
+
+.cajaPrecio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 1.3rem;
+    background-color: var(--color-fondo-gris-claro);
+    border-radius: var(--borde-radius-doble, 18px);
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0 0 0;
 }
 
 .categoria {
@@ -82,7 +95,7 @@
     font-weight: 600;
     border-radius: 20px;
     padding: 0.2rem 0.4rem;
-    margin-left: 0.7em;
+    margin-right: 0.7em;
     letter-spacing: 1px;
     text-transform: capitalize;
     text-align: center;
@@ -97,7 +110,7 @@
     font-weight: 600;
     border-radius: 20px;
     padding: 0.2rem 0.4rem;
-    margin-left: 0.7em;
+    margin-right: 0.7em;
     letter-spacing: 1px;
     text-align: center;
 }
@@ -110,6 +123,7 @@
     max-height: 100px;
     overflow-y: auto;
     overflow-x: hidden;
+    padding: 0.5rem;
 
     scroll-behavior: smooth;
     scrollbar-width: thin;
@@ -137,7 +151,7 @@
     align-items: center;
     justify-content: center;
     background: var(--color-fondo-item);
-    border-radius: var(--borde-radius, 12px);
+    border-radius: 30px 30px 18px 18px;
     box-shadow: var(--sombra);
     overflow: hidden;
     min-width: 320px;
@@ -149,7 +163,7 @@
     width: 100%;
     min-height: 130px;
     max-height: 400px;
-    border-radius: var(--borde-radius, 12px);
+    border-radius: 30px 30px 18px 18px;
     object-fit: cover;
     border: 4px solid var(--color-fondo-gris-claro);
 }
@@ -172,7 +186,7 @@
     font-weight: bolder;
     color: var(--color-texto, #222);
     line-height: 1.15;
-    padding: 1rem;
+    padding: 0 1rem;
     border-radius:  18px 18px 0 0;
     background: var(--color-texto-blanco);
 }
@@ -180,15 +194,15 @@
 .descripcion {
     color: var(--color-texto, #5a5a5a);
     border: 2px solid var(--color-acento);
-    margin-bottom: .75rem;
     padding: var(--espaciado);
-    border-radius: 12px 0 0 12px;
-    background: var(--color-tarjeta);
+    border-radius: 20px;
+    background: var(--color-secondary-btn-fondo);
     text-align: initial;
     font-size: 0.85rem;
     max-height: 150px;
     overflow-y: auto;
     overflow-x: hidden;
+    margin: 0 0.5rem 0.5rem 0.5rem;
 
     scroll-behavior: smooth;
     scrollbar-width: thin;
@@ -216,7 +230,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.1em;
-    padding: 1rem ;
+    padding: 0 1rem ;
     margin-bottom: 0.5rem;
     background-color: var(--color-texto-blanco);
     border-radius: 0 0 18px 18px;
@@ -226,7 +240,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-fondo-claro);
+    background: transparent;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -240,14 +254,13 @@
 }
 
 .backBtn:hover {
-    background: var(--color-secondary-btn);
+    background: var(--color-categoria-fondo);
     box-shadow: var(--sombra);
-    color: var(--color-texto-blanco);
+    color: var(--color-texto);
 }
 
 /* SearchBar.module.css o DetallePlano.module.css */
 .backBtnReset {
-    background: none;
     border: 2px solid var(--color-secondary-btn-fondo);
     outline: none;
     box-shadow: none;
@@ -372,10 +385,11 @@
     align-items: center;
     justify-content: space-between;
     gap: 1.4rem;
-    padding: 0.5rem 1rem;
-    margin: 1.1rem 0 0 0;
-    border-radius: 18px;
-    background-color: var(--color-texto-blanco);
+    margin: 0.1rem 0.5rem;
+    border-radius: 18px 18px 0 0;
+    background-color: var(--color-fondo-item);
+    padding: 0.5rem;
+    box-shadow: var(--sombra);
 }
 
 .carouselBtn {
@@ -383,7 +397,7 @@
     color: var(--color-texto, #5a5a5a);
     border-radius: 12px;
     border: 2px solid var(--color-secondary-btn);
-    box-shadow: var(--sombra);
+    box-shadow: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -391,6 +405,7 @@
     padding: 0.5rem;
     font-size: 1rem;
     transition: background 0.18s, color 0.12s, transform 0.14s;
+    margin: 0;
 }
 .carouselBtn:hover,
 .carouselBtn:focus {
@@ -398,6 +413,7 @@
     color: var(--color-verde-oscuro);
     transform: scale(1.08);
     outline: none;
+    box-shadow: var(--sombra);
 }
 
 .carouselLabel {
@@ -405,18 +421,14 @@
     font-size: 1.08rem;
     font-weight: 600;
     color: var(--color-texto, #222);
-    background: var(--color-fondo-item);
-    border-radius: 1.2em;
-    border: 2px solid var(--color-secondary-btn-fondo);
     position: relative;
-    box-shadow: var(--sombra);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     gap: 0.7em;
     overflow-y: auto;
-    padding: 1rem;
+    padding: 0.1rem 1rem;
     max-width: 90%;   /* Puedes ajustar esto o usar 100% */
     scrollbar-width: thin;
 }
@@ -427,7 +439,7 @@
     background: var(--color-verde-claro);
     border: 2px solid var(--color-verde);
     border-radius: 10px;
-    padding: 0.18em 0.78em;
+    padding: 0 0.78em;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 700;
@@ -436,7 +448,7 @@
 /* --------- Slide Content --------- */
 .carouselSlide {
     background: var(--color-fondo-item);
-    border-radius: 1.1em;
+    border-radius: 0 0 18px 18px;
     box-shadow: var(--sombra);
     padding: var(--espaciado);
     margin: 0 auto 0.5em auto;
@@ -447,7 +459,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.2em;
     animation: carouselFadeIn 0.28s;
 }
 
@@ -462,7 +474,7 @@
     gap: 0.2rem;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0;
+    margin: 0.4rem 0;
     overflow-x: auto;
     padding: 0.1rem;
     max-width: 90%;   /* Puedes ajustar esto o usar 100% */
@@ -534,7 +546,9 @@
 }
 .detalleImageWrapper {
     position: relative; /* Para que .nivelLabel se posicione correctamente */
+    border-radius: 30px;
 }
+
 
 
 
@@ -575,7 +589,7 @@
     .imagenBox {
         margin: 0 auto;
         width: 100%;
-        height: 100%;
+        max-height: 100%;
     }
     .contenido {
         width: 100%;
@@ -583,6 +597,16 @@
     }
     .titulo {
         font-size: 1.55rem;
+    }
+    .descripcion{
+        width: 100%;
+        margin: 0;
+        border-left: none;
+        border-right: none;
+        height: 80px;
+        padding: 0 0.5rem;
+        border-radius: 0;
+
     }
     .comprar {
         padding: 0.6rem 1.5rem;
@@ -618,20 +642,27 @@
 
 
 @media (max-width: 510px) {
+    .carouselContainer{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
     .detalle {
-        padding: 0.5rem;
+        padding: 0 0 0.7rem 0;
         gap: 0;
     }
     .imagenBox {
         min-width: 110px;
         min-height: 130px;
-        border-radius: 8px;
+    }
+    .carouselNav {
+        display: none;
     }
     .titulo {
         font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        border-radius: 10px;
-        background-color: var(--color-fondo-gris-claro);
+        border-radius: 20px;
+        background-color: var(--color-fondo-item);
+        margin:0.5rem;
     }
     .comprar {
         padding: 0.6rem 1.5rem;
@@ -644,10 +675,10 @@
         display: none;
     }
     .chipRow {
-        background-color: var(--color-fondo-gris-claro);
+        background-color: var(--color-fondo-item);
         border-radius: 10px;
         padding: 0.5rem;
-        margin: 0 0 0.5rem 0;
+        margin: 0.5rem;
         gap: 1rem;
         flex-direction: row;
         align-items: center;
@@ -666,13 +697,17 @@
         font-size: .8rem;
         top: 25%;
     }
+    .extra{
+        font-size: .8rem;
+    }
     .carouselLabel {
         font-size: .8rem;
 
     }
     .carouselSlide {
-        padding: 1rem;
-        margin: 0 auto;
+        padding: 0.5rem 0.5rem 0 0.5rem;
+        margin:  0;
+        width: 100%;
     }
     .tipoDeArchivo{
         margin: 0;
@@ -680,7 +715,24 @@
     .estado, .categoria{
         font-size: 0.7rem;
     }
-
+    .cajaPrecio {
+        justify-content: center;
+    }
+    .imagen {
+        height: 250px;
+        width: 100%;
+        border-radius: 0;
+        border: none;
+    }
+    .imagenBox {
+        width: 100%;
+    }
+    .flagWrapper {
+        margin-top: 0.5rem;
+    }
+    .detalleImageWrapper {
+        margin-bottom: 0;
+    }
 }
 
 /* Animations */

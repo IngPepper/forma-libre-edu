@@ -25,7 +25,7 @@ export default function Contacto() {
                         También puedes consultar nuestras <Link href="/faq" className="link" >preguntas frecuentes</Link>.
                     </p>
                 </ContentSection>
-                <div className={"add500"}></div>
+                <div className={"min"}></div>
             </section>
             <MainFooter />
         </>

@@ -6,7 +6,7 @@ export default function CarritoPage() {
     return (
 
         <>
-            <section className={"wrapper"}>
+            <section className={`wrapper min`}>
                 <Carrito />
             </section>
         <MainFooter />

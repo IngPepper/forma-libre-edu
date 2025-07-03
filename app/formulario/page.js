@@ -11,7 +11,7 @@ export default function FormularioArchivoPage(){
             <section className={"wrapper"}>
                 <h1 className={"smallerText"}>Comparte /</h1>
                 <FormularioArchivo />
-                <div className={"add500"}></div>
+                <div className={"min"}></div>
             </section>
         <MainFooter/>
         </>

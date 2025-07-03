@@ -23,7 +23,7 @@ export default function Politicas() {
                         Te recomendamos revisar periódicamente esta sección para mantenerte al día con cualquier actualización.
                     </p>
                 </ContentSection>
-                <div className={"add500"}></div>
+                <div className={"min"}></div>
             </section>
         <MainFooter/>
         </>

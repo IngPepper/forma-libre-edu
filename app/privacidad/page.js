@@ -23,7 +23,7 @@ export default function Privacidad() {
                         Consulta nuestras <Link href="/politicas" className="link">políticas generales</Link> para conocer más detalles.
                     </p>
                 </ContentSection>
-                <div className={"add500"}></div>
+                <div className={"min"}></div>
             </section>
             <MainFooter/>
         </>

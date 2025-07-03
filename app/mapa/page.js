@@ -32,7 +32,7 @@ export default function MapaDelSitio() {
                     </p>
                 </ContentSection>
             </section>
-            <div className={"add500"}></div>
+            <div className={"min"}></div>
             <MainFooter/>
         </>
     )
