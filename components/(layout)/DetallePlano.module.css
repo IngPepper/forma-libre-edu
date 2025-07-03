@@ -84,6 +84,8 @@
     wrap-option: wrap;
     align-items: start;
     gap: 0.2rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
 }
 
 .tipoDeArchivo{
@@ -194,19 +196,25 @@
 .descripcion {
     color: var(--color-texto, #5a5a5a);
     border: 2px solid var(--color-acento);
-    padding: var(--espaciado);
     border-radius: 20px;
     background: var(--color-secondary-btn-fondo);
     text-align: initial;
-    font-size: 0.85rem;
     max-height: 150px;
     overflow-y: auto;
     overflow-x: hidden;
     margin: 0 0.5rem 0.5rem 0.5rem;
-
+    padding: 0.3rem;
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--color-tarjeta) #5a5a5a;
+}
+.descripcion>p {
+    font-size: 0.85rem;
+    padding-left: 0.35rem;
+}
+.descripcion>h4 {
+    padding-bottom: 0.3rem;
+    padding-left: 0.3rem;
 }
 
 .categoria {

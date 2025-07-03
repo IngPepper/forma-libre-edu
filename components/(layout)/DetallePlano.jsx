@@ -201,8 +201,10 @@ export default function DetallePlano({
                 <div className={styles.contenido}>
                     {hayNiveles ? (
                         <div className={styles.carouselContainer}>
-                            <p className={styles.descripcion}>{descripcion}</p>
-
+                            <section className={styles.descripcion}>
+                                <h4>Descripción</h4>
+                                <p>{descripcion}</p>
+                            </section>
                                 <div className={styles.carouselNav}>
                                     <button onClick={prevSlide} type="button" aria-label="Anterior" className={styles.carouselBtn}>
                                         <FaChevronLeft />
