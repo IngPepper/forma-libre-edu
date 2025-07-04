@@ -9,7 +9,7 @@
     border-radius: var(--borde-radius);
     border:var(--borde-oscuro);
     box-shadow: var(--sombra);
-    background: var(--color-acento);
+    background: var(--color-fondo-item);
 }
 
 @media (max-width: 900px) {

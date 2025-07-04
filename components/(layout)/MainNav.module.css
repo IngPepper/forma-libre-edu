@@ -1,7 +1,7 @@
 /* === LOGO PRINCIPAL y MINI === */
 .logoGrande {
     display: block;
-    height: 48px;
+    height: 70px;
     width: auto;
     object-fit: contain;
     transition: transform 0.2s;
@@ -171,7 +171,7 @@
     }
     .logoMini {
         display: block;
-        height: 36px;
+        height: 40px;
         width: auto;
         max-width: 80px;
         object-fit: contain;
@@ -219,7 +219,7 @@
         padding: 0.25rem;
     }
     .logoMini {
-        height: 30px;
+        height: 40px;
         max-width: 60px;
     }
     .container {
@@ -235,7 +235,7 @@
         justify-content: space-around;
     }
     .logoMini {
-        height: 24px;
+        height: 40px;
         max-width: 50px;
     }
 }

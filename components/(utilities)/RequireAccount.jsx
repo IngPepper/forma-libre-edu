@@ -13,10 +13,10 @@ export default function RequireAccount({ children }) {
         <div className={`wrapper`}>
             <div className={styles.bandeja}>
                 <Image
-                    src="/assets/iso03S_n_t.svg"
+                    src="/assets/l02H_B_marron_t.svg"
                     alt="Logotipo isotipo"
-                    width={150}
-                    height={150}
+                    width={200}
+                    height={200}
                     style={{ objectFit: "cover", padding: "0 3rem 0 0" }}
                     priority
                 />
