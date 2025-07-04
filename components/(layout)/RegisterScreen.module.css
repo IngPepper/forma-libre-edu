@@ -92,7 +92,7 @@
 }
 
 .input {
-    margin-top: 0.3rem;
+    width: 100%;
     padding: 0.7rem 0.9rem;
     border-radius: var(--borde-radius);
     border: 2px solid var(--color-border);
@@ -183,6 +183,26 @@
     font-size: 0.75rem;
     list-style: none;
     color: var(--color-texto-suave);
+}
+
+.passwordField {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.showPasswordBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-left: -2.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-texto-suave, #7a859c);
+    padding: 0;
+    outline: none;
+}
+.showPasswordBtn:active {
+    color: var(--color-acento, #6c7eb6);
 }
 
 .isoEffect {

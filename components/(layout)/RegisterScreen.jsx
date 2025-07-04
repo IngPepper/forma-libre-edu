@@ -53,6 +53,9 @@ export default function RegisterScreen() {
         else if (!/[0-9]/.test(trimmedPassword)) newErrors.password = "Debe tener al menos un número";
         else if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(trimmedPassword)) newErrors.password = "Debe tener un caracter especial";
 
+        if (!confirmPassword) newErrors.confirmPassword = "Confirma tu contraseña";
+        else if (form.password && confirmPassword !== form.password) newErrors.confirmPassword = "Las contraseñas no coinciden";
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -86,6 +89,13 @@ export default function RegisterScreen() {
             setSubmitting(false);
         }
     };
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+
+
 
     return (
         <section className={`wrapper minimalContentView`}>
@@ -155,16 +165,52 @@ export default function RegisterScreen() {
                         </label>
                         <label className={styles.label}>
                             Contraseña
-                            <input
-                                className={`${styles.input} ${errors.password ? styles.errorInput : ''}`}
-                                name="password"
-                                type="password"
-                                autoComplete="new-password"
-                                value={form.password}
-                                onChange={handleChange}
-                                disabled={submitting}
-                            />
+                            <div className={styles.passwordField}>
+                                <input
+                                    className={`${styles.input} ${errors.password ? styles.errorInput : ''}`}
+                                    name="password"
+                                    type={showPassword ? "text" : "password"}
+                                    autoComplete="new-password"
+                                    value={form.password}
+                                    onChange={handleChange}
+                                    disabled={submitting}
+                                />
+                                <button
+                                    type="button"
+                                    className={styles.showPasswordBtn}
+                                    onClick={() => setShowPassword((v) => !v)}
+                                    tabIndex={-1}
+                                    aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                                >
+                                    {showPassword ? "🙈" : "👁️"}
+                                </button>
+                            </div>
                             {errors.password && <span className={styles.errorMsg}>{errors.password}</span>}
+                        </label>
+
+                        <label className={styles.label}>
+                            Confirmar contraseña
+                            <div className={styles.passwordField}>
+                                <input
+                                    className={`${styles.input} ${errors.confirmPassword ? styles.errorInput : ''}`}
+                                    name="confirmPassword"
+                                    type={showConfirmPassword ? "text" : "password"}
+                                    autoComplete="new-password"
+                                    value={confirmPassword}
+                                    onChange={e => setConfirmPassword(e.target.value)}
+                                    disabled={submitting}
+                                />
+                                <button
+                                    type="button"
+                                    className={styles.showPasswordBtn}
+                                    onClick={() => setShowConfirmPassword((v) => !v)}
+                                    tabIndex={-1}
+                                    aria-label={showConfirmPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                                >
+                                    {showConfirmPassword ? "🙈" : "👁️"}
+                                </button>
+                            </div>
+                            {errors.confirmPassword && <span className={styles.errorMsg}>{errors.confirmPassword}</span>}
                         </label>
                         <ul className={styles.passwordRequirements}>
                             <li>Mínimo 8 caracteres</li>
