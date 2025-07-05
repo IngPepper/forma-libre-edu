@@ -110,16 +110,24 @@ export default function Carrito() {
                         <li key={item.id} className={styles.item}>
                             <img src={item.imagen} alt={item.titulo} className={styles.imagen} />
                             <div className={styles.info}>
-                                <h3>{item.titulo}</h3>
+                                <h3 className={styles.titulo}>{item.titulo}</h3>
                                 <p className={styles.descripcion}>{item.descripcion}</p>
                                 <div className={styles.categoria}>{item.categoria}</div>
+                            </div>
+                            <div className={styles.priceCol}>
+                                <div className={styles.precio}>
+                                    {Number(item.precio) === 0
+                                        ? "¡Gratis!"
+                                        : `$${Number(item.precio).toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                                    }
+                                </div>
                                 <div className={styles.controls}>
                                     <button
                                         className={styles.qtyBtn}
                                         onClick={() => setProductQuantity(item.id, Math.max(1, item.cantidad - 1))}
                                         aria-label="Disminuir"
                                     >
-                                        <FaMinus />
+                                        <FaMinus className={styles.iconos} />
                                     </button>
                                     <span className={styles.cantidad}>{item.cantidad}</span>
                                     <button
@@ -127,34 +135,36 @@ export default function Carrito() {
                                         onClick={() => setProductQuantity(item.id, item.cantidad + 1)}
                                         aria-label="Aumentar"
                                     >
-                                        <FaPlus />
+                                        <FaPlus className={styles.iconos} />
                                     </button>
                                 </div>
                             </div>
-                            <div className={styles.precio}>
-                                {item.precio === 0 ? "¡Gratis!" : `$${item.precio}`}
-                            </div>
-                            <div className={styles.eliminarWrapper}>
-                                <button
-                                    className={styles.eliminar}
-                                    onClick={() => {
-                                        removeFromCart(item.id);
-                                        window.scrollTo({ top: 0, behavior: "smooth" });
-                                    }}
-                                    title="Quitar del carrito"
-                                >
-                                    <FaTrash />
-                                </button>
-                            </div>
+                            <button
+                                className={styles.botonBasura}
+                                onClick={() => {
+                                    removeFromCart(item.id);
+                                    window.scrollTo({ top: 0, behavior: "smooth" });
+                                }}
+                                title="Quitar del carrito"
+                            >
+                                <FaTrash className={styles.iconoBasura} />
+                            </button>
                         </li>
                     ))}
                 </ul>
                 <div className={styles.resumen}>
-                    <div>
-                        <strong>Total:</strong> {total === 0 ? "¡Gratis!" : `$${total}`}
+                    <div className={styles.totalPrecio}>
+                        <strong>Total:</strong><br />
+                        {Number(total) === 0
+                            ? "¡Gratis!"
+                            : `$${Number(total).toLocaleString('es-MX', {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                            })}`
+                        }
                     </div>
-                    <div>
-                        <strong>Artículos:</strong> {totalItems}
+                    <div className={styles.articulosTotal}>
+                        {totalItems}<br /><strong>:Art</strong>
                     </div>
                 </div>
                 <div className={styles.acciones}>
@@ -181,6 +191,7 @@ export default function Carrito() {
                     </button>
                 </div>
             </section>
+            <div className={"add500"}></div>
         </div>
     );
 }

@@ -312,7 +312,9 @@ h1{
     height: 0;
   }
 
-
+  .wrapper {
+    padding: 0.3rem;
+  }
   .add200{
     height: 0;
   }
