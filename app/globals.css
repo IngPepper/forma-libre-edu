@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
+/*--color-tarjeta: #D7D3BF;*/
 :root {
   --color-precio: #796d2c;
   --color-enlace: #796d2c;
@@ -7,7 +7,7 @@
   --color-fondo: #A59D84;
   --color-fondo-claro: #cfcec2;
   --color-acento: #C1BAA1;
-  --color-tarjeta: #D7D3BF;
+  --color-tarjeta: #cfcec2;
   --color-fondo-gris-claro: #f1f1f1;
   --color-texto: #2b2b2b;
   --color-texto-suave: #5a5a5a;
