@@ -251,20 +251,29 @@ export default function DetallePlano({
                                             Descargar
                                         </button>
                                     ) : (
-                                        <button
-                                            className={styles.comprar}
-                                            onClick={handleAddToCart}
-                                            disabled={loadingAdd}
-                                        >
-                                            <FaShoppingCart style={{ marginRight: 10 }} />
-                                            Agregar al carrito
-                                            {isClient && cantidadEnCarrito > 0 && (
-                                                <span className={styles.cantidadEnCarrito}>
-                                                    &nbsp;({cantidadEnCarrito} en carrito)
-                                                </span>
+                                        <>
+                                            <button
+                                                className={styles.comprar}
+                                                onClick={handleAddToCart}
+                                                disabled={loadingAdd || !user}
+                                                title={!user ? "Inicia sesión para agregar al carrito" : ""}
+                                            >
+                                                <FaShoppingCart style={{ marginRight: 10 }} />
+                                                Agregar al carrito
+                                                {isClient && cantidadEnCarrito > 0 && (
+                                                    <span className={styles.cantidadEnCarrito}>
+                    &nbsp;({cantidadEnCarrito} en carrito)
+                </span>
+                                                )}
+                                            </button>
+                                            {!user && (
+                                                <p style={{ color: 'var(--color-error)', marginTop: 5 }}>
+                                                    Debes iniciar sesión para agregar productos al carrito.
+                                                </p>
                                             )}
-                                        </button>
+                                        </>
                                     )}
+
                                 </div>
                                 {slide.enlaces && slide.enlaces.length > 0 && (
                                     <div className={styles.enlaces}>

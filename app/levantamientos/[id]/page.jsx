@@ -36,11 +36,9 @@ export default function LevantamientoDetallePage({ params }) {
 
     return (
         <>
-            <RequireAccount>
                 <section className={"wrapper"}>
                     <DetallePlano {...plano} />
                 </section>
-            </RequireAccount>
         <MainFooter />
         </>
     );

@@ -5,7 +5,6 @@ import { BsBox2Heart } from "react-icons/bs";
 import { TbFlagHeart } from "react-icons/tb";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { useUser } from "@/context/UserContext";
-import RequireAccount from "@/components/(utilities)/RequireAccount";
 import SearchBar from "@/components/(utilities)/SearchBar.jsx";
 import filtrarPlanos from "@/lib/searchHelpers";
 import MainFooter from "@/components/(layout)/MainFooter.jsx";
@@ -109,7 +108,6 @@ export default function Catalogo({
             : [...tiposCategoria].sort((a, b) => a.localeCompare(b, "es"));
     return (
         <>
-            <RequireAccount>
                 <section className={styles.catalogo}>
                     <h1 className={styles.smallerText}>Auto CAD / Editables</h1>
 
@@ -184,7 +182,6 @@ export default function Catalogo({
                         planosFiltrados.length === 0 ? <div className={styles.noResults}>Sin resultados.</div> : null
                     )}
                 </section>
-            </RequireAccount>
             <div className={"min"}></div>
             <MainFooter />
         </>
