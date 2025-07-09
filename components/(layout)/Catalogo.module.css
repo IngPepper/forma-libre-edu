@@ -43,6 +43,7 @@
 .categoriaBtn:hover,
 .activo {
     background: var(--color-acento, #c1baa1);
+    background: var(--color-acento, #c1baa1);
     color: var(--color-texto-blanco, #fff);
     box-shadow: 0 2px 8px rgba(193,186,161,0.09);
 }
@@ -112,7 +113,7 @@
     padding: 0.6rem 2.5rem 0.6rem 1rem; /* Espacio para el icono de flecha */
     border-radius: 8px;
     border: 2px solid var(--color-border);
-    background: var(--color-tarjeta, #d7d3bf);
+    background: var(--color-fondo-item);
     color: var(--color-texto, #2b2b2b);
     box-sizing: border-box;
     appearance: none;
@@ -122,9 +123,11 @@
     animation-fill-mode: backwards;
 }
 .dropdown:focus {
-    border-color: var(--color-acento, #c1baa1);
+    background-color: var(--color-tarjeta, #c1baa1);
     box-shadow: var(--sombra);
 }
+
+
 .iconDropdown {
     position: absolute;
     right: 0.7rem;
@@ -167,15 +170,15 @@
 }
 
 .resultCount {
-    color: var(--color-fondo-item);
+    color: var(--color-texto);
     font-weight: 600;
     font-size: 1rem;
-    margin-left: 1.5rem;
+    margin-left: 0.5rem;
     align-self: center;
     white-space: nowrap;
-    background-color: var(--color-fondo);
+    background-color: var(--color-fondo-item);
     padding: 0.8rem;
-    border-radius: 1rem;
+    border-radius: 12px;
     border: 2px solid var(--color-border);
     box-shadow: var(--sombra);
 
@@ -203,7 +206,12 @@
     .selectWrapper {
         max-width: 100%;
     }
-
+    .dropdown {
+        background: var(--color-fondo-item);
+    }
+    .dropdown:focus {
+        background-color: var(--color-tarjeta, #c1baa1);
+    }
     .categoriasRow {
         display: none !important;  /* Oculta los botones de categorías */
     }
@@ -228,6 +236,7 @@
     @media (max-width: 395px) {
         .categorias {
             border-radius: 12px;
+            padding: 0.1rem 0.3rem;
         }
 
         .categoriaBtn {
@@ -235,6 +244,10 @@
         }
         .miniFlex{
             flex-direction: column;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 0.1rem;
+
         }
     }
 }

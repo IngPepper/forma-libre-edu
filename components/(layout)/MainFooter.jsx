@@ -28,6 +28,7 @@ function MainFooter() {
                         <Link href={'https://www.facebook.com/people/Forma-Libre/61576765829363/'} target="_blank" className={styles.navLink}><FaFacebookSquare /></Link>
                         <Link href={'https://www.instagram.com/_formalibre/'} target="_blank" className={styles.navLink}><FaInstagram /></Link>
                         <Link href={'https://x.com/_FormaLibre'} target="_blank" className={styles.navLink}><FaSquareXTwitter/></Link>
+                        {/*    Boton de Whatsapp por si se necesita en un futuro
                         <Link
                             href="#"
                             target="_blank"
@@ -35,6 +36,7 @@ function MainFooter() {
                         >
                             <FaWhatsapp />
                         </Link>
+                        */}
                     </ul>
                 </div>
             </footer>

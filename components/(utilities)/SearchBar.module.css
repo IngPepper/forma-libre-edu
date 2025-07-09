@@ -15,7 +15,7 @@
 .searchBar {
     display: flex;
     align-items: center;
-    background: var(--color-tarjeta);
+    background: var(--color-fondo-item);
     border-radius: var(--borde-radius-doble);
     border: 2px solid var(--color-border);
     box-shadow: var(--sombra);
@@ -28,7 +28,7 @@
 /* Efecto visual al enfocar o pasar el mouse */
 .searchBar:focus-within, .searchBar:hover {
     box-shadow: 0 6px 15px rgba(0,0,0,0.17);
-    background: var(--color-fondo-claro);
+    background: #fff;
 }
 
 /* Icono de búsqueda (lupa a la izquierda del input) */
