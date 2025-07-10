@@ -162,30 +162,32 @@ export default function DetallePlano({
                             ? (hayNiveles ? "Paquete completo" : "")
                             : slides[slideActivo]?.nombre || ""}
                     </div>
-                    <img
-                        src={
-                            // Si hay niveles y NO estamos en el bundle (slideActivo > 0), muestra la foto del nivel si existe.
-                            hayNiveles && slideActivo > 0
-                                ? slides[slideActivo]?.foto || imagenGeneral || imagen
-                                : imagenGeneral || imagen
-                        }
-                        alt={titulo}
-                        className={`${styles.imagen} ${animacionSlide}`}
-                        onTouchStart={e => setTouchStartX(e.targetTouches[0].clientX)}
-                        onTouchMove={e => setTouchEndX(e.targetTouches[0].clientX)}
-                        onTouchEnd={() => {
-                            if (touchStartX === null || touchEndX === null) return;
-                            const distance = touchStartX - touchEndX;
-                            const minSwipeDistance = 50;
-                            if (distance > minSwipeDistance) {
-                                handleSwipe("left");
-                            } else if (distance < -minSwipeDistance) {
-                                handleSwipe("right");
+                    <div className={styles.sliderContainer}>
+                        <img
+                            src={
+                                // Si hay niveles y NO estamos en el bundle (slideActivo > 0), muestra la foto del nivel si existe.
+                                hayNiveles && slideActivo > 0
+                                    ? slides[slideActivo]?.foto || imagenGeneral || imagen
+                                    : imagenGeneral || imagen
                             }
-                            setTouchStartX(null);
-                            setTouchEndX(null);
-                        }}
-                    />
+                            alt={titulo}
+                            className={`${styles.imagen} ${animacionSlide}`}
+                            onTouchStart={e => setTouchStartX(e.targetTouches[0].clientX)}
+                            onTouchMove={e => setTouchEndX(e.targetTouches[0].clientX)}
+                            onTouchEnd={() => {
+                                if (touchStartX === null || touchEndX === null) return;
+                                const distance = touchStartX - touchEndX;
+                                const minSwipeDistance = 50;
+                                if (distance > minSwipeDistance) {
+                                    handleSwipe("left");
+                                } else if (distance < -minSwipeDistance) {
+                                    handleSwipe("right");
+                                }
+                                setTouchStartX(null);
+                                setTouchEndX(null);
+                            }}
+                        />
+                    </div>
                     <div className={styles.carouselDots}>
                         {slides.map((_, i) => (
                             <div key={i} className={styles.dotWrapper}>
