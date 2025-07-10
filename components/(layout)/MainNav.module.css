@@ -36,6 +36,7 @@
     width: 100%;
     z-index: 1000;
     display: flex;
+    align-items: center;
     justify-content: center;
     padding: 0 var(--espaciado) var(--espaciado);
     background-color: transparent;
@@ -58,7 +59,7 @@
     display: flex;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 1rem;
     background-color: var(--color-texto);
     border-radius: 0 0 var(--espaciado) var(--espaciado);
@@ -119,6 +120,7 @@
     cursor: pointer;
     font-size: 16px;
     padding: var(--espaciado);
+    margin-right: var(--espaciado);
     transition: transform 0.2s, color 0.2s;
 }
 .accountButton:hover {
@@ -232,7 +234,8 @@
         padding: 0.2rem;
     }
     .container {
-        justify-content: space-around;
+        justify-content: space-between;
+        padding: 0 0 0 20px;
     }
     .logoMini {
         height: 40px;
