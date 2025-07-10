@@ -18,11 +18,15 @@ export function useNearBottom(offset = 0) {
 
         window.addEventListener("scroll", checkNearBottom);
         window.addEventListener("resize", checkNearBottom);
+        // Checar inmediatamente
         checkNearBottom();
+        // Checar de nuevo después de un pequeño timeout para imágenes/datos asíncronos
+        const timeout = setTimeout(checkNearBottom, 350);
 
         return () => {
             window.removeEventListener("scroll", checkNearBottom);
             window.removeEventListener("resize", checkNearBottom);
+            clearTimeout(timeout);
         };
     }, [offset]);
 
