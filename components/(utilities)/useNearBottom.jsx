@@ -1,20 +1,30 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export function useNearBottom(threshold = 120) {
-    const [nearBottom, setNearBottom] = useState(false);
+export function useNearBottom(offset = 0) {
+    const [isNearBottom, setIsNearBottom] = useState(false);
 
     useEffect(() => {
-        function handleScroll() {
-            const scrollY = window.scrollY;
-            const innerHeight = window.innerHeight;
+        function checkNearBottom() {
+            const windowHeight = window.innerHeight;
             const bodyHeight = document.body.offsetHeight;
-            // ¿Está a menos de "threshold" px del fondo?
-            setNearBottom((scrollY + innerHeight) >= (bodyHeight - threshold));
+            const scrollY = window.scrollY || window.pageYOffset;
+            // SOLO si el contenido es más largo que la ventana
+            if (bodyHeight > windowHeight) {
+                setIsNearBottom((windowHeight + scrollY) >= (bodyHeight - offset));
+            } else {
+                setIsNearBottom(false);
+            }
         }
-        window.addEventListener("scroll", handleScroll);
-        handleScroll(); // Para evaluar al cargar
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [threshold]);
 
-    return nearBottom;
+        window.addEventListener("scroll", checkNearBottom);
+        window.addEventListener("resize", checkNearBottom);
+        checkNearBottom();
+
+        return () => {
+            window.removeEventListener("scroll", checkNearBottom);
+            window.removeEventListener("resize", checkNearBottom);
+        };
+    }, [offset]);
+
+    return isNearBottom;
 }

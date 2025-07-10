@@ -42,6 +42,8 @@
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.4s ease-out;
+    animation: slideDown 0.5s cubic-bezier(.66,.09,.7,1.15);
+    /* animation-fill-mode: both; // si quieres que permanezca animado */
 }
 
 .navReady {
@@ -53,9 +55,10 @@
 .container {
     width: 100%;
     max-width: 1024px;
-    display: grid;
+    display: flex;
     grid-template-columns: auto 1fr auto;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
     background-color: var(--color-texto);
     border-radius: 0 0 var(--espaciado) var(--espaciado);
@@ -179,7 +182,7 @@
     .cartIcon {
         font-size: 1.7rem;
     }
-    .container.navAtBottom {
+    .navAtBottom {
         border: 2px solid var(--color-tarjeta); /* O el color que quieras */
         margin-bottom: 3rem;
     }
@@ -222,9 +225,6 @@
         height: 40px;
         max-width: 60px;
     }
-    .container {
-        padding: 0 0 0 var(--espaciado-doble);
-    }
 }
 
 @media (max-width: 376px) {
@@ -246,5 +246,8 @@
         top: 0;
         bottom: auto;
         box-shadow: none;
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 }
