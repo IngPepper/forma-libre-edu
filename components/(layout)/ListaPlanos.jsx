@@ -50,7 +50,21 @@ function CardPlano({ plano, isClient, isSingle, tieneMembresia, handleGuardarCat
             }}
             onMouseLeave={() => setBurbuja({ ...burbuja, visible: false })}
         >
-            <img src={plano.imagen} alt={plano.titulo} className={styles.imagen}/>
+            {isClient ? (
+                <Link
+                    href={`/levantamientos/${plano.id}`}
+                    onClick={() => {
+                        handleGuardarCategoria(plano.categoria);
+                        window.scrollTo(0, 0);
+                    }}
+                    className={styles.linkImagen}
+                    style={{display: 'block'}}
+                >
+                    <img src={plano.imagen} alt={plano.titulo} className={styles.imagen}/>
+                </Link>
+            ) : (
+                <img src={plano.imagen} alt={plano.titulo} className={styles.imagen}/>
+            )}
 
             <div className={styles.contenido}>
                 <h3 className={styles.titulo}>
