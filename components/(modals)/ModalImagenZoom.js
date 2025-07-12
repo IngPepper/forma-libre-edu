@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ModalImagenZoom.module.css";
 import { FaTimes, FaSearchPlus, FaSearchMinus } from "react-icons/fa";
 
@@ -8,6 +8,7 @@ export default function ModalImagenZoom({ visible, src, alt, onClose }) {
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
     const [imgPos, setImgPos] = useState({ x: 0, y: 0 });
+    const imgRef = useRef();
 
     // --- Bloquea scroll de fondo
     useEffect(() => {
@@ -22,6 +23,25 @@ export default function ModalImagenZoom({ visible, src, alt, onClose }) {
         setImgPos({ x: 0, y: 0 });
     }, [src, visible]);
 
+    // --- Wheel zoom: con passive: false (sin warning)
+    useEffect(() => {
+        if (!imgRef.current || !visible) return;
+        const img = imgRef.current;
+        const handleWheel = e => {
+            e.preventDefault();
+            const delta = e.deltaY < 0 ? 0.1 : -0.1;
+            setZoom(z => {
+                const newZoom = Math.max(1, Math.min(3, z + delta));
+                if (newZoom === 1) setImgPos({ x: 0, y: 0 });
+                return newZoom;
+            });
+        };
+        img.addEventListener("wheel", handleWheel, { passive: false });
+        return () => {
+            img.removeEventListener("wheel", handleWheel);
+        };
+    }, [visible]);
+
     // --- Cerrar con ESC
     useEffect(() => {
         const esc = e => { if (e.key === "Escape") onClose(); };
@@ -29,19 +49,7 @@ export default function ModalImagenZoom({ visible, src, alt, onClose }) {
         return () => window.removeEventListener("keydown", esc);
     }, [visible, onClose]);
 
-    // <-- Hooks terminan aquí. Ahora sí, puedes retornar null si no está visible.
     if (!visible) return null;
-
-    // Wheel zoom
-    const handleWheel = e => {
-        e.preventDefault();
-        const delta = e.deltaY < 0 ? 0.1 : -0.1;
-        setZoom(z => {
-            const newZoom = Math.max(1, Math.min(3, z + delta));
-            if (newZoom === 1) setImgPos({ x: 0, y: 0 });
-            return newZoom;
-        });
-    };
 
     // Pan/arrastre de la imagen
     const handleMouseDown = e => {
@@ -103,6 +111,7 @@ export default function ModalImagenZoom({ visible, src, alt, onClose }) {
                 </div>
                 <div className={styles.imgContainer}>
                     <img
+                        ref={imgRef}
                         src={src}
                         alt={alt}
                         style={{
@@ -113,7 +122,6 @@ export default function ModalImagenZoom({ visible, src, alt, onClose }) {
                             maxHeight: "none",
                         }}
                         className={styles.zoomImage}
-                        onWheel={handleWheel}
                         onMouseDown={handleMouseDown}
                         onTouchStart={handleTouchStart}
                         draggable={false}
