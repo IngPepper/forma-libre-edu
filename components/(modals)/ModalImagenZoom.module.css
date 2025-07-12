@@ -74,3 +74,18 @@
     pointer-events: all;
     /* Quitamos maxWidth/maxHeight porque lo controla el contenedor */
 }
+
+@media (max-width: 800px) {
+    .modalContent {
+        max-width: 100vw;
+        max-height: 100vh;
+        padding: 8px;
+    }
+    .imgContainer {
+        width: 98vw;
+        height: 65vh;
+        max-width: 100vw;
+        max-height: 75vh;
+        min-height: 220px;
+    }
+}

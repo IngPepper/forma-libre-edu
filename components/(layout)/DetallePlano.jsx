@@ -56,9 +56,12 @@ export default function DetallePlano({
     }, []);
 
     const hayNiveles = Array.isArray(niveles) && niveles.length > 0;
-    const slides = hayNiveles
-        ? [calcularBundle(niveles, infoExtra), ...niveles]
-        : [];
+    const slides =
+        hayNiveles && niveles.length > 1
+            ? [calcularBundle(niveles, infoExtra), ...niveles]
+            : niveles && niveles.length === 1
+                ? [niveles[0]]
+                : [];
     const [slideActivo, setSlideActivo] = useState(0);
     const slide = hayNiveles ? slides[slideActivo] : null;
 

@@ -1,7 +1,11 @@
-"use client";
 import { useEffect, useRef, useState } from "react";
 import styles from "./ModalImagenZoom.module.css";
 import { FaTimes, FaSearchPlus, FaSearchMinus } from "react-icons/fa";
+
+function isMobileDevice() {
+    if (typeof window === "undefined") return false;
+    return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(window.navigator.userAgent);
+}
 
 export default function ModalImagenZoom({ visible, src, alt, onClose }) {
     const [zoom, setZoom] = useState(1);
@@ -9,13 +13,16 @@ export default function ModalImagenZoom({ visible, src, alt, onClose }) {
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
     const [imgPos, setImgPos] = useState({ x: 0, y: 0 });
     const imgRef = useRef();
+    const isMobile = isMobileDevice();
 
-    // --- Bloquea scroll de fondo
+    // --- Bloquea scroll de fondo solo en desktop
     useEffect(() => {
-        if (visible) document.body.style.overflow = "hidden";
-        else document.body.style.overflow = "";
-        return () => { document.body.style.overflow = ""; };
-    }, [visible]);
+        if (!isMobile) {
+            if (visible) document.body.style.overflow = "hidden";
+            else document.body.style.overflow = "";
+            return () => { document.body.style.overflow = ""; };
+        }
+    }, [visible, isMobile]);
 
     // --- Reset zoom y posición cuando cambia la imagen/modal
     useEffect(() => {
@@ -23,9 +30,9 @@ export default function ModalImagenZoom({ visible, src, alt, onClose }) {
         setImgPos({ x: 0, y: 0 });
     }, [src, visible]);
 
-    // --- Wheel zoom: con passive: false (sin warning)
+    // --- Wheel zoom solo en desktop
     useEffect(() => {
-        if (!imgRef.current || !visible) return;
+        if (!imgRef.current || !visible || isMobile) return;
         const img = imgRef.current;
         const handleWheel = e => {
             e.preventDefault();
@@ -40,7 +47,7 @@ export default function ModalImagenZoom({ visible, src, alt, onClose }) {
         return () => {
             img.removeEventListener("wheel", handleWheel);
         };
-    }, [visible]);
+    }, [visible, isMobile]);
 
     // --- Cerrar con ESC
     useEffect(() => {
@@ -51,39 +58,25 @@ export default function ModalImagenZoom({ visible, src, alt, onClose }) {
 
     if (!visible) return null;
 
-    // Pan/arrastre de la imagen
+    // Pan/arrastre solo en desktop
     const handleMouseDown = e => {
-        if (zoom === 1) return;
+        if (isMobile || zoom === 1) return;
         setIsDragging(true);
         setDragStart({ x: e.clientX - imgPos.x, y: e.clientY - imgPos.y });
     };
     const handleMouseMove = e => {
-        if (isDragging) {
-            setImgPos({
-                x: e.clientX - dragStart.x,
-                y: e.clientY - dragStart.y
-            });
-        }
+        if (isMobile || !isDragging) return;
+        setImgPos({
+            x: e.clientX - dragStart.x,
+            y: e.clientY - dragStart.y
+        });
     };
     const handleMouseUp = () => setIsDragging(false);
 
-    // Touch events
-    const handleTouchStart = e => {
-        if (zoom === 1) return;
-        const touch = e.touches[0];
-        setIsDragging(true);
-        setDragStart({ x: touch.clientX - imgPos.x, y: touch.clientY - imgPos.y });
-    };
-    const handleTouchMove = e => {
-        if (isDragging) {
-            const touch = e.touches[0];
-            setImgPos({
-                x: touch.clientX - dragStart.x,
-                y: touch.clientY - dragStart.y
-            });
-        }
-    };
-    const handleTouchEnd = () => setIsDragging(false);
+    // Touch events solo en desktop (en móvil se usa pinch/zoom nativo del navegador)
+    const handleTouchStart = () => {};
+    const handleTouchMove = () => {};
+    const handleTouchEnd = () => {};
 
     // Cerrar con backdrop
     const handleBackdropClick = e => {
@@ -97,33 +90,42 @@ export default function ModalImagenZoom({ visible, src, alt, onClose }) {
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
         >
             <div className={styles.modalContent}>
                 <button className={styles.closeBtn} onClick={onClose} title="Cerrar">
                     <FaTimes />
                 </button>
-                <div className={styles.zoomControls}>
-                    <button onClick={() => setZoom(z => Math.max(1, z - 0.1))}><FaSearchMinus /></button>
-                    <span>{zoom.toFixed(1)}x</span>
-                    <button onClick={() => setZoom(z => Math.min(3, z + 0.1))}><FaSearchPlus /></button>
-                </div>
+                {!isMobile && (
+                    <div className={styles.zoomControls}>
+                        <button onClick={() => setZoom(z => Math.max(1, z - 0.1))}><FaSearchMinus /></button>
+                        <span>{zoom.toFixed(1)}x</span>
+                        <button onClick={() => setZoom(z => Math.min(3, z + 0.1))}><FaSearchPlus /></button>
+                    </div>
+                )}
                 <div className={styles.imgContainer}>
                     <img
                         ref={imgRef}
                         src={src}
                         alt={alt}
-                        style={{
-                            transform: `scale(${zoom}) translate(${imgPos.x / zoom}px, ${imgPos.y / zoom}px)`,
-                            cursor: zoom > 1 ? (isDragging ? "grabbing" : "grab") : "zoom-in",
-                            transition: isDragging ? "none" : "transform 0.25s cubic-bezier(.23,1.03,.83,1)",
-                            maxWidth: "none",
-                            maxHeight: "none",
-                        }}
+                        style={
+                            isMobile
+                                ? {
+                                    width: "100%",
+                                    height: "auto",
+                                    objectFit: "contain",
+                                    touchAction: "auto", // Permite pinch zoom nativo
+                                    cursor: "zoom-in"
+                                }
+                                : {
+                                    transform: `scale(${zoom}) translate(${imgPos.x / zoom}px, ${imgPos.y / zoom}px)`,
+                                    cursor: zoom > 1 ? (isDragging ? "grabbing" : "grab") : "zoom-in",
+                                    transition: isDragging ? "none" : "transform 0.25s cubic-bezier(.23,1.03,.83,1)",
+                                    maxWidth: "none",
+                                    maxHeight: "none",
+                                }
+                        }
                         className={styles.zoomImage}
                         onMouseDown={handleMouseDown}
-                        onTouchStart={handleTouchStart}
                         draggable={false}
                     />
                 </div>
