@@ -50,7 +50,8 @@ function CardPlano({ plano, isClient, isSingle, tieneMembresia, handleGuardarCat
             }}
             onMouseLeave={() => setBurbuja({ ...burbuja, visible: false })}
         >
-            <img src={plano.imagen} alt={plano.titulo} className={styles.imagen} />
+            <img src={plano.imagen} alt={plano.titulo} className={styles.imagen}/>
+
             <div className={styles.contenido}>
                 <h3 className={styles.titulo}>
                     {isClient ? (

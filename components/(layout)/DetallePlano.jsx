@@ -11,6 +11,8 @@ import { useIsClient } from "@/components/(utilities)/useIsClient";
 import ModalLoading from "@/components/(modals)/ModalLoading"; // <-- Nuevo
 import { estadosConIcono } from "@/components/(utilities)/MapaMexico";
 
+import ModalImagenZoom from "@/components/(modals)/ModalImagenZoom";
+
 function parsePrecio(precio) {
     const parsed = Number(String(precio).replace(/[^0-9.]+/g, ""));
     return isNaN(parsed) ? 0 : parsed;
@@ -124,6 +126,9 @@ export default function DetallePlano({
         }, 250);
     };
 
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalImg, setModalImg] = useState({ src: "", alt: "" });
+
 
     return (
         <section>
@@ -165,13 +170,22 @@ export default function DetallePlano({
                     <div className={styles.sliderContainer}>
                         <img
                             src={
-                                // Si hay niveles y NO estamos en el bundle (slideActivo > 0), muestra la foto del nivel si existe.
                                 hayNiveles && slideActivo > 0
                                     ? slides[slideActivo]?.foto || imagenGeneral || imagen
                                     : imagenGeneral || imagen
                             }
                             alt={titulo}
                             className={`${styles.imagen} ${animacionSlide}`}
+                            onClick={() => {
+                                setModalImg({
+                                    src: hayNiveles && slideActivo > 0
+                                        ? slides[slideActivo]?.foto || imagenGeneral || imagen
+                                        : imagenGeneral || imagen,
+                                    alt: slides[slideActivo]?.nombre || titulo
+                                });
+                                setModalOpen(true);
+                            }}
+                            style={{ cursor: "zoom-in" }}
                             onTouchStart={e => setTouchStartX(e.targetTouches[0].clientX)}
                             onTouchMove={e => setTouchEndX(e.targetTouches[0].clientX)}
                             onTouchEnd={() => {
@@ -364,6 +378,12 @@ export default function DetallePlano({
                     )}
                 </div>
             </section>
+            <ModalImagenZoom
+                visible={modalOpen}
+                src={modalImg.src}
+                alt={modalImg.alt}
+                onClose={() => setModalOpen(false)}
+            />
         </section>
     );
 }
