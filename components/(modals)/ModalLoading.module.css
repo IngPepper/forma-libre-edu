@@ -19,9 +19,9 @@
     align-items: center;
     gap: 1em;
     min-width: 180px;
-    min-height: 90px;
-    max-width: 90vw;
-    max-height: 80vh;
+    min-height: 180px;
+    max-width: 300px;
+    max-height: 300px;
     justify-content: center;
 }
 
