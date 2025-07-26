@@ -55,6 +55,10 @@ export default function Home() {
             <div className="wrapper">
                 <ScrollToTopOnNavigation />
                 <h1 className={"smallerText"}>Inicio /</h1>
+                <h3>¡Hola!</h3>
+                <p>
+                    ¡Comienza explorando nuestros planos!
+                </p>
                 {/* --- SEARCH BAR --- */}
                 <SearchBar onSearch={handleSearch} autoFocus={false} />
                 {/* --- RESULTADOS FILTRADOS --- */}
@@ -131,6 +135,11 @@ export default function Home() {
                         </ul>
                     </section>
                 )}
+                <h3>Si te molesta escribir</h3>
+                <p>
+                    Usa el mapa a continuación
+                </p>
+                <MapaMexicoClient />
 
                 <CollapsibleSection
                     maxHeight = {600}
@@ -176,7 +185,6 @@ export default function Home() {
                         </div>
                     </ContentSection>
                 </CollapsibleSection>
-                <MapaMexicoClient />
                 <TripticoGeneral />
                 {/* Bienvenida */}
                 <ContentSection
