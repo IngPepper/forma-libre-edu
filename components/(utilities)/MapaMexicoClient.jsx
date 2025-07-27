@@ -31,7 +31,6 @@ export default function MapaMexicoClient() {
 
     return (
         <>
-            <h1 className={"smallerText"}>Planos por <br></br>estado /</h1>
             <MapaMexico planosPorEstado={conteo} />
         </>
     );
