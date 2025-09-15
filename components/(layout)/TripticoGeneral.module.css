@@ -1,0 +1,119 @@
+.triptico {
+    position: relative;
+    width: 100%;
+    min-height: 460px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: var(--borde-radius-doble);
+    border: 2px solid var(--color-texto);
+    margin: var(--espaciado-doble) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(236, 235, 222, 0.78); /* Ajusta la opacidad o el color de acuerdo a tu tema */
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    padding: var(--espaciado-doble);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaciado-doble);
+}
+
+.slogan {
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: var(--color-texto);
+    text-align: center;
+    margin-bottom: var(--espaciado);
+}
+
+.slogan span {
+    color: var(--color-acento);
+}
+
+.cards {
+    display: flex;
+    gap: var(--espaciado-doble);
+    justify-content: center;
+    width: 100%;
+}
+
+.card {
+    background: var(--color-fondo-claro);
+    border-radius: var(--borde-radius-doble);
+    box-shadow: var(--sombra);
+    padding: var(--espaciado-doble);
+    flex: 1 1 0px;
+    min-width: 240px;
+    max-width: 340px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid var(--color-texto);
+}
+
+.card:hover {
+    transform: translateY(-7px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+}
+
+.icon {
+    font-size: 2.5rem;
+    color: var(--color-acento);
+    margin-bottom: var(--espaciado);
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--color-texto);
+    margin-bottom: 0.7rem;
+}
+
+.card p {
+    color: var(--color-texto-suave);
+    font-size: 1.08rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .cards {
+        flex-direction: column;
+        gap: var(--espaciado);
+    }
+    .card {
+        max-width: none;
+        min-width: unset;
+    }
+}
+
+@media (max-width: 600px) {
+    .triptico {
+        min-height: 320px;
+        padding: var(--espaciado);
+    }
+    .content {
+        padding: var(--espaciado);
+        gap: var(--espaciado);
+    }
+    .slogan {
+        font-size: 1.2rem;
+    }
+}

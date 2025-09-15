@@ -1,0 +1,165 @@
+:root {
+  --color-fondo: #A59D84;
+  --color-fondo-claro: #ECEBDE;
+  --color-acento: #C1BAA1;
+  --color-tarjeta: #D7D3BF;
+  --color-texto: #2b2b2b;
+  --color-texto-suave: #5a5a5a;
+  --color-texto-hover-claro: #ddd;
+  --color-texto-blanco: #fff;
+  --color-border: #404040;
+  --color-verde: #b0ff81;
+  --color-error: #a85353;
+  --fuente-grande: 5.5rem;
+  --espaciado: 1rem;
+  --espaciado-doble: 2rem;
+  --borde-radius: 8px;
+  --borde-radius-doble: 8px;
+  --borde-oscuro: 2px solid #404040;
+  --borde-claro: 2px solid #C1BAA1;
+  --sombra: 0 5px 3px rgba(0, 0, 0, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: auto;
+  font-family: 'Red Hat Mono', monospace;
+  font-size: 18px;
+  background-color: var(--color-fondo-claro);
+  color: var(--color-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+a {
+  color: var(--color-texto);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--color-acento);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--color-acento);
+  color: white;
+  border: 2px solid var(--color-border);
+  padding: var(--espaciado);
+  border-radius: var(--borde-radius);
+  cursor: pointer;
+  transition:
+          transform 0.2s ease,
+          background-color 0.22s cubic-bezier(.44, .2, .38, 1.27),
+          box-shadow 0.18s;
+}
+
+button:hover {
+  background-color: #8a8167;
+  transform: scale(1.055);/* versión más oscura del acento */
+}
+
+h1{
+  margin: var(--espaciado) auto;
+  font-size: var(--fuente-grande);
+  line-height: initial;
+}
+
+.noPadding {
+  padding: 0;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: var(--espaciado);
+}
+
+.logo {
+  min-width: 200px; /* Asegura que el logo no se reduzca más allá de 200px */
+  height: auto; /* Mantiene la proporción del logo */
+  transition: transform 0.2s ease-in-out; /* Agrega una transición suave para efectos */
+}
+
+.logo:hover {
+  cursor: pointer; /* Cambia el cursor a mano para indicar interactividad */
+  transform: scale(1.05); /* Efecto de escala al pasar el mouse */
+}
+
+.wrapper {
+  width: 100%;
+  height: auto;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  /* Opcional: agrega separación arriba y abajo */
+  padding: 0 var(--espaciado);
+  /* Para responsividad extra */
+  min-width: 0;
+
+
+}
+
+.topContent {
+    position: relative; /* ¡Esto es lo más importante! */
+    min-height: 340px;
+    overflow: hidden;
+    padding-top: 0;
+}
+
+.centerContent {
+  display: flex;
+  flex-direction: column; /* Opcional, si quieres apilar verticalmente */
+  align-items: center;
+  justify-content: center;
+}
+
+.clearText {
+  color: var(--color-texto-blanco);
+}
+
+.link {
+  color: var(--color-texto);
+  text-decoration: underline dotted;
+  margin-left: 2px;
+  font-weight: 500;
+  transition: color 0.18s;
+}
+.link:hover {
+  color: #ad8f3d;
+  text-decoration: underline solid;
+}
+
+
+.footerWrapper {
+  flex-shrink: 0;
+}
+ 
+.add500{
+  height: 500px;
+}
+
+@media(max-width: 450px){
+  .smallerText {
+    font-size: 3rem;
+
+  }
+}

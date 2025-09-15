@@ -1,0 +1,19 @@
+.bandeja{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espaciado-doble);
+    margin: var(--espaciado-doble) auto;
+    border-radius: var(--borde-radius);
+    border:var(--borde-oscuro);
+    box-shadow: var(--sombra);
+    background: var(--color-acento);
+}
+
+@media (max-width: 900px) {
+    .bandeja{
+        flex-direction: column;
+    }
+}
