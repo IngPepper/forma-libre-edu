@@ -1,5 +1,5 @@
 // generarPlanos.cjs
-
+// Para el septimo script
 const fs = require('fs');
 
 const estadosConIcono = [
